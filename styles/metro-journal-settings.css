@@ -4,25 +4,26 @@
    Foundry v14 (non vérifiées sur une instance réelle).
    ========================================================= */
 
-/* ---------- Journal : habillage limité à la partie droite (affichage des pages) ----------
-   La liste des pages (colonne de gauche) garde l'affichage standard de Foundry.
-   Le fond couvre toute la zone de droite, quelle que soit la longueur de la page. */
-.journal-sheet .journal-entry-content,
-.journal-sheet .journal-entry-pages {
-    
-   
-background: burlywood;
-border:#8a1c16;
-border-left-color: #8a1c16;
-border-right-color: #8a1c16;
-border-width: 25px;
-    
-}
+/* ---------- Journal : pages affichées (pas la saisie) ----------
+   Fond parchemin + bordure de papier déchiré sur chaque page en lecture.
+   Les pages en cours d'édition (éditeur ouvert) et la liste des pages à gauche
+   gardent l'affichage standard de Foundry. */
+.journal-sheet .journal-entry-page:not(:has(prose-mirror, .editor, .editor-content[contenteditable="true"], textarea, form)) {
 
-.journal-sheet .journal-entry-page {
-    background: none;
+
+    border: 40px solid transparent;
+    border-image-source: url("../ui/backgrounds/hook-borderAndBackground.webp");
+    border-image-slice: fill  30;
+    border-image-width: 40px;
+    
+    padding: 10px;
+    margin-bottom: 12px;
     color: #2b2118;
-    font-family: 'Courier New', Courier, 'American Typewriter', Consolas, Monaco, monospace;
+    font-family: "Courier New", Courier, monospace;
+
+
+
+
 }
 
 .journal-sheet .journal-entry-page .journal-page-content,
@@ -30,7 +31,7 @@ border-width: 25px;
 .journal-sheet .journal-entry-page .journal-page-content li,
 .journal-sheet .journal-entry-page .journal-page-content td,
 .journal-sheet .journal-entry-page .journal-page-content blockquote {
-    font-family: 'Courier New', Courier, 'American Typewriter', Consolas, Monaco, monospace;
+    font-family: "Courier New", Courier, monospace;
 }
 
 .journal-sheet .journal-entry-page :is(h1, h2, h3, h4, h5, h6),
