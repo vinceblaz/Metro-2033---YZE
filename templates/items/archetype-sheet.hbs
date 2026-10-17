@@ -1,0 +1,308 @@
+<div class="metro-archetype-sheet-content {{cssClass}}">
+
+    {{!-- =====================================================
+         EN-TÊTE
+         ===================================================== --}}
+
+    <header class="metro-item-header">
+
+        <img
+            class="metro-item-image"
+            src="{{item.img}}"
+            alt="{{item.name}}"
+            data-action="editImage"
+            data-edit="img"
+            title="Cliquer pour modifier l'image"
+        >
+
+        <div class="metro-item-header-main">
+
+            <input
+                class="metro-item-name"
+                type="text"
+                name="name"
+                value="{{item.name}}"
+                {{#unless editable}}disabled{{/unless}}
+            >
+
+            <div class="metro-item-type">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Archétype
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    {{!-- =====================================================
+         CONTENU
+         ===================================================== --}}
+
+    <div class="metro-item-scroll">
+
+
+        {{!-- -------------------------------------------------
+             IDENTITÉ
+             ------------------------------------------------- --}}
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Données de l'Archétype
+                </span>
+
+            </div>
+
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-form-grid">
+
+                    <label>
+                        Définition
+                    </label>
+
+                    <select
+                        name="system.key"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                        <option
+                            value=""
+                            {{#unless system.key}}selected{{/unless}}
+                        >
+                            —
+                        </option>
+
+                        {{#each archetypeDefinitions}}
+
+                            <option
+                                value="{{id}}"
+                                {{#if selected}}selected{{/if}}
+                            >
+                                {{label}}
+                            </option>
+
+                        {{/each}}
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        {{!-- -------------------------------------------------
+             CONFIGURATION
+             ------------------------------------------------- --}}
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Configuration
+                </span>
+
+            </div>
+
+
+            <div class="metro-item-section-body">
+
+                <div
+                    class="metro-form-grid"
+                    data-archetype-attribute-field
+                    {{#unless archetype.hasAttributeChoice}}hidden{{/unless}}
+                >
+
+                    <label>
+                        Attribut choisi
+                    </label>
+
+                    <select
+                        name="system.configuration.attribute"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                        <option value="">
+                            —
+                        </option>
+
+                        {{#each archetype.attributeChoices}}
+
+                            <option
+                                value="{{id}}"
+                                {{#if selected}}selected{{/if}}
+                            >
+                                {{label}}
+                            </option>
+
+                        {{/each}}
+
+                    </select>
+
+                </div>
+
+
+                <div
+                    class="metro-form-grid"
+                    data-archetype-skill-field
+                    {{#unless archetype.hasSkillChoice}}hidden{{/unless}}
+                >
+
+                    <label>
+                        Compétence choisie
+                    </label>
+
+                    <select
+                        name="system.configuration.skill"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                        <option value="">
+                            —
+                        </option>
+
+                        {{#each archetype.skillChoices}}
+
+                            <option
+                                value="{{id}}"
+                                {{#if selected}}selected{{/if}}
+                            >
+                                {{label}}
+                            </option>
+
+                        {{/each}}
+
+                    </select>
+
+                </div>
+
+
+                <p
+                    class="metro-archetype-no-configuration"
+                    data-archetype-no-configuration
+                    {{#if archetype.hasAttributeChoice}}hidden{{/if}}
+                    {{#if archetype.hasSkillChoice}}hidden{{/if}}
+                >
+                    Cet Archétype ne nécessite
+                    aucun choix particulier.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        {{!-- -------------------------------------------------
+             DESCRIPTION
+             ------------------------------------------------- --}}
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Description
+                </span>
+
+            </div>
+
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.description"
+                    rows="8"
+                    placeholder="Description de l'Archétype..."
+                    {{#unless editable}}disabled{{/unless}}
+                >{{system.description}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        {{!-- -------------------------------------------------
+             NOTE MJ
+             ------------------------------------------------- --}}
+
+        {{#if isGM}}
+
+            <section
+                class="
+                    metro-item-section
+                    metro-gm-section
+                "
+            >
+
+                <div class="metro-item-section-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Note MJ
+                    </span>
+
+                </div>
+
+
+                <div class="metro-item-section-body">
+
+                    <textarea
+                        name="system.gmNotes"
+                        rows="6"
+                        placeholder="Notes privées du MJ..."
+                        {{#unless editable}}disabled{{/unless}}
+                    >{{system.gmNotes}}</textarea>
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+    </div>
+
+</div>

@@ -1,0 +1,722 @@
+<div class="metro-chat-card metro-yze-roll">
+
+    <header class="metro-chat-header metro-yze-roll-header">
+
+        <div class="metro-yze-roll-heading">
+
+            <span
+                class="metro-yze-roll-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span class="metro-yze-roll-title">
+                Test de {{roll.testLabel}}
+            </span>
+
+        </div>
+
+        <div class="metro-yze-roll-actor">
+            {{actor.name}}
+        </div>
+
+    </header>
+
+
+    <section class="metro-yze-roll-result">
+
+        {{#if roll.success}}
+
+            <div class="metro-yze-roll-result-label">
+                RÉUSSITE
+            </div>
+
+            <div class="metro-yze-roll-result-value">
+                {{roll.successes}}
+            </div>
+
+            <div class="metro-yze-roll-result-caption">
+                réussite(s)
+            </div>
+
+        {{else}}
+
+            <div
+                class="
+                    metro-yze-roll-result-label
+                    metro-yze-roll-result-label--failure
+                "
+            >
+                ÉCHEC
+            </div>
+
+            <div class="metro-yze-roll-result-value">
+                0
+            </div>
+
+            <div class="metro-yze-roll-result-caption">
+                réussite
+            </div>
+
+        {{/if}}
+
+    </section>
+
+
+    <section class="metro-yze-roll-dice">
+
+        <div class="metro-chat-section-title metro-yze-roll-section-title">
+
+            <span
+                class="metro-yze-roll-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            RÉSULTAT DES DÉS
+
+        </div>
+
+
+        {{#if dice.hasAttribute}}
+
+            <div class="metro-yze-roll-dice-group">
+
+                <div class="metro-yze-roll-dice-label">
+                    Attribut
+                </div>
+
+                <div class="metro-yze-roll-dice-list">
+
+                    {{#each dice.attribute}}
+
+                        <span
+                            class="
+                                metro-yze-die
+                                {{#if success}}metro-yze-die--success{{/if}}
+                                {{#if one}}metro-yze-die--one{{/if}}
+                            "
+                        >
+                            {{value}}
+                        </span>
+
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+        {{/if}}
+
+
+        {{#if dice.hasSkill}}
+
+            <div class="metro-yze-roll-dice-group">
+
+                <div class="metro-yze-roll-dice-label">
+                    Compétence
+                </div>
+
+                <div class="metro-yze-roll-dice-list">
+
+                    {{#each dice.skill}}
+
+                        <span
+                            class="
+                                metro-yze-die
+                                {{#if success}}metro-yze-die--success{{/if}}
+                                {{#if one}}metro-yze-die--one{{/if}}
+                            "
+                        >
+                            {{value}}
+                        </span>
+
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+        {{/if}}
+
+
+        {{#if dice.hasEquipment}}
+
+            <div class="metro-yze-roll-dice-group">
+
+                <div class="metro-yze-roll-dice-label">
+                    Outil
+                </div>
+
+                <div class="metro-yze-roll-dice-list">
+
+                    {{#each dice.equipment}}
+
+                        <span
+                            class="
+                                metro-yze-die
+                                {{#if success}}metro-yze-die--success{{/if}}
+                                {{#if one}}metro-yze-die--one{{/if}}
+                            "
+                        >
+                            {{value}}
+                        </span>
+
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+        {{/if}}
+
+
+        {{#if dice.hasBonus}}
+
+            <div class="metro-yze-roll-dice-group">
+
+                <div class="metro-yze-roll-dice-label">
+                    Bonus
+                </div>
+
+                <div class="metro-yze-roll-dice-list">
+
+                    {{#each dice.bonus}}
+
+                        <span
+                            class="
+                                metro-yze-die
+                                {{#if success}}metro-yze-die--success{{/if}}
+                                {{#if one}}metro-yze-die--one{{/if}}
+                            "
+                        >
+                            {{value}}
+                        </span>
+
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+        {{/if}}
+
+
+        {{#if dice.hasStress}}
+
+            <div
+                class="
+                    metro-yze-roll-dice-group
+                    metro-yze-roll-dice-group--stress
+                "
+            >
+
+                <div class="metro-yze-roll-dice-label">
+                    Stress
+                </div>
+
+                <div class="metro-yze-roll-dice-list">
+
+                    {{#each dice.stress}}
+
+                        <span
+                            class="
+                                metro-yze-die
+                                metro-yze-die--stress
+                                {{#if stressAffliction}}metro-yze-die--affliction{{/if}}
+                            "
+                        >
+                            {{value}}
+                        </span>
+
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+        {{/if}}
+
+
+        {{#if dice.hasEliminatedStress}}
+
+            <div class="metro-yze-roll-eliminated-stress">
+
+                <span>
+                    Stress éliminé
+                </span>
+
+                <strong>
+                    {{dice.eliminatedStress}}
+                </strong>
+
+            </div>
+
+        {{/if}}
+
+    </section>
+
+
+    <section class="metro-yze-roll-pool">
+
+        <div class="metro-chat-section-title metro-yze-roll-section-title">
+
+            <span
+                class="metro-yze-roll-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            POOL DE DÉS
+
+        </div>
+
+
+        <div class="metro-yze-roll-pool-grid">
+
+            <div class="metro-yze-roll-pool-entry">
+
+                <span class="metro-yze-roll-pool-label">
+                    Attribut
+                </span>
+
+                <strong class="metro-yze-roll-pool-value">
+                    {{pool.attribute}}
+                </strong>
+
+            </div>
+
+
+            {{#if pool.skill}}
+
+                <div class="metro-yze-roll-pool-entry">
+
+                    <span class="metro-yze-roll-pool-label">
+                        Compétence
+                    </span>
+
+                    <strong class="metro-yze-roll-pool-value">
+                        {{pool.skill}}
+                    </strong>
+
+                </div>
+
+            {{/if}}
+
+
+            {{#if pool.equipment}}
+
+                <div class="metro-yze-roll-pool-entry">
+
+                    <span class="metro-yze-roll-pool-label">
+                        Outil
+                    </span>
+
+                    <strong class="metro-yze-roll-pool-value">
+                        {{pool.equipment}}
+                    </strong>
+
+                </div>
+
+            {{/if}}
+
+
+            {{#if pool.stress}}
+
+                <div
+                    class="
+                        metro-yze-roll-pool-entry
+                        metro-yze-roll-pool-entry--stress
+                    "
+                >
+
+                    <span class="metro-yze-roll-pool-label">
+                        Stress
+                    </span>
+
+                    <strong class="metro-yze-roll-pool-value">
+                        {{pool.stress}}
+                    </strong>
+
+                </div>
+
+            {{/if}}
+
+
+            {{#if pool.bonus}}
+
+                <div class="metro-yze-roll-pool-entry">
+
+                    <span class="metro-yze-roll-pool-label">
+                        Bonus
+                    </span>
+
+                    <strong class="metro-yze-roll-pool-value">
+                        +{{pool.bonus}}
+                    </strong>
+
+                </div>
+
+            {{/if}}
+
+
+            {{#if pool.penalty}}
+
+                <div class="metro-yze-roll-pool-entry">
+
+                    <span class="metro-yze-roll-pool-label">
+                        Malus
+                    </span>
+
+                    <strong class="metro-yze-roll-pool-value">
+                        -{{pool.penalty}}
+                    </strong>
+
+                </div>
+
+            {{/if}}
+
+        </div>
+
+    </section>
+
+
+    {{#if decisions.length}}
+        <section class="metro-yze-roll-decisions">
+            <div class="metro-chat-section-title metro-yze-roll-section-title">
+                <span class="metro-yze-roll-star" aria-hidden="true">★</span>
+                DÉCISIONS ET MODIFICATEURS
+            </div>
+            <ul class="metro-chat-decision-list">
+                {{#each decisions}}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        </section>
+    {{/if}}
+
+
+    {{#if roll.hasAfflictions}}
+
+        <section class="metro-yze-roll-afflictions">
+
+            <span
+                class="metro-yze-roll-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span>
+                Afflictions
+            </span>
+
+            <strong>
+                {{roll.afflictions}}
+            </strong>
+
+        </section>
+
+    {{/if}}
+
+
+    {{#if roll.canFirstPush}}
+
+        <div class="metro-chat-actions metro-yze-roll-actions">
+
+            <button
+                type="button"
+                class="metro-chat-button metro-yze-roll-push"
+                data-action="push-yze-roll"
+            >
+                <span aria-hidden="true">
+                    ★
+                </span>
+
+                FORCER LE JET
+            </button>
+
+        </div>
+
+    {{/if}}
+
+
+    {{#if roll.canSecondPush}}
+
+        <div class="metro-chat-actions metro-yze-roll-actions">
+
+            <button
+                type="button"
+                class="
+                    metro-chat-button
+                    metro-yze-roll-push
+                    metro-yze-roll-push--stress
+                "
+                data-action="push-yze-roll-with-stress"
+            >
+                <span aria-hidden="true">
+                    ★
+                </span>
+
+                FORCER AVEC LE STRESS
+            </button>
+
+        </div>
+
+    {{/if}}
+
+
+    {{#if roll.canFinalize}}
+
+        <div class="metro-chat-actions metro-yze-roll-actions">
+
+            <button
+                type="button"
+                class="
+                    metro-chat-button
+                    metro-yze-roll-finalize
+                "
+                data-action="finalize-yze-roll"
+            >
+                <span aria-hidden="true">
+                    ★
+                </span>
+
+                ACCEPTER LE RÉSULTAT
+            </button>
+
+        </div>
+
+    {{/if}}
+
+
+    {{#if roll.pushFinished}}
+
+        <div class="metro-yze-roll-push-status">
+
+            <span
+                class="metro-yze-roll-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            JET FORCÉ DEUX FOIS
+
+        </div>
+
+    {{else}}
+
+        {{#if roll.pushed}}
+
+            <div class="metro-yze-roll-push-status">
+
+                <span
+                    class="metro-yze-roll-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                JET FORCÉ
+
+            </div>
+
+        {{/if}}
+
+    {{/if}}
+
+
+    {{#if roll.finalized}}
+
+        <div
+            class="
+                metro-yze-roll-push-status
+                metro-yze-roll-finalized
+            "
+        >
+
+            <span
+                class="metro-yze-roll-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            RÉSULTAT FINALISÉ
+
+        </div>
+
+    {{/if}}
+
+
+    {{#if stationSurvival.active}}
+
+        {{#if stationSurvival.readyForManualApplication}}
+
+            <section class="metro-chat-section metro-station-survival-apply">
+
+                <p class="metro-station-survival-status">
+                    {{stationSurvival.gain}} réussite(s) —
+                    appliquer à la ressource
+                    « {{stationSurvival.resourceLabel}} »
+                    de la Station{{#if stationSurvival.stationName}}
+                    « {{stationSurvival.stationName}} »{{/if}} ?
+                </p>
+
+                <div class="metro-chat-actions metro-station-survival-actions">
+                    <button
+                        type="button"
+                        class="metro-chat-button"
+                        data-action="apply-station-survival"
+                    >
+                        Appliquer à la Station
+                    </button>
+                </div>
+
+            </section>
+
+        {{/if}}
+
+        {{#if stationSurvival.applied}}
+
+            <div class="metro-yze-roll-push-status metro-yze-roll-finalized">
+                <span class="metro-yze-roll-star" aria-hidden="true">★</span>
+                APPLIQUÉ À LA STATION
+            </div>
+
+        {{/if}}
+
+    {{/if}}
+
+
+ {{#if rangedAttackApplication.requiresProtectionChoice}}
+
+    <section
+        class="
+            metro-yze-roll-protection-choice
+        "
+    >
+
+        <div
+            class="
+                metro-chat-section-title
+                metro-yze-roll-section-title
+            "
+        >
+
+            <span
+                class="metro-yze-roll-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            CHOIX DE PROTECTION
+
+        </div>
+
+
+        <div
+            class="
+                metro-chat-actions
+                metro-yze-roll-actions
+                metro-yze-roll-protection-actions
+            "
+        >
+
+            {{#each rangedAttackApplication.protectionChoices}}
+
+                <button
+                    type="button"
+                    class="
+                        metro-chat-button
+                        metro-yze-roll-protection-choice-button
+                    "
+                    data-action="resolve-ranged-protection"
+                    data-protection-target="{{this}}"
+                >
+
+                    {{#if (eq this "body")}}
+                        ARMURE
+                    {{else}}
+                        {{#if (eq this "helmet")}}
+                            CASQUE
+                        {{else}}
+                            {{this}}
+                        {{/if}}
+                    {{/if}}
+
+                </button>
+
+            {{/each}}
+
+        </div>
+
+    </section>
+
+{{/if}}
+
+
+{{#if rangedAttackApplication.requiresDisarmChoice}}
+
+    <section
+        class="
+            metro-yze-roll-disarm-choice
+        "
+    >
+
+        <div
+            class="
+                metro-chat-section-title
+                metro-yze-roll-section-title
+            "
+        >
+
+            <span
+                class="metro-yze-roll-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            CHOIX DE L'ARME À DÉSARMER
+
+        </div>
+
+
+        <div
+            class="
+                metro-chat-actions
+                metro-yze-roll-actions
+                metro-yze-roll-disarm-actions
+            "
+        >
+
+            {{#each rangedAttackApplication.disarmChoices}}
+
+                <button
+                    type="button"
+                    class="
+                        metro-chat-button
+                        metro-yze-roll-disarm-choice-button
+                    "
+                    data-action="resolve-ranged-disarm"
+                    data-item-id="{{itemId}}"
+                >
+                    {{name}}
+                </button>
+
+            {{/each}}
+
+        </div>
+
+    </section>
+
+{{/if}}
+
+
+</div>

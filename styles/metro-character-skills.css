@@ -1,0 +1,639 @@
+/* ============================================================
+
+ * CHARACTER — SKILLS
+
+ * ============================================================ */
+
+/* #region Character Skills en général */
+
+.metro-character-skills {
+
+    margin-top: 14px;
+
+}
+
+.metro-character-section-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 10px;
+
+    padding-bottom: 6px;
+
+    color: #ddd6cc;
+
+    border-bottom:
+
+        1px solid #493d39;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.09em;
+
+    text-transform: uppercase;
+
+}
+
+.metro-character-skill-groups {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(
+
+            2,
+
+            minmax(0, 1fr)
+
+        );
+
+    gap: 10px;
+
+}
+
+.metro-character-skill-group {
+
+    overflow: hidden;
+
+    border:
+
+        1px solid #3e3734;
+
+    border-top:
+
+        2px solid #7e1d1d;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            #211f1e,
+
+            #171616
+
+        );
+
+}
+
+.metro-character-skill-group-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 7px 9px;
+
+    color: #d8d1c7;
+
+    border-bottom:
+
+        1px solid #3e3734;
+
+    background:
+
+        rgb(126 29 29 / 10%);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+}
+
+.metro-character-skill-list {
+
+    padding: 4px 7px;
+
+}
+
+.metro-character-skill-row {
+
+    display: grid;
+
+    /*
+
+     * Nom
+
+     * Valeur
+
+     * Test
+
+     * Progression XP
+
+     */
+
+    grid-template-columns:
+
+        minmax(0, 1fr)
+
+        42px
+
+        54px
+
+        minmax(92px, auto);
+
+    align-items: center;
+
+    gap: 6px;
+
+    min-height: 35px;
+
+    padding:
+
+        3px 0;
+
+    border-bottom:
+
+        1px solid rgb(255 255 255 / 5%);
+
+}
+
+.metro-character-skill-row:last-child {
+
+    border-bottom: 0;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Nom de compétence
+
+ * ------------------------------------------------------------ */
+
+.metro-character-skill-name {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    color: #c3bdb5;
+
+    font-size: 11px;
+
+}
+
+.metro-character-skill-name > span:first-child {
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+/*
+
+ * Marque visuelle d'une compétence d'archétype.
+
+ */
+
+.metro-character-skill-archetype {
+
+    flex: 0 0 auto;
+
+    color:
+
+        #a92b2b;
+
+    font-size:
+
+        10px;
+
+    line-height:
+
+        1;
+
+    text-shadow:
+
+        0 0 3px rgb(169 43 43 / 30%);
+
+}
+
+/* ------------------------------------------------------------
+
+ * Valeur de compétence
+
+ * ------------------------------------------------------------ */
+
+.metro-character-skill-value {
+
+    width: 100%;
+
+    height: 26px;
+
+    padding: 2px 4px;
+
+    color: #ddd6cc;
+
+    border:
+
+        1px solid #49423e;
+
+    background:
+
+        #171616;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-align: center;
+
+}
+
+.metro-character-skill-value:hover,
+
+.metro-character-skill-value:focus {
+
+    border-color:
+
+        #8f2424;
+
+    outline: none;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Bouton Test
+
+ * ------------------------------------------------------------ */
+
+.metro-character-skill-roll {
+
+    height: 26px;
+
+    margin: 0;
+
+    padding: 2px 5px;
+
+    color: #d9d2c9;
+
+    border:
+
+        1px solid #692020;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #512020,
+
+            #321616
+
+        );
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing:
+
+        0.05em;
+
+    text-transform:
+
+        uppercase;
+
+    cursor:
+
+        pointer;
+
+    transition:
+
+        border-color 120ms ease,
+
+        background 120ms ease,
+
+        color 120ms ease;
+
+}
+
+.metro-character-skill-roll:hover {
+
+    color: #fff1e7;
+
+    border-color:
+
+        #a52a2a;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #752525,
+
+            #451919
+
+        );
+
+}
+
+/* ------------------------------------------------------------
+
+ * Progression XP
+
+ * ------------------------------------------------------------ */
+
+.metro-character-skill-progression {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap:
+
+        4px;
+
+    min-width:
+
+        0;
+
+}
+
+/*
+
+ * Coût de la prochaine augmentation.
+
+ */
+
+.metro-character-skill-xp-cost {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width:
+
+        38px;
+
+    color:
+
+        #aaa29a;
+
+    font-size:
+
+        9px;
+
+    font-weight:
+
+        700;
+
+    white-space:
+
+        nowrap;
+
+}
+
+/*
+
+ * Badge indiquant qu'une validation MJ
+
+ * est nécessaire pour le passage 0 -> 1.
+
+ */
+
+.metro-character-skill-gm-approval {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width:
+
+        20px;
+
+    height:
+
+        18px;
+
+    padding:
+
+        0 4px;
+
+    color:
+
+        #d9cdc4;
+
+    border:
+
+        1px solid #704040;
+
+    background:
+
+        rgb(126 29 29 / 18%);
+
+    font-size:
+
+        8px;
+
+    font-weight:
+
+        800;
+
+    letter-spacing:
+
+        0.06em;
+
+    line-height:
+
+        1;
+
+    cursor:
+
+        help;
+
+}
+
+/*
+
+* Bouton d'augmentation de compétence.
+
+ */
+
+.metro-character-skill-xp {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width:
+
+        32px;
+
+    height:
+
+        26px;
+
+    margin:
+
+        0;
+
+    padding:
+
+        2px 4px;
+
+    color:
+
+        #e0d9d0;
+
+    border:
+
+        1px solid #742222;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #5a2020,
+
+            #341616
+
+        );
+
+    font-size:
+
+        11px;
+
+    font-weight:
+
+        800;
+
+    line-height:
+
+        1;
+
+    cursor:
+
+        pointer;
+
+    transition:
+
+        border-color 120ms ease,
+
+        background 120ms ease,
+
+        color 120ms ease,
+
+        opacity 120ms ease;
+
+}
+
+.metro-character-skill-xp:hover:not(:disabled) {
+
+    color:
+
+        #fff1e7;
+
+    border-color:
+
+        #a82d2d;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #7d2727,
+
+            #481818
+
+        );
+
+}
+
+.metro-character-skill-xp:active:not(:disabled) {
+
+    transform:
+
+        translateY(1px);
+
+}
+
+.metro-character-skill-xp:disabled {
+
+    opacity:
+
+        0.35;
+
+    cursor:
+
+        default;
+
+    filter:
+
+        grayscale(0.35);
+
+}
+
+/* ------------------------------------------------------------
+
+ * Responsive léger pour les petites largeurs
+
+ * ------------------------------------------------------------ */
+
+@media (max-width: 620px) {
+
+    .metro-character-skill-groups {
+
+        grid-template-columns:
+
+            1fr;
+
+    }
+
+    .metro-character-skill-row {
+
+        grid-template-columns:
+
+            minmax(0, 1fr)
+
+            42px
+
+            54px
+
+            minmax(92px, auto);
+
+    }
+
+}
+
+/* #endregion */
+
+

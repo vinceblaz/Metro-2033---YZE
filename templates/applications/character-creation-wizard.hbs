@@ -1,0 +1,536 @@
+<div class="metro2033 metro-character-creation-wizard-content">
+
+    {{!-- ============================================================
+          EN-TÊTE — PROGRESSION
+          ============================================================ --}}
+
+    <header class="metro-wizard-progress">
+        <span class="metro-red-star" aria-hidden="true">★</span>
+        Étape {{stepNumber}} / {{stepCount}}
+    </header>
+
+
+    {{!-- ============================================================
+          1. ARCHÉTYPE
+
+          Chaque étape n'est présente dans le document que si
+          `stepFlags.<étape>` est vraie : une seule étape à la
+          fois existe dans le DOM (pas seulement « cachée » par
+          CSS), pour ne jamais risquer de voir plusieurs étapes
+          superposées à l'écran.
+          ============================================================ --}}
+
+    {{#if stepFlags.archetype}}
+
+    <section class="metro-wizard-step">
+
+        <h3>1. Choisissez votre archétype</h3>
+
+        <div class="metro-wizard-archetype-grid">
+
+            {{#each archetypeChoices}}
+
+                {{!--
+                    Volontairement un <div role="button"> et non
+                    un <button> : Foundry impose à ses <button>
+                    une hauteur fixe et un rendu sur une seule
+                    ligne, ce qui écrasait ce contenu multi-lignes
+                    (titre + descriptif + attribut + compétences)
+                    en un empilement illisible. La gestion du
+                    clic (_bindClick) et du clavier fonctionne
+                    indifféremment sur n'importe quel élément.
+                --}}
+                <div
+                    role="button"
+                    tabindex="0"
+                    class="metro-wizard-archetype-card{{#if this.selected}} selected{{/if}}"
+                    data-action="wizard-select-archetype"
+                    data-archetype-key="{{this.key}}"
+                >
+                    <strong>{{this.name}}</strong>
+                    <p>{{this.flavor}}</p>
+                    <p><em>Attribut :</em> {{this.attributeText}}</p>
+                    <p><em>Compétences :</em> {{this.skillsText}}</p>
+                </div>
+
+            {{/each}}
+
+        </div>
+
+        {{#if isSoldier}}
+
+            <div class="metro-wizard-soldier-choice">
+
+                <p>Le Soldat choisit son Attribut d'archétype :</p>
+
+                <div class="metro-wizard-choice-row">
+                    <button type="button" data-action="wizard-select-soldier-attribute" data-attribute-key="vigor"
+                        class="{{#if soldierAttributeIsVigor}}selected{{/if}}">Vigueur</button>
+                    <button type="button" data-action="wizard-select-soldier-attribute" data-attribute-key="agility"
+                        class="{{#if soldierAttributeIsAgility}}selected{{/if}}">Agilité</button>
+                </div>
+
+                <p>… et sa Compétence d'archétype supplémentaire (Réaction et Tir sont déjà acquises) :</p>
+
+                <div class="metro-wizard-choice-row">
+                    <button type="button" data-action="wizard-select-soldier-skill" data-skill-key="closeCombat"
+                        class="{{#if soldierSkillIsCloseCombat}}selected{{/if}}">Corps à corps</button>
+                    <button type="button" data-action="wizard-select-soldier-skill" data-skill-key="endurance"
+                        class="{{#if soldierSkillIsEndurance}}selected{{/if}}">Endurance</button>
+                </div>
+
+            </div>
+
+        {{/if}}
+
+    </section>
+
+    {{/if}}
+
+
+    {{!-- ============================================================
+          2. ÂGE
+          ============================================================ --}}
+
+    {{#if stepFlags.age}}
+
+    <section class="metro-wizard-step">
+
+        <h3>2. Définissez votre âge</h3>
+
+        <label>
+            Âge :
+            <input type="number" min="0" data-role="wizard-age-input" value="{{age}}" />
+        </label>
+
+        <p class="metro-wizard-hint">
+            Jeune (≤ 25 ans) : 15 pts Attributs / 8 pts Compétences.<br />
+            Adulte (26-50 ans) : 14 pts Attributs / 10 pts Compétences.<br />
+            Aîné (&gt; 50 ans) : 13 pts Attributs / 12 pts Compétences.
+        </p>
+
+    </section>
+
+    {{/if}}
+
+
+    {{!-- ============================================================
+          3. ATTRIBUTS
+          ============================================================ --}}
+
+    {{#if stepFlags.attributes}}
+
+    <section class="metro-wizard-step">
+
+        <h3>3. Dépensez vos points dans vos attributs</h3>
+
+        <p>Budget : {{attributeValidation.total}} / {{attributeBudget}}</p>
+
+        <div class="metro-wizard-attribute-list">
+
+            {{#each attributeRows}}
+
+                <div class="metro-wizard-attribute-row">
+
+                    <span class="metro-wizard-row-label">
+                        {{this.label}}
+                        {{#if this.isArchetype}}
+                            <span class="metro-character-skill-archetype"
+                                title="Attribut d'archétype (peut atteindre 5)"
+                                aria-label="Attribut d'archétype (peut atteindre 5)">★</span>
+                        {{/if}}
+                    </span>
+
+                    <input
+                        type="number" min="2" max="5"
+                        data-role="wizard-attribute-input"
+                        data-attribute-key="{{this.key}}"
+                        value="{{this.value}}"
+                    />
+
+                </div>
+
+            {{/each}}
+
+        </div>
+
+        {{#unless attributeValidation.valid}}
+            <ul class="metro-wizard-errors">
+                {{#each attributeValidation.errors}}<li>{{this}}</li>{{/each}}
+            </ul>
+        {{/unless}}
+
+    </section>
+
+    {{/if}}
+
+
+    {{!-- ============================================================
+          4. COMPÉTENCES
+
+          Regroupées par Attribut parent (règles p.176), avec la
+          valeur de cet Attribut déjà saisie à l'étape précédente
+          affichée en repère.
+          ============================================================ --}}
+
+    {{#if stepFlags.skills}}
+
+    <section class="metro-wizard-step">
+
+        <h3>4. Dépensez vos points dans vos compétences</h3>
+
+        <p>Budget : {{skillValidation.total}} / {{skillBudget}}</p>
+
+        {{#each skillGroups}}
+
+            <div class="metro-wizard-skill-group">
+
+                <h4 class="metro-wizard-skill-group-header">
+                    {{this.attributeLabel}}
+                    <span class="metro-wizard-skill-group-attribute-value">{{this.attributeValue}}</span>
+                </h4>
+
+                <div class="metro-wizard-attribute-list">
+
+                    {{#each this.skills}}
+
+                        <div class="metro-wizard-attribute-row">
+
+                            <span class="metro-wizard-row-label">
+                                {{this.label}}
+                                {{#if this.isArchetype}}
+                                    <span class="metro-character-skill-archetype"
+                                        title="Compétence d'archétype (peut atteindre 3)"
+                                        aria-label="Compétence d'archétype (peut atteindre 3)">★</span>
+                                {{/if}}
+                            </span>
+
+                            <input
+                                type="number" min="0" max="3"
+                                data-role="wizard-skill-input"
+                                data-skill-key="{{this.key}}"
+                                value="{{this.value}}"
+                            />
+
+                        </div>
+
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+        {{/each}}
+
+        {{#unless skillValidation.valid}}
+            <ul class="metro-wizard-errors">
+                {{#each skillValidation.errors}}<li>{{this}}</li>{{/each}}
+            </ul>
+        {{/unless}}
+
+    </section>
+
+    {{/if}}
+
+
+    {{!-- ============================================================
+          5. TALENTS
+          ============================================================ --}}
+
+    {{#if stepFlags.talents}}
+
+    <section class="metro-wizard-step">
+
+        <h3>5. Choisissez vos deux talents de départ</h3>
+
+        <p>Sélectionnés : {{selectedTalentCount}} / 2</p>
+
+        <fieldset>
+            <legend>Talents d'archétype</legend>
+            <div class="metro-wizard-talent-grid">
+                {{#each archetypeTalentOptions}}
+                    <label class="metro-wizard-talent-option">
+                        <input type="checkbox" data-role="wizard-talent-checkbox" data-talent-name="{{this.name}}"
+                            {{#if this.selected}}checked{{/if}} />
+                        <span>{{this.name}}</span>
+                        {{#if this.effect}}
+                            <i class="fa-solid fa-circle-info metro-wizard-talent-info" title="{{this.effect}}"
+                                aria-label="Effet de {{this.name}} : {{this.effect}}"></i>
+                        {{/if}}
+                    </label>
+                {{/each}}
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Talents généraux</legend>
+            <div class="metro-wizard-talent-grid">
+                {{#each generalTalentOptions}}
+                    <label class="metro-wizard-talent-option">
+                        <input type="checkbox" data-role="wizard-talent-checkbox" data-talent-name="{{this.name}}"
+                            {{#if this.selected}}checked{{/if}} />
+                        <span>{{this.name}}</span>
+                        {{#if this.effect}}
+                            <i class="fa-solid fa-circle-info metro-wizard-talent-info" title="{{this.effect}}"
+                                aria-label="Effet de {{this.name}} : {{this.effect}}"></i>
+                        {{/if}}
+                    </label>
+                {{/each}}
+            </div>
+        </fieldset>
+
+        {{#unless talentValidation.valid}}
+            <ul class="metro-wizard-errors">
+                {{#each talentValidation.errors}}<li>{{this}}</li>{{/each}}
+            </ul>
+        {{/unless}}
+
+    </section>
+
+    {{/if}}
+
+
+    {{!-- ============================================================
+          6. FIERTÉ / HONTE
+          ============================================================ --}}
+
+    {{#if stepFlags.prideShame}}
+
+    <section class="metro-wizard-step">
+
+        <h3>6. Définissez votre Fierté et votre Honte</h3>
+
+        <div class="metro-wizard-suggestion-block">
+            <p><strong>Fierté</strong> — suggestions du livre, ou écrivez la vôtre :</p>
+            {{#each prideOptions}}
+                <button type="button" data-action="wizard-fill-pride" data-text="{{this}}">{{this}}</button>
+            {{/each}}
+            <textarea data-role="wizard-pride-text" rows="2">{{pride}}</textarea>
+        </div>
+
+        <div class="metro-wizard-suggestion-block">
+            <p><strong>Honte</strong> — suggestions du livre, ou écrivez la vôtre :</p>
+            {{#each shameOptions}}
+                <button type="button" data-action="wizard-fill-shame" data-text="{{this}}">{{this}}</button>
+            {{/each}}
+            <textarea data-role="wizard-shame-text" rows="2">{{shame}}</textarea>
+        </div>
+
+    </section>
+
+    {{/if}}
+
+
+    {{!-- ============================================================
+          7. LIENS AVEC LES AUTRES PJ
+          ============================================================ --}}
+
+    {{#if stepFlags.bonds}}
+
+    <section class="metro-wizard-step">
+
+        <h3>7. Définissez vos liens avec les autres PJ</h3>
+
+        <p class="metro-wizard-hint">Facultatif — « ou créez-en un(e) » (livre).</p>
+
+        {{#unless hasOtherCharacters}}
+            <p class="metro-wizard-hint">Aucun autre Personnage joueur dans ce monde pour l'instant.</p>
+        {{/unless}}
+
+        {{#if hasBondRows}}
+
+            <div class="metro-wizard-bond-list">
+
+                {{#each bondRows}}
+
+                    <div class="metro-wizard-bond-row">
+
+                        <div class="metro-wizard-bond-row-header">
+                            <strong>{{this.actorName}}</strong>
+                            <button type="button" data-action="wizard-remove-bond" data-actor-id="{{this.actorId}}">
+                                Supprimer
+                            </button>
+                        </div>
+
+                        <p>{{this.text}}</p>
+
+                    </div>
+
+                {{/each}}
+
+            </div>
+
+        {{/if}}
+
+        {{#if hasAvailableCharactersToAdd}}
+
+            <div class="metro-wizard-bond-add">
+
+                <h4>Ajouter un lien</h4>
+
+                <select data-role="wizard-bond-add-actor">
+                    {{#each availableCharactersToAdd}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+
+                <div class="metro-wizard-suggestion-block">
+                    <p>Suggestions du livre, ou écrivez le vôtre :</p>
+                    {{#each bondOptions}}
+                        <button type="button" data-action="wizard-fill-bond-add-text" data-text="{{this}}">{{this}}</button>
+                    {{/each}}
+                    <textarea data-role="wizard-bond-add-text" rows="2"></textarea>
+                </div>
+
+                <button type="button" data-action="wizard-add-bond" class="metro-wizard-bond-add-confirm">
+                    Ajouter
+                </button>
+
+            </div>
+
+        {{/if}}
+
+    </section>
+
+    {{/if}}
+
+
+    {{!-- ============================================================
+          8. ÉQUIPEMENT DE DÉPART
+          ============================================================ --}}
+
+    {{#if stepFlags.equipment}}
+
+    <section class="metro-wizard-step">
+
+        <h3>8. Notez votre équipement de départ</h3>
+
+        <p class="metro-wizard-hint">
+            Équipement fixé par le livre pour cet archétype. À ajouter manuellement au
+            personnage (glisser-déposer depuis le compendium Équipement une fois le
+            personnage créé) :
+        </p>
+
+        <p class="metro-wizard-equipment-text">
+            {{selectedArchetype.startingEquipmentText}}
+        </p>
+
+    </section>
+
+    {{/if}}
+
+
+    {{!-- ============================================================
+          9. APPARENCE
+          ============================================================ --}}
+
+    {{#if stepFlags.appearance}}
+
+    <section class="metro-wizard-step">
+
+        <h3>9. Décidez de votre apparence</h3>
+
+        <label class="metro-wizard-gender-row">
+            <span>Genre :</span>
+            <input type="text" data-role="wizard-gender-input" value="{{gender}}" placeholder="Homme, Femme…" />
+        </label>
+
+        <label class="metro-wizard-appearance-label">Apparence :</label>
+        <textarea class="metro-wizard-appearance-textarea"
+            data-role="wizard-appearance-text" rows="10">{{appearance}}</textarea>
+
+    </section>
+
+    {{/if}}
+
+
+    {{!-- ============================================================
+          10. NOM
+          ============================================================ --}}
+
+    {{#if stepFlags.name}}
+
+    <section class="metro-wizard-step">
+
+        <h3>10. Choisissez-vous un nom</h3>
+
+        <div class="metro-wizard-suggestion-block">
+            <p>Suggestions du livre pour cet archétype, ou écrivez le vôtre :</p>
+            {{#each typicalNames}}
+                <button type="button" data-action="wizard-fill-name" data-text="{{this}}">{{this}}</button>
+            {{/each}}
+        </div>
+
+        <label>
+            Nom :
+            <input type="text" data-role="wizard-name-input" value="{{name}}" />
+        </label>
+
+    </section>
+
+    {{/if}}
+
+
+    {{!-- ============================================================
+          RÉCAPITULATIF
+          ============================================================ --}}
+
+    {{#if stepFlags.review}}
+
+    <section class="metro-wizard-step">
+
+        <h3>Récapitulatif</h3>
+
+        <dl class="metro-wizard-review">
+            <dt>Nom</dt><dd>{{name}}</dd>
+            <dt>Archétype</dt><dd>{{selectedArchetype.name}}</dd>
+            <dt>Âge</dt><dd>{{age}}</dd>
+            <dt>Fierté</dt><dd>{{pride}}</dd>
+            <dt>Honte</dt><dd>{{shame}}</dd>
+            <dt>Talents</dt><dd>
+                {{#each selectedTalents}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+            </dd>
+        </dl>
+
+        <button type="button" data-action="wizard-create-character" class="metro-wizard-create">
+            Créer le personnage
+        </button>
+
+    </section>
+
+    {{/if}}
+
+
+    {{!-- ============================================================
+          NAVIGATION
+          ============================================================ --}}
+
+    <footer class="metro-wizard-nav">
+
+        <button type="button" data-action="wizard-back" {{#unless canGoBack}}disabled{{/unless}}>
+            ◄ Précédent
+        </button>
+
+        {{!--
+            Volontairement PAS désactivé via `disabled` selon
+            `canAdvance` : plusieurs champs libres (Nom, Fierté/
+            Honte, Liens, Apparence) ne redéclenchent pas de
+            rendu à chaque frappe (pour ne pas perdre le curseur
+            dans le champ), donc `canAdvance` peut être obsolète
+            au moment du clic. Un bouton `disabled` bloque le
+            clic au niveau du navigateur avant même que le
+            gestionnaire JS ne s'exécute, gelant alors « Suivant »
+            même une fois l'étape complétée. `_onNext` revalide
+            toujours l'état réel au moment du clic et affiche un
+            avertissement si l'étape n'est pas prête.
+        --}}
+        {{#unless isReviewStep}}
+            <button type="button" data-action="wizard-next"
+                class="{{#unless canAdvance}}metro-wizard-next-incomplete{{/unless}}">
+                Suivant ►
+            </button>
+        {{/unless}}
+
+    </footer>
+
+</div>

@@ -1,0 +1,385 @@
+<div class="metro2033 metro-initiative-preparation-content">
+
+    {{#if noCombat}}
+
+        <p class="metro-initiative-empty">
+            Aucun Combat actif.
+        </p>
+
+    {{else}}
+
+        {{!-- ============================================================
+              SECTION A — COMPOSITION (BROUILLON)
+              ============================================================ --}}
+
+        <section class="metro-initiative-section metro-initiative-draft">
+
+            <h3>
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                Composition
+            </h3>
+
+
+            {{#if hasDraftGroups}}
+
+                <div class="metro-initiative-draft-groups">
+
+                    {{#each draftGroups}}
+
+                        <div
+                            class="metro-initiative-draft-group"
+                            data-group-key="{{this.key}}"
+                        >
+
+                            <div class="metro-initiative-draft-group-header">
+
+                                <strong>
+                                    Groupe
+                                </strong>
+
+                                <button
+                                    type="button"
+                                    data-action="draft-dissolve-group"
+                                    data-group-key="{{this.key}}"
+                                    title="Dissoudre ce groupe"
+                                >
+                                    Dissoudre
+                                </button>
+
+                            </div>
+
+
+                            <div class="metro-initiative-draft-group-members">
+
+                                {{#each this.members}}
+
+                                    <label class="metro-initiative-draft-group-member">
+
+                                        <input
+                                            type="checkbox"
+                                            data-role="group-member-checkbox"
+                                            data-group-key="{{../key}}"
+                                            data-combatant-id="{{this.id}}"
+                                            checked
+                                        />
+
+                                        <span>
+                                            {{this.name}}
+                                        </span>
+
+                                    </label>
+
+                                {{/each}}
+
+                            </div>
+
+
+                            <div class="metro-initiative-draft-group-controls">
+
+                                <label>
+
+                                    <span>
+                                        Nombre de cartes
+                                    </span>
+
+                                    <input
+                                        type="number"
+                                        data-role="group-draw-count"
+                                        data-group-key="{{this.key}}"
+                                        value="{{this.drawCount}}"
+                                        min="1"
+                                        step="1"
+                                    />
+
+                                </label>
+
+
+                                <label>
+
+                                    <span>
+                                        Raison (facultatif)
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        data-role="group-reason"
+                                        data-group-key="{{this.key}}"
+                                        value="{{this.reason}}"
+                                        placeholder="Surprise, regroupement..."
+                                    />
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    {{/each}}
+
+                </div>
+
+            {{else}}
+
+                <p class="metro-initiative-empty">
+                    Aucun groupe formé pour l'instant.
+                </p>
+
+            {{/if}}
+
+
+            <div class="metro-initiative-ungrouped">
+
+                <h4>
+                    Combatants disponibles
+                </h4>
+
+                {{#if hasUngrouped}}
+
+                    <div class="metro-initiative-ungrouped-list">
+
+                        {{#each ungroupedCombatants}}
+
+                            <label class="metro-initiative-ungrouped-row">
+
+                                <input
+                                    type="checkbox"
+                                    data-role="ungrouped-checkbox"
+                                    value="{{this.id}}"
+                                />
+
+                                <span>
+                                    {{this.name}}
+                                </span>
+
+                            </label>
+
+                        {{/each}}
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        data-action="draft-create-group"
+                        class="metro-initiative-create-group-button"
+                    >
+                        Créer un groupe
+                    </button>
+
+                {{else}}
+
+                    <p class="metro-initiative-empty">
+                        Tous les Combatants sont regroupés.
+                    </p>
+
+                {{/if}}
+
+            </div>
+
+
+            {{#if individualGroupsAvailable}}
+
+                <label class="metro-initiative-individual-groups">
+
+                    <input
+                        type="checkbox"
+                        data-role="individual-groups"
+                        {{#if individualGroupsChecked}}checked{{/if}}
+                    />
+
+                    <span>
+                        À la validation, créer un groupe individuel
+                        pour chacun des {{individualGroupsCount}}
+                        Combatant(s) non groupé(s)
+                    </span>
+
+                </label>
+
+            {{/if}}
+
+
+            <div class="metro-initiative-draft-footer">
+
+                <button
+                    type="button"
+                    data-action="draft-cancel"
+                    class="metro-initiative-draft-cancel"
+                >
+                    Annuler
+                </button>
+
+                <button
+                    type="button"
+                    data-action="draft-validate"
+                    class="metro-initiative-draft-validate"
+                >
+                    Valider
+                </button>
+
+            </div>
+
+        </section>
+
+
+        {{!-- ============================================================
+              SECTION B — RÉSOLUTION MULTIPLE (IMMÉDIAT)
+              ============================================================ --}}
+
+        <section class="metro-initiative-section metro-initiative-pending">
+
+            <h3>
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                Unités en attente de résolution
+            </h3>
+
+            {{#if hasPendingResolution}}
+
+                <div class="metro-initiative-pending-list">
+
+                    {{#each pendingResolution}}
+
+                        <div class="metro-initiative-pending-row">
+
+                            <div class="metro-initiative-pending-description">
+
+                                <strong>
+                                    {{this.membersLabel}}
+                                </strong>
+
+                                <small>
+                                    {{this.drawCountLabel}}
+
+                                    {{#if this.reason}}
+                                        — {{this.reason}}
+                                    {{/if}}
+                                </small>
+
+                            </div>
+
+
+                            <div class="metro-initiative-pending-actions">
+
+                                <button
+                                    type="button"
+                                    data-action="resolve-pending"
+                                    data-combatant-id="{{this.firstCombatantId}}"
+                                >
+                                    Résoudre
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    {{/each}}
+
+                </div>
+
+            {{else}}
+
+                <p class="metro-initiative-empty">
+                    Aucune unité en attente de résolution.
+                </p>
+
+            {{/if}}
+
+        </section>
+
+
+        {{!-- ============================================================
+              SECTION C — INITIATIVES RÉSOLUES (IMMÉDIAT)
+              ============================================================ --}}
+
+        <section class="metro-initiative-section metro-initiative-assignments">
+
+            <h3>
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                Initiatives résolues
+            </h3>
+
+            {{#if hasAssignments}}
+
+                <div class="metro-initiative-assignments-list">
+
+                    {{#each assignments}}
+
+                        <div class="metro-initiative-assignment-row">
+
+                            <span class="metro-initiative-assignment-icon" aria-hidden="true">
+                                <i class="fa-solid fa-cards"></i>
+                            </span>
+
+                            <span class="metro-initiative-assignment-value">
+                                {{this.initiative}}
+                            </span>
+
+                            <span class="metro-initiative-assignment-members">
+                                {{this.membersLabel}}
+                            </span>
+
+                            <div class="metro-initiative-assignment-actions">
+
+                                {{#if ../hasUnconfiguredForReinforcement}}
+
+                                    <button
+                                        type="button"
+                                        data-action="attach-reinforcement"
+                                        data-card-id="{{this.cardId}}"
+                                        title="Rattacher un renfort"
+                                    >
+                                        Rattacher
+                                    </button>
+
+                                {{/if}}
+
+                            </div>
+
+                        </div>
+
+
+                        {{#if this.canExtract}}
+
+                            <div class="metro-initiative-assignment-members-list">
+
+                                {{#each this.members}}
+
+                                    <div class="metro-initiative-assignment-member-row">
+
+                                        <span>
+                                            {{this.name}}
+                                        </span>
+
+                                        <button
+                                            type="button"
+                                            data-action="extract-member"
+                                            data-combatant-id="{{this.id}}"
+                                            title="Extraire ce Combatant du groupe"
+                                        >
+                                            Extraire
+                                        </button>
+
+                                    </div>
+
+                                {{/each}}
+
+                            </div>
+
+                        {{/if}}
+
+                    {{/each}}
+
+                </div>
+
+            {{else}}
+
+                <p class="metro-initiative-empty">
+                    Aucune initiative résolue pour l'instant.
+                </p>
+
+            {{/if}}
+
+        </section>
+
+    {{/if}}
+
+</div>

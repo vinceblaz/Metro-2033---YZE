@@ -1,0 +1,563 @@
+<div class="metro-item-form metro-armor-sheet-form">
+
+    <header class="metro-item-header">
+
+        <img
+            class="metro-item-image"
+            src="{{item.img}}"
+            alt="{{item.name}}"
+            data-action="editImage"
+            data-edit="img"
+            title="Cliquer pour modifier l'image"
+        />
+
+        <div class="metro-item-header-main">
+
+            <input
+                class="metro-item-name"
+                type="text"
+                name="name"
+                value="{{item.name}}"
+                placeholder="Nom de la protection"
+            />
+
+            <div class="metro-item-type">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Protection
+                </span>
+
+            </div>
+
+            <div class="metro-armor-condition">
+
+                <span class="metro-armor-condition-label">
+                    État
+                </span>
+
+                <strong
+                    class="metro-armor-condition-value
+                        is-{{protectionState.id}}"
+                >
+                    {{protectionState.label}}
+                </strong>
+
+                {{#if protectionState.activeResilience}}
+
+                    <span class="metro-armor-resilience-badge">
+                        Résilience active
+                    </span>
+
+                {{/if}}
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="metro-item-scroll metro-armor-scroll">
+
+        <!-- ================================================== -->
+        <!-- CARACTÉRISTIQUES                                   -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Caractéristiques
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-armor-general-grid">
+
+                    <!-- CATÉGORIE -->
+
+                    <label class="metro-armor-field">
+
+                        <span>
+                            Catégorie
+                        </span>
+
+                        <select name="system.category">
+
+                            {{#each categoryChoices}}
+
+                                <option
+                                    value="{{value}}"
+                                    {{#if selected}}selected{{/if}}
+                                >
+                                    {{label}}
+                                </option>
+
+                            {{/each}}
+
+                        </select>
+
+                    </label>
+
+
+                    <!-- ENCOMBREMENT -->
+
+                    <label class="metro-armor-field">
+
+                        <span>
+                            Encombrement
+                        </span>
+
+                        <select name="system.weight">
+
+                            {{#each encumbranceChoices}}
+
+                                <option
+                                    value="{{value}}"
+                                    {{#if selected}}selected{{/if}}
+                                >
+                                    {{label}}
+                                </option>
+
+                            {{/each}}
+
+                        </select>
+
+                    </label>
+
+
+                    <!-- PRIX -->
+
+                    <label class="metro-armor-field">
+
+                        <span>
+                            Prix (achat)
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.price.buy"
+                            value="{{system.price.buy}}"
+                            min="0"
+                            step="1"
+                        />
+
+                    </label>
+
+
+                    <label class="metro-armor-field">
+
+                        <span>
+                            Prix (revente)
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.price.sell"
+                            value="{{system.price.sell}}"
+                            min="0"
+                            step="1"
+                        />
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- PROTECTION                                         -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-armor-panel">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Protection
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-armor-protection-grid">
+
+                    <!-- PROTECTION ACTUELLE -->
+
+                    <label class="metro-armor-field">
+
+                        <span>
+                            Valeur actuelle
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.protection.current"
+                            value="{{system.protection.current}}"
+                            min="0"
+                            step="1"
+                        />
+
+                    </label>
+
+
+                    <!-- PROTECTION MAX -->
+
+                    <label class="metro-armor-field">
+
+                        <span>
+                            Valeur d'origine
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.protection.max"
+                            value="{{system.protection.max}}"
+                            min="0"
+                            step="1"
+                        />
+
+                    </label>
+
+                </div>
+
+
+                <div class="metro-armor-resilience-row">
+
+                    <label class="metro-armor-inline-check">
+
+                        <input
+                            type="checkbox"
+                            name="system.resilience"
+                            {{checked system.resilience}}
+                        />
+
+                        <span>
+                            Résilience
+                        </span>
+
+                    </label>
+
+
+                    <label class="metro-armor-inline-check">
+
+                        <input
+                            type="checkbox"
+                            name="system.resilienceLost"
+                            {{checked system.resilienceLost}}
+                        />
+
+                        <span>
+                            Résilience perdue
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- AMÉLIORATIONS D'ÉQUIPEMENT ATTACHÉES               -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-armor-panel metro-armor-mods">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Améliorations d'équipement attachées
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <label class="metro-armor-field metro-armor-mod-slots">
+
+                    <span>
+                        Emplacements d'Amélioration
+                    </span>
+
+                    <input
+                        type="number"
+                        name="system.weaponModSlots"
+                        value="{{system.weaponModSlots}}"
+                        min="0"
+                        step="1"
+                    />
+
+                </label>
+
+
+                {{#if attachedWeaponMods.length}}
+
+                    <ul class="metro-weapon-mod-attached-list">
+
+                        {{#each attachedWeaponMods}}
+
+                            <li
+                                class="metro-weapon-mod-attached-item"
+                                title="{{description}}"
+                            >
+
+                                <img
+                                    class="metro-weapon-mod-attached-image"
+                                    src="{{img}}"
+                                    alt="{{name}}"
+                                />
+
+                                <span class="metro-weapon-mod-attached-name">
+                                    {{name}}
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="metro-weapon-mod-detach-button"
+                                    data-action="detach-weapon-mod"
+                                    data-weapon-mod-id="{{id}}"
+                                    title="Détacher cette Amélioration d'équipement"
+                                >
+                                    Détacher
+                                </button>
+
+                            </li>
+
+                        {{/each}}
+
+                    </ul>
+
+                {{else}}
+
+                    <p class="metro-weapon-mod-attached-empty">
+                        Aucune Amélioration d'équipement attachée. Glisser-déposer un Item Amélioration d'équipement ici pour l'attacher.
+                    </p>
+
+                {{/if}}
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- MODIFICATEURS                                      -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-armor-panel">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Modificateurs
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-armor-modifiers-grid">
+
+                    <label class="metro-armor-field">
+
+                        <span>
+                            Agilité
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.modifiers.agility"
+                            value="{{system.modifiers.agility}}"
+                            step="1"
+                        />
+
+                    </label>
+
+
+                    <label class="metro-armor-field">
+
+                        <span>
+                            Observation
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.modifiers.observation"
+                            value="{{system.modifiers.observation}}"
+                            step="1"
+                        />
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- DESCRIPTION                                        -->
+        <!-- ================================================== -->
+
+        <section
+            class="metro-item-section
+                   metro-armor-panel
+                   metro-armor-text-section"
+        >
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Description
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.description"
+                    rows="6"
+                    placeholder="Description de la protection..."
+                >{{system.description}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- SPÉCIAL                                            -->
+        <!-- ================================================== -->
+
+        <section
+            class="metro-item-section
+                   metro-armor-panel
+                   metro-armor-text-section"
+        >
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Particularités
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.special"
+                    rows="4"
+                    placeholder="Règles spéciales de cette protection..."
+                >{{system.special}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- NOTES MJ                                           -->
+        <!-- ================================================== -->
+
+        {{#if isGM}}
+
+            <section
+                class="metro-item-section
+                       metro-armor-panel
+                       metro-gm-section"
+            >
+
+                <div class="metro-item-section-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Notes du MJ
+                    </span>
+
+                </div>
+
+                <div class="metro-item-section-body">
+
+                    <textarea
+                        name="system.gmNotes"
+                        rows="6"
+                        placeholder="Notes privées du MJ..."
+                    >{{system.gmNotes}}</textarea>
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+    </div>
+
+</div>

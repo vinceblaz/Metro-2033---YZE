@@ -1,0 +1,302 @@
+<div class="metro-vehicle-sheet-form">
+
+    <header class="metro-vehicle-header">
+
+        <div class="metro-vehicle-portrait">
+
+            <img
+                class="metro-vehicle-image"
+                src="{{actor.img}}"
+                alt="{{actor.name}}"
+                data-action="editImage"
+                data-edit="img"
+                title="Cliquer pour modifier le portrait"
+            >
+
+        </div>
+
+        <div class="metro-vehicle-identity">
+
+            <input
+                class="metro-vehicle-name"
+                type="text"
+                name="name"
+                value="{{actor.name}}"
+                placeholder="Nom du Véhicule"
+                {{#unless editable}}disabled{{/unless}}
+            >
+
+            <input
+                class="metro-vehicle-type"
+                type="text"
+                name="system.identity.vehicleType"
+                value="{{system.identity.vehicleType}}"
+                placeholder="Type (ex : Moto tout-terrain, Jeep, 4x4, Camion, Véhicule blindé...)"
+                {{#unless editable}}disabled{{/unless}}
+            >
+
+        </div>
+
+    </header>
+
+
+    <section class="metro-vehicle-section metro-vehicle-stats">
+
+        <div class="metro-vehicle-section-title">
+            Caractéristiques
+        </div>
+
+        <p class="metro-vehicle-scale-hint">
+            Véhicule terrestre. Si « Peut entrer en zone
+            encombrée » est cochée, le Déplacement du véhicule
+            passe à 1 dès qu'il s'y trouve.
+        </p>
+
+        <div class="metro-vehicle-stats-grid">
+
+            <label class="metro-vehicle-stat-field">
+
+                <span>Déplacement</span>
+
+                <input
+                    type="number"
+                    name="system.stats.displacement"
+                    value="{{system.stats.displacement}}"
+                    min="0"
+                    {{#unless editable}}disabled{{/unless}}
+                >
+
+            </label>
+
+            <label class="metro-vehicle-stat-checkbox">
+
+                <input
+                    type="checkbox"
+                    name="system.stats.reducedInEncumberedZone"
+                    {{#if system.stats.reducedInEncumberedZone}}checked{{/if}}
+                    {{#unless editable}}disabled{{/unless}}
+                >
+
+                <span>Peut entrer en zone encombrée (Déplacement 1)</span>
+
+            </label>
+
+            <label class="metro-vehicle-stat-field">
+
+                <span>Fiabilité</span>
+
+                <input
+                    type="number"
+                    name="system.stats.reliability"
+                    value="{{system.stats.reliability}}"
+                    min="0"
+                    {{#unless editable}}disabled{{/unless}}
+                >
+
+            </label>
+
+            <label class="metro-vehicle-stat-field">
+
+                <span>Blindage</span>
+
+                <input
+                    type="number"
+                    name="system.stats.armor"
+                    value="{{system.stats.armor}}"
+                    min="0"
+                    {{#unless editable}}disabled{{/unless}}
+                >
+
+            </label>
+
+            <div class="metro-vehicle-stat-field metro-vehicle-stat-field--integrity">
+
+                <span>Intégrité</span>
+
+                <div class="metro-vehicle-integrity-row">
+
+                    <input
+                        type="number"
+                        name="system.stats.integrity.value"
+                        value="{{system.stats.integrity.value}}"
+                        min="0"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                    <span class="metro-vehicle-integrity-separator">/</span>
+
+                    <input
+                        type="number"
+                        name="system.stats.integrity.max"
+                        value="{{system.stats.integrity.max}}"
+                        min="0"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <p class="metro-vehicle-protection-hint">
+            Le Blindage sert de valeur de Protection pour les
+            occupants, comme un abri. Quand l'Intégrité atteint
+            0, consultez la table « Véhicules hors d'état ».
+        </p>
+
+    </section>
+
+
+    <section class="metro-vehicle-section metro-vehicle-occupants">
+
+        <div class="metro-vehicle-section-title">
+            Occupants
+        </div>
+
+        <p class="metro-vehicle-equipment-hint">
+            Glissez-déposez un Actor depuis le monde ou un
+            Compendium pour désigner le conducteur ou ajouter
+            un passager.
+        </p>
+
+
+        <div class="metro-vehicle-occupant-block">
+
+            <div class="metro-vehicle-item-list-label">
+                Conducteur
+            </div>
+
+            <div
+                class="metro-vehicle-occupant-dropzone"
+                data-occupant-role="driver"
+            >
+
+                {{#if driver}}
+
+                    <div class="metro-vehicle-occupant">
+
+                        <span class="metro-vehicle-occupant-name">
+                            {{driver.name}}
+                        </span>
+
+                        {{#if ../editable}}
+
+                            <button
+                                type="button"
+                                data-action="remove-occupant"
+                                data-occupant-role="driver"
+                                data-occupant-uuid="{{driver.uuid}}"
+                                title="Retirer"
+                            >
+                                ×
+                            </button>
+
+                        {{/if}}
+
+                    </div>
+
+                {{else}}
+
+                    <p class="metro-vehicle-empty">
+                        Aucun conducteur désigné.
+                    </p>
+
+                {{/if}}
+
+            </div>
+
+        </div>
+
+
+        <div class="metro-vehicle-occupant-block">
+
+            <div class="metro-vehicle-item-list-label">
+                Passagers
+            </div>
+
+            <div
+                class="metro-vehicle-occupant-dropzone"
+                data-occupant-role="passenger"
+            >
+
+                {{#if passengers.length}}
+
+                    <div class="metro-vehicle-item-list">
+
+                        {{#each passengers}}
+
+                            <div class="metro-vehicle-occupant">
+
+                                <span class="metro-vehicle-occupant-name">
+                                    {{name}}
+                                </span>
+
+                                {{#if ../editable}}
+
+                                    <button
+                                        type="button"
+                                        data-action="remove-occupant"
+                                        data-occupant-role="passenger"
+                                        data-occupant-uuid="{{uuid}}"
+                                        title="Retirer"
+                                    >
+                                        ×
+                                    </button>
+
+                                {{/if}}
+
+                            </div>
+
+                        {{/each}}
+
+                    </div>
+
+                {{else}}
+
+                    <p class="metro-vehicle-empty">
+                        Aucun passager.
+                    </p>
+
+                {{/if}}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="metro-vehicle-section metro-vehicle-notes">
+
+        <div class="metro-vehicle-section-title">
+            Description
+        </div>
+
+        <textarea
+            name="system.identity.description"
+            placeholder="Description du véhicule, état général..."
+            {{#unless editable}}disabled{{/unless}}
+        >{{system.identity.description}}</textarea>
+
+    </section>
+
+
+    {{#if isGM}}
+
+        <section class="metro-vehicle-section metro-vehicle-gm-notes metro-gm-section">
+
+            <div class="metro-vehicle-section-title">
+                Notes MJ
+            </div>
+
+            <textarea
+                name="system.gmNotes"
+                {{#unless editable}}disabled{{/unless}}
+            >{{system.gmNotes}}</textarea>
+
+        </section>
+
+    {{/if}}
+
+</div>

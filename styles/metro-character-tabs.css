@@ -1,0 +1,229 @@
+/* ============================================================
+ * CHARACTER SHEET — TABS
+ * ============================================================ */
+
+.metro-character-sheet
+.metro-character-tabs {
+
+    display: flex;
+
+    align-items: stretch;
+
+    gap: 6px;
+
+    width: 100%;
+
+    margin:
+        12px 0
+        14px;
+
+    padding: 0 2px;
+
+}
+
+
+/* ============================================================
+ * ONGLET
+ * ============================================================ */
+
+.metro-character-sheet
+.metro-character-tab {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 34px;
+
+    padding:
+        7px
+        16px;
+
+    border:
+        1px solid #49423e;
+
+    border-bottom:
+        3px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            180deg,
+            #262322,
+            #171616
+        );
+
+    color: #eee6dc;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background 120ms ease,
+        border-color 120ms ease,
+        color 120ms ease;
+
+}
+
+
+/* ============================================================
+ * ÉTOILE — ONGLET INACTIF
+ * ============================================================ */
+
+.metro-character-sheet
+.metro-character-tab-star {
+
+    color: #a92b2b;
+
+    font-size: 11px;
+    line-height: 1;
+
+}
+
+
+/* ============================================================
+ * SURVOL
+ * ============================================================ */
+
+.metro-character-sheet
+.metro-character-tab:hover {
+
+    border-color: #7e1d1d;
+
+    background:
+        linear-gradient(
+            180deg,
+            #302726,
+            #1b1818
+        );
+
+    color: #ffffff;
+
+}
+
+
+/* ============================================================
+ * ONGLET ACTIF
+ * ============================================================ */
+
+.metro-character-sheet
+.metro-character-tab.is-active {
+
+    border-color: #8f2424;
+
+    background:
+        linear-gradient(
+            180deg,
+            #8a2424,
+            #671919
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgb(255 255 255 / 5%),
+        0 2px 6px
+        rgb(0 0 0 / 28%);
+
+}
+
+
+/* ============================================================
+ * ÉTOILE — ONGLET ACTIF
+ * ============================================================ */
+
+.metro-character-sheet
+.metro-character-tab.is-active
+.metro-character-tab-star {
+
+    color: #ffffff;
+
+}
+
+
+/* ============================================================
+ * PANNEAUX
+ * ============================================================ */
+
+.metro-character-sheet
+.metro-character-tab-panel[hidden] {
+
+    display: none !important;
+
+}
+
+/* ============================================================
+ * RAPPELS INFORMATIFS (afflictions, éclats, blocages)
+ * ============================================================ */
+
+/* #region METRO CHARACTER — RAPPELS */
+
+.metro-choices-reminder {
+    margin-top: 16px;
+    padding: 10px 12px;
+
+    border: 1px solid #49423e;
+    border-left: 3px solid #7e1d1d;
+
+    background: rgb(126 29 29 / 8%);
+}
+
+.metro-choices-reminder-title {
+    margin: 0 0 6px;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+
+    color: #d8d1c7;
+}
+
+.metro-choices-reminder-title:not(:first-child) {
+    margin-top: 12px;
+}
+
+.metro-choices-reminder-intro {
+    margin: 0 0 6px;
+
+    font-size: 0.8rem;
+    font-style: italic;
+
+    color: #a9a19a;
+}
+
+.metro-choices-reminder h4 {
+    margin: 0 0 4px;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    color: #a9a19a;
+}
+
+.metro-choices-reminder-list {
+    margin: 0;
+    padding-left: 18px;
+
+    font-size: 0.85rem;
+
+    color: #d8d3ca;
+}
+
+.metro-choices-reminder-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+}
+
+/* #endregion */

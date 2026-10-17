@@ -1,0 +1,1179 @@
+/* ============================================================
+ * METRO CHAT — SOCLE COMMUN
+ * ============================================================ */
+
+/* #region METRO CHAT — CARD */
+
+.metro-chat-card {
+    overflow: hidden;
+
+    color: #d8d3ca;
+
+    border: 1px solid #3e3734;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211f1e,
+            #171616
+        );
+
+    box-shadow:
+        inset 0 0 18px rgb(0 0 0 / 35%),
+        0 2px 5px rgb(0 0 0 / 30%);
+}
+
+/* #endregion */
+
+
+/* #region METRO CHAT — HEADER */
+
+.metro-chat-header {
+    padding: 10px 12px 9px;
+
+    border-bottom: 1px solid #3e3734;
+
+    background: rgb(126 29 29 / 10%);
+}
+
+/* #endregion */
+
+
+/* #region METRO CHAT — SECTIONS */
+
+.metro-chat-section {
+    padding: 10px 12px;
+
+    border-bottom: 1px solid #393331;
+}
+
+.metro-chat-section:last-child {
+    border-bottom: 0;
+}
+
+.metro-chat-section > :first-child {
+    margin-top: 0;
+}
+
+.metro-chat-section > :last-child {
+    margin-bottom: 0;
+}
+
+.metro-chat-section-title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    margin-bottom: 8px;
+
+    color: #a9a19a;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* #endregion */
+
+/* ============================================================
+ * METRO CHAT — ITEM CARD
+ * ============================================================ */
+
+.metro-chat-item-card {
+    overflow: hidden;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+    border-left: 4px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211f1e 0%,
+            #171616 55%,
+            #111111 100%
+        );
+
+    box-shadow:
+        inset 0 0 18px rgb(0 0 0 / 35%),
+        0 2px 5px rgb(0 0 0 / 30%);
+}
+
+
+/* ============================================================
+ * METRO CHAT — ITEM HEADER
+ * ============================================================ */
+
+.metro-chat-item-card-header {
+    padding: 8px 10px;
+
+    border-bottom: 1px solid #4a403c;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgb(126 29 29 / 32%),
+            rgb(20 19 19 / 30%)
+        );
+}
+
+
+.metro-chat-item-card-link {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    width: 100%;
+
+    color: inherit;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        color 120ms ease,
+        background 120ms ease;
+}
+
+
+.metro-chat-item-card-link:hover {
+    color: #fff4ea;
+
+    text-decoration: none;
+}
+
+
+/* ============================================================
+ * METRO CHAT — ITEM IMAGE
+ * ============================================================ */
+
+.metro-chat-item-card-image {
+    flex: 0 0 34px;
+
+    width: 34px;
+    height: 34px;
+
+    object-fit: cover;
+
+    border: 1px solid #5f2a2a;
+
+    background: #111;
+
+    box-shadow:
+        0 0 0 1px rgb(0 0 0 / 40%);
+}
+
+
+.metro-chat-item-card-link:hover
+.metro-chat-item-card-image {
+    border-color: #a92b2b;
+}
+
+
+/* ============================================================
+ * METRO CHAT — ITEM NAME
+ * ============================================================ */
+
+.metro-chat-item-card-name {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #eee6dc;
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+}
+
+
+.metro-chat-item-card-name::before {
+    content: "★";
+
+    flex: 0 0 auto;
+
+    color: #a92b2b;
+
+    font-size: 12px;
+    line-height: 1;
+}
+
+
+.metro-chat-item-card-link:hover
+.metro-chat-item-card-name {
+    color: #fff4ea;
+}
+
+
+/* ============================================================
+ * METRO CHAT — ITEM DESCRIPTION
+ * ============================================================ */
+
+.metro-chat-item-card-description {
+    padding: 10px 12px;
+
+    color: #cfc7be;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+.metro-chat-item-card-description
+> :first-child {
+    margin-top: 0;
+}
+
+
+.metro-chat-item-card-description
+> :last-child {
+    margin-bottom: 0;
+}
+
+
+/* #region METRO CHAT — ACTIONS */
+
+.metro-chat-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    margin-top: 9px;
+}
+
+.metro-chat-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    min-height: 32px;
+    margin: 0;
+    padding: 6px 10px;
+
+    color: #d8d1c7;
+
+    border: 1px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            180deg,
+            #762020,
+            #4c1515
+        );
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        border-color 120ms ease,
+        background 120ms ease,
+        color 120ms ease;
+}
+
+.metro-chat-button:hover {
+    color: #fff1e7;
+
+    border-color: #a52b2b;
+
+    background:
+        linear-gradient(
+            180deg,
+            #922828,
+            #601919
+        );
+}
+
+.metro-chat-button:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+
+/* ============================================================
+ * MELEE CHAT — HEADER
+ * ============================================================ */
+
+.melee-attack-heading {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.melee-attack-star {
+    flex: 0 0 auto;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.melee-attack-title {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.melee-attack-subtitle {
+    margin-top: 3px;
+    color: #aaa19a;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.melee-attack-declaration-text {
+    margin: 0;
+}
+
+/* ============================================================
+ * MELEE CHAT — DEFENSE
+ * ============================================================ */
+
+.melee-defense-status {
+    margin: 0;
+    line-height: 1.45;
+}
+
+.melee-defense-result-box {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    padding: 8px 10px;
+    border: 1px solid #443b38;
+    background: rgb(0 0 0 / 18%);
+}
+
+.melee-defense-result-label {
+    color: #a9a19a;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.melee-defense-result-value {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.melee-defense-result-caption {
+    color: #a9a19a;
+    font-size: 10px;
+}
+
+/* ============================================================
+ * MELEE CHAT — ATTACK
+ * ============================================================ */
+
+.melee-attack-status {
+    margin: 0;
+    line-height: 1.45;
+}
+
+.melee-attack-result-box {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 9px 10px;
+    border: 1px solid #443b38;
+    background: rgb(0 0 0 / 18%);
+}
+
+.melee-attack-result-label {
+    color: #a9a19a;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.melee-attack-result-value {
+    font-size: 20px;
+    line-height: 1;
+}
+
+/* ============================================================
+ * MELEE CHAT — OUTCOME
+ * ============================================================ */
+
+.melee-outcome-grid {
+    display: grid;
+    gap: 6px;
+}
+
+.melee-outcome-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 7px 9px;
+    border: 1px solid #443b38;
+    background: rgb(0 0 0 / 16%);
+}
+
+.melee-outcome-entry--net {
+    border-color: #6f2929;
+    background: rgb(126 29 29 / 12%);
+}
+
+.melee-outcome-label {
+    color: #a9a19a;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.melee-outcome-value {
+    font-size: 17px;
+    line-height: 1;
+}
+
+.melee-outcome-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 9px;
+    padding: 8px 10px;
+    border: 1px solid #443b38;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.melee-outcome-status--hit {
+    border-color: #7e1d1d;
+    background: rgb(126 29 29 / 14%);
+}
+
+.melee-outcome-status--miss {
+    background: rgb(0 0 0 / 18%);
+}
+
+.melee-outcome-text {
+    margin: 8px 0 0;
+    line-height: 1.4;
+}
+
+/* ============================================================
+ * MELEE CHAT — PROTECTION
+ * ============================================================ */
+
+.melee-protection-status {
+    margin: 0;
+    line-height: 1.45;
+}
+
+.melee-protection-grid {
+    display: grid;
+    gap: 6px;
+}
+
+.melee-protection-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 7px 9px;
+    border: 1px solid #443b38;
+    background: rgb(0 0 0 / 16%);
+}
+
+.melee-protection-entry--remaining {
+    border-color: #6f2929;
+    background: rgb(126 29 29 / 12%);
+}
+
+.melee-protection-label {
+    color: #a9a19a;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.melee-protection-value {
+    font-size: 17px;
+    line-height: 1;
+}
+
+.melee-protection-degradation {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 8px;
+    padding: 8px 10px;
+    border: 1px solid #6f2929;
+    background: rgb(126 29 29 / 10%);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+ * MELEE CHAT — APPLICATION
+ * ============================================================ */
+
+.melee-application-status {
+    margin: 0;
+    padding: 8px 10px;
+    border: 1px solid #443b38;
+    background: rgb(0 0 0 / 16%);
+    line-height: 1.45;
+}
+
+/* ============================================================
+ * MELEE CHAT — PROTECTION DAMAGE
+ * ============================================================ */
+
+.melee-protection-damage-status {
+    margin: 0;
+    line-height: 1.45;
+}
+
+.melee-protection-damage-list,
+.melee-protection-damage-results {
+    display: grid;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.melee-protection-damage-entry,
+.melee-protection-damage-result {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px 10px;
+    padding: 8px 9px;
+    border: 1px solid #443b38;
+    background: rgb(0 0 0 / 16%);
+}
+
+.melee-protection-damage-name {
+    font-weight: 700;
+}
+
+.melee-protection-damage-current {
+    color: #a9a19a;
+    font-size: 10px;
+}
+
+.melee-protection-damage-loss {
+    font-size: 11px;
+}
+
+.melee-protection-damage-broken {
+    flex-basis: 100%;
+    color: #c88989;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.melee-protection-damage-auto,
+.melee-protection-damage-none {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 8px;
+    padding: 8px 10px;
+    border: 1px solid #443b38;
+    background: rgb(0 0 0 / 16%);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.melee-protection-damage-overflow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 8px;
+    padding: 8px 10px;
+    border: 1px solid #6f2929;
+    background: rgb(126 29 29 / 12%);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+ * MELEE CHAT — COMPLETED
+ * ============================================================ */
+
+.melee-attack-completed {
+    background: rgb(126 29 29 / 8%);
+}
+
+.melee-completed-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.melee-completed-star {
+    flex: 0 0 auto;
+
+    /*
+     * Taille ramenée sur l'échelle actée (04/10/2026) : alignée
+     * sur les autres étoiles du système (.metro-red-star,
+     * .metro-yze-roll-star), déjà à 12px.
+     */
+    font-size: 12px;
+    line-height: 1;
+}
+
+.melee-completed-text {
+    display: grid;
+    gap: 2px;
+}
+
+.melee-completed-text strong {
+    font-size: 11px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.melee-completed-text span {
+    color: #a9a19a;
+    font-size: 10px;
+}
+
+
+/* ============================================================
+ * RANGED ATTACK CHAT — CARTE DÉDIÉE AU TIR
+ * ============================================================ */
+
+/* #region RANGED ATTACK CHAT */
+
+.metro-ranged-attack-heading {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.metro-ranged-attack-star {
+    color: #b52c2c;
+}
+
+.metro-ranged-attack-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.metro-ranged-attack-subtitle {
+    margin-top: 2px;
+
+    color: #a9a19a;
+    font-size: 11px;
+}
+
+.metro-ranged-attack-summary {
+    padding-bottom: 8px;
+
+    border-bottom: 1px solid #33302d;
+}
+
+.metro-ranged-attack-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 6px;
+}
+
+.metro-ranged-attack-summary-entry {
+    display: grid;
+    gap: 2px;
+}
+
+.metro-ranged-attack-summary-label {
+    color: #a9a19a;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.metro-ranged-attack-summary-value {
+    font-size: 12px;
+}
+
+.metro-ranged-attack-summary-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    margin-top: 6px;
+}
+
+.metro-ranged-attack-tag {
+    padding: 2px 7px;
+
+    color: #d8d3ca;
+
+    border: 1px solid #4a403c;
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.metro-ranged-attack-tag--explosive {
+    color: #ffdca8;
+
+    border-color: #a85a1d;
+}
+
+.metro-ranged-attack-result {
+    padding: 10px 12px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #33302d;
+}
+
+.metro-ranged-attack-result-label {
+    color: #7fd18a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.metro-ranged-attack-result-label--failure {
+    color: #d94c4c;
+}
+
+.metro-ranged-attack-result-value {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.metro-ranged-attack-result-caption {
+    color: #a9a19a;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.metro-ranged-attack-section-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 6px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.metro-ranged-attack-dice-group {
+    margin-bottom: 6px;
+}
+
+.metro-ranged-attack-dice-group--stress {
+    padding-top: 4px;
+
+    border-top: 1px dashed #4a403c;
+}
+
+.metro-ranged-attack-dice-label {
+    margin-bottom: 3px;
+
+    color: #a9a19a;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.metro-ranged-attack-dice-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.metro-ranged-attack-eliminated-stress {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 4px;
+
+    color: #a9a19a;
+    font-size: 10px;
+}
+
+.metro-ranged-attack-pool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 6px;
+}
+
+.metro-ranged-attack-pool-entry {
+    display: grid;
+    gap: 2px;
+}
+
+.metro-ranged-attack-pool-entry--stress {
+    color: #d9a24c;
+}
+
+.metro-ranged-attack-pool-label {
+    color: #a9a19a;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.metro-ranged-attack-pool-value {
+    font-size: 12px;
+}
+
+.metro-ranged-attack-afflictions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 12px;
+
+    color: #d94c4c;
+    font-size: 11px;
+
+    border-bottom: 1px solid #33302d;
+}
+
+.metro-ranged-attack-actions {
+    padding: 0 12px 10px;
+}
+
+.metro-ranged-attack-push-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 12px;
+
+    color: #a9a19a;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    border-top: 1px solid #33302d;
+}
+
+.metro-ranged-attack-finalized {
+    color: #7fd18a;
+}
+
+.metro-ranged-attack-protection-choice,
+.metro-ranged-attack-disarm-choice {
+    border-top: 1px solid #33302d;
+}
+
+.metro-ranged-attack-choice-status {
+    margin: 0 0 6px;
+
+    color: #a9a19a;
+    font-size: 11px;
+}
+
+/* #endregion */
+
+
+/* ============================================================
+ * METRO CHAT — SURVIE (Jet de Réserve / Effets des radiations)
+ * ============================================================ */
+
+/* #region METRO CHAT — SURVIE */
+
+.metro-chat-survival-card {
+    overflow: hidden;
+
+    padding: 8px 10px;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+    border-left: 4px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211f1e 0%,
+            #171616 55%,
+            #111111 100%
+        );
+
+    box-shadow:
+        inset 0 0 18px rgb(0 0 0 / 35%),
+        0 2px 5px rgb(0 0 0 / 30%);
+}
+
+.metro-chat-survival-card-header {
+    margin-bottom: 6px;
+
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.metro-chat-survival-card-dice {
+    margin-bottom: 4px;
+
+    color: #a9a19a;
+    font-size: 11px;
+}
+
+.metro-chat-survival-card-summary {
+    font-size: 12px;
+}
+
+.metro-chat-death-roll-card {
+    border-left-color: #d94c4c;
+}
+
+.metro-chat-terror-roll-card {
+    border-left-color: #6a2fa8;
+}
+
+.metro-chat-asphyxiation-roll-card {
+    border-left-color: #3a8a4a;
+}
+
+.metro-chat-poison-roll-card,
+.metro-chat-poison-round-card {
+    border-left-color: #2f7a4f;
+}
+
+.metro-chat-poison-round-card ul.metro-chat-survival-card-summary {
+    margin: 0;
+
+    padding-left: 18px;
+}
+
+.metro-chat-fire-roll-card {
+    border-left-color: #d9731f;
+}
+
+.metro-chat-illness-roll-card {
+    border-left-color: #8a6a1f;
+}
+
+.metro-chat-afflictions-card {
+    border-left-color: #b8892b;
+}
+
+.metro-chat-afflictions-card ul.metro-chat-survival-card-summary {
+    margin: 4px 0 0;
+
+    padding-left: 18px;
+}
+
+/*
+ * Boutons "Pousser" / "Accepter le résultat" des cartes de Poison et de
+ * Maladie : côte à côte dans la même ligne (.metro-chat-actions), chacun
+ * en largeur naturelle dictée par son propre texte ("Pousser" vs
+ * "Accepter le résultat") — tailles différentes. Corrigé le 04/10/2026
+ * (retour utilisateur) : les boutons de cette ligne se partagent
+ * désormais la largeur à parts égales (et un bouton seul occupe donc
+ * toute la ligne, cohérent avec le reste de la charte).
+ */
+.metro-chat-survival-card .metro-chat-actions .metro-chat-button {
+    flex: 1 1 0;
+}
+
+/* #endregion */
+
+/* #endregion */
+
+
+/* ============================================================
+ * FENÊTRES DE LANCEMENT — MACROS DE JETS (Terreur, Asphyxie,
+ * Poison, Maladie...)
+ *
+ * Norme graphique commune actée avec le porteur du projet le
+ * 28/09/2026 (retour sur le jet de Terreur) : Acteurs en tête
+ * de fenêtre en grille à 3 colonnes, ascenseur si le contenu
+ * dépasse, valeur(s) du jet dans un groupe séparé avec le texte
+ * explicatif sur sa propre ligne.
+ * ============================================================ */
+
+/* #region METRO CHAT — LANCEMENT DES MACROS DE JETS */
+
+.metro-multi-actor-roll-dialog {
+    max-height: 60vh;
+
+    overflow-y: auto;
+}
+
+/*
+ * Motif panneau commun (bordure sup. rouge 2px + dégradé 145°),
+ * appliqué le 04/10/2026 aux 4 fenêtres jusque-là à CSS quasi
+ * inexistant (Terreur/Asphyxie/Poison/Maladie) — déjà posé par
+ * ailleurs sur toute carte/section de la charte.
+ */
+.metro-multi-actor-roll-dialog fieldset {
+    margin-bottom: 10px;
+    padding: 8px 10px;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211f1e,
+            #171616
+        );
+}
+
+.metro-multi-actor-roll-dialog fieldset legend {
+    padding: 0 4px;
+
+    color: #d8d1c7;
+
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.metro-multi-actor-roll-dialog .metro-multi-actor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 4px 10px;
+}
+
+/* Coup de grâce : liste des PJ en deux colonnes. */
+.metro-multi-actor-roll-dialog .metro-coup-de-grace-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.metro-coup-de-grace-dialog textarea {
+    width: 100%;
+
+    resize: vertical;
+}
+
+.metro-multi-actor-roll-dialog .metro-multi-actor-row {
+    display: block;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.metro-multi-actor-roll-dialog .metro-macro-value-row {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #d8d1c7;
+}
+
+.metro-multi-actor-roll-dialog .metro-macro-value-row:last-child {
+    margin-bottom: 0;
+}
+
+.metro-multi-actor-roll-dialog .metro-macro-value-row strong {
+    color: #eee9df;
+}
+
+.metro-multi-actor-roll-dialog .metro-macro-value-row input[type="number"],
+.metro-multi-actor-roll-dialog .metro-macro-value-row input[type="text"] {
+    width: 100%;
+
+    margin-top: 4px;
+}
+
+.metro-multi-actor-roll-dialog .metro-macro-value-examples {
+    margin: 2px 0 0;
+
+    color: #a9a19a;
+    font-size: 11px;
+}
+
+/* #endregion */
+
+/* Effets appliqués (carte de mêlée) */
+.melee-applied-effects-list {
+    margin: 4px 0 0;
+    padding-left: 18px;
+
+    font-size: 12px;
+}
+
+.melee-applied-effects-list li {
+    margin: 2px 0;
+}
+
+.metro-chat-decision-list {
+    margin: 4px 0 0;
+    padding-left: 18px;
+
+    font-size: 12px;
+}
+
+.metro-chat-decision-list li {
+    margin: 2px 0;
+}
+
+.metro-chat-decision-list {
+    margin: 4px 0 0;
+    padding-left: 18px;
+
+    font-size: 12px;
+}
+
+.metro-chat-decision-list li {
+    margin: 2px 0;
+}
+
+.melee-attack-weapon-special {
+    margin-top: 2px;
+
+    font-size: 11px;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.melee-attack-weapon-special {
+    margin-top: 2px;
+
+    font-size: 11px;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.melee-attacker-traits {
+    margin-top: 4px;
+
+    font-size: 11px;
+}
+
+.melee-attacker-traits summary {
+    cursor: pointer;
+}
+
+.melee-attacker-traits ul {
+    margin: 2px 0 0;
+    padding-left: 16px;
+}

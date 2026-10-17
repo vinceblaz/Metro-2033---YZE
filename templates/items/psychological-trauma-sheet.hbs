@@ -1,0 +1,333 @@
+<div class="metro-psychological-trauma-sheet-content">
+
+    <header class="metro-item-header">
+
+        <img
+            class="metro-item-image"
+            src="{{item.img}}"
+            alt="{{item.name}}"
+            data-action="editImage"
+            data-edit="img"
+        />
+
+        <div class="metro-item-header-main">
+
+            <input
+                class="metro-item-name"
+                type="text"
+                name="name"
+                value="{{item.name}}"
+                {{#unless editable}}disabled{{/unless}}
+            />
+
+            <div class="metro-item-type">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Traumatisme psychologique
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="metro-item-scroll">
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Données du traumatisme
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-form-grid">
+
+                    <label>
+                        D66 minimum
+                    </label>
+
+                    <input
+                        type="number"
+                        name="system.d66.min"
+                        value="{{system.d66.min}}"
+                        min="0"
+                        max="66"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+
+
+                    <label>
+                        D66 maximum
+                    </label>
+
+                    <input
+                        type="number"
+                        name="system.d66.max"
+                        value="{{system.d66.max}}"
+                        min="0"
+                        max="66"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+
+
+                    <label>
+                        Mort instantanée
+                    </label>
+
+                    <input
+                        type="checkbox"
+                        name="system.instantDeath"
+                        {{checked system.instantDeath}}
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+
+
+                    <label>
+                        Formule de rémission
+                    </label>
+
+                    <input
+                        type="text"
+                        name="system.recoveryFormula"
+                        value="{{system.recoveryFormula}}"
+                        placeholder="Ex. 1d6"
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+
+
+                    <label>
+                        Permanent
+                    </label>
+
+                    <input
+                        type="checkbox"
+                        name="system.permanent"
+                        {{checked system.permanent}}
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Description
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.description"
+                    rows="6"
+                    {{#unless editable}}disabled{{/unless}}
+                >{{system.description}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Effet
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.effect"
+                    rows="6"
+                    {{#unless editable}}disabled{{/unless}}
+                >{{system.effect}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        {{#if isEmbedded}}
+
+            <section class="metro-item-section">
+
+                <div class="metro-item-section-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        État du traumatisme
+                    </span>
+
+                </div>
+
+                <div class="metro-item-section-body">
+
+                    <div class="metro-form-grid">
+
+                        <label>
+                            Rémission initiale
+                        </label>
+
+                        <div class="metro-number-with-unit">
+
+                            <input
+                                type="number"
+                                name="system.recovery.totalDays"
+                                value="{{system.recovery.totalDays}}"
+                                min="0"
+                                step="1"
+                                {{#unless editable}}disabled{{/unless}}
+                            />
+
+                            <span>
+                                jours
+                            </span>
+
+                        </div>
+
+
+                        <label>
+                            Rémission restante
+                        </label>
+
+                        <div class="metro-number-with-unit">
+
+                            <input
+                                type="number"
+                                name="system.recovery.remainingDays"
+                                value="{{system.recovery.remainingDays}}"
+                                min="0"
+                                step="1"
+                                {{#unless editable}}disabled{{/unless}}
+                            />
+
+                            <span>
+                                jours
+                            </span>
+
+                        </div>
+
+
+                        <label>
+                            Traitement appliqué
+                        </label>
+
+                        <input
+                            type="checkbox"
+                            name="system.recovery.treatmentApplied"
+                            {{checked system.recovery.treatmentApplied}}
+                            {{#unless editable}}disabled{{/unless}}
+                        />
+
+
+                        <label>
+                            Guéri
+                        </label>
+
+                        <input
+                            type="checkbox"
+                            name="system.recovery.healed"
+                            {{checked system.recovery.healed}}
+                            {{#unless editable}}disabled{{/unless}}
+                        />
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+
+        {{#if isGM}}
+
+            <section class="metro-item-section metro-gm-section">
+
+                <div class="metro-item-section-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Note MJ
+                    </span>
+
+                </div>
+
+                <div class="metro-item-section-body">
+
+                    <textarea
+                        name="system.gmNotes"
+                        rows="6"
+                        {{#unless editable}}disabled{{/unless}}
+                    >{{system.gmNotes}}</textarea>
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+    </div>
+
+</div>

@@ -1,0 +1,3592 @@
+/* =========================================================
+
+   MÉTRO 2033 — STYLES GÉNÉRAUX
+
+   ========================================================= */
+
+
+/* =========================================================
+   MÉTRO 2033 — POLITIQUE DE DÉFILEMENT
+   =========================================================
+   Toute feuille Métro doit offrir un défilement vertical
+   lorsque son contenu dépasse la hauteur de la fenêtre.
+
+   Par défaut : .window-content défile.
+   Les feuilles structurées avec header/footer fixes peuvent
+   déplacer le scroll vers un conteneur interne dédié.
+
+   Les Journaux Foundry standards conservent leur scroll natif.
+   Toute future JournalSheet personnalisée Métro doit recevoir
+   la classe .metro-journal-sheet.
+   ========================================================= */
+
+:is(.metro-actor-sheet, .metro-item-sheet, .metro-journal-sheet) .window-content {
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+}
+
+/* ---------------------------------------------------------
+
+   UI
+
+   --------------------------------------------------------- */
+
+/* #region UI en général */
+
+.metro-number-with-unit {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+.metro-number-with-unit input {
+
+    flex: 1 1 auto;
+
+    min-width: 0;
+
+}
+
+.metro-save-button {
+
+    width: 100%;
+
+}
+
+/* ---------------------------------------------------------
+
+   Textareas
+
+   --------------------------------------------------------- */
+
+.metro-talent-sheet textarea,
+
+.metro-item-sheet textarea {
+
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    resize: vertical;
+
+}
+
+/* #endregion */
+
+
+/* ---------------------------------------------------------
+
+    FORMULAIRES
+
+   --------------------------------------------------------- */
+
+/* #region FORMULAIRES en général */
+
+.metro-form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+
+        minmax(180px, 1fr)
+
+        minmax(120px, 220px);
+
+    gap:
+
+        8px
+
+        12px;
+
+    align-items: center;
+
+}
+
+.metro-form-grid input[type="text"],
+
+.metro-form-grid input[type="number"] {
+
+    width: 100%;
+
+}
+
+/* #endregion */
+
+
+/* =========================================================
+
+   FICHES ITEM
+
+   ========================================================= */
+
+/* #region ITEM en général */
+
+/* ---------------------------------------------------------
+
+   EN-TÊTE
+
+   --------------------------------------------------------- */
+
+.metro-item-header {
+
+    flex: 0 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 8px 10px;
+
+}
+
+.metro-item-image {
+
+    flex: 0 0 64px;
+
+    width: 64px;
+
+    height: 64px;
+
+    min-width: 64px;
+
+    min-height: 64px;
+
+    max-width: 64px;
+
+    max-height: 64px;
+
+    object-fit: cover;
+
+    border: 1px solid var(--color-border-light-primary);
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+}
+
+.metro-item-header-main {
+
+    flex: 1 1 auto;
+
+    min-width: 0;
+
+}
+
+.metro-item-name {
+
+    width: 100%;
+
+    font-size: 1.4em;
+
+    font-weight: bold;
+
+}
+
+.metro-item-type {
+
+    margin-top: 4px;
+
+    font-size: 0.9em;
+
+    opacity: 0.7;
+
+}
+
+/* ---------------------------------------------------------
+
+   CONTENU DÉFILABLE
+
+   --------------------------------------------------------- */
+
+.metro-item-scroll {
+
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    padding:
+
+        0
+
+        10px
+
+        12px
+
+        10px;
+
+    scrollbar-gutter: stable;
+
+}
+
+/* ---------------------------------------------------------
+
+   SECTIONS
+
+   --------------------------------------------------------- */
+
+.metro-item-section {
+
+    margin-bottom: 16px;
+
+}
+
+.metro-item-section h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 8px;
+
+}
+
+.metro-item-section textarea {
+
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    resize: vertical;
+
+}
+
+/* ---------------------------------------------------------
+
+   PIED DE FICHE
+
+   --------------------------------------------------------- */
+
+.metro-item-footer {
+
+    flex: 0 0 auto;
+
+    padding: 8px 10px;
+
+    border-top:
+
+        1px solid
+
+        var(--color-border-light-primary);
+
+}
+
+/* ---------------------------------------------------------
+
+   Fond commun à toutes les fiches Item Métro
+
+   --------------------------------------------------------- */
+
+.metro-item-sheet .window-content {
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    scrollbar-gutter: stable;
+
+    background:
+
+        linear-gradient(
+
+            rgba(13, 13, 13, 0.78),
+
+            rgba(13, 13, 13, 0.78)
+
+        ),
+
+        url("../ui/backgrounds/background-sheet.webp")
+
+            center / cover
+
+            no-repeat;
+
+}
+
+/* ---------------------------------------------------------
+
+   Fiches Item structurées :
+
+   header fixe + contenu scrollable + footer fixe
+
+   --------------------------------------------------------- */
+
+.metro-item-sheet form {
+
+    height: 100%;
+
+    min-height: 0;
+
+    box-sizing: border-box;
+
+    background: transparent;
+
+}
+
+/*
+
+   La zone centrale déjà utilisée par les fiches Trauma /
+
+   Blessure / autres Items redevient la zone de défilement.
+
+*/
+
+.metro-item-sheet .metro-item-scroll {
+
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    scrollbar-gutter: stable;
+
+}
+
+/* #endregion */
+
+/* ---------------------------------------------------------
+   CRITICAL INJURY / BLESSURE CRITIQUE
+   Structure validée : header/footer fixes, zone centrale scrollable.
+   --------------------------------------------------------- */
+/* #region CRITICAL INJURY */
+.metro-critical-injury-sheet .window-content {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.metro-critical-injury-sheet-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    background: transparent;
+}
+
+.metro-critical-injury-sheet .metro-item-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+}
+/* #endregion */
+
+/* ---------------------------------------------------------
+   NOTE MJ — commune à toutes les ItemSheets Métro
+   --------------------------------------------------------- */
+.metro-item-sheet .metro-gm-section {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #5e2424;
+    border-left: 3px solid #7e1d1d;
+    background: rgba(126, 29, 29, 0.08);
+}
+
+.metro-item-sheet .metro-gm-section textarea {
+    display: block;
+    width: 100%;
+    min-height: 90px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+/* =========================================================
+
+ * CHARACTER SHEET
+
+ * ======================================================= */
+
+/* #region CHARACTER SHEET en général */
+
+.metro-character-sheet {
+
+    overflow: hidden;
+
+}
+
+/* ---------------------------------------------------------
+
+ * Fond général de la CharacterSheet
+
+ * ------------------------------------------------------ */
+
+.metro-character-sheet .window-content {
+
+    background:
+
+        linear-gradient(
+
+            rgba(13, 13, 13, 0.78),
+
+            rgba(13, 13, 13, 0.78)
+
+        ),
+
+        url("../ui/backgrounds/background-sheet.webp")
+
+            center / cover
+
+            no-repeat;
+
+}
+
+/* ---------------------------------------------------------
+
+ * Zone principale scrollable
+
+ * ------------------------------------------------------ */
+
+.metro-character-sheet .metro-character-sheet-form {
+
+    height: 100%;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    padding: 14px;
+
+    box-sizing: border-box;
+
+    color: #d8d3ca;
+
+    background: transparent;
+
+}
+
+/* ---------------------------------------------------------
+
+ * Header
+
+ * ------------------------------------------------------ */
+
+.metro-character-sheet .metro-character-header {
+
+    display: grid;
+
+    grid-template-columns:
+
+        110px
+
+        minmax(0, 1fr)
+
+        115px;
+
+    grid-template-areas:
+
+        "portrait identity xp"
+
+        "portrait identity xp"
+
+        "attributes attributes attributes";
+
+    gap: 14px 16px;
+
+    align-items: start;
+
+}
+
+/* ---------------------------------------------------------
+
+ * Portrait
+
+ * ------------------------------------------------------ */
+
+.metro-character-sheet .metro-character-portrait {
+
+    grid-area: portrait;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    width: 100px;
+
+}
+
+.metro-character-sheet .metro-character-image {
+
+    display: block;
+
+    width: 100px;
+
+    height: 100px;
+
+    min-width: 100px;
+
+    min-height: 100px;
+
+    max-width: 100px;
+
+    max-height: 100px;
+
+    object-fit: cover;
+
+    border:
+
+        2px solid #7e1d1d;
+
+    border-radius:
+
+        2px;
+
+    box-shadow:
+
+        0 0 0 1px rgba(0, 0, 0, 0.9),
+
+        0 3px 8px rgba(0, 0, 0, 0.6);
+
+    cursor: pointer;
+
+    transition:
+
+        border-color 120ms ease,
+
+        box-shadow 120ms ease,
+
+        filter 120ms ease;
+
+}
+
+.metro-character-sheet .metro-character-image:hover {
+
+    border-color:
+
+        #b13131;
+
+    filter:
+
+        brightness(1.08);
+
+    box-shadow:
+
+        0 0 0 1px rgba(0, 0, 0, 0.9),
+
+        0 0 8px rgba(155, 30, 30, 0.5);
+
+}
+
+/* ---------------------------------------------------------
+
+ * Identité
+
+ * ------------------------------------------------------ */
+
+.metro-character-sheet .metro-character-identity {
+
+    grid-area: identity;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    min-width: 0;
+
+}
+
+.metro-character-sheet .metro-character-name-row {
+
+    padding-bottom: 6px;
+
+    border-bottom:
+
+        2px solid #711d1d;
+
+}
+
+.metro-character-sheet .metro-character-name {
+
+    width: 100%;
+
+    height: auto;
+
+    padding: 3px 4px;
+
+    border: 0;
+
+    border-radius: 0;
+
+    background:
+
+        transparent;
+
+    color:
+
+        #eee9df;
+
+    font-size:
+
+        25px;
+
+    font-weight:
+
+        700;
+
+    letter-spacing:
+
+        0.035em;
+
+    text-transform:
+
+        uppercase;
+
+}
+
+.metro-character-sheet .metro-character-name:focus {
+
+    outline:
+
+        none;
+
+    box-shadow:
+
+        none;
+
+    border-bottom:
+
+        1px solid #a82c2c;
+
+}
+
+/* ---------------------------------------------------------
+
+ * Champs identité
+
+ * ------------------------------------------------------ */
+
+.metro-character-sheet .metro-character-identity-fields {
+
+    display: grid;
+
+    grid-template-columns:
+
+        minmax(150px, 1fr)
+
+        minmax(120px, 0.8fr)
+
+        55px;
+
+    gap: 10px;
+
+}
+
+.metro-character-sheet .metro-character-identity-fields label {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    min-width: 0;
+
+}
+
+/* ---------------------------------------------------------
+
+ * Étoile rouge
+
+ * ------------------------------------------------------ */
+
+.metro-character-sheet .metro-label-with-star {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    color:
+
+        #b6afa5;
+
+    font-size:
+
+        10px;
+
+    font-weight:
+
+        700;
+
+    letter-spacing:
+
+        0.08em;
+
+    text-transform:
+
+        uppercase;
+
+}
+
+.metro-character-sheet .metro-red-star {
+
+    display: inline-block;
+
+    color:
+
+        #9a2424;
+
+    font-size:
+
+        12px;
+
+    line-height:
+
+        1;
+
+    transform:
+
+        translateY(-1px);
+
+    text-shadow:
+
+        0 1px 0 rgba(0, 0, 0, 0.95);
+
+}
+
+/* ---------------------------------------------------------
+
+ * Inputs du header
+
+ * ------------------------------------------------------ */
+
+.metro-character-sheet .metro-character-header input,
+
+.metro-character-sheet .metro-character-header select {
+
+    min-width: 0;
+
+    border:
+
+        1px solid #4b4641;
+
+    border-radius:
+
+        1px;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            rgba(8, 8, 8, 0.85),
+
+            rgba(18, 18, 18, 0.85)
+
+        );
+
+    color:
+
+        #ddd8ce;
+
+    box-shadow:
+
+        inset 0 1px 2px rgba(0, 0, 0, 0.75);
+
+}
+
+.metro-character-sheet .metro-character-header input:hover,
+
+.metro-character-sheet .metro-character-header select:hover {
+
+    border-color:
+
+        #762424;
+
+}
+
+.metro-character-sheet .metro-character-header input:focus,
+
+.metro-character-sheet .metro-character-header select:focus {
+
+    outline:
+
+        none;
+
+    border-color:
+
+        #a42c2c;
+
+    box-shadow:
+
+        inset 0 1px 2px rgba(0, 0, 0, 0.75),
+
+        0 0 4px rgba(145, 30, 30, 0.4);
+
+}
+
+.metro-character-sheet
+
+.metro-character-header
+
+.metro-character-name {
+
+    border:
+
+        0;
+
+    background:
+
+        transparent;
+
+    box-shadow:
+
+        none;
+
+}
+
+/* ---------------------------------------------------------
+
+ * XP
+
+ * ------------------------------------------------------ */
+
+.metro-character-sheet .metro-character-xp {
+
+    grid-area: xp;
+
+    align-self: stretch;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    height: 100%;
+
+    box-sizing: border-box;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    border:
+
+        1px solid #49423e;
+
+    border-top:
+
+        3px solid #7d1d1d;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            rgba(10, 10, 10, 0.88),
+
+            rgba(28, 28, 28, 0.78)
+
+        );
+
+    box-shadow:
+
+        inset 0 0 0 1px rgba(0, 0, 0, 0.45);
+
+}
+
+.metro-character-sheet .metro-character-xp-title {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding-bottom: 6px;
+
+    border-bottom:
+
+        1px solid #493d39;
+
+}
+
+.metro-character-sheet .metro-character-xp-values {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    justify-content: center;
+
+    flex: 1 1 auto;
+
+    gap: 8px;
+
+}
+
+.metro-character-sheet .metro-character-xp-values label {
+
+    display: grid;
+
+    grid-template-columns:
+
+        minmax(0, 1fr)
+
+        42px;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+.metro-character-sheet
+
+.metro-character-xp-values
+
+label > span:first-child {
+
+    color: #979088;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.05em;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+}
+
+.metro-character-sheet .metro-character-xp-values input,
+
+.metro-character-sheet .metro-character-xp-readonly {
+
+    width: 42px;
+
+    height: 28px;
+
+    margin: 0;
+
+    text-align: center;
+
+    box-sizing: border-box;
+
+}
+
+.metro-character-sheet .metro-character-xp-total-input,
+
+.metro-character-sheet .metro-character-xp-total {
+
+    color: #c95b5b;
+
+}
+
+/* ---------------------------------------------------------
+
+ * Attributs
+
+ * ------------------------------------------------------ */
+
+.metro-character-sheet .metro-character-attributes {
+
+    grid-area:
+
+        attributes;
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(4, minmax(0, 1fr));
+
+    gap:
+
+        8px;
+
+}
+
+.metro-character-sheet .metro-character-attribute {
+
+    position:
+
+        relative;
+
+    display:
+
+        flex;
+
+    flex-direction:
+
+        column;
+
+    justify-content:
+
+        center;
+
+    min-height:
+
+        78px;
+
+    padding:
+
+        8px 10px;
+
+    overflow:
+
+        hidden;
+
+    border:
+
+        1px solid #49423e;
+
+    border-top:
+
+        3px solid #762020;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            rgba(13, 13, 13, 0.82),
+
+            rgba(29, 29, 29, 0.78)
+
+        );
+
+    box-sizing:
+
+        border-box;
+
+}
+
+/*
+
+ * Petite marque rouge décorative
+
+ * inspirée du mockup.
+
+ */
+
+.metro-character-sheet .metro-character-attribute::before {
+
+    content:
+
+        "";
+
+    position:
+
+        absolute;
+
+    top:
+
+        0;
+
+    left:
+
+        0;
+
+    width:
+
+        22px;
+
+    height:
+
+        3px;
+
+    background:
+
+        #a02929;
+
+}
+
+.metro-character-sheet .metro-character-attribute-title {
+
+    margin-bottom:
+
+        7px;
+
+    color:
+
+        #c9c3b9;
+
+    font-size:
+
+        11px;
+
+    font-weight:
+
+        700;
+
+    letter-spacing:
+
+        0.09em;
+
+    text-align:
+
+        center;
+
+    text-transform:
+
+        uppercase;
+
+}
+
+.metro-character-sheet .metro-character-attribute-values {
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    gap:
+
+        5px;
+
+}
+
+.metro-character-sheet .metro-character-attribute-values input {
+
+    width:
+
+        46px;
+
+    height:
+
+        32px;
+
+    padding:
+
+        2px;
+
+    color:
+
+        #eee9df;
+
+    font-size:
+
+        18px;
+
+    font-weight:
+
+        700;
+
+    text-align:
+
+        center;
+
+}
+
+.metro-character-sheet .metro-character-attribute-values span {
+
+    color:
+
+        #8d2828;
+
+    font-size:
+
+        18px;
+
+    font-weight:
+
+        700;
+
+}
+
+/* ---------------------------------------------------------
+
+ * Champs désactivés
+
+ * ------------------------------------------------------ */
+
+.metro-character-sheet input:disabled,
+
+.metro-character-sheet select:disabled {
+
+    opacity:
+
+        0.72;
+
+    cursor:
+
+        default;
+
+}
+
+/* ---------------------------------------------------------
+
+ * Scrollbar
+
+ * ------------------------------------------------------ */
+
+.metro-character-sheet
+
+.metro-character-sheet-form::-webkit-scrollbar {
+
+    width:
+
+        9px;
+
+}
+
+.metro-character-sheet
+
+.metro-character-sheet-form::-webkit-scrollbar-track {
+
+    background:
+
+        rgba(8, 8, 8, 0.75);
+
+}
+
+.metro-character-sheet
+
+.metro-character-sheet-form::-webkit-scrollbar-thumb {
+
+    background:
+
+        #552020;
+
+    border:
+
+        2px solid rgba(8, 8, 8, 0.75);
+
+}
+
+.metro-character-sheet
+
+.metro-character-sheet-form::-webkit-scrollbar-thumb:hover {
+
+    background:
+
+        #792525;
+
+}
+
+/* ---------------------------------------------------------
+
+ * Bouton de test d'attribut
+
+ * ------------------------------------------------------ */
+
+.metro-character-sheet
+
+.metro-character-attribute-roll {
+
+    width:
+
+        100%;
+
+    height:
+
+        25px;
+
+    margin-top:
+
+        8px;
+
+    padding:
+
+        2px 8px;
+
+    border:
+
+        1px solid #5e2424;
+
+    border-radius:
+
+        1px;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            rgba(77, 27, 27, 0.92),
+
+            rgba(43, 17, 17, 0.96)
+
+        );
+
+    color:
+
+        #d8d2c8;
+
+    font-size:
+
+        10px;
+
+    font-weight:
+
+        700;
+
+    letter-spacing:
+
+        0.09em;
+
+    text-transform:
+
+        uppercase;
+
+    cursor:
+
+        pointer;
+
+    box-shadow:
+
+        inset 0 1px 0 rgba(255, 255, 255, 0.035),
+
+        0 1px 2px rgba(0, 0, 0, 0.45);
+
+    transition:
+
+        border-color 120ms ease,
+
+        background 120ms ease,
+
+        color 120ms ease;
+
+}
+
+
+.metro-character-sheet
+
+.metro-character-attribute-roll:hover {
+
+    border-color:
+
+        #a53131;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            rgba(111, 31, 31, 0.96),
+
+            rgba(58, 18, 18, 0.98)
+
+        );
+
+    color:
+
+        #f1ece3;
+
+}
+
+.metro-character-sheet
+
+.metro-character-attribute-roll:active {
+
+    transform:
+
+        translateY(1px);
+
+}
+
+/* #endregion */
+
+
+/* ============================================================
+
+ * YZE ROLL CHAT
+
+ * ============================================================ */
+
+/* #region YZE ROLL CHAT en général */
+
+.metro-yze-roll {
+
+    overflow: hidden;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    border-left: 4px solid #7e1d1d;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            #211f1e 0%,
+
+            #171616 55%,
+
+            #111111 100%
+
+        );
+
+    box-shadow:
+
+        inset 0 0 18px rgb(0 0 0 / 35%),
+
+        0 2px 5px rgb(0 0 0 / 30%);
+
+}
+
+/* ------------------------------------------------------------
+
+ * HEADER
+
+ * ------------------------------------------------------------ */
+
+.metro-yze-roll-header {
+
+    padding: 10px 12px 9px;
+
+    border-bottom: 1px solid #4a403c;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            rgb(126 29 29 / 22%),
+
+            rgb(20 19 19 / 30%)
+
+        );
+
+}
+
+.metro-yze-roll-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+.metro-yze-roll-star {
+
+    flex: 0 0 auto;
+
+    color: #a52626;
+
+    font-size: 12px;
+
+    line-height: 1;
+
+    text-shadow:
+
+        0 0 4px rgb(165 38 38 / 35%);
+
+}
+
+.metro-yze-roll-title {
+
+    color: #eee7dc;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+
+}
+
+.metro-yze-roll-actor {
+
+    margin-top: 3px;
+
+    margin-left: 18px;
+
+    color: #938b84;
+
+    font-size: 11px;
+
+    letter-spacing: 0.04em;
+
+}
+
+/* ------------------------------------------------------------
+
+ * RESULT
+
+ * ------------------------------------------------------------ */
+
+.metro-yze-roll-result {
+
+    display: grid;
+
+    grid-template-columns:
+
+        minmax(0, 1fr)
+
+        auto;
+
+    grid-template-areas:
+
+        "label value"
+
+        "caption value";
+
+    align-items: center;
+
+    padding: 12px;
+
+    border-bottom: 1px solid #393331;
+
+}
+
+.metro-yze-roll-result-label {
+
+    grid-area: label;
+
+    color: #b22b2b;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+
+}
+
+.metro-yze-roll-result-label--failure {
+
+    color: #8d8580;
+
+}
+
+.metro-yze-roll-result-value {
+
+    grid-area: value;
+
+    min-width: 48px;
+
+    color: #eee7dc;
+
+    font-size: 38px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    text-align: center;
+
+    text-shadow:
+
+        0 1px 2px #000;
+
+}
+
+.metro-yze-roll-result-caption {
+
+    grid-area: caption;
+
+    color: #847c76;
+
+    font-size: 10px;
+
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+
+}
+
+/* ------------------------------------------------------------
+
+ * DICE RESULTS
+
+ * ------------------------------------------------------------ */
+
+.metro-yze-roll-dice {
+
+    padding: 10px 12px 12px;
+
+    border-bottom: 1px solid #393331;
+
+    background:
+
+        rgb(0 0 0 / 10%);
+
+}
+
+.metro-yze-roll-dice-group {
+
+    display: grid;
+
+    grid-template-columns:
+
+        76px
+
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 6px;
+
+}
+
+.metro-yze-roll-dice-group--stress {
+
+    padding-top: 6px;
+
+    border-top:
+
+        1px solid
+
+        rgb(126 29 29 / 35%);
+
+}
+
+.metro-yze-roll-dice-label {
+
+    color: #8f8781;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
+
+}
+
+.metro-yze-roll-dice-list {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+}
+
+.metro-yze-die {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 27px;
+
+    height: 27px;
+
+    color: #cbc5bc;
+
+    border: 1px solid #4a4440;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            #302d2b,
+
+            #1c1a19
+
+        );
+
+    box-shadow:
+
+        inset 0 0 4px
+
+        rgb(0 0 0 / 45%);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+}
+
+/*
+
+ * Un 6 normal est une réussite.
+
+ */
+
+.metro-yze-die--success {
+
+    color: #f1e9de;
+
+    border-color: #9a2424;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            #8b2424,
+
+            #581717
+
+        );
+
+    box-shadow:
+
+        inset 0 0 5px
+
+            rgb(0 0 0 / 35%),
+
+        0 0 4px
+
+            rgb(154 36 36 / 25%);
+
+}
+
+/*
+
+ * Un 1 normal est identifiable,
+
+ * mais n'est pas encore présenté
+
+ * comme une affliction sur le jet initial.
+
+ */
+
+.metro-yze-die--one {
+
+    color: #aaa29b;
+
+    border-color: #625854;
+
+}
+
+/*
+
+ * Les dés de Stress restent
+
+ * visuellement distincts.
+
+ */
+
+.metro-yze-die--stress {
+
+    color: #d7cbc1;
+
+    border-color: #704044;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            #372729,
+
+            #211a1b
+
+        );
+
+}
+
+/*
+
+ * Un 1 de Stress est une affliction.
+
+ */
+
+.metro-yze-die--affliction {
+
+    color: #f1dada;
+
+    border-color: #b22b2b;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            #6f2020,
+
+            #351515
+
+        );
+
+    box-shadow:
+
+        inset 0 0 5px
+
+            rgb(0 0 0 / 35%),
+
+        0 0 5px
+
+            rgb(178 43 43 / 30%);
+
+}
+
+.metro-yze-roll-eliminated-stress {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 7px;
+
+    padding: 5px 7px;
+
+    color: #9e9690;
+
+    border:
+
+        1px dashed
+
+        rgb(126 29 29 / 50%);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+}
+
+.metro-yze-roll-eliminated-stress strong {
+
+    color: #b82e2e;
+
+    font-size: 13px;
+
+}
+
+/* ------------------------------------------------------------
+
+ * POOL
+
+ * ------------------------------------------------------------ */
+
+.metro-yze-roll-pool {
+
+    padding: 10px 12px 12px;
+
+}
+
+.metro-yze-roll-section-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-bottom: 8px;
+
+    color: #a9a19a;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+}
+
+.metro-yze-roll-pool-grid {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(
+
+            2,
+
+            minmax(0, 1fr)
+
+        );
+
+    gap: 5px;
+
+}
+
+.metro-yze-roll-pool-entry {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    min-width: 0;
+
+    padding: 5px 7px;
+
+    border: 1px solid #393432;
+
+    background:
+
+        rgb(255 255 255 / 2%);
+
+}
+
+.metro-yze-roll-pool-entry--stress {
+
+    border-color:
+
+        rgb(126 29 29 / 65%);
+
+    background:
+
+        rgb(126 29 29 / 10%);
+
+}
+
+.metro-yze-roll-pool-label {
+
+    overflow: hidden;
+
+    color: #8f8781;
+
+    font-size: 10px;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    text-transform: uppercase;
+
+}
+
+.metro-yze-roll-pool-value {
+
+    margin-left: 6px;
+
+    color: #ddd6cc;
+
+    font-size: 13px;
+
+}
+
+/* ------------------------------------------------------------
+
+ * AFFLICTIONS
+
+ * ------------------------------------------------------------ */
+
+.metro-yze-roll-afflictions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 8px 12px;
+
+    color: #c2b8af;
+
+    border-top: 1px solid #4a2424;
+
+    background:
+
+        rgb(126 29 29 / 14%);
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+}
+
+.metro-yze-roll-afflictions strong {
+
+    margin-left: auto;
+
+    color: #b52c2c;
+
+    font-size: 15px;
+
+}
+
+/* ------------------------------------------------------------
+
+ * PUSH
+
+ * ------------------------------------------------------------ */
+
+.metro-yze-roll-actions {
+
+    padding: 10px 12px;
+
+    border-top: 1px solid #443936;
+
+    background:
+
+        rgb(0 0 0 / 14%);
+
+}
+
+.metro-yze-roll-push {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    width: 100%;
+
+    min-height: 32px;
+
+    margin: 0;
+
+    padding: 6px 10px;
+
+    color: #e5ddd3;
+
+    border: 1px solid #7e1d1d;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #762020,
+
+            #4c1515
+
+        );
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.09em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+
+        border-color 120ms ease,
+
+        background 120ms ease,
+
+        color 120ms ease;
+
+}
+
+.metro-yze-roll-push:hover {
+
+    color: #fff4ea;
+
+    border-color: #b52c2c;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #922828,
+
+            #601919
+
+        );
+
+}
+
+.metro-yze-roll-push:disabled {
+
+    opacity: 0.45;
+
+    cursor: default;
+
+}
+
+.metro-yze-roll-push-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 7px 12px;
+
+    color: #a69d96;
+
+    border-top:
+
+        1px solid
+
+        rgb(126 29 29 / 45%);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+}
+
+/* #endregion */
+
+
+/* ============================================================
+
+ * CHARACTER — SKILLS
+
+ * ============================================================ */
+
+/* #region Character Skills en général */
+
+.metro-character-skills {
+
+    margin-top: 14px;
+
+}
+
+.metro-character-section-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 10px;
+
+    padding-bottom: 6px;
+
+    color: #ddd6cc;
+
+    border-bottom:
+
+        1px solid #493d39;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.09em;
+
+    text-transform: uppercase;
+
+}
+
+.metro-character-skill-groups {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(
+
+            2,
+
+            minmax(0, 1fr)
+
+        );
+
+    gap: 10px;
+
+}
+
+.metro-character-skill-group {
+
+    overflow: hidden;
+
+    border:
+
+        1px solid #3e3734;
+
+    border-top:
+
+        2px solid #7e1d1d;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            #211f1e,
+
+            #171616
+
+        );
+
+}
+
+.metro-character-skill-group-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 7px 9px;
+
+    color: #d8d1c7;
+
+    border-bottom:
+
+        1px solid #3e3734;
+
+    background:
+
+        rgb(126 29 29 / 10%);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+}
+
+.metro-character-skill-list {
+
+    padding: 4px 7px;
+
+}
+
+.metro-character-skill-row {
+
+    display: grid;
+
+    /*
+
+     * Nom
+
+     * Valeur
+
+     * Test
+
+     * Progression XP
+
+     */
+
+    grid-template-columns:
+
+        minmax(0, 1fr)
+
+        42px
+
+        54px
+
+        minmax(92px, auto);
+
+    align-items: center;
+
+    gap: 6px;
+
+    min-height: 35px;
+
+    padding:
+
+        3px 0;
+
+    border-bottom:
+
+        1px solid rgb(255 255 255 / 5%);
+
+}
+
+.metro-character-skill-row:last-child {
+
+    border-bottom: 0;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Nom de compétence
+
+ * ------------------------------------------------------------ */
+
+.metro-character-skill-name {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    color: #c3bdb5;
+
+    font-size: 11px;
+
+}
+
+.metro-character-skill-name > span:first-child {
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+/*
+
+ * Marque visuelle d'une compétence d'archétype.
+
+ */
+
+.metro-character-skill-archetype {
+
+    flex: 0 0 auto;
+
+    color:
+
+        #a92b2b;
+
+    font-size:
+
+        10px;
+
+    line-height:
+
+        1;
+
+    text-shadow:
+
+        0 0 3px rgb(169 43 43 / 30%);
+
+}
+
+/* ------------------------------------------------------------
+
+ * Valeur de compétence
+
+ * ------------------------------------------------------------ */
+
+.metro-character-skill-value {
+
+    width: 100%;
+
+    height: 26px;
+
+    padding: 2px 4px;
+
+    color: #ddd6cc;
+
+    border:
+
+        1px solid #49423e;
+
+    background:
+
+        #171616;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-align: center;
+
+}
+
+.metro-character-skill-value:hover,
+
+.metro-character-skill-value:focus {
+
+    border-color:
+
+        #8f2424;
+
+    outline: none;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Bouton Test
+
+ * ------------------------------------------------------------ */
+
+.metro-character-skill-roll {
+
+    height: 26px;
+
+    margin: 0;
+
+    padding: 2px 5px;
+
+    color: #d9d2c9;
+
+    border:
+
+        1px solid #692020;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #512020,
+
+            #321616
+
+        );
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing:
+
+        0.05em;
+
+    text-transform:
+
+        uppercase;
+
+    cursor:
+
+        pointer;
+
+    transition:
+
+        border-color 120ms ease,
+
+        background 120ms ease,
+
+        color 120ms ease;
+
+}
+
+.metro-character-skill-roll:hover {
+
+    color: #fff1e7;
+
+    border-color:
+
+        #a52a2a;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #752525,
+
+            #451919
+
+        );
+
+}
+
+/* ------------------------------------------------------------
+
+ * Progression XP
+
+ * ------------------------------------------------------------ */
+
+.metro-character-skill-progression {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap:
+
+        4px;
+
+    min-width:
+
+        0;
+
+}
+
+/*
+
+ * Coût de la prochaine augmentation.
+
+ */
+
+.metro-character-skill-xp-cost {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width:
+
+        38px;
+
+    color:
+
+        #aaa29a;
+
+    font-size:
+
+        9px;
+
+    font-weight:
+
+        700;
+
+    white-space:
+
+        nowrap;
+
+}
+
+/*
+
+ * Badge indiquant qu'une validation MJ
+
+ * est nécessaire pour le passage 0 -> 1.
+
+ */
+
+.metro-character-skill-gm-approval {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width:
+
+        20px;
+
+    height:
+
+        18px;
+
+    padding:
+
+        0 4px;
+
+    color:
+
+        #d9cdc4;
+
+    border:
+
+        1px solid #704040;
+
+    background:
+
+        rgb(126 29 29 / 18%);
+
+    font-size:
+
+        8px;
+
+    font-weight:
+
+        800;
+
+    letter-spacing:
+
+        0.06em;
+
+    line-height:
+
+        1;
+
+    cursor:
+
+        help;
+
+}
+
+/*
+
+* Bouton d'augmentation de compétence.
+
+ */
+
+.metro-character-skill-xp {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width:
+
+        32px;
+
+    height:
+
+        26px;
+
+    margin:
+
+        0;
+
+    padding:
+
+        2px 4px;
+
+    color:
+
+        #e0d9d0;
+
+    border:
+
+        1px solid #742222;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #5a2020,
+
+            #341616
+
+        );
+
+    font-size:
+
+        11px;
+
+    font-weight:
+
+        800;
+
+    line-height:
+
+        1;
+
+    cursor:
+
+        pointer;
+
+    transition:
+
+        border-color 120ms ease,
+
+        background 120ms ease,
+
+        color 120ms ease,
+
+        opacity 120ms ease;
+
+}
+
+.metro-character-skill-xp:hover:not(:disabled) {
+
+    color:
+
+        #fff1e7;
+
+    border-color:
+
+        #a82d2d;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #7d2727,
+
+            #481818
+
+        );
+
+}
+
+.metro-character-skill-xp:active:not(:disabled) {
+
+    transform:
+
+        translateY(1px);
+
+}
+
+.metro-character-skill-xp:disabled {
+
+    opacity:
+
+        0.35;
+
+    cursor:
+
+        default;
+
+    filter:
+
+        grayscale(0.35);
+
+}
+
+/* ------------------------------------------------------------
+
+ * Responsive léger pour les petites largeurs
+
+ * ------------------------------------------------------------ */
+
+@media (max-width: 620px) {
+
+    .metro-character-skill-groups {
+
+        grid-template-columns:
+
+            1fr;
+
+    }
+
+    .metro-character-skill-row {
+
+        grid-template-columns:
+
+            minmax(0, 1fr)
+
+            42px
+
+            54px
+
+            minmax(92px, auto);
+
+    }
+
+}
+
+/* #endregion */
+
+
+/* ============================================================
+
+ * CHARACTER — ARCHÉTYPE
+
+ * ============================================================ */
+
+/* #region CHARACTER — ARCHÉTYPE en général */
+
+/*
+
+ * Le sélecteur principal d'archétype occupe
+
+ * toute la largeur disponible de son champ.
+
+ */
+
+.metro-character-sheet
+
+.metro-character-archetype-field {
+
+    min-width: 0;
+
+}
+
+.metro-character-sheet
+
+.metro-character-archetype-select {
+
+    width: 100%;
+
+    height: 30px;
+
+    padding: 2px 7px;
+
+    color: #ddd8ce;
+
+    border:
+
+        1px solid #4b4641;
+
+    border-radius:
+
+        1px;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            rgba(8, 8, 8, 0.9),
+
+            rgba(18, 18, 18, 0.9)
+
+        );
+
+    font-size:
+
+        11px;
+
+    font-weight:
+
+        600;
+
+    cursor:
+
+        pointer;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Choix particuliers d'archétype
+
+ * ------------------------------------------------------------ */
+
+/*
+
+ * Cette zone n'apparaît actuellement que pour
+
+ * les archétypes possédant des choix variables,
+
+ * notamment le Soldat.
+
+ */
+
+.metro-character-sheet
+
+.metro-character-archetype-choices {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(
+
+            2,
+
+            minmax(0, 1fr)
+
+        );
+
+    gap:
+
+        10px;
+
+    padding:
+
+        9px 10px;
+
+    border:
+
+        1px solid #443a37;
+
+    border-left:
+
+        3px solid #7e1d1d;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            rgba(126, 29, 29, 0.08),
+
+            rgba(10, 10, 10, 0.42)
+
+        );
+
+    box-shadow:
+
+        inset 0 0 0 1px
+
+        rgba(0, 0, 0, 0.25);
+
+}
+
+/*
+
+ * Chaque choix reste structuré comme
+
+ * les autres champs d'identité.
+
+ */
+
+.metro-character-sheet
+
+.metro-character-archetype-choices label {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap:
+
+        5px;
+
+    min-width:
+
+        0;
+
+}
+
+/*
+
+ * Sélecteurs Attribut / Compétence.
+
+ */
+
+.metro-character-sheet
+
+.metro-character-archetype-choices select {
+
+    width:
+
+        100%;
+
+    height:
+
+        30px;
+
+    min-width:
+
+        0;
+
+    padding:
+
+        2px 7px;
+
+    color:
+
+        #ddd8ce;
+
+    border:
+
+        1px solid #4b4641;
+
+    border-radius:
+
+        1px;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            rgba(8, 8, 8, 0.9),
+
+            rgba(18, 18, 18, 0.9)
+
+        );
+
+    font-size:
+
+        11px;
+
+    font-weight:
+
+        600;
+
+    cursor:
+
+        pointer;
+
+    box-shadow:
+
+        inset 0 1px 2px
+
+        rgba(0, 0, 0, 0.75);
+
+    transition:
+
+        border-color 120ms ease,
+
+        box-shadow 120ms ease,
+
+        background 120ms ease;
+
+}
+
+.metro-character-sheet
+
+.metro-character-archetype-choices select:hover {
+
+    border-color:
+
+        #762424;
+
+}
+
+.metro-character-sheet
+
+.metro-character-archetype-choices select:focus {
+
+    outline:
+
+        none;
+
+    border-color:
+
+        #a42c2c;
+
+    box-shadow:
+
+        inset 0 1px 2px
+
+        rgba(0, 0, 0, 0.75),
+
+        0 0 4px
+
+        rgba(145, 30, 30, 0.4);
+
+}
+
+/*
+
+ * Les choix d'archétype sont mécaniquement importants.
+
+ * Une légère accentuation rouge permet de les distinguer
+
+ * des simples informations d'identité.
+
+ */
+
+.metro-character-sheet
+
+.metro-character-archetype-choices
+
+.metro-label-with-star {
+
+    color:
+
+        #c3bbb1;
+
+}
+
+.metro-character-sheet
+
+.metro-character-archetype-choices
+
+.metro-red-star {
+
+    color:
+
+        #aa2929;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Champs désactivés
+
+ * ------------------------------------------------------------ */
+
+.metro-character-sheet
+
+.metro-character-archetype-select:disabled,
+
+.metro-character-sheet
+
+.metro-character-archetype-choices select:disabled {
+
+    opacity:
+
+        0.72;
+
+    cursor:
+
+        default;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Petite largeur
+
+ * ------------------------------------------------------------ */
+
+@media (max-width: 620px) {
+
+    .metro-character-sheet
+
+    .metro-character-archetype-choices {
+
+        grid-template-columns:
+
+            1fr;
+
+    }
+
+}
+
+/* #endregion */
+
+
+/* ============================================================
+
+ * CHARACTER — TALENTS
+
+ * ============================================================ */
+
+/* #region CHARACTER — TALENTS en général */
+
+.metro-character-talents {
+
+    margin-top: 14px;
+
+}
+
+.metro-character-talent-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    color: #d8d3ca;
+
+    border:
+
+        1px solid #3e3734;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            #211f1e,
+
+            #171616
+
+        );
+
+}
+
+/* ------------------------------------------------------------
+
+ * En-tête
+
+ * ------------------------------------------------------------ */
+
+.metro-character-talent-table thead {
+
+    background:
+
+        rgb(126 29 29 / 10%);
+
+}
+
+.metro-character-talent-table th {
+
+    padding: 7px 9px;
+
+    color: #d8d1c7;
+
+    border-bottom:
+
+        1px solid #3e3734;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+}
+
+.metro-character-talent-column-name {
+
+    width: auto;
+
+}
+
+.metro-character-talent-column-level {
+
+    width: 110px;
+
+}
+
+.metro-character-talent-column-xp {
+
+    width: 100px;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Tri
+
+ * ------------------------------------------------------------ */
+
+.metro-character-talent-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 7px;
+
+}
+
+.metro-character-talent-sort {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 22px;
+
+    width: 22px;
+
+    height: 20px;
+
+    margin: 0;
+
+    padding: 0;
+
+    color: #b9b1a8;
+
+    border:
+
+        1px solid #5e2424;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #512020,
+
+            #321616
+
+        );
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+
+        color 120ms ease,
+
+        border-color 120ms ease,
+
+        background 120ms ease;
+
+}
+
+.metro-character-talent-sort:hover {
+
+    color: #fff1e7;
+
+    border-color: #a52a2a;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #752525,
+
+            #451919
+
+        );
+
+}
+
+.metro-character-talent-sort:active {
+
+    transform: translateY(1px);
+
+}
+
+.metro-character-talent-sort-indicator {
+
+    display: block;
+
+    line-height: 1;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Lignes
+
+ * ------------------------------------------------------------ */
+
+.metro-character-talent-row {
+
+    border-bottom:
+
+        1px solid rgb(255 255 255 / 5%);
+
+}
+
+.metro-character-talent-row:last-child {
+
+    border-bottom: 0;
+
+}
+
+.metro-character-talent-table td {
+
+    padding: 4px 9px;
+
+    vertical-align: middle;
+
+    text-align: left;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Talent : image + nom
+
+ * ------------------------------------------------------------ */
+
+.metro-character-talent-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 6px;
+
+    min-height: 24px;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #c3bdb5;
+
+    font-size: 11px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+}
+
+.metro-character-talent-link:hover {
+
+    color: #fff1e7;
+
+}
+
+.metro-character-talent-image {
+
+    flex: 0 0 18px;
+
+    width: 18px;
+
+    height: 18px;
+
+    min-width: 18px;
+
+    min-height: 18px;
+
+    max-width: 18px;
+
+    max-height: 18px;
+
+    object-fit: cover;
+
+}
+
+.metro-character-talent-name {
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Progression
+
+ * ------------------------------------------------------------ */
+
+.metro-character-talent-level {
+
+    color: #bdb6ad;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+/* ------------------------------------------------------------
+
+ * XP
+
+ * ------------------------------------------------------------ */
+
+.metro-character-talent-progression {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 6px;
+
+    min-height: 26px;
+
+}
+
+.metro-character-talent-xp-cost {
+
+    min-width: 38px;
+
+    color: #aaa29a;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+}
+
+.metro-character-talent-no-xp {
+
+    color: #706964;
+
+}
+
+/* #endregion */
+
+
+/* ============================================================
+   TALENT SHEET
+   ============================================================ */
+/* #region TALENT SHEET */
+.metro-talent-sheet .window-content {
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+}
+
+.metro-talent-sheet form {
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+    padding: 14px;
+    box-sizing: border-box;
+    color: #d8d3ca;
+    background: transparent;
+}
+
+.metro-talent-sheet textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+}
+/* #endregion */
+
+/* =========================================================
+
+   PSYCHOLOGICAL TRAUMA — SCROLL
+
+   ========================================================= */
+
+/* #region PSYCHOLOGICAL TRAUMA en général */
+
+.metro-psychological-trauma-sheet .window-content {
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    scrollbar-gutter: stable;
+
+}
+
+.metro-psychological-trauma-sheet form {
+
+    height: auto;
+
+    min-height: 100%;
+
+    overflow: visible;
+
+    background: transparent;
+
+}
+
+/* #endregion */

@@ -1,0 +1,373 @@
+<div class="metro-item-form metro-equipment-sheet-form">
+
+    <header class="metro-item-header">
+
+        <img
+            class="metro-item-image"
+            src="{{item.img}}"
+            alt="{{item.name}}"
+            data-action="editImage"
+            data-edit="img"
+            title="Cliquer pour modifier l'image"
+        />
+
+        <div class="metro-item-header-main">
+
+            <input
+                class="metro-item-name"
+                type="text"
+                name="name"
+                value="{{item.name}}"
+                placeholder="Nom de l'outil"
+            />
+
+            <div class="metro-item-type">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Outil
+                </span>
+
+            </div>
+
+            <div class="metro-equipment-condition">
+
+                <span class="metro-equipment-condition-label">
+                    État
+                </span>
+
+                <strong
+                    class="metro-equipment-condition-value
+                        is-{{equipmentState.id}}"
+                >
+                    {{equipmentState.label}}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="metro-item-scroll metro-equipment-scroll">
+
+        <!-- ================================================== -->
+        <!-- CARACTÉRISTIQUES                                   -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Caractéristiques
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-equipment-general-grid">
+
+                    <!-- PRIX -->
+
+                    <label class="metro-equipment-field">
+
+                        <span>
+                            Prix
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.price"
+                            value="{{system.price}}"
+                            min="0"
+                            step="1"
+                        />
+
+                    </label>
+
+
+                    <!-- ENCOMBREMENT -->
+
+                    <label class="metro-equipment-field metro-equipment-enc">
+
+                        <span>
+                            Encombrement
+                        </span>
+
+                        <select name="system.weight">
+
+                            {{#each encumbranceChoices}}
+
+                                <option
+                                    value="{{value}}"
+                                    {{#if selected}}selected{{/if}}
+                                >
+                                    {{label}}
+                                </option>
+
+                            {{/each}}
+
+                        </select>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- BONUS                                              -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-equipment-panel">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Bonus
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-equipment-bonus-grid">
+
+                    <!-- ATTRIBUT -->
+
+                    <label class="metro-equipment-field">
+
+                        <span>
+                            Attribut
+                        </span>
+
+                        <select
+                            name="system.attribute"
+                        >
+
+                            {{#each attributeChoices}}
+
+                                <option
+                                    value="{{value}}"
+                                    {{#if selected}}selected{{/if}}
+                                >
+                                    {{label}}
+                                </option>
+
+                            {{/each}}
+
+                        </select>
+
+                    </label>
+
+
+                    <!-- BONUS ACTUEL -->
+
+                    <label class="metro-equipment-field">
+
+                        <span>
+                            Valeur actuelle
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.bonus.current"
+                            value="{{system.bonus.current}}"
+                            min="0"
+                            max="3"
+                            step="1"
+                        />
+
+                    </label>
+
+
+                    <!-- COMPÉTENCE -->
+
+                    <label class="metro-equipment-field">
+
+                        <span>
+                            Compétence
+                        </span>
+
+                        <select
+                            name="system.skill"
+                        >
+
+                            {{#each skillChoices}}
+
+                                <option
+                                    value="{{value}}"
+                                    {{#if selected}}selected{{/if}}
+                                >
+                                    {{label}}
+                                </option>
+
+                            {{/each}}
+
+                        </select>
+
+                    </label>
+
+
+                    <!-- BONUS MAX -->
+
+                    <label class="metro-equipment-field">
+
+                        <span>
+                            Valeur max
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.bonus.max"
+                            value="{{system.bonus.max}}"
+                            min="0"
+                            max="3"
+                            step="1"
+                        />
+
+                    </label>
+
+                </div>
+
+
+                <div class="metro-equipment-repair-row">
+
+                    <label class="metro-equipment-inline-check">
+
+                        <input
+                            type="checkbox"
+                            name="system.repairable"
+                            {{checked system.repairable}}
+                        />
+
+                        <span>
+                            Réparable
+                        </span>
+
+                    </label>
+
+
+                    {{#if equipmentState.repairable}}
+
+                        <span class="metro-equipment-repair-hint">
+                            Cet objet peut être réparé.
+                        </span>
+
+                    {{/if}}
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- DESCRIPTION                                        -->
+        <!-- ================================================== -->
+
+        <section
+            class="metro-item-section
+                   metro-equipment-panel
+                   metro-equipment-text-section"
+        >
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Description
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.description"
+                    rows="7"
+                    placeholder="Description de l'outil..."
+                >{{system.description}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- NOTES MJ                                           -->
+        <!-- ================================================== -->
+
+        {{#if isGM}}
+
+            <section
+                class="metro-item-section
+                       metro-equipment-panel
+                       metro-gm-section"
+            >
+
+                <div class="metro-item-section-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Notes du MJ
+                    </span>
+
+                </div>
+
+                <div class="metro-item-section-body">
+
+                    <textarea
+                        name="system.gmNotes"
+                        rows="6"
+                        placeholder="Notes privées du MJ..."
+                    >{{system.gmNotes}}</textarea>
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+    </div>
+
+</div>

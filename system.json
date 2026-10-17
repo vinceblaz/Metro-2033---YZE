@@ -1,0 +1,76 @@
+{
+  "id": "metro-2033-yze",
+  "title": "Métro 2033 — Year Zero Engine",
+  "description": "Système Foundry VTT pour Métro 2033 (éditions Arkhane Asylum) utilisant le Year Zero Engine. Œuvre de fan non officielle, non approuvée par l'éditeur ni par les titulaires des droits de Métro 2033.",
+  "version": "0.9.7",
+  "license": "LICENSE",
+  "url": "https://github.com/vinceblaz/Metro-2033---YZE",
+  "manifest": "https://github.com/vinceblaz/Metro-2033---YZE/releases/latest/download/system.json",
+  "download": "https://github.com/vinceblaz/Metro-2033---YZE/releases/download/v0.9.7/metro-2033-yze.zip",
+  "readme": "https://github.com/vinceblaz/Metro-2033---YZE#readme",
+  "bugs": "https://github.com/vinceblaz/Metro-2033---YZE/issues",
+  "changelog": "https://github.com/vinceblaz/Metro-2033---YZE/blob/main/CHANGELOG.md",
+  "socket": true,
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "Vincent Blazy",
+      "url": "https://github.com/vinceblaz"
+    }
+  ],
+  "esmodules": [
+    "src/system.mjs"
+  ],
+  "styles": [
+    "styles/metro-base.css",
+    "styles/metro-action-preparation.css",
+    "styles/metro-items.css",
+    "styles/metro-character.css",
+    "styles/metro-character-tabs.css",
+    "styles/metro-chat.css",
+    "styles/metro-yze-chat.css",
+    "styles/metro-character-skills.css",
+    "styles/metro-character-archetype.css",
+    "styles/metro-character-talents.css",
+    "styles/metro-item-specialized.css",
+    "styles/metro-initiative-preparation.css",
+    "styles/metro-npc-creature.css",
+    "styles/metro-character-creation-wizard.css",
+    "styles/metro-npc-creation-wizard.css",
+    "styles/metro-stunt-dialogs.css",
+    "styles/metro-vehicle.css",
+    "styles/metro-journal-settings.css"
+  ],
+  "languages": [
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "character": {},
+      "npc": {},
+      "creature": {},
+      "vehicle": {}
+    },
+    "Item": {
+      "weapon": {},
+      "armor": {},
+      "ammunition": {},
+      "equipment": {},
+      "weaponMod": {},
+      "consumable": {},
+      "talent": {},
+      "archetype": {},
+      "criticalInjury": {},
+      "psychologicalTrauma": {},
+      "faction": {},
+      "station": {}
+    }
+  }
+}

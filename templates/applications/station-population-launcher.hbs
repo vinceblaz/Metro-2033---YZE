@@ -1,0 +1,223 @@
+<div class="metro2033 metro-station-population-launcher">
+
+    <header class="metro-station-population-header">
+        <strong>{{stationName}}</strong>
+    </header>
+
+
+    <section class="metro-station-population-current">
+
+        <div class="metro-chat-section-title">
+            SITUATION ACTUELLE
+        </div>
+
+        <div class="metro-station-population-resource-grid">
+
+            {{#each resourceRows}}
+
+                <div class="metro-station-population-resource-row">
+                    <span class="metro-station-population-resource-label">
+                        {{label}}
+                    </span>
+                    <strong class="metro-station-population-resource-value">
+                        {{level}} / 10
+                    </strong>
+                    {{#if supportPersonnel}}
+                        <span class="metro-station-population-resource-support">
+                            Personnel : {{supportPersonnel}}
+                        </span>
+                    {{/if}}
+                </div>
+
+            {{/each}}
+
+        </div>
+
+        <div class="metro-station-population-summary">
+            Population niveau {{population.level}}
+            — {{population.members}} membre(s)
+            {{#if population.pendingMoralStressDice}}
+                — {{population.pendingMoralStressDice}} dé(s)
+                de Stress de Moral en attente
+            {{/if}}
+        </div>
+
+    </section>
+
+
+    {{#if isIntro}}
+
+        <div class="metro-chat-actions">
+            <button
+                type="button"
+                class="metro-chat-button"
+                data-action="roll-station-population"
+            >
+                Lancer les dés
+            </button>
+        </div>
+
+    {{/if}}
+
+
+    {{#if isChoices}}
+
+        <section class="metro-station-population-roll-summary">
+
+            <div class="metro-chat-section-title">
+                RÉSULTAT DU JET
+            </div>
+
+            {{#if rollSummary.supportPersonnelRows}}
+
+                <div class="metro-station-population-support-results">
+
+                    <strong>Personnel de soutien</strong>
+
+                    {{#each rollSummary.supportPersonnelRows}}
+
+                        <p>
+                            {{label}} :
+                        </p>
+
+                        <div class="metro-yze-roll-dice-list">
+                            {{#each diceSquares}}
+                                <span
+                                    class="
+                                        metro-yze-die
+                                        {{#if success}}metro-yze-die--success{{/if}}
+                                        {{#if one}}metro-yze-die--station-one{{/if}}
+                                    "
+                                >
+                                    {{value}}
+                                </span>
+                            {{/each}}
+                        </div>
+
+                        <p>
+                            ({{successes}} succès, {{ones}} échec(s))
+                            {{#if personnelDied}}
+                                — le personnel meurt
+                                (aucun gain cette semaine)
+                            {{else}}
+                                {{#if resourceGain}}
+                                    — +{{resourceGain}}
+                                {{/if}}
+                            {{/if}}
+                        </p>
+
+                    {{/each}}
+
+                </div>
+
+            {{/if}}
+
+            <p>
+                Pool de base :
+            </p>
+
+            <div class="metro-yze-roll-dice-list">
+                {{#each rollSummary.baseDiceSquares}}
+                    <span
+                        class="
+                            metro-yze-die
+                            {{#if success}}metro-yze-die--success{{/if}}
+                            {{#if one}}metro-yze-die--station-one{{/if}}
+                        "
+                    >
+                        {{value}}
+                    </span>
+                {{/each}}
+            </div>
+
+            <p>
+                ({{rollSummary.baseOnes}} échec(s),
+                {{rollSummary.baseSixes}} succès)
+            </p>
+
+            {{#if rollSummary.stressDiceCount}}
+
+                <p>
+                    Dés de Stress :
+                </p>
+
+                <div class="metro-yze-roll-dice-list">
+                    {{#each rollSummary.stressDiceSquares}}
+                        <span
+                            class="
+                                metro-yze-die
+                                metro-yze-die--stress
+                                {{#if one}}metro-yze-die--station-one{{/if}}
+                            "
+                        >
+                            {{value}}
+                        </span>
+                    {{/each}}
+                </div>
+
+                <p>
+                    ({{rollSummary.zeroResourceStressDiceCount}}
+                    dû(s) aux ressources à 0)
+                    — {{rollSummary.stressOnes}} échec(s)
+                </p>
+
+            {{/if}}
+
+        </section>
+
+
+        {{#if sixChoiceSlots}}
+
+            <section class="metro-station-population-six-choices">
+
+                <div class="metro-chat-section-title">
+                    RESSOURCE(S) AUGMENTÉE(S) PAR LES "6"
+                </div>
+
+                {{#each sixChoiceSlots}}
+
+                    <div class="metro-station-population-six-choice-row">
+
+                        <label>
+                            "6" n°{{index}} :
+                            <select
+                                class="metro-station-population-six-select"
+                                data-six-index="{{index}}"
+                            >
+                                <option value="">— Choisir —</option>
+                                {{#each options}}
+                                    <option
+                                        value="{{key}}"
+                                        {{#if (eq key selected)}}selected{{/if}}
+                                    >
+                                        {{label}}
+                                    </option>
+                                {{/each}}
+                            </select>
+                        </label>
+
+                    </div>
+
+                {{/each}}
+
+            </section>
+
+        {{/if}}
+
+
+        <div class="metro-chat-actions">
+
+            <button
+                type="button"
+                class="metro-chat-button"
+                data-action="apply-station-population"
+                {{#unless canValidate}}disabled{{/unless}}
+            >
+                Valider et appliquer
+            </button>
+
+        </div>
+
+    {{/if}}
+
+</div>

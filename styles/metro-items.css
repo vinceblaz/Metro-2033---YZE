@@ -1,0 +1,1417 @@
+/* =========================================================
+
+   FICHES ITEM
+
+   ========================================================= */
+
+/* #region ITEM en général */
+
+/* ---------------------------------------------------------
+
+   EN-TÊTE
+
+   --------------------------------------------------------- */
+
+.metro-item-header {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: stretch;
+    gap: 14px;
+
+    margin: 0 10px 14px;
+    padding: 12px 0 12px;
+
+    border-bottom: 2px solid #7e1d1d;
+}
+
+
+.metro-item-image {
+    flex: 0 0 72px;
+
+    width: 72px;
+    height: 72px;
+
+    min-width: 72px;
+    min-height: 72px;
+
+    max-width: 72px;
+    max-height: 72px;
+
+    object-fit: cover;
+
+    border: 2px solid #7e1d1d;
+    border-radius: 2px;
+
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.9),
+        0 3px 8px rgba(0, 0, 0, 0.6);
+
+    cursor: pointer;
+
+    transition:
+        border-color 120ms ease,
+        box-shadow 120ms ease,
+        filter 120ms ease;
+}
+
+
+.metro-item-image:hover {
+    border-color: #b13131;
+
+    filter: brightness(1.08);
+
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.9),
+        0 0 8px rgba(155, 30, 30, 0.5);
+}
+
+
+.metro-item-header-main {
+    flex: 1 1 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 0;
+}
+
+
+.metro-item-name {
+    width: 100%;
+    height: auto;
+
+    padding: 3px 4px;
+
+    border: 0;
+    border-radius: 0;
+
+    background: transparent;
+
+    color: #eee9df;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    letter-spacing: 0.035em;
+}
+
+
+.metro-item-name:hover {
+    background: rgba(255, 255, 255, 0.025);
+}
+
+
+.metro-item-name:focus {
+    outline: none;
+
+    border: 0;
+    border-bottom: 1px solid #a82c2c;
+
+    background: transparent;
+
+    box-shadow: none;
+}
+
+
+.metro-item-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    width: fit-content;
+
+    margin-top: 7px;
+    padding-left: 4px;
+
+    color: #a9a19a;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.09em;
+
+    text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------
+
+   CONTENU DÉFILABLE
+
+   --------------------------------------------------------- */
+
+.metro-item-scroll {
+
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    padding:
+
+        0
+
+        10px
+
+        12px
+
+        10px;
+
+    scrollbar-gutter: stable;
+
+}
+
+/* ---------------------------------------------------------
+
+   SECTIONS
+
+   --------------------------------------------------------- */
+
+.metro-item-section {
+    margin-bottom: 14px;
+    padding: 0;
+
+    overflow: hidden;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(33, 31, 30, 0.92),
+            rgba(23, 22, 22, 0.92)
+        );
+
+    box-sizing: border-box;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+.metro-item-section-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    width: 100%;
+
+    padding: 7px 9px;
+
+    box-sizing: border-box;
+
+    color: #d8d1c7;
+
+    border-bottom: 1px solid #3e3734;
+
+    background:
+        rgb(126 29 29 / 10%);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+}
+
+.metro-item-section-body {
+    padding: 10px;
+}
+
+.metro-item-section textarea {
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    resize: vertical;
+}
+
+/* ---------------------------------------------------------
+
+   PIED DE FICHE
+
+   --------------------------------------------------------- */
+
+.metro-item-footer {
+
+    flex: 0 0 auto;
+
+    padding: 8px 10px;
+
+    border-top:
+
+        1px solid
+
+        var(--color-border-light-primary);
+
+}
+
+/* ---------------------------------------------------------
+
+   Fond commun à toutes les fiches Item Métro
+
+   --------------------------------------------------------- */
+
+.metro-item-sheet .window-content {
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    scrollbar-gutter: stable;
+
+    background:
+
+        linear-gradient(
+
+            rgba(13, 13, 13, 0.78),
+
+            rgba(13, 13, 13, 0.78)
+
+        ),
+
+        url("../ui/backgrounds/background-sheet.webp")
+
+            center / cover
+
+            no-repeat;
+
+}
+
+/* ---------------------------------------------------------
+
+   Fiches Item structurées :
+
+   header fixe + contenu scrollable + footer fixe
+
+   --------------------------------------------------------- */
+
+.metro-item-sheet form {
+
+    height: 100%;
+
+    min-height: 0;
+
+    box-sizing: border-box;
+
+    background: transparent;
+
+}
+
+/*
+
+   La zone centrale déjà utilisée par les fiches Trauma /
+
+   Blessure / autres Items redevient la zone de défilement.
+
+*/
+
+.metro-item-sheet .metro-item-scroll {
+
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    scrollbar-gutter: stable;
+
+}
+
+/* #endregion */
+
+/* ---------------------------------------------------------
+   CRITICAL INJURY / BLESSURE CRITIQUE
+   Structure validée : header/footer fixes, zone centrale scrollable.
+   --------------------------------------------------------- */
+/* #region CRITICAL INJURY */
+.metro-critical-injury-sheet .window-content {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.metro-critical-injury-sheet-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    background: transparent;
+}
+
+.metro-critical-injury-sheet .metro-item-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+}
+/* #endregion */
+
+/* ---------------------------------------------------------
+   NOTE MJ — commune à toutes les ItemSheets Métro
+   --------------------------------------------------------- */
+.metro-item-sheet .metro-gm-section {
+    margin-top: 20px;
+    padding: 0;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        rgb(126 29 29 / 10%);
+}
+
+.metro-item-sheet .metro-gm-section textarea {
+    display: block;
+    width: 100%;
+    min-height: 90px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+/* ============================================================
+   EQUIPMENT SHEET
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   En-tête
+   Image à gauche
+   Nom + État + Caractéristiques à droite
+   ------------------------------------------------------------ */
+
+.metro-equipment-sheet .metro-equipment-header {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 16px;
+
+    align-items: start;
+
+    margin-bottom: 16px;
+}
+
+
+/* ------------------------------------------------------------
+   Colonne image
+   ------------------------------------------------------------ */
+
+.metro-equipment-sheet .metro-equipment-image-column {
+    width: 150px;
+    min-width: 150px;
+}
+
+
+.metro-equipment-sheet .metro-equipment-image-column .metro-item-image {
+    display: block;
+
+    width: 150px;
+    height: 150px;
+
+    object-fit: cover;
+}
+
+
+/* ------------------------------------------------------------
+   Colonne informations
+   ------------------------------------------------------------ */
+
+.metro-equipment-sheet .metro-equipment-header-content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* ------------------------------------------------------------
+   Identité
+   ------------------------------------------------------------ */
+
+.metro-equipment-sheet .metro-equipment-identity {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.metro-equipment-sheet .metro-equipment-name {
+    width: 100%;
+}
+
+
+/* ------------------------------------------------------------
+   État
+   ------------------------------------------------------------ */
+
+.metro-equipment-sheet .metro-equipment-condition {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/*
+ * Triptyque d'état (token de la charte, cf. note dédiée du
+ * 04/10/2026 dans l'audit de conformité) — appliqué le
+ * 04/10/2026 au badge d'état de la fiche Équipement, jusque-là
+ * sans couleur (incohérence avec la fiche Protection). Les 5
+ * états du DataModel (destroyed/broken-repairable/
+ * damaged-repairable/damaged/good) se ramènent aux 3 couleurs
+ * du triptyque selon les mêmes drapeaux que le domaine métier :
+ * broken → danger ; damaged (sans être broken) → warning ;
+ * ni l'un ni l'autre → success.
+ */
+.metro-equipment-sheet .metro-equipment-condition-value.is-destroyed,
+.metro-equipment-sheet .metro-equipment-condition-value.is-broken-repairable {
+    color: #d94c4c;
+}
+
+.metro-equipment-sheet .metro-equipment-condition-value.is-damaged-repairable,
+.metro-equipment-sheet .metro-equipment-condition-value.is-damaged {
+    color: #d9a24c;
+}
+
+.metro-equipment-sheet .metro-equipment-condition-value.is-good {
+    color: #7ec27e;
+}
+
+
+/* ------------------------------------------------------------
+   Caractéristiques
+   ------------------------------------------------------------ */
+
+.metro-equipment-sheet .metro-equipment-characteristics {
+    margin: 0;
+}
+
+
+.metro-equipment-sheet .metro-equipment-characteristics h2 {
+    margin-top: 0;
+}
+
+
+.metro-equipment-sheet .metro-equipment-general-grid {
+    display: grid;
+    grid-template-columns: minmax(100px, 0.65fr) minmax(0, 1.35fr);
+    gap: 12px;
+    align-items: start;
+}
+
+/* ------------------------------------------------------------
+   Equipment Sheet - disposition du bloc Bonus
+   ------------------------------------------------------------ */
+
+.metro-equipment-sheet .metro-equipment-bonus-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+}
+
+/* ============================================================
+   ARMOR SHEET
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   État affiché dans l'en-tête
+   ------------------------------------------------------------ */
+
+.metro-armor-sheet .metro-armor-condition {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+
+.metro-armor-sheet .metro-armor-condition-value.is-broken {
+    color: #d94c4c;
+}
+
+
+.metro-armor-sheet .metro-armor-condition-value.is-damaged {
+    color: #d9a24c;
+}
+
+
+.metro-armor-sheet .metro-armor-condition-value.is-good {
+    color: #7ec27e;
+}
+
+
+.metro-armor-sheet .metro-armor-resilience-badge {
+    padding: 2px 8px;
+
+    border: 1px solid #49423e;
+    border-radius: 2px;
+
+    background: rgb(126 29 29 / 10%);
+
+    color: #d8d1c7;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+/* ------------------------------------------------------------
+   Caractéristiques
+   ------------------------------------------------------------ */
+
+.metro-armor-sheet .metro-armor-general-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+
+    align-items: end;
+}
+
+
+/* ------------------------------------------------------------
+   Protection
+   ------------------------------------------------------------ */
+
+.metro-armor-sheet .metro-armor-protection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+}
+
+
+.metro-armor-sheet .metro-armor-resilience-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    margin-top: 12px;
+}
+
+
+/* ------------------------------------------------------------
+   Modificateurs
+   ------------------------------------------------------------ */
+
+.metro-armor-sheet .metro-armor-modifiers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+}
+
+
+/* ------------------------------------------------------------
+   Champs communs
+   ------------------------------------------------------------ */
+
+.metro-armor-sheet .metro-armor-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.metro-armor-sheet .metro-armor-inline-check {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ============================================================
+   CONSUMABLE SHEET
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   État affiché dans l'en-tête
+   ------------------------------------------------------------ */
+
+.metro-consumable-sheet .metro-consumable-condition {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.metro-consumable-sheet .metro-consumable-condition-value.is-depleted {
+    color: #d94c4c;
+}
+
+
+.metro-consumable-sheet .metro-consumable-condition-value.is-partial {
+    color: #d9a24c;
+}
+
+
+.metro-consumable-sheet .metro-consumable-condition-value.is-full {
+    color: #7ec27e;
+}
+
+
+/* ------------------------------------------------------------
+   Caractéristiques
+   ------------------------------------------------------------ */
+
+.metro-consumable-sheet .metro-consumable-general-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+}
+
+
+.metro-consumable-sheet .metro-consumable-price-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+
+    margin-top: 12px;
+}
+
+
+/* ------------------------------------------------------------
+   Quantité
+   ------------------------------------------------------------ */
+
+.metro-consumable-sheet .metro-consumable-quantity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+}
+
+
+/* ------------------------------------------------------------
+   Champs communs
+   ------------------------------------------------------------ */
+
+.metro-consumable-sheet .metro-consumable-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+/* ============================================================
+   FACTION SHEET
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Identité
+   ------------------------------------------------------------ */
+
+.metro-faction-sheet .metro-faction-general-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+}
+
+
+.metro-faction-sheet .metro-faction-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.metro-faction-sheet .metro-faction-text-section {
+    margin-top: 12px;
+}
+
+
+/* ------------------------------------------------------------
+   Listes (relations, membres notables)
+   ------------------------------------------------------------ */
+
+.metro-faction-sheet .metro-faction-panel {
+    margin-top: 12px;
+}
+
+
+/*
+ * Uniquement les en-têtes de section portant un bouton
+ * d'action (« + Ajouter ») ont besoin d'écarter leur
+ * contenu aux deux extrémités : Relations, Membres
+ * notables. Les en-têtes simples (Identité, Description,
+ * Ressources, Notes du MJ...) doivent garder l'étoile et
+ * l'intitulé groupés à gauche, comme tous les autres
+ * en-têtes de section du système (règle par défaut de
+ * .metro-item-section-header, cf. plus haut).
+ */
+.metro-faction-sheet .metro-item-section-header--with-action {
+    justify-content: space-between;
+}
+
+
+.metro-faction-sheet .metro-faction-list-add {
+    margin-left: auto;
+
+    padding: 3px 10px;
+
+    border: 1px solid #7e1d1d;
+    border-radius: 2px;
+
+    background: rgba(126, 29, 29, 0.25);
+    color: #d8d1c7;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
+
+
+.metro-faction-sheet .metro-faction-list-add:hover {
+    background: rgba(126, 29, 29, 0.45);
+}
+
+
+.metro-faction-sheet .metro-faction-list-empty {
+    margin: 0;
+
+    color: #8a8378;
+    font-style: italic;
+    font-size: 12px;
+}
+
+
+.metro-faction-sheet .metro-faction-list-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 8px;
+    align-items: center;
+
+    margin-bottom: 8px;
+}
+
+
+.metro-faction-sheet .metro-faction-list-row-member {
+    grid-template-columns: 1fr 1fr auto;
+}
+
+
+.metro-faction-sheet .metro-faction-list-row:last-child {
+    margin-bottom: 0;
+}
+
+
+.metro-faction-sheet .metro-faction-list-remove {
+    padding: 3px 8px;
+
+    border: 1px solid #5e2424;
+    border-radius: 2px;
+
+    background: rgba(0, 0, 0, 0.35);
+    color: #c98a8a;
+
+    cursor: pointer;
+}
+
+
+.metro-faction-sheet .metro-faction-list-remove:hover {
+    background: rgba(126, 29, 29, 0.35);
+    color: #f0d8d8;
+}
+
+
+.metro-faction-sheet .metro-list-actor-dropzone {
+    padding: 4px 8px;
+
+    border: 1px dashed #443b38;
+    border-radius: 2px;
+
+    background: #1a1817;
+    color: #8a8378;
+
+    font-size: 11px;
+    font-style: italic;
+    text-align: center;
+
+    cursor: default;
+}
+
+
+.metro-faction-sheet .metro-faction-list-actor-linked {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+
+    padding: 3px 8px;
+
+    border: 1px solid #443b38;
+    border-radius: 2px;
+
+    background: #1a1817;
+}
+
+
+.metro-faction-sheet .metro-faction-list-actor-name {
+    overflow: hidden;
+
+    color: #d8d1c7;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.metro-faction-sheet .metro-faction-list-actor-unlink {
+    flex-shrink: 0;
+
+    padding: 2px 6px;
+
+    border: 1px solid #5e2424;
+    border-radius: 2px;
+
+    background: rgba(0, 0, 0, 0.35);
+    color: #c98a8a;
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+
+.metro-faction-sheet .metro-faction-list-actor-unlink:hover {
+    background: rgba(126, 29, 29, 0.35);
+    color: #f0d8d8;
+}
+
+
+/* ============================================================
+   STATION SHEET
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Identité
+   ------------------------------------------------------------ */
+
+.metro-station-sheet .metro-station-general-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+}
+
+
+.metro-station-sheet .metro-station-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.metro-station-sheet .metro-station-text-section {
+    margin-top: 12px;
+}
+
+
+/* ------------------------------------------------------------
+   Ressources de la Station
+   ------------------------------------------------------------ */
+
+.metro-station-sheet .metro-station-resources-hint {
+    margin: 0 0 10px;
+
+    color: #8a8378;
+    font-size: 11px;
+    font-style: italic;
+}
+
+
+.metro-station-sheet .metro-station-resources-table {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+.metro-station-sheet .metro-station-resources-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+}
+
+
+.metro-station-sheet .metro-station-resources-header {
+    color: #8a8378;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+
+.metro-station-sheet .metro-station-resources-label {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+}
+
+
+.metro-station-sheet .metro-station-resources-label small {
+    color: #8a8378;
+    font-size: 10px;
+    font-style: italic;
+}
+
+
+.metro-station-sheet .metro-station-population-roll-action {
+    margin: 8px 0 4px;
+}
+
+
+/* ------------------------------------------------------------
+   Listes (connexions, PNJ notables)
+   ------------------------------------------------------------ */
+
+.metro-station-sheet .metro-station-panel {
+    margin-top: 12px;
+}
+
+
+/* ------------------------------------------------------------
+   Jet de Population hebdomadaire — fenêtre de lancement et
+   message de Chat récapitulatif (règles p.218-221). Classes
+   partagées entre les deux (templates/applications/
+   station-population-launcher.hbs et
+   templates/chat/station-population-recap.hbs).
+   ------------------------------------------------------------ */
+
+.metro-station-population-launcher-app .window-content {
+    padding: 8px;
+}
+
+
+.metro-station-population-header {
+    margin-bottom: 8px;
+
+    color: #d8d1c7;
+
+    text-transform: uppercase;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+}
+
+
+.metro-station-population-current,
+.metro-station-population-roll-summary,
+.metro-station-population-six-choices {
+    padding: 8px 10px;
+
+    margin-bottom: 10px;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211f1e,
+            #171616
+        );
+}
+
+
+.metro-station-population-resource-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.metro-station-population-resource-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+
+.metro-station-population-resource-label {
+    flex: 1 0 90px;
+}
+
+
+.metro-station-population-resource-support {
+    color: #a9a19a;
+    font-size: 11px;
+    font-style: italic;
+}
+
+
+.metro-station-population-summary {
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+
+.metro-station-population-six-choice-row {
+    margin: 4px 0;
+}
+
+
+.metro-station-population-contrecoup {
+    padding: 6px 8px;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background: rgb(126 29 29 / 10%);
+}
+
+
+/*
+ * Un "1" du Jet de Population (pool de base, Personnel de soutien,
+ * dés de Stress) : réutilise le carré `.metro-yze-die` du jet de
+ * Compétence générique, avec une variante propre à ce chantier —
+ * fond noir, bordure rouge, texte blanc — demandée par le porteur
+ * du projet pour que les échecs restent immédiatement repérables,
+ * sans toucher au style `.metro-yze-die--one` déjà utilisé par le
+ * jet de Compétence standard ailleurs dans le système.
+ */
+.metro-yze-die.metro-yze-die--station-one {
+    color: #f1e9de;
+    border-color: #9a2424;
+    background: #0c0b0a;
+}
+
+
+/*
+ * Même principe que pour la fiche Faction : seuls les
+ * en-têtes avec bouton « + Ajouter » (Connexions, PNJ
+ * notables) écartent leur contenu aux deux extrémités.
+ */
+.metro-station-sheet .metro-item-section-header--with-action {
+    justify-content: space-between;
+}
+
+
+.metro-station-sheet .metro-station-list-add {
+    margin-left: auto;
+
+    padding: 3px 10px;
+
+    border: 1px solid #7e1d1d;
+    border-radius: 2px;
+
+    background: rgba(126, 29, 29, 0.25);
+    color: #d8d1c7;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
+
+
+.metro-station-sheet .metro-station-list-add:hover {
+    background: rgba(126, 29, 29, 0.45);
+}
+
+
+.metro-station-sheet .metro-station-list-empty {
+    margin: 0;
+
+    color: #8a8378;
+    font-style: italic;
+    font-size: 12px;
+}
+
+
+.metro-station-sheet .metro-station-list-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 8px;
+    align-items: center;
+
+    margin-bottom: 8px;
+}
+
+
+.metro-station-sheet .metro-station-list-row-npc {
+    grid-template-columns: 1fr 1fr auto;
+}
+
+
+.metro-station-sheet .metro-station-list-row:last-child {
+    margin-bottom: 0;
+}
+
+
+.metro-station-sheet .metro-station-list-remove {
+    padding: 3px 8px;
+
+    border: 1px solid #5e2424;
+    border-radius: 2px;
+
+    background: rgba(0, 0, 0, 0.35);
+    color: #c98a8a;
+
+    cursor: pointer;
+}
+
+
+.metro-station-sheet .metro-station-list-remove:hover {
+    background: rgba(126, 29, 29, 0.35);
+    color: #f0d8d8;
+}
+
+
+.metro-station-sheet .metro-list-actor-dropzone {
+    padding: 4px 8px;
+
+    border: 1px dashed #443b38;
+    border-radius: 2px;
+
+    background: #1a1817;
+    color: #8a8378;
+
+    font-size: 11px;
+    font-style: italic;
+    text-align: center;
+
+    cursor: default;
+}
+
+
+.metro-station-sheet .metro-station-list-actor-linked {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+
+    padding: 3px 8px;
+
+    border: 1px solid #443b38;
+    border-radius: 2px;
+
+    background: #1a1817;
+}
+
+
+.metro-station-sheet .metro-station-list-actor-name {
+    overflow: hidden;
+
+    color: #d8d1c7;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.metro-station-sheet .metro-station-list-actor-unlink {
+    flex-shrink: 0;
+
+    padding: 2px 6px;
+
+    border: 1px solid #5e2424;
+    border-radius: 2px;
+
+    background: rgba(0, 0, 0, 0.35);
+    color: #c98a8a;
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+
+.metro-station-sheet .metro-station-list-actor-unlink:hover {
+    background: rgba(126, 29, 29, 0.35);
+    color: #f0d8d8;
+}
+
+
+/* ============================================================
+ * HARMONISATION FINALE DES FICHES D'ITEMS
+ * Aligne Équipement / Armure sur le modèle de la fiche Arme
+ * (étiquettes de champs, cases à cocher, listes d'améliorations)
+ * ============================================================ */
+
+/* #region METRO ITEMS — HARMONISATION */
+
+.metro-equipment-sheet .metro-equipment-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.metro-equipment-sheet .metro-equipment-field > span,
+.metro-armor-sheet .metro-armor-field > span {
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    color: #a9a19a;
+}
+
+.metro-equipment-sheet .metro-equipment-inline-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.metro-equipment-sheet .metro-equipment-repair-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+
+    margin-top: 12px;
+}
+
+.metro-equipment-sheet .metro-equipment-repair-hint {
+    font-size: 0.8rem;
+    font-style: italic;
+
+    color: #a9a19a;
+}
+
+.metro-item-helper-text {
+    margin: 0;
+
+    font-size: 0.8rem;
+    font-style: italic;
+
+    color: #a9a19a;
+}
+
+/* Améliorations d'équipement attachées (fiches Arme et Armure) */
+
+.metro-weapon-sheet .metro-weapon-mod-attached-list,
+.metro-armor-sheet .metro-weapon-mod-attached-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    margin: 8px 0 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.metro-weapon-sheet .metro-weapon-mod-attached-item,
+.metro-armor-sheet .metro-weapon-mod-attached-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 5px 8px;
+
+    border: 1px solid #49423e;
+    border-left: 3px solid #7e1d1d;
+
+    background: rgb(126 29 29 / 10%);
+}
+
+.metro-weapon-sheet .metro-weapon-mod-attached-image,
+.metro-armor-sheet .metro-weapon-mod-attached-image {
+    flex: 0 0 auto;
+
+    width: 28px;
+    height: 28px;
+
+    object-fit: cover;
+
+    border: 1px solid #49423e;
+}
+
+.metro-weapon-sheet .metro-weapon-mod-attached-name,
+.metro-armor-sheet .metro-weapon-mod-attached-name {
+    flex: 1 1 auto;
+
+    min-width: 0;
+
+    color: #d8d1c7;
+}
+
+.metro-weapon-sheet .metro-weapon-mod-detach-button,
+.metro-armor-sheet .metro-weapon-mod-detach-button {
+    flex: 0 0 auto;
+
+    padding: 3px 8px;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    background: #211f1e;
+
+    cursor: pointer;
+}
+
+.metro-weapon-sheet .metro-weapon-mod-detach-button:hover,
+.metro-armor-sheet .metro-weapon-mod-detach-button:hover {
+    border-color: #b52c2c;
+}
+
+.metro-weapon-sheet .metro-weapon-mod-attached-empty,
+.metro-armor-sheet .metro-weapon-mod-attached-empty {
+    margin: 8px 0 0;
+
+    font-size: 0.8rem;
+    font-style: italic;
+
+    color: #a9a19a;
+}
+
+/* Lame empoisonnée (fiche Arme) */
+
+.metro-weapon-sheet .metro-weapon-poisoned-blade-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+
+    padding: 8px 10px;
+
+    border: 1px solid #2f7a4f;
+    border-left: 3px solid #2f7a4f;
+
+    background: rgb(47 122 79 / 10%);
+}
+
+.metro-weapon-sheet .metro-weapon-poisoned-blade-status p {
+    margin: 0;
+
+    font-weight: 700;
+
+    color: #d8d1c7;
+}
+
+.metro-weapon-sheet .metro-weapon-poisoned-blade-summary {
+    margin: 0;
+    padding-left: 18px;
+
+    font-size: 0.85rem;
+
+    color: #d8d3ca;
+}
+
+.metro-weapon-sheet .metro-weapon-poisoned-blade-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* #endregion */

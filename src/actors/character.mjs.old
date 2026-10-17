@@ -1,0 +1,387 @@
+import { MetroActor }
+    from "../foundry/documents/actor.mjs";
+
+import { getSkillAttribute }
+    from "../domain/rules/skills.mjs";
+
+import { DicePool }
+    from "../domain/rolls/dice-pool.mjs";
+
+import { YZERoll }
+    from "../domain/rolls/yze-roll.mjs";
+
+
+/**
+ * Actor représentant un personnage Métro 2033.
+ *
+ * Cette classe contient le comportement du personnage.
+ *
+ * Les données persistantes restent dans CharacterDataModel.
+ */
+export class MetroCharacter extends MetroActor {
+
+
+    // ============================================================
+    // ATTRIBUTS
+    // ============================================================
+
+    /**
+     * Retourne la valeur actuelle d'un attribut.
+     *
+     * @param {string} attributeId
+     * @returns {number|null}
+     */
+    getAttribute(attributeId) {
+
+        return this.system.attributes?.[attributeId]?.value ?? null;
+
+    }
+
+
+    /**
+     * Retourne la valeur maximale d'un attribut.
+     *
+     * @param {string} attributeId
+     * @returns {number|null}
+     */
+    getAttributeMax(attributeId) {
+
+        return this.system.attributes?.[attributeId]?.max ?? null;
+
+    }
+
+
+    /**
+     * Inflige des dégâts à un attribut.
+     *
+     * Les attributs servent également de jauges de dégâts.
+     *
+     * @param {string} attributeId
+     * @param {number} amount
+     * @returns {Promise<Actor>}
+     */
+    async takeAttributeDamage(attributeId, amount = 1) {
+
+        const current = this.getAttribute(attributeId);
+
+        if (current === null) {
+            throw new Error(
+                `Attribut inconnu : ${attributeId}`
+            );
+        }
+
+        if (!Number.isInteger(amount) || amount < 0) {
+            throw new Error(
+                "La quantité de dégâts doit être un entier positif."
+            );
+        }
+
+        const newValue = Math.max(
+            0,
+            current - amount
+        );
+
+        return this.update({
+            [`system.attributes.${attributeId}.value`]: newValue
+        });
+
+    }
+
+
+    // ============================================================
+    // COMPÉTENCES
+    // ============================================================
+
+    /**
+     * Retourne la valeur d'une compétence.
+     *
+     * @param {string} skillId
+     * @returns {number|null}
+     */
+    getSkill(skillId) {
+
+        return this.system.skills?.[skillId] ?? null;
+
+    }
+
+
+    /**
+     * Retourne l'attribut associé à une compétence.
+     *
+     * @param {string} skillId
+     * @returns {string|null}
+     */
+    getSkillAttribute(skillId) {
+
+        return getSkillAttribute(skillId);
+
+    }
+
+
+    /**
+     * Calcule le nombre de dés de base d'une compétence.
+     *
+     * Attribut + Compétence.
+     *
+     * Les modificateurs et dés supplémentaires seront gérés
+     * par le moteur de résolution YZE.
+     *
+     * @param {string} skillId
+     * @returns {number|null}
+     */
+    getSkillPool(skillId) {
+
+        const attributeId =
+            this.getSkillAttribute(skillId);
+
+        if (!attributeId) {
+            return null;
+        }
+
+        const attribute =
+            this.getAttribute(attributeId);
+
+        const skill =
+            this.getSkill(skillId);
+
+        if (attribute === null || skill === null) {
+            return null;
+        }
+
+        return attribute + skill;
+
+    }
+
+/**
+ * Effectue un jet de compétence.
+ *
+ * Le pool est constitué de :
+ *
+ *     Attribut + Compétence
+ *
+ * Les dés d'équipement, bonus et malus
+ * seront ajoutés ultérieurement.
+ *
+ * @param {string} skillId
+ * @returns {YZEResult}
+ */
+rollSkill(skillId) {
+
+    const attributeId =
+        this.getSkillAttribute(skillId);
+
+    if (!attributeId) {
+
+        throw new Error(
+            `Aucun attribut associé à la compétence : ${skillId}`
+        );
+
+    }
+
+
+    const attribute =
+        this.getAttribute(attributeId);
+
+    const skill =
+        this.getSkill(skillId);
+
+
+    if (attribute === null) {
+
+        throw new Error(
+            `Attribut introuvable : ${attributeId}`
+        );
+
+    }
+
+
+    if (skill === null) {
+
+        throw new Error(
+            `Compétence introuvable : ${skillId}`
+        );
+
+    }
+
+
+    const pool =
+        new DicePool({
+
+            attribute,
+
+            skill
+
+        });
+
+
+    const result =
+        YZERoll.roll(pool, {
+
+            actorId: this.id,
+
+            actorName: this.name,
+
+            skill: skillId,
+
+            attribute: attributeId
+
+        });
+
+
+    return result;
+
+}
+
+    // ============================================================
+    // STRESS
+    // ============================================================
+
+    /**
+     * Ajoute des dés de Stress.
+     *
+     * La limite normale du modèle est de 5 dés.
+     *
+     * La règle permettant de repousser cette limite sera
+     * traitée ultérieurement par le système de Stress.
+     *
+     * @param {number} amount
+     * @returns {Promise<Actor>}
+     */
+    async addStress(amount = 1) {
+
+        if (!Number.isInteger(amount) || amount < 0) {
+            throw new Error(
+                "La quantité de Stress doit être un entier positif."
+            );
+        }
+
+        const current =
+            this.system.stress.dice;
+
+        const max =
+            5;
+
+        const newValue =
+            Math.min(
+                max,
+                current + amount
+            );
+
+        return this.update({
+            "system.stress.dice": newValue
+        });
+
+    }
+
+
+    /**
+     * Réduit les dés de Stress.
+     *
+     * @param {number} amount
+     * @returns {Promise<Actor>}
+     */
+    async removeStress(amount = 1) {
+
+        if (!Number.isInteger(amount) || amount < 0) {
+            throw new Error(
+                "La quantité de Stress doit être un entier positif."
+            );
+        }
+
+        const current =
+            this.system.stress.dice;
+
+        const newValue =
+            Math.max(
+                0,
+                current - amount
+            );
+
+        return this.update({
+            "system.stress.dice": newValue
+        });
+
+    }
+
+
+    // ============================================================
+    // RESSOURCES
+    // ============================================================
+
+    /**
+     * Vérifie si le personnage possède suffisamment
+     * d'une ressource de survie.
+     *
+     * @param {string} resourceId
+     * @param {number} amount
+     * @returns {boolean}
+     */
+    hasResource(resourceId, amount = 1) {
+
+        const value =
+            this.system.survival?.[resourceId];
+
+        if (value === undefined) {
+            return false;
+        }
+
+        return value >= amount;
+
+    }
+
+
+    /**
+     * Consomme une ressource de survie.
+     *
+     * @param {string} resourceId
+     * @param {number} amount
+     * @returns {Promise<Actor>}
+     */
+    async consumeResource(resourceId, amount = 1) {
+
+        if (!Number.isInteger(amount) || amount <= 0) {
+            throw new Error(
+                "La quantité doit être un entier supérieur à zéro."
+            );
+        }
+
+        if (!this.hasResource(resourceId, amount)) {
+            throw new Error(
+                `Ressource insuffisante : ${resourceId}`
+            );
+        }
+
+        const current =
+            this.system.survival[resourceId];
+
+        const newValue =
+            current - amount;
+
+        return this.update({
+            [`system.survival.${resourceId}`]: newValue
+        });
+
+    }
+
+
+    // ============================================================
+    // ÉQUIPEMENT
+    // ============================================================
+
+    /**
+     * Retourne les Items actuellement équipés.
+     *
+     * La notion d'équipement sera approfondie avec le DataModel
+     * des Items.
+     *
+     * @returns {Item[]}
+     */
+    getEquippedItems() {
+
+        return this.items.filter(
+            item => item.system?.equipped === true
+        );
+
+    }
+
+}

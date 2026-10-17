@@ -1,0 +1,814 @@
+<div class="metro-chat-card metro-ranged-attack">
+
+    {{!-- =====================================================
+        HEADER
+        ===================================================== --}}
+
+    <header class="metro-chat-header metro-ranged-attack-header">
+
+        <div class="metro-ranged-attack-heading">
+
+            <span
+                class="metro-ranged-attack-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span class="metro-ranged-attack-title">
+                Attaque à distance
+            </span>
+
+        </div>
+
+        <div class="metro-ranged-attack-subtitle">
+            {{actor.name}}
+        </div>
+
+    </header>
+
+
+    {{!-- =====================================================
+        ARME / CIBLE
+        ===================================================== --}}
+
+    <section class="metro-chat-section metro-ranged-attack-summary">
+
+        <div class="metro-ranged-attack-summary-grid">
+
+            {{#if attack.weapon.name}}
+
+                <div class="metro-ranged-attack-summary-entry">
+
+                    <span class="metro-ranged-attack-summary-label">
+                        Arme
+                    </span>
+
+                    <strong class="metro-ranged-attack-summary-value">
+                        {{attack.weapon.name}}
+                    </strong>
+
+                </div>
+
+            {{/if}}
+
+
+            {{#if attack.target.name}}
+
+                <div class="metro-ranged-attack-summary-entry">
+
+                    <span class="metro-ranged-attack-summary-label">
+                        Cible
+                    </span>
+
+                    <strong class="metro-ranged-attack-summary-value">
+                        {{attack.target.name}}
+                    </strong>
+
+                </div>
+
+            {{/if}}
+
+
+            {{#if attack.weapon.damage}}
+
+                <div class="metro-ranged-attack-summary-entry">
+
+                    <span class="metro-ranged-attack-summary-label">
+                        Dégâts de base
+                    </span>
+
+                    <strong class="metro-ranged-attack-summary-value">
+                        {{attack.weapon.damage}}
+                    </strong>
+
+                </div>
+
+            {{/if}}
+
+        </div>
+
+
+        {{#if attack.weapon.special}}
+            <div class="melee-attack-weapon-special">{{attack.weapon.special}}</div>
+        {{/if}}
+
+        <div class="metro-ranged-attack-summary-tags">
+
+            {{#if attack.weapon.automatic}}
+
+                <span class="metro-ranged-attack-tag">
+                    Rafale
+                </span>
+
+            {{/if}}
+
+
+            {{#if attack.weapon.explosive}}
+
+                <span class="metro-ranged-attack-tag metro-ranged-attack-tag--explosive">
+                    Explosif
+                </span>
+
+            {{/if}}
+
+        </div>
+
+    </section>
+
+
+    {{!-- =====================================================
+        RÉSULTAT DU JET
+        ===================================================== --}}
+
+    <section class="metro-ranged-attack-result">
+
+        {{#if roll.success}}
+
+            <div class="metro-ranged-attack-result-label">
+                RÉUSSITE
+            </div>
+
+            <div class="metro-ranged-attack-result-value">
+                {{roll.successes}}
+            </div>
+
+            <div class="metro-ranged-attack-result-caption">
+                réussite(s)
+            </div>
+
+        {{else}}
+
+            <div
+                class="
+                    metro-ranged-attack-result-label
+                    metro-ranged-attack-result-label--failure
+                "
+            >
+                ÉCHEC
+            </div>
+
+            <div class="metro-ranged-attack-result-value">
+                0
+            </div>
+
+            <div class="metro-ranged-attack-result-caption">
+                réussite
+            </div>
+
+        {{/if}}
+
+    </section>
+
+
+    {{!-- =====================================================
+        DÉS
+        ===================================================== --}}
+
+    <section class="metro-chat-section metro-ranged-attack-dice">
+
+        <div class="metro-chat-section-title metro-ranged-attack-section-title">
+
+            <span
+                class="metro-ranged-attack-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            RÉSULTAT DES DÉS
+
+        </div>
+
+
+        {{#if dice.hasAttribute}}
+
+            <div class="metro-ranged-attack-dice-group">
+
+                <div class="metro-ranged-attack-dice-label">
+                    Attribut
+                </div>
+
+                <div class="metro-ranged-attack-dice-list">
+
+                    {{#each dice.attribute}}
+
+                        <span
+                            class="
+                                metro-yze-die
+                                {{#if success}}metro-yze-die--success{{/if}}
+                                {{#if one}}metro-yze-die--one{{/if}}
+                            "
+                        >
+                            {{value}}
+                        </span>
+
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+        {{/if}}
+
+
+        {{#if dice.hasSkill}}
+
+            <div class="metro-ranged-attack-dice-group">
+
+                <div class="metro-ranged-attack-dice-label">
+                    Tir
+                </div>
+
+                <div class="metro-ranged-attack-dice-list">
+
+                    {{#each dice.skill}}
+
+                        <span
+                            class="
+                                metro-yze-die
+                                {{#if success}}metro-yze-die--success{{/if}}
+                                {{#if one}}metro-yze-die--one{{/if}}
+                            "
+                        >
+                            {{value}}
+                        </span>
+
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+        {{/if}}
+
+
+        {{#if dice.hasEquipment}}
+
+            <div class="metro-ranged-attack-dice-group">
+
+                <div class="metro-ranged-attack-dice-label">
+                    Arme
+                </div>
+
+                <div class="metro-ranged-attack-dice-list">
+
+                    {{#each dice.equipment}}
+
+                        <span
+                            class="
+                                metro-yze-die
+                                {{#if success}}metro-yze-die--success{{/if}}
+                                {{#if one}}metro-yze-die--one{{/if}}
+                            "
+                        >
+                            {{value}}
+                        </span>
+
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+        {{/if}}
+
+
+        {{#if dice.hasBonus}}
+
+            <div class="metro-ranged-attack-dice-group">
+
+                <div class="metro-ranged-attack-dice-label">
+                    Bonus
+                </div>
+
+                <div class="metro-ranged-attack-dice-list">
+
+                    {{#each dice.bonus}}
+
+                        <span
+                            class="
+                                metro-yze-die
+                                {{#if success}}metro-yze-die--success{{/if}}
+                                {{#if one}}metro-yze-die--one{{/if}}
+                            "
+                        >
+                            {{value}}
+                        </span>
+
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+        {{/if}}
+
+
+        {{#if dice.hasStress}}
+
+            <div
+                class="
+                    metro-ranged-attack-dice-group
+                    metro-ranged-attack-dice-group--stress
+                "
+            >
+
+                <div class="metro-ranged-attack-dice-label">
+                    Stress
+                </div>
+
+                <div class="metro-ranged-attack-dice-list">
+
+                    {{#each dice.stress}}
+
+                        <span
+                            class="
+                                metro-yze-die
+                                metro-yze-die--stress
+                                {{#if stressAffliction}}metro-yze-die--affliction{{/if}}
+                            "
+                        >
+                            {{value}}
+                        </span>
+
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+        {{/if}}
+
+
+        {{#if dice.hasEliminatedStress}}
+
+            <div class="metro-ranged-attack-eliminated-stress">
+
+                <span>
+                    Stress éliminé
+                </span>
+
+                <strong>
+                    {{dice.eliminatedStress}}
+                </strong>
+
+            </div>
+
+        {{/if}}
+
+    </section>
+
+
+    {{!-- =====================================================
+        POOL DE DÉS
+        ===================================================== --}}
+
+    <section class="metro-chat-section metro-ranged-attack-pool">
+
+        <div class="metro-chat-section-title metro-ranged-attack-section-title">
+
+            <span
+                class="metro-ranged-attack-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            POOL DE DÉS
+
+        </div>
+
+
+        <div class="metro-ranged-attack-pool-grid">
+
+            <div class="metro-ranged-attack-pool-entry">
+
+                <span class="metro-ranged-attack-pool-label">
+                    Attribut
+                </span>
+
+                <strong class="metro-ranged-attack-pool-value">
+                    {{pool.attribute}}
+                </strong>
+
+            </div>
+
+
+            {{#if pool.skill}}
+
+                <div class="metro-ranged-attack-pool-entry">
+
+                    <span class="metro-ranged-attack-pool-label">
+                        Tir
+                    </span>
+
+                    <strong class="metro-ranged-attack-pool-value">
+                        {{pool.skill}}
+                    </strong>
+
+                </div>
+
+            {{/if}}
+
+
+            {{#if pool.equipment}}
+
+                <div class="metro-ranged-attack-pool-entry">
+
+                    <span class="metro-ranged-attack-pool-label">
+                        Arme
+                    </span>
+
+                    <strong class="metro-ranged-attack-pool-value">
+                        {{pool.equipment}}
+                    </strong>
+
+                </div>
+
+            {{/if}}
+
+
+            {{#if pool.stress}}
+
+                <div
+                    class="
+                        metro-ranged-attack-pool-entry
+                        metro-ranged-attack-pool-entry--stress
+                    "
+                >
+
+                    <span class="metro-ranged-attack-pool-label">
+                        Stress
+                    </span>
+
+                    <strong class="metro-ranged-attack-pool-value">
+                        {{pool.stress}}
+                    </strong>
+
+                </div>
+
+            {{/if}}
+
+
+            {{#if pool.bonus}}
+
+                <div class="metro-ranged-attack-pool-entry">
+
+                    <span class="metro-ranged-attack-pool-label">
+                        Bonus
+                    </span>
+
+                    <strong class="metro-ranged-attack-pool-value">
+                        +{{pool.bonus}}
+                    </strong>
+
+                </div>
+
+            {{/if}}
+
+
+            {{#if pool.penalty}}
+
+                <div class="metro-ranged-attack-pool-entry">
+
+                    <span class="metro-ranged-attack-pool-label">
+                        Malus
+                    </span>
+
+                    <strong class="metro-ranged-attack-pool-value">
+                        -{{pool.penalty}}
+                    </strong>
+
+                </div>
+
+            {{/if}}
+
+        </div>
+
+    </section>
+
+
+    {{#if roll.hasAfflictions}}
+
+        <section class="metro-ranged-attack-afflictions">
+
+            <span
+                class="metro-ranged-attack-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span>
+                Afflictions
+            </span>
+
+            <strong>
+                {{roll.afflictions}}
+            </strong>
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+        ACTIONS SUR LE JET
+        ===================================================== --}}
+
+    {{#if roll.canFirstPush}}
+
+        <div class="metro-chat-actions metro-ranged-attack-actions">
+
+            <button
+                type="button"
+                class="metro-chat-button"
+                data-action="push-yze-roll"
+            >
+                <span aria-hidden="true">
+                    ★
+                </span>
+
+                FORCER LE JET
+            </button>
+
+        </div>
+
+    {{/if}}
+
+
+    {{#if roll.canSecondPush}}
+
+        <div class="metro-chat-actions metro-ranged-attack-actions">
+
+            <button
+                type="button"
+                class="metro-chat-button"
+                data-action="push-yze-roll-with-stress"
+            >
+                <span aria-hidden="true">
+                    ★
+                </span>
+
+                FORCER AVEC LE STRESS
+            </button>
+
+        </div>
+
+    {{/if}}
+
+
+    {{#if roll.canFinalize}}
+
+        <div class="metro-chat-actions metro-ranged-attack-actions">
+
+            <button
+                type="button"
+                class="metro-chat-button"
+                data-action="finalize-yze-roll"
+            >
+                <span aria-hidden="true">
+                    ★
+                </span>
+
+                CONSERVER LE RÉSULTAT
+            </button>
+
+        </div>
+
+    {{/if}}
+
+
+    {{#if roll.pushFinished}}
+
+        <div class="metro-ranged-attack-push-status">
+
+            <span
+                class="metro-ranged-attack-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            JET FORCÉ DEUX FOIS
+
+        </div>
+
+    {{else}}
+
+        {{#if roll.pushed}}
+
+            <div class="metro-ranged-attack-push-status">
+
+                <span
+                    class="metro-ranged-attack-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                JET FORCÉ
+
+            </div>
+
+        {{/if}}
+
+    {{/if}}
+
+
+    {{#if roll.finalized}}
+
+        <div
+            class="
+                metro-ranged-attack-push-status
+                metro-ranged-attack-finalized
+            "
+        >
+
+            <span
+                class="metro-ranged-attack-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            RÉSULTAT FINALISÉ
+
+        </div>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+        CHOIX DE PROTECTION (application automatique bloquée)
+        ===================================================== --}}
+
+    {{#if rangedAttackApplication.requiresProtectionChoice}}
+
+        <section class="metro-chat-section metro-ranged-attack-protection-choice">
+
+            <div class="metro-chat-section-title metro-ranged-attack-section-title">
+
+                <span
+                    class="metro-ranged-attack-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                CHOIX DE PROTECTION
+
+            </div>
+
+            <p class="metro-ranged-attack-choice-status">
+                La dégradation de Protection doit être répartie
+                avant que les conséquences ne puissent s'appliquer.
+            </p>
+
+            <div class="metro-chat-actions metro-ranged-attack-actions">
+
+                {{#each rangedAttackApplication.protectionChoices}}
+
+                    <button
+                        type="button"
+                        class="metro-chat-button"
+                        data-action="resolve-ranged-protection"
+                        data-protection-target="{{this}}"
+                    >
+
+                        {{#if (eq this "body")}}
+                            ARMURE
+                        {{else}}
+                            {{#if (eq this "helmet")}}
+                                CASQUE
+                            {{else}}
+                                {{this}}
+                            {{/if}}
+                        {{/if}}
+
+                    </button>
+
+                {{/each}}
+
+            </div>
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+        CHOIX DE DÉSARMEMENT (application automatique bloquée)
+        ===================================================== --}}
+
+    {{#if rangedAttackApplication.requiresDisarmChoice}}
+
+        <section class="metro-chat-section metro-ranged-attack-disarm-choice">
+
+            <div class="metro-chat-section-title metro-ranged-attack-section-title">
+
+                <span
+                    class="metro-ranged-attack-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                CHOIX DE L'ARME À DÉSARMER
+
+            </div>
+
+            <p class="metro-ranged-attack-choice-status">
+                Le désarmement doit désigner l'arme concernée
+                avant que les conséquences ne puissent s'appliquer.
+            </p>
+
+            <div class="metro-chat-actions metro-ranged-attack-actions">
+
+                {{#each rangedAttackApplication.disarmChoices}}
+
+                    <button
+                        type="button"
+                        class="metro-chat-button"
+                        data-action="resolve-ranged-disarm"
+                        data-item-id="{{itemId}}"
+                    >
+                        {{name}}
+                    </button>
+
+                {{/each}}
+
+            </div>
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+        VALIDATION MANUELLE DES DÉGÂTS (harmonisation UX du
+        Tir sur le gabarit du Corps-à-corps, Bible v0.9.3
+        §163, décision D2) : affichée systématiquement dès que
+        plus aucun choix de Protection/désarmement ne bloque
+        l'application, y compris pour un Tir simple qui n'a
+        jamais eu à bloquer.
+        ===================================================== --}}
+
+    {{#if rangedAttackApplication.readyForManualApplication}}
+
+        <section class="metro-chat-section metro-ranged-attack-apply">
+
+            <p class="metro-ranged-attack-choice-status">
+                Les dégâts sont calculés mais pas encore
+                appliqués.
+            </p>
+
+            <div class="metro-chat-actions metro-ranged-attack-actions">
+
+                <button
+                    type="button"
+                    class="metro-chat-button"
+                    data-action="apply-ranged-attack"
+                >
+                    Résoudre les dégâts
+                </button>
+
+            </div>
+
+        </section>
+
+    {{/if}}
+
+
+    {{#if rangedAttackApplication.applied}}
+
+        <div
+            class="
+                metro-ranged-attack-push-status
+                metro-ranged-attack-finalized
+            "
+        >
+
+            <span
+                class="metro-ranged-attack-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            DÉGÂTS APPLIQUÉS
+
+        </div>
+
+        {{#if rangedAttackApplication.appliedLines.length}}
+            <ul class="melee-applied-effects-list">
+                {{#each rangedAttackApplication.appliedLines}}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        {{/if}}
+
+    {{/if}}
+
+</div>

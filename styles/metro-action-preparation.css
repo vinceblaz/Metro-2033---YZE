@@ -1,0 +1,387 @@
+/* ============================================================
+ * ACTION MODIFIER DIALOG — UNIVERSAL PREPARATION
+ * ============================================================ */
+
+.action-modifier-dialog {
+    min-width: 560px;
+    max-width: 620px;
+}
+
+
+/* ------------------------------------------------------------
+ * TITRE INTERNE
+ * ------------------------------------------------------------ */
+
+.action-modifier-dialog .action-preparation-title {
+    margin: 0 0 14px;
+    padding-bottom: 8px;
+
+    border-bottom: 1px solid #7e1d1d;
+}
+
+
+/* ------------------------------------------------------------
+ * GRILLE PRINCIPALE
+ *
+ * Ligne 1 :
+ * Valeurs du test | Bonus applicables
+ *
+ * Ligne 2 :
+ * Ajustements     | Effets spéciaux
+ * ------------------------------------------------------------ */
+
+.action-modifier-dialog .action-preparation-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 14px 18px;
+
+    align-items: start;
+}
+
+
+/* ------------------------------------------------------------
+ * SECTIONS
+ * ------------------------------------------------------------ */
+
+.action-modifier-dialog .action-preparation-section {
+    min-width: 0;
+
+    padding: 10px 12px;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211f1e,
+            #171616
+        );
+}
+
+
+.action-modifier-dialog .action-preparation-section h3,
+.action-modifier-dialog .action-preparation-summary h3 {
+    margin:
+        0
+        0
+        10px;
+
+    padding-bottom:
+        5px;
+
+    color: #d8d1c7;
+
+    border-bottom: 1px solid #3e3734;
+
+    text-transform:
+        uppercase;
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.09em;
+}
+
+
+/* ------------------------------------------------------------
+ * VALEURS / AJUSTEMENTS
+ * ------------------------------------------------------------ */
+
+.action-modifier-dialog .action-base-section label,
+.action-modifier-dialog .action-adjustments-section label,
+.action-modifier-dialog .action-base-stress {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        90px;
+
+    gap: 8px;
+
+    align-items: center;
+
+    margin-bottom:
+        8px;
+}
+
+/* ------------------------------------------------------------
+ * « SUBIR 1 STRESS POUR +3 » (livre, p.190)
+ *
+ * Case à cocher générique, disponible pour tout jet
+ * d'Attribut/Compétence passant par cette fenêtre.
+ * ------------------------------------------------------------ */
+
+.action-modifier-dialog
+.action-adjustments-section
+.action-stress-for-bonus-option {
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: flex-start;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 2px;
+    margin-bottom: 0;
+}
+
+/*
+ * La case précède son libellé et garde sa taille naturelle :
+ * sans cette règle, la case hérite du `width: 100%` des champs
+ * numériques/select de cette section (ci-dessous) et s'étire sur
+ * toute la largeur de la ligne, repoussant le texte.
+ */
+.action-modifier-dialog
+.action-adjustments-section
+.action-stress-for-bonus-option
+input[type="checkbox"] {
+    width: auto;
+
+    flex: 0 0 auto;
+
+    margin: 0;
+}
+
+.action-modifier-dialog
+.action-adjustments-section
+.action-stress-for-bonus-option
+span {
+    text-align: left;
+}
+
+
+/* ------------------------------------------------------------
+ * DIFFICULTÉ
+ *
+ * Le sélecteur nécessite davantage d'espace
+ * pour afficher les libellés complets.
+ * ------------------------------------------------------------ */
+
+.action-modifier-dialog
+.action-adjustments-section
+label:has(select[name="difficulty"]) {
+    grid-template-columns:
+        minmax(0, 1fr)
+        150px;
+}
+
+
+.action-modifier-dialog .action-base-section input,
+.action-modifier-dialog .action-adjustments-section input,
+.action-modifier-dialog .action-adjustments-section select {
+    width: 100%;
+}
+
+
+/* ------------------------------------------------------------
+ * SOURCES
+ * ------------------------------------------------------------ */
+
+/* ------------------------------------------------------------
+ * LISTE DES BONUS APPLICABLES
+ *
+ * Hauteur limitée afin que la fenêtre de préparation
+ * ne grandisse pas indéfiniment.
+ *
+ * Les sources restent individuellement sélectionnables
+ * via leur checkbox et la liste devient scrollable.
+ * ------------------------------------------------------------ */
+
+.action-modifier-dialog .action-source-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    /*
+     * Hauteur confortable :
+     * environ 5 à 6 sources visibles simultanément.
+     */
+    max-height: 180px;
+    min-height: 44px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /*
+     * Évite que l'apparition de la scrollbar
+     * décale légèrement le contenu.
+     */
+    scrollbar-gutter: stable;
+
+    padding-right: 6px;
+}
+
+.action-modifier-dialog .action-source-row,
+.action-modifier-dialog .action-modifier-row {
+    flex: 0 0 auto;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+}
+
+
+.action-modifier-dialog .action-source-row:hover,
+.action-modifier-dialog .action-modifier-row:hover {
+    background:
+        rgb(126 29 29 / 10%);
+}
+
+.action-modifier-dialog .action-source-row:last-child,
+.action-modifier-dialog .action-modifier-row:last-child {
+    border-bottom: none;
+}
+
+
+.action-modifier-dialog .action-source-row,
+.action-modifier-dialog .action-modifier-row {
+    display: grid;
+
+    grid-template-columns:
+        24px
+        minmax(0, 1fr)
+        54px;
+
+    gap: 6px;
+
+    align-items: center;
+
+    padding:
+        4px
+        2px;
+}
+
+
+.action-modifier-dialog .action-source-description,
+.action-modifier-dialog .action-modifier-description {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.action-modifier-dialog .action-source-description small,
+.action-modifier-dialog .action-modifier-description small {
+    opacity: 0.72;
+
+    font-size: 0.78rem;
+}
+
+
+.action-modifier-dialog .action-source-value {
+    text-align: right;
+}
+
+
+.action-modifier-dialog .action-source-bonus-input {
+    width: 50px;
+}
+
+
+/* ------------------------------------------------------------
+ * EFFETS SPÉCIAUX
+ * ------------------------------------------------------------ */
+
+.action-modifier-dialog .action-special-effects-list {
+    margin: 0;
+
+    padding-left: 18px;
+}
+
+
+.action-modifier-dialog .action-special-effects-empty {
+    margin: 0;
+
+    opacity: 0.7;
+
+    font-style: italic;
+}
+
+
+/* ------------------------------------------------------------
+ * RÉSUMÉ — PLEINE LARGEUR
+ * ------------------------------------------------------------ */
+
+.action-modifier-dialog .action-preparation-summary {
+    margin-top: 16px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211f1e,
+            #171616
+        );
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        6px
+        18px;
+}
+
+
+.action-modifier-dialog .action-preparation-summary h3 {
+    grid-column:
+        1 / -1;
+}
+
+
+.action-modifier-dialog .action-preparation-summary > div {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+
+/* ------------------------------------------------------------
+ * TOTAL
+ * ------------------------------------------------------------ */
+
+.action-modifier-dialog .action-preparation-total {
+    grid-column:
+        1 / -1;
+
+    margin-top:
+        7px;
+
+    padding-top:
+        8px;
+
+    color: #eee9df;
+
+    border-top: 1px solid #7e1d1d;
+
+    font-size:
+        18px;
+
+    font-weight:
+        700;
+}

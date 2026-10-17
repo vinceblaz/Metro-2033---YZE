@@ -1,0 +1,566 @@
+/* ============================================================
+ * FENÊTRE MJ — PRÉPARATION DE L'INITIATIVE (A4.7)
+ * ============================================================ */
+
+.metro-initiative-preparation-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+
+    min-width: 420px;
+}
+
+
+/* ------------------------------------------------------------
+ * SECTIONS
+ * ------------------------------------------------------------ */
+
+.metro-initiative-preparation-content .metro-initiative-section {
+    padding: 10px 12px;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211f1e,
+            #171616
+        );
+}
+
+
+.metro-initiative-preparation-content .metro-initiative-section h3 {
+    margin: 0 0 10px;
+    padding-bottom: 5px;
+
+    color: #d8d1c7;
+
+    border-bottom: 1px solid #3e3734;
+
+    text-transform: uppercase;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+}
+
+
+.metro-initiative-preparation-content .metro-initiative-empty {
+    margin: 0;
+
+    opacity: 0.7;
+
+    font-style: italic;
+}
+
+
+/* ------------------------------------------------------------
+ * SECTION A — COMPOSITION (BROUILLON)
+ * ------------------------------------------------------------ */
+
+.metro-initiative-draft-groups {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+}
+
+
+.metro-initiative-draft-group {
+    padding: 8px 10px;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        rgb(126 29 29 / 10%);
+}
+
+
+.metro-initiative-draft-group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 6px;
+}
+
+
+.metro-initiative-draft-group-header strong {
+    text-transform: uppercase;
+
+    color: #a9a19a;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+}
+
+
+.metro-initiative-draft-group-members {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 4px 14px;
+
+    margin-bottom: 8px;
+}
+
+
+.metro-initiative-draft-group-member {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    cursor: pointer;
+}
+
+
+.metro-initiative-draft-group-controls {
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: end;
+
+    gap: 10px;
+}
+
+
+.metro-initiative-draft-group-controls label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    font-size: 0.82rem;
+}
+
+
+.metro-initiative-draft-group-controls input[type="number"] {
+    width: 90px;
+}
+
+
+.metro-initiative-draft-group-controls input[type="text"] {
+    min-width: 180px;
+}
+
+
+.metro-initiative-ungrouped h4 {
+    margin: 0 0 8px;
+
+    color: #a9a19a;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.1em;
+}
+
+
+.metro-initiative-create-group-button {
+    margin-top: 8px;
+}
+
+
+.metro-initiative-draft-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 14px;
+
+    padding-top: 10px;
+
+    border-top: 1px solid #3e3734;
+}
+
+
+.metro-initiative-draft-validate {
+    color: #d8d1c7;
+
+    border: 1px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            180deg,
+            #762020,
+            #4c1515
+        );
+
+    white-space: nowrap;
+}
+
+
+.metro-initiative-draft-validate:hover {
+    color: #fff1e7;
+
+    border-color: #a52b2b;
+
+    background:
+        linear-gradient(
+            180deg,
+            #922828,
+            #601919
+        );
+}
+
+
+/* ------------------------------------------------------------
+ * NON CONFIGURÉS
+ * ------------------------------------------------------------ */
+
+.metro-initiative-unconfigured-list,
+.metro-initiative-ungrouped-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    max-height: 150px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-gutter: stable;
+
+    padding-right: 6px;
+
+    margin-bottom: 10px;
+}
+
+
+.metro-initiative-unconfigured-row,
+.metro-initiative-ungrouped-row {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 3px 2px;
+
+    cursor: pointer;
+}
+
+
+.metro-initiative-unconfigured-row:hover,
+.metro-initiative-ungrouped-row:hover {
+    background:
+        rgb(126 29 29 / 10%);
+}
+
+
+.metro-initiative-new-unit-controls {
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: end;
+
+    gap: 10px;
+}
+
+
+.metro-initiative-new-unit-controls label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    font-size: 0.82rem;
+}
+
+
+.metro-initiative-new-unit-controls input[type="number"] {
+    width: 90px;
+}
+
+
+.metro-initiative-new-unit-controls input[type="text"] {
+    min-width: 180px;
+}
+
+
+.metro-initiative-new-unit-controls button {
+    margin-left: auto;
+}
+
+
+/* ------------------------------------------------------------
+ * UNITÉS EN ATTENTE
+ * ------------------------------------------------------------ */
+
+.metro-initiative-pending-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.metro-initiative-pending-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 6px 4px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+}
+
+
+.metro-initiative-pending-row:last-child {
+    border-bottom: none;
+}
+
+
+.metro-initiative-pending-row:hover {
+    background:
+        rgb(126 29 29 / 10%);
+}
+
+
+.metro-initiative-pending-description {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.metro-initiative-pending-description small {
+    opacity: 0.72;
+
+    font-size: 0.78rem;
+}
+
+
+.metro-initiative-pending-actions {
+    display: flex;
+    flex: 0 0 auto;
+
+    gap: 6px;
+}
+
+
+/* ------------------------------------------------------------
+ * INITIATIVES RÉSOLUES
+ * ------------------------------------------------------------ */
+
+.metro-initiative-assignments-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    max-height: 160px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-gutter: stable;
+
+    padding-right: 6px;
+}
+
+
+.metro-initiative-assignment-row {
+    display: grid;
+
+    grid-template-columns:
+        22px
+        40px
+        minmax(0, 1fr)
+        auto;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 3px 2px;
+}
+
+
+.metro-initiative-assignment-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #a52b2b;
+}
+
+
+.metro-initiative-assignment-row:last-child {
+    border-bottom: none;
+}
+
+
+.metro-initiative-assignment-value {
+    text-align: center;
+
+    font-weight: 700;
+
+    color: #a52b2b;
+}
+
+
+.metro-initiative-assignment-actions {
+    display: flex;
+    flex: 0 0 auto;
+
+    gap: 6px;
+}
+
+
+.metro-initiative-assignment-members-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    margin: 0 0 6px 48px;
+
+    padding-bottom: 6px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+}
+
+
+.metro-initiative-assignment-member-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+
+    padding: 2px 4px;
+
+    font-size: 0.85rem;
+
+    opacity: 0.9;
+}
+
+
+/* ------------------------------------------------------------
+ * FENÊTRE DE CHOIX MJ (candidates)
+ * ------------------------------------------------------------ */
+
+.metro-initiative-candidate-prompt p {
+    margin: 0 0 6px;
+}
+
+
+.metro-initiative-candidate-members {
+    margin: 0 0 10px;
+    padding-left: 20px;
+
+    list-style: disc;
+}
+
+
+.metro-initiative-candidate-members li {
+    padding: 1px 0;
+}
+
+
+/* ------------------------------------------------------------
+ * FENÊTRE DE CHOIX MJ (rattachement de renfort)
+ * ------------------------------------------------------------ */
+
+.metro-initiative-reinforcement-prompt p {
+    margin: 0 0 8px;
+}
+
+
+.metro-initiative-reinforcement-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    max-height: 220px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-gutter: stable;
+}
+
+
+.metro-initiative-reinforcement-row {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 3px 2px;
+
+    cursor: pointer;
+}
+
+
+.metro-initiative-reinforcement-row:hover {
+    background:
+        rgb(126 29 29 / 10%);
+}
+
+
+/* ------------------------------------------------------------
+ * BOUTON D'OUVERTURE — COMBAT TRACKER
+ * ------------------------------------------------------------ */
+
+.metro-initiative-open-preparation {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: #d8d1c7;
+
+    border: 1px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            180deg,
+            #762020,
+            #4c1515
+        );
+
+    white-space: nowrap;
+}
+
+
+.metro-initiative-open-preparation:hover {
+    color: #fff1e7;
+
+    border-color: #a52b2b;
+
+    background:
+        linear-gradient(
+            180deg,
+            #922828,
+            #601919
+        );
+}
+
+.metro-initiative-individual-groups {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin: 8px 0 4px;
+    font-size: 0.9em;
+}

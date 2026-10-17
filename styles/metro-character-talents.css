@@ -1,0 +1,497 @@
+/* ============================================================
+
+ * CHARACTER — TALENTS
+
+ * ============================================================ */
+
+/* #region CHARACTER — TALENTS en général */
+
+.metro-character-talents {
+
+    margin-top: 14px;
+
+}
+
+.metro-character-talent-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    color: #d8d3ca;
+
+    border:
+
+        1px solid #3e3734;
+
+    border-top: 2px solid #7e1d1d;         
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            #211f1e,
+
+            #171616
+
+        );
+
+}
+
+/* ------------------------------------------------------------
+
+ * En-tête
+
+ * ------------------------------------------------------------ */
+
+.metro-character-talent-table thead {
+
+    background:
+
+        rgb(126 29 29 / 10%);
+
+}
+
+.metro-character-talent-table th {
+
+    padding: 7px 9px;
+
+    color: #d8d1c7;
+
+    border-bottom:
+
+        1px solid #3e3734;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+}
+
+.metro-character-talent-column-name {
+
+    width: auto;
+
+}
+
+.metro-character-talent-column-level {
+
+    width: 110px;
+
+}
+
+.metro-character-talent-column-xp {
+
+    width: 100px;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Tri
+
+ * ------------------------------------------------------------ */
+
+.metro-character-talent-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 7px;
+
+}
+
+.metro-character-talent-sort {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 22px;
+
+    width: 22px;
+
+    height: 20px;
+
+    margin: 0;
+
+    padding: 0;
+
+    color: #b9b1a8;
+
+    border:
+
+        1px solid #5e2424;
+
+       
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #512020,
+
+            #321616
+
+        );
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+
+        color 120ms ease,
+
+        border-color 120ms ease,
+
+        background 120ms ease;
+
+}
+
+.metro-character-talent-sort:hover {
+
+    color: #fff1e7;
+
+    border-color: #a52a2a;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #752525,
+
+            #451919
+
+        );
+
+}
+
+.metro-character-talent-sort:active {
+
+    transform: translateY(1px);
+
+}
+
+.metro-character-talent-sort-indicator {
+
+    display: block;
+
+    line-height: 1;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Lignes
+
+ * ------------------------------------------------------------ */
+
+.metro-character-talent-row {
+
+    border-bottom:
+
+        1px solid rgb(255 255 255 / 5%);
+
+}
+
+.metro-character-talent-row:last-child {
+
+    border-bottom: 0;
+
+}
+
+.metro-character-talent-table td {
+
+    padding: 4px 9px;
+
+    vertical-align: middle;
+
+    text-align: left;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Talent : image + nom
+
+ * ------------------------------------------------------------ */
+
+.metro-character-talent-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 6px;
+
+    min-height: 24px;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #c3bdb5;
+
+    font-size: 11px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+}
+
+.metro-character-talent-link:hover {
+
+    color: #fff1e7;
+
+}
+
+.metro-character-talent-image {
+
+    flex: 0 0 18px;
+
+    width: 18px;
+
+    height: 18px;
+
+    min-width: 18px;
+
+    min-height: 18px;
+
+    max-width: 18px;
+
+    max-height: 18px;
+
+    object-fit: cover;
+
+}
+
+.metro-character-talent-name {
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+/* ------------------------------------------------------------
+
+ * Progression
+
+ * ------------------------------------------------------------ */
+
+.metro-character-talent-level {
+
+    color: #bdb6ad;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+/* ------------------------------------------------------------
+
+ * XP
+
+ * ------------------------------------------------------------ */
+
+.metro-character-talent-progression {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 6px;
+
+    min-height: 26px;
+
+}
+
+.metro-character-talent-xp-cost {
+
+    min-width: 38px;
+
+    color: #aaa29a;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+}
+
+.metro-character-talent-no-xp {
+
+    color: #706964;
+
+}
+
+/* ------------------------------------------------------------
+ * Actions supplémentaires d'un Talent
+ * ------------------------------------------------------------ */
+
+.metro-character-talent-column-actions {
+    width: 42px;
+    min-width: 42px;
+    max-width: 42px;
+    padding-left: 0;
+    padding-right: 12px;
+    text-align: right;
+}
+
+.metro-character-talent-table .metro-character-talent-cell-actions {
+    width: 42px;
+    min-width: 42px;
+    max-width: 42px;
+
+    padding-left: 0;
+    padding-right: 12px;
+
+    text-align: right;
+    white-space: nowrap;
+}
+
+.metro-character-item-actions {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 26px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+
+    color: #b6afa5;
+
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        color 120ms ease,
+        background 120ms ease;
+}
+
+.metro-character-item-actions:hover {
+    color: #d15a5a;
+    background: rgb(126 29 29 / 18%);
+}
+
+
+/* ------------------------------------------------------------
+ * Menu contextuel des Items embarqués
+ * ------------------------------------------------------------ */
+
+.metro-character-item-context-menu {
+    width: 145px;
+    min-width: 145px;
+
+    padding: 4px;
+
+    border:
+        1px solid #5f2a2a;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211f1e,
+            #171616
+        );
+
+    box-shadow:
+        0 6px 18px rgb(0 0 0 / 45%);
+
+    color: #d8d1c7;
+}
+
+.metro-character-item-context-action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+
+    width: 100%;
+    min-height: 30px;
+
+    margin: 0;
+    padding: 5px 8px;
+
+    border: 0;
+    background: transparent;
+
+    color: #cfc7be;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        color 120ms ease,
+        background 120ms ease;
+}
+
+.metro-character-item-context-action:hover {
+    color: #fff1e7;
+
+    background:
+        rgb(126 29 29 / 22%);
+}
+
+.metro-character-item-context-action i {
+    flex: 0 0 16px;
+
+    width: 16px;
+
+    color: #a92b2b;
+
+    text-align: center;
+}
+
+/* #endregion */
+
+

@@ -1,0 +1,1271 @@
+<div class="metro-item-form metro-weapon-sheet-form">
+
+    <!-- ================================================== -->
+    <!-- EN-TÊTE DE L'ARME                                 -->
+    <!-- ================================================== -->
+
+    <header class="metro-item-header">
+
+        <img
+            class="metro-item-image"
+            src="{{item.img}}"
+            alt="{{item.name}}"
+            data-action="editImage"
+            data-edit="img"
+            title="Cliquer pour modifier l'image"
+        />
+
+        <div class="metro-item-header-main">
+
+            <input
+                class="metro-item-name"
+                type="text"
+                name="name"
+                value="{{item.name}}"
+                placeholder="Nom de l'arme"
+            />
+
+            <div class="metro-item-type">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Arme
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="metro-item-scroll metro-weapon-scroll">
+
+        <!-- ================================================== -->
+        <!-- COMBAT                                             -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-weapon-panel metro-weapon-combat">
+
+            <div class="metro-item-section-header">
+
+                <span class="metro-red-star" aria-hidden="true">
+                    ★
+                </span>
+
+                <span>
+                    Combat
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <!-- ================================================== -->
+                <!-- CLASSIFICATION                                     -->
+                <!-- ================================================== -->
+
+                <div class="metro-weapon-classification">
+
+                    <label class="metro-weapon-field">
+
+                        <span>
+                            Type
+                        </span>
+
+                        <select name="system.category">
+
+                            <option
+                                value="melee"
+                                {{#if weapon.isMelee}}selected{{/if}}
+                            >
+                                Arme de mêlée
+                            </option>
+
+                            <option
+                                value="ranged"
+                                {{#if weapon.isRanged}}selected{{/if}}
+                            >
+                                Arme à distance
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label class="metro-weapon-field">
+
+                        <span>
+                            Prise
+                        </span>
+
+                        <select name="system.grip">
+
+                            <option
+                                value="none"
+                                {{#if (eq system.grip "none")}}selected{{/if}}
+                            >
+                                —
+                            </option>
+
+                            <option
+                                value="1M"
+                                {{#if (eq system.grip "1M")}}selected{{/if}}
+                            >
+                                1 main
+                            </option>
+
+                            <option
+                                value="2M"
+                                {{#if (eq system.grip "2M")}}selected{{/if}}
+                            >
+                                2 mains
+                            </option>
+
+                            <option
+                                value="1M/2M"
+                                {{#if (eq system.grip "1M/2M")}}selected{{/if}}
+                            >
+                                1 ou 2 mains
+                            </option>
+
+                        </select>
+
+                    </label>
+
+                </div>
+
+                <!-- ================================================== -->
+                <!-- CATÉGORIE MÉTIER                                   -->
+                <!-- ================================================== -->
+
+                <div class="metro-weapon-classification">
+
+                    <label class="metro-weapon-field">
+
+                        <span>
+                            Catégorie d'arme
+                        </span>
+
+                        <select name="system.weaponCategory">
+
+                            {{#each weaponCategoryChoices}}
+
+                                <option
+                                    value="{{value}}"
+                                    {{#if selected}}selected{{/if}}
+                                >
+                                    {{label}}
+                                </option>
+
+                            {{/each}}
+
+                        </select>
+
+                    </label>
+
+                </div>
+
+
+                <!-- ================================================== -->
+                <!-- STATISTIQUES — LIGNE 1                             -->
+                <!-- ================================================== -->
+
+                <div class="metro-weapon-stat-row metro-weapon-stat-row-primary">
+
+                    <!-- BONUS -->
+
+                    <div class="metro-weapon-stat-card">
+
+                        <div class="metro-weapon-stat-card-header">
+
+                            <span
+                                class="metro-red-star"
+                                aria-hidden="true"
+                            >
+                                ★
+                            </span>
+
+                            <span>
+                                Bonus
+                            </span>
+
+                        </div>
+
+                        <div class="metro-weapon-stat-card-body">
+
+                            <div class="metro-weapon-bonus-values">
+
+                                <input
+                                    type="number"
+                                    name="system.bonus.current"
+                                    value="{{system.bonus.current}}"
+                                    min="0"
+                                    max="3"
+                                    title="Bonus actuel"
+                                />
+
+                                <span>
+                                    /
+                                </span>
+
+                                <input
+                                    type="number"
+                                    name="system.bonus.max"
+                                    value="{{system.bonus.max}}"
+                                    min="0"
+                                    max="3"
+                                    title="Bonus maximum"
+                                />
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DÉGÂTS -->
+
+                    <div class="metro-weapon-stat-card">
+
+                        <div class="metro-weapon-stat-card-header">
+
+                            <span
+                                class="metro-red-star"
+                                aria-hidden="true"
+                            >
+                                ★
+                            </span>
+
+                            <span>
+                                Dégâts
+                            </span>
+
+                        </div>
+
+                        <div class="metro-weapon-stat-card-body">
+
+                            <input
+                                type="number"
+                                name="system.damage"
+                                value="{{system.damage}}"
+                                min="0"
+                            />
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FIABILITÉ -->
+
+                    <div class="metro-weapon-stat-card">
+
+                        <div class="metro-weapon-stat-card-header">
+
+                            <span
+                                class="metro-red-star"
+                                aria-hidden="true"
+                            >
+                                ★
+                            </span>
+
+                            <span>
+                                Fiabilité
+                            </span>
+
+                        </div>
+
+                        <div class="metro-weapon-stat-card-body">
+
+                            <input
+                                type="number"
+                                name="system.reliability"
+                                value="{{system.reliability}}"
+                                min="0"
+                            />
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================== -->
+                <!-- STATISTIQUES — LIGNE 2                             -->
+                <!-- ================================================== -->
+
+                <div class="metro-weapon-stat-row metro-weapon-stat-row-secondary">
+
+                    <!-- PORTÉE -->
+
+                    <div class="metro-weapon-stat-card">
+
+                        <div class="metro-weapon-stat-card-header">
+
+                            <span
+                                class="metro-red-star"
+                                aria-hidden="true"
+                            >
+                                ★
+                            </span>
+
+                            <span>
+                                Portée
+                            </span>
+
+                        </div>
+
+                        <div class="metro-weapon-stat-card-body">
+
+                            <select name="system.range">
+
+                                <option
+                                    value="contact"
+                                    {{#if (eq system.range "contact")}}selected{{/if}}
+                                >
+                                    Contact
+                                </option>
+
+                                <option
+                                    value="short"
+                                    {{#if (eq system.range "short")}}selected{{/if}}
+                                >
+                                    Courte
+                                </option>
+
+                                <option
+                                    value="medium"
+                                    {{#if (eq system.range "medium")}}selected{{/if}}
+                                >
+                                    Moyenne
+                                </option>
+
+                                <option
+                                    value="long"
+                                    {{#if (eq system.range "long")}}selected{{/if}}
+                                >
+                                    Longue
+                                </option>
+
+                                <option
+                                    value="extreme"
+                                    {{#if (eq system.range "extreme")}}selected{{/if}}
+                                >
+                                    Extrême
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- POIDS -->
+
+                    <div class="metro-weapon-stat-card">
+
+                        <div class="metro-weapon-stat-card-header">
+
+                            <span
+                                class="metro-red-star"
+                                aria-hidden="true"
+                            >
+                                ★
+                            </span>
+
+                            <span>
+                                Poids
+                            </span>
+
+                        </div>
+
+                        <div class="metro-weapon-stat-card-body">
+
+                            <select name="system.weight">
+
+                                {{#each weightChoices}}
+
+                                    <option
+                                        value="{{value}}"
+                                        {{#if selected}}selected{{/if}}
+                                    >
+                                        {{label}}
+                                    </option>
+
+                                {{/each}}
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================== -->
+                <!-- ÉTAT MÉCANIQUE                                     -->
+                <!-- ================================================== -->
+
+                <div class="metro-weapon-condition">
+
+                    <span class="metro-weapon-condition-label">
+                        État
+                    </span>
+
+                    {{#if weapon.destroyed}}
+
+                        <strong class="metro-weapon-condition-value is-destroyed">
+                            Détruite
+                        </strong>
+
+                    {{else if weapon.broken}}
+
+                        <strong class="metro-weapon-condition-value is-broken">
+                            Hors d'usage
+                        </strong>
+
+                    {{else if weapon.damaged}}
+
+                        <strong class="metro-weapon-condition-value is-damaged">
+                            Endommagée
+                        </strong>
+
+                    {{else}}
+
+                        <strong class="metro-weapon-condition-value is-ready">
+                            En état
+                        </strong>
+
+                    {{/if}}
+
+
+                    <label class="metro-weapon-inline-check">
+
+                        <input
+                            type="checkbox"
+                            name="system.repairable"
+                            {{checked system.repairable}}
+                        />
+
+                        Réparable
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- MUNITIONS — ARMES À DISTANCE UNIQUEMENT            -->
+        <!-- ================================================== -->
+
+        {{#if weapon.isRanged}}
+
+            <section class="metro-item-section metro-weapon-panel metro-weapon-ammunition">
+
+                <div class="metro-item-section-header">
+
+                    <span class="metro-red-star" aria-hidden="true">
+                        ★
+                    </span>
+
+                    <span>
+                        Munitions
+                    </span>
+
+                </div>
+
+                <div class="metro-item-section-body">
+
+                    <div class="metro-weapon-ammo-configuration">
+
+                        <label class="metro-weapon-inline-check">
+
+                            <input
+                                type="checkbox"
+                                name="system.usesAmmunition"
+                                {{checked system.usesAmmunition}}
+                            />
+
+                            Utilise des munitions
+
+                        </label>
+
+
+                        <!-- ================================================== -->
+                        <!-- MUNITION COMPATIBLE DE RÉFÉRENCE                  -->
+                        <!-- ================================================== -->
+
+                        <div class="metro-weapon-ammo-reference">
+
+                            <div class="metro-weapon-ammo-reference-header">
+
+                                <span
+                                    class="metro-red-star"
+                                    aria-hidden="true"
+                                >
+                                    ★
+                                </span>
+
+                                <span>
+                                    Munition compatible
+                                </span>
+
+                            </div>
+
+
+                            {{#if ammunitionReference}}
+
+                                <div
+                                    class="metro-weapon-ammo-reference-card"
+                                    data-ammunition-uuid="{{ammunitionReference.uuid}}"
+                                >
+
+                                    <button
+                                        type="button"
+                                        class="metro-weapon-ammo-reference-open"
+                                        data-action="open-ammunition-reference"
+                                        title="Ouvrir la Munition"
+                                    >
+
+                                        <img
+                                            class="metro-weapon-ammo-reference-image"
+                                            src="{{ammunitionReference.img}}"
+                                            alt="{{ammunitionReference.name}}"
+                                        />
+
+
+                                        <div class="metro-weapon-ammo-reference-main">
+
+                                            <div class="metro-weapon-ammo-reference-name">
+                                                {{ammunitionReference.name}}
+                                            </div>
+
+                                            <div class="metro-weapon-ammo-reference-type">
+                                                {{ammunitionReference.ammoType}}
+                                            </div>
+
+                                        </div>
+
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="metro-weapon-ammo-reference-menu-button"
+                                        data-action="ammunition-reference-menu"
+                                        title="Actions"
+                                        aria-label="Actions"
+                                    >
+                                        ⋮
+                                    </button>
+
+                                </div>
+
+                            {{else}}
+
+                                <div class="metro-weapon-ammo-reference-empty">
+
+                                    <span class="metro-weapon-ammo-reference-empty-title">
+                                        Déposer une Munition ici
+                                    </span>
+
+                                    <span class="metro-weapon-ammo-reference-empty-hint">
+                                        La Munition déposée définira le type compatible de l'arme.
+                                    </span>
+
+
+                                    {{#if system.ammunitionType}}
+
+                                        <span class="metro-weapon-ammo-reference-legacy">
+
+                                            Compatibilité actuelle :
+                                            <strong>
+                                                {{system.ammunitionType}}
+                                            </strong>
+
+                                        </span>
+
+                                    {{/if}}
+
+                                </div>
+
+                            {{/if}}
+
+                        </div>
+
+
+                        <label class="metro-weapon-inline-check">
+
+                            <input
+                                type="checkbox"
+                                name="system.allowsMilitaryAmmunition"
+                                {{checked system.allowsMilitaryAmmunition}}
+                            />
+
+                            Accepte les munitions militaires
+
+                        </label>
+
+                    </div>
+
+
+                    {{#if weapon.requiresAmmunition}}
+
+                        <div class="metro-weapon-magazine">
+
+                            <div class="metro-weapon-subtitle">
+                                Chargeur engagé
+                            </div>
+
+
+                            <div class="metro-weapon-magazine-status">
+
+                                <label class="metro-weapon-inline-check">
+
+                                    <input
+                                        type="checkbox"
+                                        name="system.magazine.loaded"
+                                        {{checked system.magazine.loaded}}
+                                    />
+
+                                    Chargé
+
+                                </label>
+
+
+                                <label class="metro-weapon-field">
+
+                                    <span>
+                                        Munition chargée
+                                    </span>
+
+                                    <input
+                                        type="text"
+                                        name="system.magazine.ammoType"
+                                        value="{{system.magazine.ammoType}}"
+                                        placeholder="ex. 5.45x39"
+                                    />
+
+                                </label>
+
+
+                                <label class="metro-weapon-field">
+
+                                    <span>
+                                        Qualité
+                                    </span>
+
+                                    <select name="system.magazine.quality">
+
+                                        <option
+                                            value="standard"
+                                            {{#if (eq system.magazine.quality "standard")}}selected{{/if}}
+                                        >
+                                            Standard
+                                        </option>
+
+                                        <option
+                                            value="military"
+                                            {{#if (eq system.magazine.quality "military")}}selected{{/if}}
+                                        >
+                                            Militaire
+                                        </option>
+
+                                        <option
+                                            value="poor"
+                                            {{#if (eq system.magazine.quality "poor")}}selected{{/if}}
+                                        >
+                                            Mauvaise
+                                        </option>
+
+                                    </select>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="metro-weapon-ammo-effects">
+
+                                <label class="metro-weapon-field">
+
+                                    <span>
+                                        Réduction de Protection
+                                    </span>
+
+                                    <input
+                                        type="number"
+                                        name="system.magazine.protectionReduction"
+                                        value="{{system.magazine.protectionReduction}}"
+                                        min="0"
+                                    />
+
+                                </label>
+
+
+                                <label class="metro-weapon-inline-check">
+
+                                    <input
+                                        type="checkbox"
+                                        name="system.magazine.ignoresResilience"
+                                        {{checked system.magazine.ignoresResilience}}
+                                    />
+
+                                    Ignore la résilience
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    {{/if}}
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+
+        <!-- ================================================== -->
+        <!-- VENIN — ARME NATURELLE DE CRÉATURE                 -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-weapon-panel metro-weapon-venom">
+
+            <div class="metro-item-section-header">
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                <span>Venin (arme naturelle)</span>
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="system.venom.active"
+                        {{#if system.venom.active}}checked{{/if}}
+                    >
+                    Inocule un venin si au moins 1 dégât à la Vigueur
+                </label>
+
+                <label>
+                    Type d'effet
+                    <select name="system.venom.effectType">
+                        {{#each poisonedBlade.effectTypeChoices}}
+                            <option value="{{key}}" {{#if (eq key @root.system.venom.effectType)}}selected{{/if}}>{{label}}</option>
+                        {{/each}}
+                    </select>
+                </label>
+
+                <label>
+                    Toxicité
+                    <input type="number" name="system.venom.toxicity" value="{{system.venom.toxicity}}" min="1" max="12">
+                </label>
+
+                <label>
+                    Source (libellé)
+                    <input type="text" name="system.venom.sourceLabel" value="{{system.venom.sourceLabel}}">
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- POISON DE LAME — ARMES DE MÊLÉE UNIQUEMENT         -->
+        <!-- ================================================== -->
+
+        {{#if weapon.isMelee}}
+
+            <section class="metro-item-section metro-weapon-panel metro-weapon-poisoned-blade">
+
+                <div class="metro-item-section-header">
+
+                    <span class="metro-red-star" aria-hidden="true">
+                        ★
+                    </span>
+
+                    <span>
+                        Poison de lame
+                    </span>
+
+                </div>
+
+                <div class="metro-item-section-body">
+
+                    {{#if poisonedBlade.active}}
+
+                        <div class="metro-weapon-poisoned-blade-status">
+
+                            <p>
+                                Cette lame est empoisonnée.
+                            </p>
+
+                            <ul class="metro-weapon-poisoned-blade-summary">
+
+                                <li>
+                                    Type :
+                                    {{#each poisonedBlade.effectTypeChoices}}
+                                        {{#if selected}}{{label}}{{/if}}
+                                    {{/each}}
+                                </li>
+
+                                <li>
+                                    Toxicité : {{poisonedBlade.toxicity}}
+                                </li>
+
+                                {{#if poisonedBlade.sourceLabel}}
+                                    <li>
+                                        Source : {{poisonedBlade.sourceLabel}}
+                                    </li>
+                                {{/if}}
+
+                            </ul>
+
+                            <button
+                                type="button"
+                                class="metro-chat-button"
+                                data-action="remove-poisoned-blade"
+                            >
+                                Retirer le poison
+                            </button>
+
+                        </div>
+
+                    {{else}}
+
+                        <div class="metro-weapon-poisoned-blade-form">
+
+                            <label class="metro-weapon-field">
+
+                                <span>
+                                    Type d'effet
+                                </span>
+
+                                <select name="poisonedBladeEffectType">
+
+                                    {{#each poisonedBlade.effectTypeChoices}}
+
+                                        <option
+                                            value="{{value}}"
+                                            {{#if selected}}selected{{/if}}
+                                        >
+                                            {{label}}
+                                        </option>
+
+                                    {{/each}}
+
+                                </select>
+
+                            </label>
+
+
+                            <label class="metro-weapon-field">
+
+                                <span>
+                                    Toxicité (max. 6)
+                                </span>
+
+                                <input
+                                    type="number"
+                                    name="poisonedBladeToxicity"
+                                    value="{{poisonedBlade.toxicity}}"
+                                    min="1"
+                                    max="6"
+                                />
+
+                            </label>
+
+
+                            <label class="metro-weapon-field">
+
+                                <span>
+                                    Source (facultatif)
+                                </span>
+
+                                <input
+                                    type="text"
+                                    name="poisonedBladeSourceLabel"
+                                    value="{{poisonedBlade.sourceLabel}}"
+                                    placeholder="ex. Venin d'araignée mutante"
+                                />
+
+                            </label>
+
+
+                            <button
+                                type="button"
+                                class="metro-chat-button"
+                                data-action="apply-poisoned-blade"
+                            >
+                                Appliquer le poison
+                            </button>
+
+                        </div>
+
+                    {{/if}}
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+
+        <!-- ================================================== -->
+        <!-- AMÉLIORATIONS D'ÉQUIPEMENT ATTACHÉES               -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-weapon-panel metro-weapon-mods">
+
+            <div class="metro-item-section-header">
+
+                <span class="metro-red-star" aria-hidden="true">
+                    ★
+                </span>
+
+                <span>
+                    Améliorations d'équipement attachées
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <label class="metro-weapon-field metro-weapon-mod-slots">
+
+                    <span>
+                        Emplacements d'Amélioration
+                    </span>
+
+                    <input
+                        type="number"
+                        name="system.weaponModSlots"
+                        value="{{system.weaponModSlots}}"
+                        min="0"
+                        step="1"
+                    />
+
+                </label>
+
+
+                {{#if attachedWeaponMods.length}}
+
+                    <ul class="metro-weapon-mod-attached-list">
+
+                        {{#each attachedWeaponMods}}
+
+                            <li
+                                class="metro-weapon-mod-attached-item"
+                                title="{{description}}"
+                            >
+
+                                <img
+                                    class="metro-weapon-mod-attached-image"
+                                    src="{{img}}"
+                                    alt="{{name}}"
+                                />
+
+                                <span class="metro-weapon-mod-attached-name">
+                                    {{name}}
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="metro-weapon-mod-detach-button"
+                                    data-action="detach-weapon-mod"
+                                    data-weapon-mod-id="{{id}}"
+                                    title="Détacher cette Amélioration d'équipement"
+                                >
+                                    Détacher
+                                </button>
+
+                            </li>
+
+                        {{/each}}
+
+                    </ul>
+
+                {{else}}
+
+                    <p class="metro-weapon-mod-attached-empty">
+                        Aucune Amélioration d'équipement attachée. Glisser-déposer un Item Amélioration d'équipement ici pour l'attacher.
+                    </p>
+
+                {{/if}}
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- PROPRIÉTÉS                                         -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-weapon-panel metro-weapon-properties">
+
+            <div class="metro-item-section-header">
+
+                <span class="metro-red-star" aria-hidden="true">
+                    ★
+                </span>
+
+                <span>
+                    Propriétés
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-weapon-properties-row">
+
+                    <label class="metro-weapon-inline-check">
+
+                        <input
+                            type="checkbox"
+                            name="system.explosive"
+                            {{checked system.explosive}}
+                        />
+
+                        Explosive
+
+                    </label>                    
+
+
+                    <label class="metro-weapon-inline-check">
+
+                        <input
+                            type="checkbox"
+                            name="system.heavy"
+                            {{checked system.heavy}}
+                        />
+
+                        Lourde
+
+                    </label>
+
+                    <label class="metro-weapon-inline-check">
+
+                        <input
+                            type="checkbox"
+                            name="system.automatic"
+                            {{checked system.automatic}}
+                        />
+
+                        Automatique
+
+                    </label>
+
+
+
+                </div>
+
+
+                {{#if system.explosive}}
+
+                    <div class="metro-weapon-explosion-power">
+
+                        <label class="metro-weapon-field">
+
+                            <span>
+                                Puissance d'explosion
+                            </span>
+
+                            <input
+                                type="number"
+                                name="system.explosionPower"
+                                value="{{system.explosionPower}}"
+                                min="0"
+                            />
+
+                        </label>
+
+                    </div>
+
+                {{/if}}
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- VALEUR                                             -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-weapon-panel metro-weapon-economy">
+
+            <div class="metro-item-section-header">
+
+                <span class="metro-red-star" aria-hidden="true">
+                    ★
+                </span>
+
+                <span>
+                    Valeur
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-weapon-economy-grid">
+
+                    <label>
+
+                        <span>
+                            Achat
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.price.buy"
+                            value="{{system.price.buy}}"
+                            min="0"
+                        />
+
+                    </label>
+
+
+                    <label>
+
+                        <span>
+                            Vente
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.price.sell"
+                            value="{{system.price.sell}}"
+                            min="0"
+                        />
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- DESCRIPTION                                        -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-weapon-panel metro-weapon-text-section">
+
+            <div class="metro-item-section-header">
+
+                <span class="metro-red-star" aria-hidden="true">
+                    ★
+                </span>
+
+                <span>
+                    Description
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.description"
+                    rows="6"
+                    placeholder="Description de l'arme..."
+                >{{system.description}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- SPÉCIAL                                            -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-weapon-panel metro-weapon-text-section">
+
+            <div class="metro-item-section-header">
+
+                <span class="metro-red-star" aria-hidden="true">
+                    ★
+                </span>
+
+                <span>
+                    Spécial
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.special"
+                    rows="5"
+                    placeholder="Effets ou règles spéciales..."
+                >{{system.special}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- NOTE MJ                                            -->
+        <!-- ================================================== -->
+
+        {{#if isGM}}
+
+            <section class="metro-item-section metro-weapon-panel metro-gm-section">
+
+                <div class="metro-item-section-header">
+
+                    <span class="metro-red-star" aria-hidden="true">
+                        ★
+                    </span>
+
+                    <span>
+                        Note MJ
+                    </span>
+
+                </div>
+
+                <div class="metro-item-section-body">
+
+                    <textarea
+                        name="system.gmNotes"
+                        rows="5"
+                        placeholder="Notes privées du MJ..."
+                    >{{system.gmNotes}}</textarea>
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+    </div>
+
+</div>

@@ -1,0 +1,783 @@
+/* ============================================================
+
+ * YZE ROLL CHAT
+
+ * ============================================================ */
+
+/* #region YZE ROLL CHAT en général */
+
+.metro-yze-roll {
+
+    overflow: hidden;
+
+    color: #d8d3ca;
+
+    border: 1px solid #3e3734;
+
+    border-top: 2px solid #7e1d1d;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            #211f1e,
+
+            #171616
+
+        );
+
+    box-shadow:
+
+        inset 0 0 18px rgb(0 0 0 / 35%),
+
+        0 2px 5px rgb(0 0 0 / 30%);
+
+}
+
+/* ------------------------------------------------------------
+
+ * HEADER
+
+ * ------------------------------------------------------------ */
+
+.metro-yze-roll-header {
+
+    padding: 10px 12px 9px;
+
+    border-bottom: 1px solid #3e3734;
+
+    background: rgb(126 29 29 / 10%);
+
+}
+
+.metro-yze-roll-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+.metro-yze-roll-star {
+
+    flex: 0 0 auto;
+
+    color: #a52626;
+
+    font-size: 12px;
+
+    line-height: 1;
+
+    text-shadow:
+
+        0 0 4px rgb(165 38 38 / 35%);
+
+}
+
+.metro-yze-roll-title {
+
+    color: #eee7dc;
+
+    /*
+     * Taille ramenée sur l'échelle actée (titre-section,
+     * 13px/700/0.09em) — 04/10/2026, écart hors échelle
+     * documenté dans l'audit de conformité.
+     */
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.09em;
+
+    text-transform: uppercase;
+
+}
+
+.metro-yze-roll-actor {
+
+    margin-top: 3px;
+
+    margin-left: 18px;
+
+    color: #938b84;
+
+    font-size: 11px;
+
+    letter-spacing: 0.04em;
+
+}
+
+/* ------------------------------------------------------------
+
+ * RESULT
+
+ * ------------------------------------------------------------ */
+
+.metro-yze-roll-result {
+
+    display: grid;
+
+    grid-template-columns:
+
+        minmax(0, 1fr)
+
+        auto;
+
+    grid-template-areas:
+
+        "label value"
+
+        "caption value";
+
+    align-items: center;
+
+    padding: 12px;
+
+    border-bottom: 1px solid #393331;
+
+}
+
+.metro-yze-roll-result-label {
+
+    grid-area: label;
+
+    color: #b22b2b;
+
+    /*
+     * Taille ramenée sur l'échelle actée (palier 13px) —
+     * 04/10/2026. Le poids 800 et le letter-spacing marqué
+     * sont conservés : ils distinguent intentionnellement ce
+     * libellé de résultat (RÉUSSITE/ÉCHEC) d'un simple titre
+     * de section, et ne relèvent pas de l'écart signalé (qui
+     * ne portait que sur la taille).
+     */
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+
+}
+
+.metro-yze-roll-result-label--failure {
+
+    color: #8d8580;
+
+}
+
+.metro-yze-roll-result-value {
+
+    grid-area: value;
+
+    min-width: 48px;
+
+    color: #eee7dc;
+
+    /*
+     * Taille ramenée sur l'échelle actée (palier 28px, le plus
+     * grand de la grille — même taille que le nom du
+     * personnage) — 04/10/2026, écart hors échelle documenté
+     * dans l'audit de conformité.
+     */
+    font-size: 28px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    text-align: center;
+
+    text-shadow:
+
+        0 1px 2px #000;
+
+}
+
+.metro-yze-roll-result-caption {
+
+    grid-area: caption;
+
+    color: #847c76;
+
+    font-size: 10px;
+
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+
+}
+
+/* ------------------------------------------------------------
+
+ * DICE RESULTS
+
+ * ------------------------------------------------------------ */
+
+.metro-yze-roll-dice {
+
+    padding: 10px 12px 12px;
+
+    border-bottom: 1px solid #393331;
+
+    background:
+
+        rgb(0 0 0 / 10%);
+
+}
+
+.metro-yze-roll-dice-group {
+
+    display: grid;
+
+    grid-template-columns:
+
+        76px
+
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 6px;
+
+}
+
+.metro-yze-roll-dice-group--stress {
+
+    padding-top: 6px;
+
+    border-top:
+
+        1px solid
+
+        rgb(126 29 29 / 35%);
+
+}
+
+.metro-yze-roll-dice-label {
+
+    color: #8f8781;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
+
+}
+
+.metro-yze-roll-dice-list {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+}
+
+.metro-yze-die {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 27px;
+
+    height: 27px;
+
+    color: #a9a19a;
+
+    border: 1px solid #49423e;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            #211f1e,
+
+            #171616
+
+        );
+
+    box-shadow:
+
+        inset 0 0 4px
+
+        rgb(0 0 0 / 45%);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+}
+
+/*
+
+ * Un 6 normal est une réussite.
+ *
+ * Mêmes tokens que le bouton d'onglet actif
+ * (brand-strong / brand-strong-dark) : charte
+ * graphique, composant Dé de jet (Chat),
+ * Proposition B — 03/10/2026.
+
+ */
+
+.metro-yze-die--success {
+
+    color: #fff1e7;
+
+    border-color: #a52b2b;
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            #8a2424,
+
+            #671919
+
+        );
+
+    box-shadow:
+
+        inset 0 0 5px
+
+            rgb(0 0 0 / 35%),
+
+        0 0 4px
+
+            rgb(154 36 36 / 25%);
+
+}
+
+/*
+
+ * Un 1 normal est identifiable,
+
+ * mais n'est pas encore présenté
+
+ * comme une affliction sur le jet initial.
+ *
+ * Même fond que le dé neutre : seule la
+ * bordure, plus sourde, signale le « 1 »
+ * — il ne doit pas concurrencer visuellement
+ * le rouge de succès/affliction.
+
+ */
+
+.metro-yze-die--one {
+
+    color: #a9a19a;
+
+    border-color: #3e3734;
+
+}
+
+/*
+
+ * Les dés de Stress au repos restent dans
+ * la même famille surface/brand que tous les
+ * autres dés (charte graphique, 03/10/2026) :
+ * seule la bordure, teintée de rouge sourd,
+ * les distingue des dés normaux.
+
+ */
+
+.metro-yze-die--stress {
+
+    color: #d8d1c7;
+
+    border-color: #5e2424;
+
+}
+
+/*
+
+ * Un 1 de Stress est une affliction.
+ *
+ * Reprend EXACTEMENT le dégradé radial de la
+ * pastille de Stress remplie du bandeau d'en-
+ * tête de la fiche Acteur (même geste visuel
+ * pour « gain de Stress » aux deux endroits) —
+ * charte graphique, composant Dé de jet (Chat),
+ * Proposition B — 03/10/2026.
+
+ */
+
+.metro-yze-die--affliction {
+
+    color: #fff1e7;
+
+    border-color: #a52b2b;
+
+    background:
+
+        radial-gradient(
+
+            circle at 35% 30%,
+
+            #b33a3a,
+
+            #762020 65%,
+
+            #421313
+
+        );
+
+    box-shadow:
+
+        0 0 5px rgb(150 35 35 / 45%),
+
+        inset 0 1px 1px rgb(255 255 255 / 12%);
+
+}
+
+.metro-yze-roll-eliminated-stress {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 7px;
+
+    padding: 5px 7px;
+
+    color: #9e9690;
+
+    border:
+
+        1px dashed
+
+        rgb(126 29 29 / 50%);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+}
+
+.metro-yze-roll-eliminated-stress strong {
+
+    color: #b82e2e;
+
+    font-size: 13px;
+
+}
+
+/* ------------------------------------------------------------
+
+ * POOL
+
+ * ------------------------------------------------------------ */
+
+.metro-yze-roll-pool {
+
+    padding: 10px 12px 12px;
+
+}
+
+.metro-yze-roll-section-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-bottom: 8px;
+
+    color: #a9a19a;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+}
+
+.metro-yze-roll-pool-grid {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(
+
+            2,
+
+            minmax(0, 1fr)
+
+        );
+
+    gap: 5px;
+
+}
+
+.metro-yze-roll-pool-entry {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    min-width: 0;
+
+    padding: 5px 7px;
+
+    border: 1px solid #393432;
+
+    background:
+
+        rgb(255 255 255 / 2%);
+
+}
+
+.metro-yze-roll-pool-entry--stress {
+
+    border-color:
+
+        rgb(126 29 29 / 65%);
+
+    background:
+
+        rgb(126 29 29 / 10%);
+
+}
+
+.metro-yze-roll-pool-label {
+
+    overflow: hidden;
+
+    color: #8f8781;
+
+    font-size: 10px;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    text-transform: uppercase;
+
+}
+
+.metro-yze-roll-pool-value {
+
+    margin-left: 6px;
+
+    color: #ddd6cc;
+
+    font-size: 13px;
+
+}
+
+/* ------------------------------------------------------------
+
+ * AFFLICTIONS
+
+ * ------------------------------------------------------------ */
+
+.metro-yze-roll-afflictions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 8px 12px;
+
+    color: #c2b8af;
+
+    border-top: 1px solid #4a2424;
+
+    background:
+
+        rgb(126 29 29 / 14%);
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+}
+
+.metro-yze-roll-afflictions strong {
+
+    margin-left: auto;
+
+    color: #b52c2c;
+
+    /*
+     * Taille ramenée sur l'échelle actée (palier 13px) —
+     * 04/10/2026.
+     */
+    font-size: 13px;
+
+}
+
+/* ------------------------------------------------------------
+
+ * PUSH
+
+ * ------------------------------------------------------------ */
+
+.metro-yze-roll-actions {
+
+    padding: 10px 12px;
+
+    border-top: 1px solid #443936;
+
+    background:
+
+        rgb(0 0 0 / 14%);
+
+}
+
+.metro-yze-roll-push {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    width: 100%;
+
+    min-height: 32px;
+
+    margin: 0;
+
+    padding: 6px 10px;
+
+    color: #d8d1c7;
+
+    border: 1px solid #7e1d1d;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #762020,
+
+            #4c1515
+
+        );
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+
+        border-color 120ms ease,
+
+        background 120ms ease,
+
+        color 120ms ease;
+
+}
+
+.metro-yze-roll-push:hover {
+
+    color: #fff1e7;
+
+    border-color: #a52b2b;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #922828,
+
+            #601919
+
+        );
+
+}
+
+.metro-yze-roll-push:disabled {
+
+    opacity: 0.45;
+
+    cursor: default;
+
+}
+
+/*
+ * Bouton "ACCEPTER LE RÉSULTAT" : hérite de .metro-chat-button mais
+ * restait en largeur naturelle (dictée par le texte), alors que
+ * .metro-yze-roll-push ci-dessus occupe toute la largeur de sa ligne —
+ * les deux boutons, chacun seul sur sa propre ligne, se retrouvaient
+ * donc de tailles différentes. Corrigé le 04/10/2026 (retour
+ * utilisateur) : même largeur 100% que le bouton Forcer le jet.
+ */
+.metro-yze-roll-finalize {
+
+    width: 100%;
+
+}
+
+.metro-yze-roll-push-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 7px 12px;
+
+    color: #a69d96;
+
+    border-top:
+
+        1px solid
+
+        rgb(126 29 29 / 45%);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+}
+
+/* #endregion */
+
+

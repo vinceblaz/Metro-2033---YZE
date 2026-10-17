@@ -1,0 +1,536 @@
+/* ============================================================
+ * METRO 2033 — FICHES PNJ ET CRÉATURE
+ *
+ * Fiches volontairement allégées (pas d'onglets), pensées
+ * pour un remplissage rapide côté MJ. Les deux fiches
+ * partagent la même structure visuelle ; seules les échelles
+ * numériques et quelques sections diffèrent (Protection
+ * naturelle / Conditions pour la Créature).
+ * ============================================================ */
+
+
+/* #region EN-TÊTE (PNJ + CRÉATURE) */
+
+.metro-npc-header,
+.metro-creature-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px 12px;
+
+    border-bottom: 1px solid #4a403c;
+}
+
+.metro-npc-portrait img,
+.metro-creature-portrait img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+
+    border: 1px solid #7e1d1d;
+    cursor: pointer;
+}
+
+.metro-npc-identity,
+.metro-creature-identity {
+    display: grid;
+    gap: 6px;
+
+    flex: 1;
+}
+
+.metro-npc-name,
+.metro-creature-name {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.metro-npc-role,
+.metro-creature-species {
+    color: #a9a19a;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.metro-npc-name,
+.metro-creature-name,
+.metro-npc-role,
+.metro-creature-species {
+    padding: 3px 6px;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    background: #1a1817;
+}
+
+/* #endregion */
+
+
+/* #region SECTIONS COMMUNES */
+
+.metro-npc-section,
+.metro-creature-section {
+    padding: 8px 12px;
+
+    border-bottom: 1px solid #33302d;
+}
+
+.metro-npc-section-title,
+.metro-creature-section-title {
+    margin-bottom: 6px;
+
+    color: #b52c2c;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.metro-npc-scale-hint,
+.metro-creature-scale-hint,
+.metro-npc-equipment-hint,
+.metro-creature-equipment-hint {
+    margin: 0 0 6px;
+
+    color: #a9a19a;
+    font-size: 10px;
+    font-style: italic;
+}
+
+/* #endregion */
+
+
+/* #region ATTRIBUTS & COMPÉTENCES */
+
+.metro-npc-skill-groups {
+    display: grid;
+    /*
+     * Demande utilisateur (27/09/2026) : les 4 Attributs du PNJ
+     * répartis sur deux lignes de deux (Vigueur/Agilité, puis
+     * Esprit/Empathie), plutôt que sur une seule ligne large.
+     * L'ordre de SKILL_GROUPS (npc-sheet.mjs) produit déjà cet
+     * agencement avec une grille à 2 colonnes fixes.
+     */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.metro-creature-skill-groups {
+    display: grid;
+    /*grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));*/
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.metro-npc-skill-group,
+.metro-creature-skill-group {
+    padding: 6px;
+
+    border: 1px solid #33302d;
+}
+
+.metro-npc-attribute-row,
+.metro-creature-attribute-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    margin-bottom: 6px;
+
+    padding-bottom: 4px;
+
+    border-bottom: 1px dashed #4a403c;
+}
+
+.metro-npc-attribute-label,
+.metro-creature-attribute-label {
+    flex: 1;
+
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.metro-npc-attribute-value,
+.metro-npc-attribute-max,
+.metro-creature-attribute-value,
+.metro-creature-attribute-max {
+    width: 34px;
+
+    text-align: center;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    background: #1a1817;
+}
+
+.metro-npc-attribute-separator,
+.metro-creature-attribute-separator {
+    color: #a9a19a;
+}
+
+.metro-npc-skill-row,
+.metro-creature-skill-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+
+    padding: 2px 0;
+
+    font-size: 11px;
+}
+
+.metro-npc-skill-row input,
+.metro-creature-skill-row input {
+    width: 34px;
+
+    text-align: center;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    background: #1a1817;
+}
+
+/* #endregion */
+
+
+/* #region PROTECTION NATURELLE & CONDITIONS (CRÉATURE) */
+
+.metro-creature-protection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+    align-items: end;
+}
+
+.metro-creature-protection-field {
+    display: grid;
+    gap: 3px;
+
+    font-size: 11px;
+}
+
+.metro-creature-protection-field--wide {
+    grid-column: 1 / -1;
+}
+
+.metro-creature-protection-field input {
+    padding: 3px 6px;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    background: #1a1817;
+}
+
+.metro-creature-protection-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 11px;
+}
+
+.metro-creature-conditions-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.metro-creature-condition {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    font-size: 11px;
+}
+
+/* #endregion */
+
+
+/* #region ÉQUIPEMENT / ITEMS EMBARQUÉS */
+
+.metro-npc-item-list-label,
+.metro-creature-item-list-label {
+    margin-top: 6px;
+    margin-bottom: 3px;
+
+    color: #a9a19a;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.metro-npc-item-list,
+.metro-creature-item-list {
+    display: grid;
+    gap: 4px;
+}
+
+.metro-npc-embedded-item,
+.metro-creature-embedded-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 4px 6px;
+
+    border: 1px solid #33302d;
+
+    background: #1a1817;
+}
+
+.metro-npc-embedded-item img,
+.metro-creature-embedded-item img {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+
+    border: 1px solid #443b38;
+}
+
+.metro-npc-embedded-item-name,
+.metro-creature-embedded-item-name {
+    flex: 1;
+
+    font-size: 11px;
+}
+
+.metro-npc-embedded-item-actions,
+.metro-creature-embedded-item-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.metro-npc-embedded-item-actions button,
+.metro-creature-embedded-item-actions button {
+    padding: 3px 6px;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    background: #211f1e;
+
+    cursor: pointer;
+}
+
+.metro-npc-embedded-item-actions button:hover,
+.metro-creature-embedded-item-actions button:hover {
+    border-color: #b52c2c;
+}
+
+.metro-npc-embedded-item-actions button:disabled,
+.metro-creature-embedded-item-actions button:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+}
+
+.metro-npc-embedded-item-actions button:disabled:hover,
+.metro-creature-embedded-item-actions button:disabled:hover {
+    border-color: #443b38;
+}
+
+.metro-npc-embedded-item-actions button[data-action="weapon-attack"],
+.metro-creature-embedded-item-actions button[data-action="weapon-attack"] {
+    border-color: #7e1d1d;
+
+    background: rgb(126 29 29 / 25%);
+}
+
+.metro-npc-empty,
+.metro-creature-empty {
+    margin: 0 0 4px;
+
+    color: #6f6a64;
+    font-size: 10px;
+    font-style: italic;
+}
+
+/* #endregion */
+
+
+/* #region NOTES */
+
+.metro-npc-section textarea,
+.metro-creature-section textarea {
+    display: block;
+    width: 100%;
+    min-height: 100px;
+    box-sizing: border-box;
+    resize: vertical;
+
+    margin-bottom: 6px;
+
+    padding: 5px 7px;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    background: #1a1817;
+}
+
+.metro-npc-gm-section,
+.metro-creature-gm-section,
+.metro-npc-section.metro-gm-section,
+.metro-creature-section.metro-gm-section {
+    border: 1px solid #5e2424;
+    border-top: 2px solid #7e1d1d;
+    border-left: 3px solid #7e1d1d;
+
+    background: rgba(126, 29, 29, 0.08);
+}
+
+/* #endregion */
+
+
+/* Nom et vignette d'un Item embarqué : cliquables (ouvrent la fiche) */
+
+.metro-embedded-item-open {
+    cursor: pointer;
+}
+
+.metro-npc-embedded-item-name.metro-embedded-item-open:hover,
+.metro-creature-embedded-item-name.metro-embedded-item-open:hover {
+    color: #fff1e7;
+
+    text-decoration: underline;
+}
+
+
+/* #region ONGLETS FICHES PNJ / CRÉATURE */
+
+.metro-sheet-tabs {
+    display: flex;
+    gap: 2px;
+    margin: 6px 0 8px;
+
+    border-bottom: 1px solid #443b38;
+}
+
+.metro-sheet-tab {
+    flex: 1;
+
+    padding: 5px 4px;
+
+    color: #a9a19a;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+
+    border: 1px solid #33302d;
+    border-bottom: none;
+
+    background: #1a1817;
+
+    cursor: pointer;
+}
+
+.metro-sheet-tab:hover {
+    color: #d8d3ca;
+}
+
+.metro-sheet-tab.is-active {
+    color: #fff;
+
+    border-color: #b52c2c;
+
+    background: #2a1f1f;
+}
+
+.metro-sheet-tab-panel[hidden] {
+    display: none;
+}
+
+.metro-embedded-weapon-stats {
+    color: #a9a19a;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.metro-embedded-ammo-select {
+    max-width: 150px;
+
+    font-size: 10px;
+}
+
+.metro-embedded-equip.is-equipped {
+    color: #fff;
+
+    border-color: #b52c2c;
+
+    background: #3a1f1f;
+}
+
+.metro-sheet-status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 4px;
+}
+
+.metro-sheet-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 4px 6px;
+
+    color: #a9a19a;
+    font-size: 11px;
+
+    border: 1px solid #33302d;
+
+    background: #1a1817;
+
+    cursor: pointer;
+}
+
+.metro-sheet-status img {
+    width: 20px;
+    height: 20px;
+
+    border: none;
+
+    opacity: 0.5;
+}
+
+.metro-sheet-status.is-active {
+    color: #fff;
+
+    border-color: #b52c2c;
+
+    background: #3a1f1f;
+}
+
+.metro-sheet-status.is-active img {
+    opacity: 1;
+}
+
+.metro-sheet-status:disabled {
+    cursor: default;
+}
+
+/* #endregion */
+
+.metro-npc-embedded-item,
+.metro-creature-embedded-item {
+    flex-wrap: wrap;
+}
+
+.metro-embedded-effect {
+    flex-basis: 100%;
+
+    color: #a9a19a;
+    font-size: 11px;
+    line-height: 1.35;
+}

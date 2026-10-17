@@ -1,0 +1,452 @@
+<div class="metro-talent-sheet-content {{cssClass}}">
+
+    {{!-- =====================================================
+         EN-TÊTE
+         ===================================================== --}}
+
+    <header class="metro-item-header">
+
+        <img
+            class="metro-item-image"
+            src="{{item.img}}"
+            alt="{{item.name}}"
+            data-action="editImage"
+            data-edit="img"
+            title="Cliquer pour modifier l'image"
+        >
+
+        <div class="metro-item-header-main">
+
+            <input
+                class="metro-item-name"
+                type="text"
+                name="name"
+                value="{{item.name}}"
+                {{#unless editable}}disabled{{/unless}}
+            >
+
+            <div class="metro-item-type">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Talent
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    {{!-- =====================================================
+         CONTENU
+         ===================================================== --}}
+
+    <div class="metro-item-scroll">
+
+
+        {{!-- -------------------------------------------------
+             DONNÉES DU TALENT
+             ------------------------------------------------- --}}
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Données du Talent
+                </span>
+
+            </div>
+
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-form-grid">
+
+                    <label>
+                        Niveau maximum
+                    </label>
+
+                    <select
+                        name="system.maxLevel"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                        <option
+                            value="1"
+                            {{#if (eq talent.maxLevel 1)}}selected{{/if}}
+                        >
+                            1
+                        </option>
+
+                        <option
+                            value="2"
+                            {{#if (eq talent.maxLevel 2)}}selected{{/if}}
+                        >
+                            2
+                        </option>
+
+                        <option
+                            value="3"
+                            {{#if (eq talent.maxLevel 3)}}selected{{/if}}
+                        >
+                            3
+                        </option>
+
+                        <option
+                            value="4"
+                            {{#if (eq talent.maxLevel 4)}}selected{{/if}}
+                        >
+                            4
+                        </option>
+
+                        <option
+                            value="5"
+                            {{#if (eq talent.maxLevel 5)}}selected{{/if}}
+                        >
+                            5
+                        </option>
+
+                    </select>
+
+
+                    <label>
+                        Archétype
+                    </label>
+
+                    <select
+                        name="system.archetypeId"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                        <option
+                            value=""
+                            {{#unless system.archetypeId}}selected{{/unless}}
+                        >
+                            Général
+                        </option>
+
+                        <option
+                            value="diplomat"
+                            {{#if (eq system.archetypeId "diplomat")}}selected{{/if}}
+                        >
+                            Diplomate
+                        </option>
+
+                        <option
+                            value="scout"
+                            {{#if (eq system.archetypeId "scout")}}selected{{/if}}
+                        >
+                            Éclaireur
+                        </option>
+
+                        <option
+                            value="infiltrator"
+                            {{#if (eq system.archetypeId "infiltrator")}}selected{{/if}}
+                        >
+                            Infiltrateur
+                        </option>
+
+                        <option
+                            value="mechanic"
+                            {{#if (eq system.archetypeId "mechanic")}}selected{{/if}}
+                        >
+                            Mécanicien
+                        </option>
+
+                        <option
+                            value="medic"
+                            {{#if (eq system.archetypeId "medic")}}selected{{/if}}
+                        >
+                            Médecin
+                        </option>
+
+                        <option
+                            value="soldier"
+                            {{#if (eq system.archetypeId "soldier")}}selected{{/if}}
+                        >
+                            Soldat
+                        </option>
+
+                        <option
+                            value="strategist"
+                            {{#if (eq system.archetypeId "strategist")}}selected{{/if}}
+                        >
+                            Stratège
+                        </option>
+
+                        <option
+                            value="trader"
+                            {{#if (eq system.archetypeId "trader")}}selected{{/if}}
+                        >
+                            Trafiquant
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        {{!-- -------------------------------------------------
+             CONFIGURATION
+             ------------------------------------------------- --}}
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Configuration
+                </span>
+
+            </div>
+
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-form-grid">
+
+
+                    <label>
+                        Catégorie d'arme
+                    </label>
+
+                    <select
+                        name="system.configuration.weaponCategory"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                        {{#each weaponCategoryChoices}}
+
+                            <option
+                                value="{{value}}"
+                                {{#if selected}}selected{{/if}}
+                            >
+                                {{label}}
+                            </option>
+
+                        {{/each}}
+
+                    </select>
+
+
+                    <label>
+                        Type d'arme (Spécialiste en armement)
+                    </label>
+
+                    <select
+                        name="system.configuration.weaponType"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                        {{#each weaponTypeChoices}}
+
+                            <option
+                                value="{{value}}"
+                                {{#if selected}}selected{{/if}}
+                            >
+                                {{label}}
+                            </option>
+
+                        {{/each}}
+
+                    </select>
+
+
+                    <label>
+                        Compétence
+                    </label>
+
+                    <select
+                        name="system.configuration.skill"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                        {{#each skillChoices}}
+
+                            <option
+                                value="{{value}}"
+                                {{#if selected}}selected{{/if}}
+                            >
+                                {{label}}
+                            </option>
+
+                        {{/each}}
+
+                    </select>
+
+
+                    <label>
+                        Attribut
+                    </label>
+
+                    <select
+                        name="system.configuration.attribute"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                        {{#each attributeChoices}}
+
+                            <option
+                                value="{{value}}"
+                                {{#if selected}}selected{{/if}}
+                            >
+                                {{label}}
+                            </option>
+
+                        {{/each}}
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        {{!-- -------------------------------------------------
+             DESCRIPTION
+             ------------------------------------------------- --}}
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Description
+                </span>
+
+            </div>
+
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.description"
+                    rows="7"
+                    placeholder="Description du Talent..."
+                    {{#unless editable}}disabled{{/unless}}
+                >{{system.description}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        {{!-- -------------------------------------------------
+             EFFET
+             ------------------------------------------------- --}}
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Effet
+                </span>
+
+            </div>
+
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.effect"
+                    rows="6"
+                    placeholder="Effet du Talent..."
+                    {{#unless editable}}disabled{{/unless}}
+                >{{system.effect}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        {{!-- -------------------------------------------------
+             NOTE MJ
+             ------------------------------------------------- --}}
+
+        {{#if isGM}}
+
+            <section
+                class="
+                    metro-item-section
+                    metro-gm-section
+                "
+            >
+
+                <div class="metro-item-section-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Note MJ
+                    </span>
+
+                </div>
+
+
+                <div class="metro-item-section-body">
+
+                    <textarea
+                        name="system.gmNotes"
+                        rows="6"
+                        placeholder="Notes privées du MJ..."
+                        {{#unless editable}}disabled{{/unless}}
+                    >{{system.gmNotes}}</textarea>
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+    </div>
+
+</div>

@@ -1,0 +1,1105 @@
+/* ============================================================
+   TALENT SHEET
+   ============================================================ */
+/* #region TALENT SHEET */
+.metro-talent-sheet .window-content {
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+}
+
+.metro-talent-sheet form {
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+    padding: 14px;
+    box-sizing: border-box;
+    color: #d8d3ca;
+    background: transparent;
+}
+
+.metro-talent-sheet textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+}
+/* #endregion */
+
+/* =========================================================
+
+   PSYCHOLOGICAL TRAUMA — SCROLL
+
+   ========================================================= */
+
+/* #region PSYCHOLOGICAL TRAUMA en général */
+
+.metro-psychological-trauma-sheet .window-content {
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    scrollbar-gutter: stable;
+
+}
+
+.metro-psychological-trauma-sheet form {
+
+    height: auto;
+
+    min-height: 100%;
+
+    overflow: visible;
+
+    background: transparent;
+
+}
+
+/* #endregion */
+
+/* ============================================================
+   WEAPON SHEET
+   ============================================================ */
+/* #region WEAPON SHEET */
+
+.metro-weapon-sheet .window-content {
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+}
+
+.metro-weapon-sheet form {
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+    padding: 14px;
+    box-sizing: border-box;
+    color: #d8d1c7;
+    background: transparent;
+}
+
+
+/* ------------------------------------------------------------
+   HEADER
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-classification {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+    gap: 10px;
+}
+
+.metro-weapon-sheet .metro-weapon-classification label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* ------------------------------------------------------------
+   PANELS
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-panel {
+    margin-top: 14px;
+    padding: 12px;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211f1e,
+            #171616
+        );
+}
+
+.metro-weapon-sheet .metro-weapon-panel h2 {
+    margin: 0 0 10px 0;
+
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+
+    color: #eee7dc;
+}
+
+
+/* ------------------------------------------------------------
+   COMBAT STATS
+   ------------------------------------------------------------ */
+
+
+/* Espace entre Type / Prise et les caractéristiques */
+
+.metro-weapon-sheet .metro-weapon-combat
+.metro-weapon-classification {
+    margin-bottom: 18px;
+}
+
+
+/* ------------------------------------------------------------
+   LIGNES DE CARACTÉRISTIQUES
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-stat-row {
+    display: grid;
+    gap: 10px;
+}
+
+
+/* Bonus / Dégâts / Fiabilité */
+
+.metro-weapon-sheet .metro-weapon-stat-row-primary {
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+}
+
+
+/* Portée / Poids */
+
+.metro-weapon-sheet .metro-weapon-stat-row-secondary {
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    margin-top: 10px;
+}
+
+
+/* ------------------------------------------------------------
+   CARTE DE CARACTÉRISTIQUE
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-stat-card {
+    min-width: 0;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    border: 1px solid #49423e;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(33, 31, 30, 0.92),
+            rgba(23, 22, 22, 0.92)
+        );
+
+    box-sizing: border-box;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ------------------------------------------------------------
+   BANDEAU
+   Même langage graphique que les attributs ActorSheet
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-stat-card-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    width: 100%;
+
+    padding: 7px 9px;
+
+    box-sizing: border-box;
+
+    color: #d8d1c7;
+
+    border-bottom: 1px solid #3e3734;
+
+    background:
+        rgb(126 29 29 / 10%);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+}
+
+
+/* ------------------------------------------------------------
+   CONTENU
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-stat-card-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+
+    padding: 8px;
+
+    box-sizing: border-box;
+}
+
+
+/* Champs simples */
+
+.metro-weapon-sheet
+.metro-weapon-stat-card-body
+> input {
+    width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+
+/* Listes déroulantes Portée / Poids */
+
+.metro-weapon-sheet
+.metro-weapon-stat-card-body
+> select {
+    width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+
+/* ------------------------------------------------------------
+   BONUS ACTUEL / MAX
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-bonus-values {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    width: 100%;
+
+    gap: 6px;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-bonus-values
+input {
+    width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-bonus-values
+span {
+    color: #b8b0a8;
+
+    font-weight: 700;
+}
+
+
+/* ------------------------------------------------------------
+   WEAPON CONDITION
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-condition {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 10px;
+    padding-top: 10px;
+
+    border-top: 1px solid #3f3936;
+}
+
+.metro-weapon-sheet .metro-weapon-condition-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+
+    color: #a9a19a;
+}
+
+.metro-weapon-sheet .metro-weapon-condition-value {
+    padding: 4px 8px;
+
+    border: 1px solid #5e2424;
+
+    background:
+        rgba(126, 29, 29, 0.12);
+
+    color: #ddd4ca;
+}
+
+.metro-weapon-sheet .metro-weapon-condition-value.is-damaged {
+    border-color: #765d32;
+}
+
+.metro-weapon-sheet .metro-weapon-condition-value.is-broken,
+.metro-weapon-sheet .metro-weapon-condition-value.is-destroyed {
+    border-color: #7e1d1d;
+
+    background:
+        rgba(126, 29, 29, 0.24);
+}
+
+
+/* ------------------------------------------------------------
+   INLINE CHECKBOXES
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-inline-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.metro-weapon-sheet .metro-weapon-inline-check input {
+    flex: 0 0 auto;
+}
+
+
+/* ------------------------------------------------------------
+   AMMUNITION
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-ammo-configuration {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(150px, 1fr);
+    gap: 10px 14px;
+    align-items: end;
+}
+
+.metro-weapon-sheet .metro-weapon-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.metro-weapon-sheet .metro-weapon-field > span {
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    color: #a9a19a;
+}
+
+.metro-weapon-sheet .metro-weapon-magazine {
+    margin-top: 12px;
+    padding: 10px;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        rgb(126 29 29 / 10%);
+}
+
+.metro-weapon-sheet .metro-weapon-subtitle {
+    margin-bottom: 10px;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+
+    color: #d8d1c7;
+}
+
+.metro-weapon-sheet .metro-weapon-magazine-status {
+    display: grid;
+    grid-template-columns:
+        auto
+        minmax(0, 1fr)
+        minmax(120px, 0.6fr);
+    gap: 10px;
+    align-items: end;
+}
+
+.metro-weapon-sheet .metro-weapon-ammo-effects {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+
+/* ------------------------------------------------------------
+   PROPERTIES
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-explosion-power {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+.metro-weapon-sheet .metro-weapon-explosion-power input {
+    width: 80px;
+}
+
+
+/* ------------------------------------------------------------
+   ECONOMY
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-economy-grid {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+    gap: 10px;
+}
+
+.metro-weapon-sheet .metro-weapon-economy-grid label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+/* ------------------------------------------------------------
+   TEXT AREAS
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-text-section textarea,
+.metro-weapon-sheet .metro-gm-section textarea {
+    display: block;
+    width: 100%;
+
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+
+/* ------------------------------------------------------------
+   SMALL WIDTHS
+   ------------------------------------------------------------ */
+
+@media (max-width: 560px) {
+
+    .metro-weapon-sheet .metro-weapon-stat-row-primary,
+    .metro-weapon-sheet .metro-weapon-stat-row-secondary {
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+
+    .metro-weapon-sheet .metro-weapon-classification,
+    .metro-weapon-sheet .metro-weapon-ammo-configuration,
+    .metro-weapon-sheet .metro-weapon-magazine-status,
+    .metro-weapon-sheet .metro-weapon-ammo-effects,
+    .metro-weapon-sheet .metro-weapon-economy-grid {
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+}
+
+/* ============================================================
+   AMMUNITION SHEET
+   ============================================================ */
+
+
+.metro-ammunition-sheet .metro-ammunition-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+
+.metro-ammunition-sheet .metro-ammunition-field {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    min-width: 0;
+}
+
+
+.metro-ammunition-sheet .metro-ammunition-field > span {
+    color: #c9c2b8;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+.metro-ammunition-sheet
+.metro-ammunition-field
+input,
+
+.metro-ammunition-sheet
+.metro-ammunition-field
+select {
+    width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+}
+
+
+/* ------------------------------------------------------------
+   CHECKBOX
+   ------------------------------------------------------------ */
+
+.metro-ammunition-sheet
+.metro-ammunition-checkbox-field {
+    flex-direction: row;
+
+    align-items: center;
+
+    align-self: end;
+
+    min-height: 32px;
+
+    padding: 4px 0;
+}
+
+
+.metro-ammunition-sheet
+.metro-ammunition-checkbox-field
+input[type="checkbox"] {
+    flex: 0 0 auto;
+
+    width: auto;
+
+    margin: 0;
+}
+
+
+.metro-ammunition-sheet
+.metro-ammunition-checkbox-field
+> span {
+    margin: 0;
+
+    text-transform: none;
+
+    letter-spacing: 0.03em;
+
+    font-size: 11px;
+}
+
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+
+@media (max-width: 560px) {
+
+    .metro-ammunition-sheet
+    .metro-ammunition-grid {
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+
+}
+
+/* ------------------------------------------------------------
+   MUNITION COMPATIBLE DE RÉFÉRENCE
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet .metro-weapon-ammo-reference {
+    grid-column: 1 / -1;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211f1e,
+            #171616
+        );
+
+    box-sizing: border-box;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 7px 9px;
+
+    color: #d8d1c7;
+
+    border-bottom: 1px solid #3e3734;
+
+    background:
+        rgb(126 29 29 / 10%);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+}
+
+
+/* ------------------------------------------------------------
+   MUNITION ASSOCIÉE
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-card {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 54px;
+
+    padding: 8px 10px;
+
+    box-sizing: border-box;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-image {
+    flex: 0 0 38px;
+
+    width: 38px;
+    height: 38px;
+
+    object-fit: cover;
+
+    border: 1px solid #7e1d1d;
+
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.8);
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-main {
+    flex: 1 1 auto;
+
+    min-width: 0;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-name {
+    overflow: hidden;
+
+    color: #eee9df;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-type {
+    margin-top: 3px;
+
+    color: #a9a19a;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.05em;
+}
+
+
+/* ------------------------------------------------------------
+   AUCUNE MUNITION ASSOCIÉE
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    min-height: 70px;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    color: #a9a19a;
+
+    text-align: center;
+
+    border: 1px dashed transparent;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-empty-title {
+    color: #d8d1c7;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-empty-hint {
+    font-size: 10px;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-legacy {
+    margin-top: 4px;
+
+    color: #a9a19a;
+
+    font-size: 10px;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-legacy strong {
+    color: #d8d1c7;
+}
+
+/* ------------------------------------------------------------
+   CARTE CLIQUABLE
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-open {
+    flex: 1 1 auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: inherit;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    box-shadow: none;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-open:hover {
+    background: transparent;
+
+    box-shadow: none;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-open:hover
+.metro-weapon-ammo-reference-name {
+    color: #ffffff;
+}
+
+
+/* ------------------------------------------------------------
+   BOUTON ⋮
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-menu-button {
+    flex: 0 0 auto;
+
+    width: 28px;
+    height: 28px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #b8b0a8;
+
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: pointer;
+
+    box-shadow: none;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-menu-button:hover {
+    color: #ffffff;
+
+    background:
+        rgba(126, 29, 29, 0.25);
+
+    box-shadow: none;
+}
+
+
+/* ------------------------------------------------------------
+   MENU CONTEXTUEL
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-menu {
+    position: absolute;
+
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 145px;
+
+    padding: 4px;
+
+    border: 1px solid #49423e;
+
+    background:
+        rgba(24, 22, 22, 0.98);
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.65);
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-menu
+button {
+    width: 100%;
+
+    padding: 6px 8px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #d8d1c7;
+
+    text-align: left;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    box-shadow: none;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-ammo-reference-menu
+button:hover {
+    background:
+        rgba(126, 29, 29, 0.25);
+
+    color: #ffffff;
+
+    box-shadow: none;
+}
+
+/* ------------------------------------------------------------
+   WEAPON — PROPRIÉTÉS
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet
+.metro-weapon-properties-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    min-height: 32px;
+}
+
+
+.metro-weapon-sheet
+.metro-weapon-properties-row
+.metro-weapon-inline-check {
+    flex: 0 0 auto;
+
+    margin: 0;
+}
+
+
+/* ------------------------------------------------------------
+   PUISSANCE D'EXPLOSION
+   ------------------------------------------------------------ */
+
+.metro-weapon-sheet
+.metro-weapon-explosion-power {
+    margin-top: 12px;
+    max-width: 220px;
+}
+
+/* #endregion */
+
+
+/* ============================================================
+ * AMÉLIORATION D'ÉQUIPEMENT (weaponMod)
+ * Portée : .metro-weapon-mod-sheet-form
+ * ============================================================ */
+
+/* #region METRO WEAPON MOD */
+
+.metro-weapon-mod-sheet-form .metro-weapon-mod-attached-weapon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 6px 8px;
+
+    border: 1px solid #49423e;
+    border-left: 3px solid #7e1d1d;
+
+    background: rgb(126 29 29 / 10%);
+}
+
+.metro-weapon-mod-sheet-form .metro-weapon-mod-attached-weapon-image {
+    flex: 0 0 auto;
+
+    width: 36px;
+    height: 36px;
+
+    object-fit: cover;
+
+    border: 1px solid #49423e;
+}
+
+.metro-weapon-mod-sheet-form .metro-weapon-mod-attached-weapon-name {
+    flex: 1 1 auto;
+
+    min-width: 0;
+
+    color: #d8d1c7;
+}
+
+.metro-weapon-mod-sheet-form .metro-weapon-mod-detach-button {
+    flex: 0 0 auto;
+
+    padding: 3px 8px;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    background: #211f1e;
+
+    cursor: pointer;
+}
+
+.metro-weapon-mod-sheet-form .metro-weapon-mod-detach-button:hover {
+    border-color: #b52c2c;
+}
+
+.metro-weapon-mod-sheet-form .metro-weapon-mod-no-weapon,
+.metro-weapon-mod-sheet-form .metro-weapon-mod-resource-hint {
+    margin: 0;
+
+    font-size: 0.8rem;
+    font-style: italic;
+
+    color: #a9a19a;
+}
+
+.metro-weapon-mod-sheet-form .metro-weapon-mod-resource-hint {
+    margin-top: 8px;
+}
+
+.metro-weapon-mod-sheet-form .metro-weapon-mod-applicable-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+}
+
+.metro-weapon-mod-sheet-form .metro-weapon-mod-inline-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.metro-weapon-mod-sheet-form .metro-weapon-mod-inline-check input {
+    flex: 0 0 auto;
+}
+
+.metro-weapon-mod-sheet-form .metro-weapon-mod-resource-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+}
+
+.metro-weapon-mod-sheet-form .metro-weapon-mod-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.metro-weapon-mod-sheet-form .metro-weapon-mod-field > span {
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    color: #a9a19a;
+}
+
+/* #endregion */

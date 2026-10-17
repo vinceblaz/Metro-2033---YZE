@@ -1,0 +1,934 @@
+<div
+    class="metro2033 metro-chat-card melee-attack-message"
+    data-workflow-id="{{workflowId}}"
+>
+
+    {{!-- =====================================================
+        HEADER
+        ===================================================== --}}
+
+    <header class="metro-chat-header melee-attack-header">
+
+        <div class="melee-attack-heading">
+
+            <span
+                class="melee-attack-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span class="melee-attack-title">
+                Attaque de mêlée
+            </span>
+
+        </div>
+
+        <div class="melee-attack-subtitle">
+            {{attacker.name}} → {{defender.name}}
+            {{#if weapon.name}} — {{weapon.name}}{{/if}}
+        </div>
+
+        {{#if weapon.special}}
+            <div class="melee-attack-weapon-special">
+                {{weapon.special}}
+            </div>
+        {{/if}}
+
+        {{#if attackerTraits.length}}
+            <details class="melee-attacker-traits">
+                <summary>Traits de {{attacker.name}} ({{attackerTraits.length}})</summary>
+                <ul>
+                    {{#each attackerTraits}}
+                        <li><strong>{{name}}</strong> — {{effect}}</li>
+                    {{/each}}
+                </ul>
+            </details>
+        {{/if}}
+
+    </header>
+
+
+    {{!-- =====================================================
+        DÉFENSE — DÉCISION
+        ===================================================== --}}
+
+    {{#if defense.awaitingDecision}}
+
+        <section class="metro-chat-section melee-defense-decision">
+
+            <div class="metro-chat-section-title">
+                <span aria-hidden="true">
+                    ★
+                </span>
+                Défense
+            </div>
+
+            <p class="melee-defense-status">
+                <strong>{{defender.name}}</strong>
+                peut tenter de bloquer cette attaque.
+            </p>
+
+            <div class="metro-chat-actions melee-attack-actions">
+
+                <button
+                    type="button"
+                    class="metro-chat-button"
+                    data-action="melee-defense-block"
+                    data-workflow-id="{{workflowId}}"
+                >
+                    <span aria-hidden="true">
+                        ★
+                    </span>
+                    Bloquer
+                </button>
+
+                <button
+                    type="button"
+                    class="metro-chat-button"
+                    data-action="melee-defense-decline"
+                    data-workflow-id="{{workflowId}}"
+                >
+                    <span aria-hidden="true">
+                        ★
+                    </span>
+                    Ne pas bloquer
+                </button>
+
+            </div>
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+         DÉFENSE — PRÉPARATION DU BLOCAGE
+         ===================================================== --}}
+
+    {{#if defense.preparingBlock}}
+
+        <section class="metro-chat-section melee-defense-preparation">
+
+            <div class="metro-chat-section-title">
+                <span aria-hidden="true">
+                    ★
+                </span>
+                Défense
+            </div>
+
+            <p class="melee-defense-status">
+                <strong>{{defender.name}}</strong>
+                prépare son blocage.
+            </p>
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+         DÉFENSE — REFUS
+         ===================================================== --}}
+
+    {{#if defense.declined}}
+
+        <section class="metro-chat-section melee-defense-declined">
+
+            <div class="metro-chat-section-title">
+                <span aria-hidden="true">
+                    ★
+                </span>
+                Défense
+            </div>
+
+            <p class="melee-defense-status">
+                <strong>{{defender.name}}</strong>
+                ne bloque pas l'attaque.
+            </p>
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+         DÉFENSE — RÉSULTAT DU BLOCAGE
+         ===================================================== --}}
+
+    {{#if defense.resolved}}
+
+        <section class="metro-chat-section melee-defense-result">
+
+            <div class="metro-chat-section-title">
+                <span aria-hidden="true">
+                    ★
+                </span>
+                Défense
+            </div>
+
+            <div class="melee-defense-result-box">
+
+                <span class="melee-defense-result-label">
+                    Blocage
+                </span>
+
+                <strong class="melee-defense-result-value">
+                    {{defense.successes}}
+                </strong>
+
+                <span class="melee-defense-result-caption">
+                    réussite(s)
+                </span>
+
+            </div>
+
+            {{#if defense.details.length}}
+                <ul class="melee-applied-effects-list melee-roll-details">
+                    {{#each defense.details}}
+                        <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+        ATTAQUE — PRÉPARATION
+        ===================================================== --}}
+
+    {{#if attack.preparing}}
+
+        <section class="metro-chat-section melee-attack-preparation">
+
+            <div class="metro-chat-section-title">
+                <span aria-hidden="true">
+                    ★
+                </span>
+                Attaque
+            </div>
+
+            <p class="melee-attack-status">
+                <strong>{{attacker.name}}</strong>
+                prépare son attaque.
+            </p>
+
+            {{#if attack.canResolve}}
+
+                <div class="metro-chat-actions melee-attack-actions">
+
+                    <button
+                        type="button"
+                        class="metro-chat-button"
+                        data-action="melee-resolve-attack"
+                        data-workflow-id="{{workflowId}}"
+                    >
+                        <span aria-hidden="true">
+                            ★
+                        </span>
+                        Résoudre l'attaque
+                    </button>
+
+                </div>
+
+            {{/if}}
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+        ATTAQUE — JET RÉSOLU
+        ===================================================== --}}
+
+    {{#if attack.resolved}}
+
+        <section class="metro-chat-section melee-attack-roll-result">
+
+            <div class="metro-chat-section-title">
+                <span aria-hidden="true">
+                    ★
+                </span>
+                Attaque
+            </div>
+
+            <div class="melee-attack-result-box">
+
+                <span class="melee-attack-result-label">
+                    Réussites
+                </span>
+
+                <strong class="melee-attack-result-value">
+                    {{attack.successes}}
+                </strong>
+
+            </div>
+
+            {{#if attack.details.length}}
+                <ul class="melee-applied-effects-list melee-roll-details">
+                    {{#each attack.details}}
+                        <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+
+
+            {{#if attack.canPush}}
+
+                <div class="metro-chat-actions melee-attack-actions">
+
+                    <button
+                        type="button"
+                        class="metro-chat-button"
+                        data-action="melee-push-attack"
+                        data-workflow-id="{{workflowId}}"
+                    >
+                        <span aria-hidden="true">
+                            ★
+                        </span>
+
+                        {{#if attack.pushCount}}
+                            Forcer avec le Stress
+                        {{else}}
+                            Forcer le jet
+                        {{/if}}
+                    </button>
+
+                </div>
+
+            {{/if}}
+
+            {{#if attack.canFinalize}}
+
+                <div class="metro-chat-actions melee-attack-actions">
+
+                    <button
+                        type="button"
+                        class="metro-chat-button"
+                        data-action="melee-finalize-attack"
+                        data-workflow-id="{{workflowId}}"
+                    >
+                        <span aria-hidden="true">
+                            ★
+                        </span>
+                        Conserver le résultat
+                    </button>
+
+                </div>
+
+            {{/if}}
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+        OPPOSITION ATTAQUE / BLOCAGE
+        ===================================================== --}}
+
+    {{#if result.resolved}}
+
+        <section class="metro-chat-section melee-attack-outcome">
+
+            <div class="metro-chat-section-title">
+                <span aria-hidden="true">
+                    ★
+                </span>
+                Résolution de l'attaque
+            </div>
+
+            <div class="melee-outcome-grid">
+
+                <div class="melee-outcome-entry">
+                    <span class="melee-outcome-label">
+                        Réussites d'attaque
+                    </span>
+
+                    <strong class="melee-outcome-value">
+                        {{result.attackSuccesses}}
+                    </strong>
+                </div>
+
+
+                {{#if result.blockAttempted}}
+
+                    <div class="melee-outcome-entry">
+                        <span class="melee-outcome-label">
+                            Réussites de blocage
+                        </span>
+
+                        <strong class="melee-outcome-value">
+                            {{result.blockSuccesses}}
+                        </strong>
+                    </div>
+
+                {{/if}}
+
+
+                <div class="melee-outcome-entry melee-outcome-entry--net">
+                    <span class="melee-outcome-label">
+                        Réussites nettes
+                    </span>
+
+                    <strong class="melee-outcome-value">
+                        {{result.netSuccesses}}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            {{!-- ---------------------------------------------
+                ATTAQUE RÉUSSIE
+                --------------------------------------------- --}}
+
+            {{#if result.hit}}
+
+                <div class="melee-outcome-status melee-outcome-status--hit">
+                    <span aria-hidden="true">
+                        ★
+                    </span>
+
+                    <strong>
+                        Attaque réussie
+                    </strong>
+                </div>
+
+
+                {{#if result.hasExtraSuccesses}}
+
+                    <p class="melee-outcome-text">
+                        Réussites disponibles pour les éclats :
+                        <strong>{{result.extraSuccesses}}</strong>
+                    </p>
+
+                {{else}}
+
+                    <p class="melee-outcome-text">
+                        Aucune réussite supplémentaire disponible pour un éclat.
+                    </p>
+
+                {{/if}}
+
+
+                {{#if result.canChooseStunts}}
+
+                    <div class="metro-chat-actions melee-attack-actions">
+
+                        <button
+                            type="button"
+                            class="metro-chat-button"
+                            data-action="melee-choose-stunts"
+                            data-workflow-id="{{workflowId}}"
+                        >
+                            <span aria-hidden="true">
+                                ★
+                            </span>
+
+                            Choisir les éclats
+                        </button>
+
+                    </div>
+
+                {{/if}}
+
+            {{/if}}
+
+
+            {{!-- ---------------------------------------------
+                ATTAQUE ÉCHOUÉE / BLOQUÉE
+                --------------------------------------------- --}}
+
+            {{#if result.missed}}
+
+                <div class="melee-outcome-status melee-outcome-status--miss">
+                    <span aria-hidden="true">
+                        ★
+                    </span>
+
+                    <strong>
+                        L'attaque ne touche pas
+                    </strong>
+                </div>
+
+            {{/if}}
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+        PROTECTION
+        ===================================================== --}}
+
+    {{#if protection.required}}
+
+        <section class="metro-chat-section melee-attack-protection">
+
+            <div class="metro-chat-section-title">
+                <span aria-hidden="true">
+                    ★
+                </span>
+                Protection
+            </div>
+
+
+            {{!-- ---------------------------------------------
+                PROTECTION EN ATTENTE
+                --------------------------------------------- --}}
+
+            {{#if protection.awaiting}}
+
+                <p class="melee-protection-status">
+                    <strong>{{defender.name}}</strong>
+                    doit résoudre sa Protection contre
+                    <strong>{{protection.incomingDamage}} dégât(s)</strong>.
+                </p>
+
+
+                {{#if protection.canResolve}}
+
+                    <div class="metro-chat-actions melee-attack-actions">
+
+                        <button
+                            type="button"
+                            class="metro-chat-button"
+                            data-action="melee-resolve-protection"
+                            data-workflow-id="{{workflowId}}"
+                        >
+                            <span aria-hidden="true">
+                                ★
+                            </span>
+                            Résoudre la Protection
+                        </button>
+
+                    </div>
+
+                {{/if}}
+
+            {{/if}}
+
+
+            {{!-- ---------------------------------------------
+                PROTECTION RÉSOLUE
+                --------------------------------------------- --}}
+
+            {{#if protection.resolved}}
+
+                <div class="melee-protection-grid">
+
+                    <div class="melee-protection-entry">
+                        <span class="melee-protection-label">
+                            Réussites
+                        </span>
+
+                        <strong class="melee-protection-value">
+                            {{protection.successes}}
+                        </strong>
+                    </div>
+
+                    <div class="melee-protection-entry">
+                        <span class="melee-protection-label">
+                            Dégâts absorbés
+                        </span>
+
+                        <strong class="melee-protection-value">
+                            {{protection.preventedDamage}}
+                        </strong>
+                    </div>
+
+                    <div class="melee-protection-entry melee-protection-entry--remaining">
+                        <span class="melee-protection-label">
+                            Dégâts restants
+                        </span>
+
+                        <strong class="melee-protection-value">
+                            {{protection.remainingDamage}}
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                {{#if protection.degradation}}
+
+                    <div class="melee-protection-degradation">
+                        <span aria-hidden="true">
+                            ★
+                        </span>
+
+                        <span>
+                            Dégradation de Protection :
+                        </span>
+
+                        <strong>
+                            {{protection.degradation}}
+                        </strong>
+                    </div>
+
+                {{/if}}
+
+            {{/if}}
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+        APPLICATION DES DOMMAGES / EFFETS
+        ===================================================== --}}
+
+    {{#if application.canApply}}
+
+        <section class="metro-chat-section melee-attack-application">
+
+            <div class="metro-chat-section-title">
+                <span aria-hidden="true">
+                    ★
+                </span>
+                Dommages et effets
+            </div>
+
+            <p class="melee-application-status">
+                Les conséquences de l'attaque
+                sont prêtes à être appliquées.
+            </p>
+
+            <div class="metro-chat-actions melee-attack-actions">
+
+                <button
+                    type="button"
+                    class="metro-chat-button"
+                    data-action="melee-apply-consequences"
+                    data-workflow-id="{{workflowId}}"
+                >
+                    <span aria-hidden="true">
+                        ★
+                    </span>
+
+                    Résoudre les dommages / effets
+                </button>
+
+            </div>
+
+        </section>
+
+    {{/if}}
+
+    {{!-- =====================================================
+        DÉGRADATION DES PROTECTIONS
+        ===================================================== --}}
+
+    {{#if protectionDamage.available}}
+
+        {{#if protectionDamage.required}}
+
+            <section class="metro-chat-section melee-protection-damage">
+
+                <div class="metro-chat-section-title">
+                    <span aria-hidden="true">
+                        ★
+                    </span>
+                    Dégradation des protections
+                </div>
+
+
+                {{!-- -----------------------------------------
+                    DÉGRADATION EN ATTENTE
+                    ----------------------------------------- --}}
+
+                {{#if protectionDamage.pending}}
+
+                    {{#if protectionDamage.requiresAllocation}}
+
+                        <p class="melee-protection-damage-status">
+                            <strong>{{protectionDamage.damage}}</strong>
+                            point(s) de dégradation de Protection
+                            doivent être répartis entre les protections de
+                            <strong>{{defender.name}}</strong>.
+                        </p>
+
+
+                        {{#if protectionDamage.protections}}
+
+                            <div class="melee-protection-damage-list">
+
+                                {{#each protectionDamage.protections}}
+
+                                    <div class="melee-protection-damage-entry">
+
+                                        <span class="melee-protection-damage-name">
+                                            {{itemName}}
+                                        </span>
+
+                                        <span class="melee-protection-damage-current">
+                                            Protection restante
+                                            <strong>{{current}}</strong>
+                                        </span>
+
+                                    </div>
+
+                                {{/each}}
+
+                            </div>
+
+                        {{/if}}
+
+
+                        {{#if protectionDamage.canAllocate}}
+
+                            <div class="metro-chat-actions melee-attack-actions">
+
+                                <button
+                                    type="button"
+                                    class="metro-chat-button"
+                                    data-action="melee-allocate-protection-damage"
+                                    data-workflow-id="{{workflowId}}"
+                                >
+                                    <span aria-hidden="true">
+                                        ★
+                                    </span>
+
+                                    Répartir les dommages d'armure
+                                </button>
+
+                            </div>
+
+                        {{/if}}
+
+                    {{else}}
+
+                        <p class="melee-protection-damage-status">
+                            <strong>{{protectionDamage.damage}}</strong>
+                            point(s) de dégradation de Protection
+                            doivent être appliqués à
+                            <strong>{{defender.name}}</strong>.
+                        </p>
+
+                        <div class="melee-protection-damage-auto">
+                            <span aria-hidden="true">
+                                ★
+                            </span>
+
+                            <span>
+                                Aucune répartition manuelle nécessaire.
+                            </span>
+                        </div>
+
+                    {{/if}}
+
+                {{/if}}
+
+
+                {{!-- -----------------------------------------
+                    DÉGRADATION RÉSOLUE
+                    ----------------------------------------- --}}
+
+                {{#if protectionDamage.resolved}}
+
+                    {{#if protectionDamage.applied}}
+
+                        <p class="melee-protection-damage-status">
+                            <strong>{{defender.name}}</strong>
+                            subit une dégradation de ses protections.
+                        </p>
+
+
+                        {{#if protectionDamage.hasAllocations}}
+
+                            <div class="melee-protection-damage-results">
+
+                                {{#each protectionDamage.allocations}}
+
+                                    <div class="melee-protection-damage-result">
+
+                                        <span class="melee-protection-damage-name">
+                                            {{itemName}}
+                                        </span>
+
+                                        <strong class="melee-protection-damage-loss">
+                                            -{{damage}} Protection
+                                        </strong>
+
+                                        {{#if broken}}
+
+                                            <span class="melee-protection-damage-broken">
+                                                Protection détruite
+                                            </span>
+
+                                        {{/if}}
+
+                                    </div>
+
+                                {{/each}}
+
+                            </div>
+
+                        {{/if}}
+
+
+                        {{#if protectionDamage.overflow}}
+
+                            <div class="melee-protection-damage-overflow">
+
+                                <span>
+                                    Dégradation excédentaire
+                                </span>
+
+                                <strong>
+                                    {{protectionDamage.overflow}}
+                                </strong>
+
+                            </div>
+
+                        {{/if}}
+
+                    {{else}}
+
+                        <div class="melee-protection-damage-none">
+                            <span aria-hidden="true">
+                                ★
+                            </span>
+
+                            <span>
+                                Aucune Protection n'a été dégradée.
+                            </span>
+                        </div>
+
+                    {{/if}}
+
+                {{/if}}
+
+            </section>
+
+        {{/if}}
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+        ÉCLATS CHOISIS
+        ===================================================== --}}
+
+    {{#if stuntLines.length}}
+
+        <section class="metro-chat-section melee-stunt-choices">
+
+            <div class="metro-chat-section-title">
+                <span aria-hidden="true">★</span>
+                Éclats choisis
+            </div>
+
+            <ul class="melee-applied-effects-list">
+                {{#each stuntLines}}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+        EFFETS APPLIQUÉS
+        ===================================================== --}}
+
+    {{#if appliedEffects.length}}
+
+        <section class="metro-chat-section melee-applied-effects">
+
+            <div class="metro-chat-section-title">
+                <span aria-hidden="true">★</span>
+                Effets appliqués
+            </div>
+
+            <ul class="melee-applied-effects-list">
+                {{#each appliedEffects}}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+        TRAIT DE CRÉATURE — VICIEUSE
+        ===================================================== --}}
+
+    {{#if vicieuse.available}}
+
+        <section class="metro-chat-section melee-vicieuse">
+
+            <div class="metro-chat-section-title">
+                <span aria-hidden="true">★</span>
+                Vicieuse
+            </div>
+
+            <p>
+                {{attacker.name}} peut immédiatement attaquer
+                {{defender.name}} avec sa {{vicieuse.weaponName}}.
+            </p>
+
+            <div class="metro-chat-actions melee-attack-actions">
+                <button
+                    type="button"
+                    class="metro-chat-button"
+                    data-action="melee-vicieuse"
+                    data-workflow-id="{{workflowId}}"
+                >
+                    <span aria-hidden="true">★</span>
+                    Attaquer avec {{vicieuse.weaponName}}
+                </button>
+            </div>
+
+        </section>
+
+    {{/if}}
+
+
+    {{!-- =====================================================
+        WORKFLOW TERMINÉ
+        ===================================================== --}}
+
+    {{#if result.completed}}
+
+        <section class="metro-chat-section melee-attack-completed">
+
+            <div class="melee-completed-status">
+
+                <span
+                    class="melee-completed-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <div class="melee-completed-text">
+
+                    <strong>
+                        Résolution terminée
+                    </strong>
+
+                    <span>
+                        L'attaque de mêlée est entièrement résolue.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    {{/if}}
+
+</div>

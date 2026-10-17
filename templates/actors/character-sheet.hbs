@@ -1,0 +1,2579 @@
+<div class="metro-character-sheet-form">
+
+    <header class="metro-character-header">
+
+        <!-- ================================================= -->
+        <!-- ZONE SUPÉRIEURE : PORTRAIT + IDENTITÉ + STRESS   -->
+        <!-- ================================================= -->
+
+        <div class="metro-character-header-main">
+
+            <!-- Portrait -->
+            <div class="metro-character-portrait">
+
+                <img
+                    class="metro-character-image"
+                    src="{{actor.img}}"
+                    alt="{{actor.name}}"
+                    data-action="editImage"
+                    data-edit="img"
+                    title="Cliquer pour modifier le portrait"
+                >
+
+            </div>
+
+
+            <!-- Identité -->
+            <div class="metro-character-identity">
+
+                <!-- Nom -->
+                <div class="metro-character-name-row">
+
+                    <input
+                        class="metro-character-name"
+                        type="text"
+                        name="name"
+                        value="{{actor.name}}"
+                        placeholder="Nom du personnage"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                </div>
+
+
+                <!-- Genre / Âge / Stress -->
+                <div class="metro-character-identity-summary">
+
+                    <div class="metro-character-identity-fields">
+
+                        <!-- Genre -->
+                        <label class="metro-character-gender-field">
+
+                            <span class="metro-label-with-star metro-character-field-header">
+
+                                <span
+                                    class="metro-red-star"
+                                    aria-hidden="true"
+                                >
+                                    ★
+                                </span>
+
+                                <span>
+                                    Genre
+                                </span>
+
+                            </span>
+
+                            <input
+                                type="text"
+                                name="system.identity.gender"
+                                value="{{system.identity.gender}}"
+                                placeholder="Genre"
+                                {{#unless editable}}disabled{{/unless}}
+                            >
+
+                        </label>
+
+
+                        <!-- Âge -->
+                        <label class="metro-character-age-field">
+
+                            <span class="metro-label-with-star metro-character-field-header">
+
+                                <span
+                                    class="metro-red-star"
+                                    aria-hidden="true"
+                                >
+                                    ★
+                                </span>
+
+                                <span>
+                                    Âge
+                                </span>
+
+                            </span>
+
+                            <input
+                                type="number"
+                                name="system.identity.age"
+                                value="{{system.identity.age}}"
+                                min="0"
+                                step="1"
+                                {{#unless editable}}disabled{{/unless}}
+                            >
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- ========================================= -->
+                    <!-- STRESS - LECTURE SEULE                    -->
+                    <!-- ========================================= -->
+
+                    <section
+                        class="metro-character-stress"
+                        data-stress="{{system.stress.dice}}"
+                        aria-label="Stress : {{system.stress.dice}} sur 5"
+                        title="Stress : {{system.stress.dice}} sur 5"
+                    >
+
+                        <div class="metro-character-stress-title">
+
+                            <span class="metro-label-with-star metro-character-field-header">
+
+                                <span
+                                    class="metro-red-star"
+                                    aria-hidden="true"
+                                >
+                                    ★
+                                </span>
+
+                                <span>
+                                    Stress
+                                </span>
+
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="metro-character-stress-pips"
+                            aria-hidden="true"
+                        >
+
+                            <span class="metro-character-stress-pip"></span>
+                            <span class="metro-character-stress-pip"></span>
+                            <span class="metro-character-stress-pip"></span>
+                            <span class="metro-character-stress-pip"></span>
+                            <span class="metro-character-stress-pip"></span>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- ATTRIBUTS                                         -->
+        <!-- ================================================= -->
+
+        <section class="metro-character-attributes">
+
+            <!-- Vigueur -->
+            <div class="metro-character-attribute">
+
+                <div class="metro-character-attribute-title metro-character-field-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Vigueur
+                    </span>
+                </div>
+
+                <div class="metro-character-attribute-values">
+
+                    <input
+                        type="number"
+                        name="system.attributes.vigor.value"
+                        value="{{system.attributes.vigor.value}}"
+                        min="0"
+                        max="5"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                    <span>/</span>
+
+                    <input
+                        type="number"
+                        name="system.attributes.vigor.max"
+                        value="{{system.attributes.vigor.max}}"
+                        min="1"
+                        max="5"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                </div>
+
+                <button
+                    class="metro-character-attribute-roll"
+                    type="button"
+                    data-attribute="vigor"
+                    title="Jet de Vigueur"
+                    aria-label="Jet de Vigueur"
+                >
+                    <i
+                        class="fa-solid fa-dice-d6"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+
+            </div>
+
+
+            <!-- Agilité -->
+            <div class="metro-character-attribute">
+
+                <div class="metro-character-attribute-title metro-character-field-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Agilité
+                    </span>
+
+                </div>
+
+                <div class="metro-character-attribute-values">
+
+                    <input
+                        type="number"
+                        name="system.attributes.agility.value"
+                        value="{{system.attributes.agility.value}}"
+                        min="0"
+                        max="5"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                    <span>/</span>
+
+                    <input
+                        type="number"
+                        name="system.attributes.agility.max"
+                        value="{{system.attributes.agility.max}}"
+                        min="1"
+                        max="5"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                </div>
+
+                <button
+                    class="metro-character-attribute-roll"
+                    type="button"
+                    data-attribute="agility"
+                    title="Jet d'Agilité"
+                    aria-label="Jet d'Agilité"
+                >
+                    <i
+                        class="fa-solid fa-dice-d6"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+
+            </div>
+
+
+            <!-- Esprit -->
+            <div class="metro-character-attribute">
+
+                <div class="metro-character-attribute-title metro-character-field-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Esprit
+                    </span>
+
+                </div>
+
+                <div class="metro-character-attribute-values">
+
+                    <input
+                        type="number"
+                        name="system.attributes.spirit.value"
+                        value="{{system.attributes.spirit.value}}"
+                        min="0"
+                        max="5"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                    <span>/</span>
+
+                    <input
+                        type="number"
+                        name="system.attributes.spirit.max"
+                        value="{{system.attributes.spirit.max}}"
+                        min="1"
+                        max="5"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                </div>
+
+                <button
+                    class="metro-character-attribute-roll"
+                    type="button"
+                    data-attribute="spirit"
+                    title="Jet d'Esprit"
+                    aria-label="Jet d'Esprit"
+                >
+                    <i
+                        class="fa-solid fa-dice-d6"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+
+            </div>
+
+
+            <!-- Empathie -->
+            <div class="metro-character-attribute">
+
+                <div class="metro-character-attribute-title metro-character-field-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Empathie
+                    </span>
+
+                </div>
+
+                <div class="metro-character-attribute-values">
+
+                    <input
+                        type="number"
+                        name="system.attributes.empathy.value"
+                        value="{{system.attributes.empathy.value}}"
+                        min="0"
+                        max="5"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                    <span>/</span>
+
+                    <input
+                        type="number"
+                        name="system.attributes.empathy.max"
+                        value="{{system.attributes.empathy.max}}"
+                        min="1"
+                        max="5"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                </div>
+
+                <button
+                    class="metro-character-attribute-roll"
+                    type="button"
+                    data-attribute="empathy"
+                    title="Jet d'Empathie"
+                    aria-label="Jet d'Empathie"
+                >
+                    <i
+                        class="fa-solid fa-dice-d6"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+
+            </div>
+
+        </section>
+
+    </header>
+
+    <!-- ===================================================== -->
+    <!-- ONGLETS                                               -->
+    <!-- ===================================================== -->
+
+    <nav
+        class="metro-character-tabs"
+        role="tablist"
+        aria-label="Sections de la fiche"
+    >
+
+        <button
+            class="metro-character-tab is-active"
+            type="button"
+            role="tab"
+            data-character-tab="skills"
+            aria-selected="true"
+        >
+            <span
+                class="metro-character-tab-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span>
+                Compétences
+            </span>
+        </button>
+
+
+        <button
+            class="metro-character-tab"
+            type="button"
+            role="tab"
+            data-character-tab="combat"
+            aria-selected="false"
+        >
+            <span
+                class="metro-character-tab-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span>
+                Combat
+            </span>
+        </button>
+
+
+        <button
+            class="metro-character-tab"
+            type="button"
+            role="tab"
+            data-character-tab="equipment"
+            aria-selected="false"
+        >
+            <span
+                class="metro-character-tab-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span>
+                Équipement
+            </span>
+        </button>
+
+
+        <button
+            class="metro-character-tab"
+            type="button"
+            role="tab"
+            data-character-tab="survival"
+            aria-selected="false"
+        >
+            <span
+                class="metro-character-tab-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span>
+                Survie
+            </span>
+        </button>
+
+
+        <button
+            class="metro-character-tab"
+            type="button"
+            role="tab"
+            data-character-tab="biography"
+            aria-selected="false"
+        >
+            <span
+                class="metro-character-tab-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span>
+                Biographie
+            </span>
+        </button>
+
+    </nav>
+
+
+    <!-- ===================================================== -->
+    <!-- COMPÉTENCES                                           -->
+    <!-- ===================================================== -->
+
+    <section
+        class="metro-character-skills metro-character-tab-panel is-active"
+        data-character-tab-panel="skills"
+        role="tabpanel"
+    >
+
+
+        <div class="metro-character-skill-groups">
+
+            {{#each character.skillGroups}}
+
+                <section
+                    class="metro-character-skill-group"
+                    data-attribute="{{id}}"
+                >
+
+                    <header class="metro-character-skill-group-header">
+
+                        <span
+                            class="metro-red-star"
+                            aria-hidden="true"
+                        >
+                            ★
+                        </span>
+
+                        <span>
+                            {{label}}
+                        </span>
+
+                    </header>
+
+
+                    <div class="metro-character-skill-list">
+
+                        {{#each skills}}
+
+                            <div
+                                class="metro-character-skill-row"
+                                data-skill="{{id}}"
+                            >
+
+                                <!-- ========================= -->
+                                <!-- NOM DE COMPÉTENCE         -->
+                                <!-- ========================= -->
+
+                                <div class="metro-character-skill-name">
+
+                                    <span>
+                                        {{label}}
+                                    </span>
+
+
+                                    {{#if progression.isArchetypeSkill}}
+
+                                        <span
+                                            class="metro-character-skill-archetype"
+                                            title="Compétence d'archétype"
+                                            aria-label="Compétence d'archétype"
+                                        >
+                                            ★
+                                        </span>
+
+                                    {{/if}}
+
+                                </div>
+
+
+                                <!-- ========================= -->
+                                <!-- VALEUR                    -->
+                                <!-- ========================= -->
+
+                                <input
+                                    class="metro-character-skill-value"
+                                    type="number"
+                                    name="system.skills.{{id}}"
+                                    value="{{value}}"
+                                    min="0"
+                                    max="5"
+                                    step="1"
+                                    {{#unless @root.editable}}disabled{{/unless}}
+                                >
+
+
+                                <!-- ========================= -->
+                                <!-- TEST                      -->
+                                <!-- ========================= -->
+
+                                <button
+                                    class="metro-character-skill-roll"
+                                    type="button"
+                                    data-skill="{{id}}"
+                                    title="Jet de {{label}}"
+                                    aria-label="Jet de {{label}}"
+                                >
+                                    <i
+                                        class="fa-solid fa-dice-d6"
+                                        aria-hidden="true"
+                                    ></i>
+                                </button>
+
+
+                                <!-- ========================= -->
+                                <!-- PROGRESSION               -->
+                                <!-- ========================= -->
+
+                                <div class="metro-character-skill-progression">
+
+                                    {{#if progression.requiresGMApproval}}
+
+                                        <span
+                                            class="metro-character-skill-gm-approval"
+                                            title="Le passage du niveau 0 au niveau 1 nécessite l'autorisation du MJ."
+                                        >
+                                            MJ
+                                        </span>
+
+                                    {{/if}}
+
+
+                                    {{#if progression.cost}}
+
+                                        <span class="metro-character-skill-xp-cost">
+                                            {{progression.cost}} XP
+                                        </span>
+
+                                    {{/if}}
+
+
+                                    <button
+                                        class="metro-character-skill-xp"
+                                        type="button"
+                                        data-skill="{{id}}"
+                                        title="Augmenter cette compétence d'un niveau"
+                                        {{#unless progression.canImprove}}disabled{{/unless}}
+                                    >
+                                        +1
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        {{/each}}
+
+                    </div>
+
+                </section>
+
+            {{/each}}
+
+        </div>
+
+        <!-- ===================================================== -->
+        <!-- TALENTS                                               -->
+        <!-- ===================================================== -->
+
+        <section class="metro-character-talents">
+
+            <table class="metro-character-talent-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th class="metro-character-talent-column-name">
+
+                            <div class="metro-character-talent-heading">
+                                <span
+                                    class="metro-red-star"
+                                    aria-hidden="true"
+                                >
+                                    ★
+                                </span>
+                                <span>
+                                    Talents
+                                </span>
+
+                                <button
+                                    class="metro-character-talent-sort"
+                                    type="button"
+                                    title="Inverser l'ordre alphabétique des Talents"
+                                    aria-label="Trier les Talents"
+                                >
+                                    <span
+                                        class="metro-character-talent-sort-indicator"
+                                        aria-hidden="true"
+                                    >
+                                        {{#if @root.character.talentSortAscending}}
+                                            ↑
+                                        {{else}}
+                                            ↓
+                                        {{/if}}
+                                    </span>
+                                </button>
+
+                            </div>
+
+                        </th>
+
+                        <th class="metro-character-talent-column-level">
+                            Niveau
+                        </th>
+
+                        <th
+                            class="metro-character-talent-column-actions"
+                            aria-label="Actions"
+                        ></th>                        
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {{#each character.talents}}
+
+                        <tr
+                            class="metro-character-talent-row metro-character-embedded-item"
+                            data-item-id="{{id}}"
+                            data-item-type="talent"
+                        >
+
+                            <td class="metro-character-talent-cell-name">
+
+                                <button
+                                    class="metro-character-talent-link"
+                                    type="button"
+                                    data-talent-id="{{id}}"
+                                    title="Ouvrir le Talent"
+                                >
+
+                                    <img
+                                        class="metro-character-talent-image"
+                                        src="{{img}}"
+                                        alt="{{name}}"
+                                    >
+
+                                    <span class="metro-character-talent-name">
+                                        {{name}}
+                                    </span>
+
+                                </button>
+
+                            </td>
+
+
+                            <td class="metro-character-talent-cell-level">
+
+                                <div class="metro-character-talent-progression">
+
+                                    <span class="metro-character-talent-level">
+                                        {{levelLabel}}
+                                    </span>
+
+
+                                    {{#unless isMaxLevel}}
+
+                                        <button
+                                            class="metro-character-skill-xp metro-character-talent-improve"
+                                            type="button"
+                                            data-talent-id="{{id}}"
+                                            title="Augmenter {{name}} d'un niveau — 5 XP"
+                                            aria-label="Augmenter {{name}} d'un niveau pour 5 XP"
+                                            {{#unless @root.editable}}disabled{{/unless}}
+                                        >
+                                            +1
+                                        </button>
+
+                                    {{/unless}}
+
+                                </div>
+
+                            </td>
+
+                            <td class="metro-character-talent-cell-actions">
+
+                                <button
+                                    class="metro-character-item-actions"
+                                    type="button"
+                                    data-item-id="{{id}}"
+                                    data-item-type="talent"
+                                    title="Actions"
+                                    aria-label="Actions pour {{name}}"
+                                    aria-haspopup="menu"
+                                >
+                                    ⋮
+                                </button>
+
+                            </td>                            
+
+                        </tr>
+
+                    {{/each}}
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- ARCHÉTYPE + EXPÉRIENCE                               -->
+        <!-- ===================================================== -->
+
+        <section class="metro-character-skills-summary">
+
+            <!-- ============================================= -->
+            <!-- ARCHÉTYPE                                     -->
+            <!-- ============================================= -->
+
+            <div class="metro-character-skills-archetype">
+
+                <div class="metro-label-with-star metro-character-field-header">
+                    <span class="metro-label-star">★</span>
+                    <span>Archétype</span>
+                </div>
+
+
+                {{#if character.identity.archetype.hasItem}}
+
+                    <div
+                        class="metro-character-archetype-item metro-character-embedded-item"
+                        data-item-id="{{character.identity.archetype.itemId}}"
+                        data-item-type="archetype"
+                    >
+
+                        <div class="metro-character-archetype-item-main">
+
+                            <div class="metro-character-archetype-item-content">
+
+                                <button
+                                    type="button"
+                                    class="metro-character-archetype-link"
+                                    data-action="openEmbeddedItem"
+                                    data-item-id="{{character.identity.archetype.itemId}}"
+                                    title="Ouvrir l'Archétype"
+                                    aria-label="Ouvrir l'Archétype {{character.identity.archetype.name}}"
+                                >
+
+                                    {{#if character.identity.archetype.img}}
+
+                                        <img
+                                            class="metro-character-archetype-item-image"
+                                            src="{{character.identity.archetype.img}}"
+                                            alt="{{character.identity.archetype.name}}"
+                                        >
+
+                                    {{/if}}
+
+                                    <span class="metro-character-archetype-name">
+                                        {{character.identity.archetype.label}}
+                                    </span>
+
+                                </button>
+
+
+                                {{#if character.identity.archetype.attributeLabel}}
+
+                                    <div class="metro-character-archetype-detail">
+
+                                        <span class="metro-character-archetype-detail-label">
+                                            Attribut
+                                        </span>
+
+                                        <strong>
+                                            {{character.identity.archetype.attributeLabel}}
+                                        </strong>
+
+                                    </div>
+
+                                {{/if}}
+
+
+                                {{#if character.identity.archetype.skills.length}}
+
+                                    <div class="metro-character-archetype-detail">
+
+                                        <span class="metro-character-archetype-detail-label">
+                                            Compétences
+                                        </span>
+
+                                        <span class="metro-character-archetype-skills">
+
+                                            {{#each character.identity.archetype.skills}}
+
+                                                <span class="metro-character-archetype-skill">
+                                                    {{label}}
+                                                </span>
+
+                                            {{/each}}
+
+                                        </span>
+
+                                    </div>
+
+                                {{/if}}
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="metro-character-item-actions"
+                            data-item-id="{{character.identity.archetype.itemId}}"
+                            data-item-type="archetype"
+                            title="Actions"
+                            aria-label="Actions pour {{character.identity.archetype.name}}"
+                        >
+                            ⋮
+                        </button>
+
+                    </div>
+
+
+                {{else}}
+
+                    <div class="metro-character-archetype-empty">
+                        Aucun Archétype
+                    </div>
+
+                {{/if}}
+
+            </div>
+
+
+            <!-- ============================================= -->
+            <!-- EXPÉRIENCE                                    -->
+            <!-- ============================================= -->
+
+            <section class="metro-character-xp">
+
+                <div class="metro-character-xp-title">
+
+                    <span class="metro-label-with-star metro-character-field-header">
+
+                        <span
+                            class="metro-red-star"
+                            aria-hidden="true"
+                        >
+                            ★
+                        </span>
+
+                        <span>
+                            Expérience
+                        </span>
+
+                    </span>
+
+                </div>
+
+
+                <div class="metro-character-xp-values">
+
+                    <label>
+
+                        <span>
+                            Actuel
+                        </span>
+
+                        <input
+                            class="metro-character-xp-available-input"
+                            type="number"
+                            name="system.progression.xp.available"
+                            value="{{system.progression.xp.available}}"
+                            min="0"
+                            step="1"
+                            {{#unless editable}}disabled{{/unless}}
+                        >
+
+                    </label>
+
+
+                    <label>
+
+                        <span>
+                            Dépensée
+                        </span>
+
+                        <span class="metro-character-xp-readonly">
+                            {{system.progression.xp.spent}}
+                        </span>
+
+                    </label>
+
+
+                    <label>
+
+                        <span>
+                            Total
+                        </span>
+
+                        <input
+                            class="metro-character-xp-total-input"
+                            type="number"
+                            name="xpTotal"
+                            value="{{character.xp.total}}"
+                            min="{{character.xp.spent}}"
+                            step="1"
+                            {{#unless editable}}disabled{{/unless}}
+                        >
+
+                    </label>
+
+                </div>
+
+            </section>
+
+        </section>
+
+        <!-- ================================================= -->
+        <!-- RAPPEL : CHOIX POSSIBLES DES AFFLICTIONS          -->
+        <!-- ================================================= -->
+
+        <section class="metro-choices-reminder">
+
+            <h3 class="metro-choices-reminder-title">
+                Rappel — Choix possibles des afflictions
+            </h3>
+
+            <p class="metro-choices-reminder-intro">
+                Chaque affliction (« 1 » d'un jet forcé, ou d'un dé de Stress) doit être attribuée à l'un de ces choix :
+            </p>
+
+            <ul class="metro-choices-reminder-list">
+                {{#each character.reminders.afflictions}}
+                    <li>
+                        <strong>{{label}}</strong>
+                        — {{detail}}
+                    </li>
+                {{/each}}
+            </ul>
+
+        </section>
+
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- COMBAT                                                -->
+    <!-- ===================================================== -->
+
+    <section
+        class="metro-character-combat metro-character-tab-panel"
+        data-character-tab-panel="combat"
+        role="tabpanel"
+        hidden
+    >
+
+        <!-- ================================================= -->
+        <!-- ARMES ÉQUIPÉES                                    -->
+        <!-- ================================================= -->
+
+        <section class="metro-character-combat-panel metro-character-weapons">
+
+            {{#if character.combat.hasWeapons}}
+                <table class="metro-character-talent-table">
+                    <thead>
+                        <tr>
+                            <th class="metro-character-talent-column-name">
+                                <div class="metro-character-talent-heading">
+                                    <span
+                                        class="metro-red-star"
+                                        aria-hidden="true"
+                                    >
+                                        ★
+                                    </span>
+                                    <span>
+                                        Arme(s) équipée(s)
+                                    </span>
+                                </div>
+
+                            </th>
+
+                            <th class="metro-character-talent-column-level">
+                                Portée
+                            </th>
+
+                            <th class="metro-character-talent-column-xp">
+                                Bonus
+                            </th>
+
+                            <th class="metro-character-talent-column-xp">
+                                Dégâts
+                            </th>
+
+                            <th class="metro-character-talent-column-xp">
+                                Munitions
+                            </th>
+
+                            <th
+                                class="metro-character-talent-column-actions"
+                                aria-label="Actions"
+                            ></th>                        
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {{#each character.combat.weapons}}
+
+                            <tr
+                                class="metro-character-talent-row metro-character-embedded-item"
+                                data-item-id="{{id}}"
+                                data-item-type="weapon"
+                            >
+                                <td class="metro-character-talent-cell-name">
+                                <!-- ============================= -->
+                                <!-- Identité                         -->
+                                <!-- ============================= -->                                    
+                                    <div class="metro-character-combat-item-identity">
+                                        <img
+                                            class="metro-character-talent-image"
+                                            src="{{img}}"
+                                            alt="{{name}}"
+                                        >
+                                        <span
+                                            class="metro-character-combat-item-link"
+                                            data-item-id="{{id}}"
+                                            title="Ouvrir l'arme"
+                                        >
+                                            {{name}}
+                                        </span>
+
+                                    </div>
+                                </td>
+                                <td>
+                                <!-- ============================= -->
+                                <!-- Portée                        -->
+                                <!-- ============================= -->                                    
+                                    <span class="metro-character-weapon-category">
+                                        {{#if isMelee}}
+                                            Contact
+                                        {{/if}}
+
+                                        {{#if isRanged}}
+                                            {{rangeLabel}}
+                                        {{/if}}
+                                    </span>
+                                </td>
+                                <td>
+                                <!-- ============================= -->
+                                <!-- Bonus                         -->
+                                <!-- ============================= -->
+                                    <span>
+                                        <strong>
+                                            {{bonus}} / {{bonusMax}}
+                                        </strong>
+                                    </span>
+                                </td>
+                                <td>
+                                <!-- ============================= -->
+                                <!-- DEGATS                        -->
+                                <!-- ============================= -->                                    
+                                    <span>
+                                        <strong>
+                                            {{damage}}
+                                        </strong>
+                                    </span>
+                                </td>
+                                 <td>
+                                <!-- ============================= -->
+                                <!-- MUNITIONS                     -->
+                                <!-- ============================= -->
+                                    {{#if isRanged}}
+                                        {{#if ammunition.required}}
+                                            <div class="metro-character-weapon-ammunition">
+                                                <label class="metro-character-weapon-ammunition-select-field">
+                                                    <select
+                                                        class="metro-character-weapon-ammunition-select"
+                                                        data-weapon-id="{{id}}"
+                                                        {{#unless @root.editable}}disabled{{/unless}}
+                                                    >
+                                                        <option value="">
+                                                            Aucune
+                                                        </option>
+                                                        {{#each ammunition.available}}
+
+                                                            <option
+                                                                value="{{id}}"
+                                                                {{#if selected}}selected{{/if}}
+                                                            >
+                                                                {{name}} ×{{quantity}}
+                                                            </option>
+
+                                                        {{/each}}
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        {{/if}}
+                                    {{/if}}
+                                </td>
+                                <td>
+                                <!-- ============================= -->
+                                <!-- ACTIONS                       -->
+                                <!-- ============================= -->
+                                    <div class="metro-character-weapon-actions">
+                                        {{#if isMelee}}
+                                            <button
+                                                class="metro-character-attribute-roll metro-character-weapon-attack"
+                                                type="button"
+                                                data-weapon-id="{{id}}"
+                                                data-attack-type="melee"
+                                            >
+                                                Frapper
+                                            </button>
+                                        {{/if}}
+
+                                        {{#if isRanged}}
+                                            <button
+                                                class="metro-character-attribute-roll metro-character-weapon-attack"
+                                                type="button"
+                                                data-weapon-id="{{id}}"
+                                                data-attack-type="ranged"
+                                                {{#unless canFire}}disabled{{/unless}}
+                                            >
+                                                Tirer
+                                            </button>
+
+                                            {{#if automatic}}
+                                                <button
+                                                    class="metro-character-attribute-roll metro-character-weapon-burst"
+                                                    type="button"
+                                                    data-weapon-id="{{id}}"
+                                                    {{#unless canFire}}disabled{{/unless}}
+                                                >
+                                                    Rafale
+                                                </button>
+                                            {{/if}}
+                                        {{/if}}
+                                    </div>
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            {{else}}
+
+                <div class="metro-character-combat-empty">
+                    Aucune arme équipée.
+                </div>
+
+            {{/if}}
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- PROTECTIONS ÉQUIPÉES                              -->
+        <!-- ================================================= -->
+        <section class="metro-character-combat-panel metro-character-protections">
+            {{#if character.combat.hasProtections}}
+                <table class="metro-character-talent-table">
+                    <thead>
+                        <tr>
+                            <th class="metro-character-talent-column-name">
+                                <div class="metro-character-talent-heading">
+                                    <span
+                                        class="metro-red-star"
+                                        aria-hidden="true"
+                                    >
+                                        ★
+                                    </span>
+                                    <span>
+                                        Protection(s) équipée(s)
+                                    </span>
+                                </div>
+                            </th>
+                            <th class="metro-character-talent-column-level">
+                                Localisation
+                            </th>
+                            <th class="metro-character-talent-column-xp">
+                                Bonus
+                            </th>
+                            <th class="metro-character-talent-column-xp">
+                                Résilience
+                            </th>
+                            <th class="metro-character-talent-column-xp">
+                                Etat
+                            </th>                      
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each character.combat.protections}}
+                            <tr
+                                class="metro-character-talent-row metro-character-embedded-item"
+                                data-item-id="{{id}}"
+                                data-item-type="armor"
+                            >
+                                <td>
+                                <!-- ============================= -->
+                                <!-- IDENTITÉ                      -->
+                                <!-- ============================= -->
+                                    <div class="metro-character-combat-item-identity">
+                                        <img
+                                            class="metro-character-talent-image"
+                                            src="{{img}}"
+                                            alt="{{name}}"
+                                        >
+                                        <span
+                                            class="metro-character-combat-item-link"
+                                            data-item-id="{{id}}"
+                                            title="Ouvrir la protection"
+                                        >
+                                            {{name}}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                <!-- ============================= -->
+                                <!-- LOCALISATION                  -->
+                                <!-- ============================= -->
+                                    <span class="metro-character-protection-category">
+                                        {{categoryLabel}}
+                                    </span>
+                                </td>
+                                <td>
+                                <!-- ============================= -->
+                                <!-- PROTECTION                    -->
+                                <!-- ============================= -->
+                                    <div class="metro-character-protection-value">
+                                        <strong>
+                                            {{protectionCurrent}}
+                                            /
+                                            {{protectionMax}}
+                                        </strong>
+                                    </div>
+                                </td>
+                                <td>
+                                <!-- ============================= -->
+                                <!-- RESILIENCE                    -->
+                                <!-- ============================= -->
+                                    {{#if resilience}}
+                                        <span class="metro-character-protection-resilience">
+                                            {{#if activeResilience}}
+                                                Active
+                                            {{else}}
+                                                Inactive
+                                            {{/if}}
+                                        </span>
+                                    {{/if}}   
+                                </td>
+                                <td>
+                                <!-- ============================= -->
+                                <!-- ÉTAT                          -->
+                                <!-- ============================= -->
+                                    <div class="metro-character-protection-state">
+                                        {{#if broken}}
+                                            <span class="metro-character-protection-broken">
+                                                Hors d'usage
+                                            </span>
+                                        {{else}}
+                                            {{#if damaged}}
+
+                                                <span class="metro-character-protection-damaged">
+                                                    Endommagée
+                                                </span>
+                                            {{else}}
+                                                <span class="metro-character-protection-intact">
+                                                    Intacte
+                                                </span>
+                                            {{/if}}
+                                        {{/if}}
+                                    </div>
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            {{else}}
+                <div class="metro-character-combat-empty">
+                    Aucune protection équipée.
+                </div>
+            {{/if}}
+        </section>
+
+        <!-- ============================================= -->
+        <!-- SYNTHÈSE DÉFENSIVE                            -->
+        <!-- ============================================= -->
+        <section class="metro-character-combat-panel metro-character-defense-summary">
+
+            <div class="metro-character-defense-value metro-character-defense-total">
+
+                <span class="metro-character-defense-label">
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Protection totale
+                    </span>
+                </span>
+
+                <strong class="metro-character-defense-score">
+                    {{character.combat.defense.totalProtection}}
+                </strong>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================= -->
+        <!-- RAPPEL : ÉCLATS ET RÉUSSITES DE BLOCAGE           -->
+        <!-- ================================================= -->
+
+        <section class="metro-choices-reminder">
+
+            <h3 class="metro-choices-reminder-title">
+                Rappel — Choix possibles des éclats de réussite
+            </h3>
+
+            <p class="metro-choices-reminder-intro">
+                Chaque réussite excédentaire peut être dépensée dans l'un de ces choix.
+            </p>
+
+            <div class="metro-choices-reminder-columns">
+
+                <div>
+                    <h4>Attaque de mêlée</h4>
+                    <ul class="metro-choices-reminder-list">
+                        {{#each character.reminders.meleeStunts}}
+                            <li>{{label}}{{#if repeatable}} <em>(cumulable)</em>{{/if}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Attaque à distance</h4>
+                    <ul class="metro-choices-reminder-list">
+                        {{#each character.reminders.rangedStunts}}
+                            <li>{{label}}{{#if repeatable}} <em>(cumulable)</em>{{/if}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+
+            </div>
+
+            <h3 class="metro-choices-reminder-title">
+                Rappel — Choix possibles des réussites de blocage
+            </h3>
+
+            <ul class="metro-choices-reminder-list">
+                {{#each character.reminders.blockStunts}}
+                    <li>{{label}}{{#if repeatable}} <em>(cumulable)</em>{{/if}}</li>
+                {{/each}}
+            </ul>
+
+        </section>
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- ÉQUIPEMENT                                            -->
+    <!-- ===================================================== -->
+
+    <section
+        class="metro-character-equipment metro-character-tab-panel"
+        data-character-tab-panel="equipment"
+        role="tabpanel"
+        hidden
+    >
+
+        <!-- ============================================= -->
+        <!-- SYNTHÈSE : ENCOMBREMENT + MONNAIE             -->
+        <!-- ============================================= -->
+
+        <section class="metro-character-equipment-summary">
+
+            <div
+                class="metro-character-equipment-encumbrance
+                    {{#if character.equipment.encumbrance.criticallyOverloaded}}
+                        is-critical
+                    {{else if character.equipment.encumbrance.overloaded}}
+                        is-overloaded
+                    {{/if}}"
+            >
+                <span class="metro-character-equipment-encumbrance-label">
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Encombrement
+                    </span>
+                </span>
+
+                <strong class="metro-character-equipment-encumbrance-value">
+                    {{character.equipment.encumbrance.totalWeight}}
+                    /
+                    {{character.equipment.encumbrance.capacity}}
+                </strong>
+
+                {{#if character.equipment.encumbrance.overloaded}}
+                    <span class="metro-character-equipment-encumbrance-hint">
+                        {{#if character.equipment.encumbrance.criticallyOverloaded}}
+                            Encombrement critique (max {{character.equipment.encumbrance.criticalCapacity}}) : jet d'ENDURANCE requis pour courir.
+                        {{else}}
+                            Trop encombré : jet d'ENDURANCE requis pour courir.
+                        {{/if}}
+                    </span>
+                {{/if}}
+            </div>
+
+
+            <!--
+                Lecture seule : les réserves de survie ne se
+                modifient que depuis l'onglet Survie. Affichées
+                ici uniquement pour expliquer leur contribution
+                à l'encombrement total ci-dessus.
+            -->
+            <div class="metro-character-equipment-reserves">
+
+                <span class="metro-character-equipment-encumbrance-label">
+                    <span class="metro-red-star" aria-hidden="true">★</span>
+                    <span>Réserves</span>
+                </span>
+
+                <div class="metro-character-equipment-reserves-list">
+
+                    <span>Eau {{character.equipment.reserves.water.level}}/10 ({{character.equipment.reserves.water.weight}})</span>
+                    <span>Nourriture {{character.equipment.reserves.food.level}}/10 ({{character.equipment.reserves.food.weight}})</span>
+                    <span>Énergie {{character.equipment.reserves.energy.level}}/10 ({{character.equipment.reserves.energy.weight}})</span>
+
+                </div>
+
+            </div>
+
+
+            <label class="metro-character-equipment-currency">
+
+                <span>
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Poulettes
+                    </span>
+                </span>
+
+                <input
+                    type="number"
+                    name="system.currency.militaryBullets"
+                    value="{{character.equipment.currency.militaryBullets}}"
+                    min="0"
+                    step="1"
+                    {{#unless editable}}disabled{{/unless}}
+                />
+
+            </label>
+
+        </section>
+
+
+        <!-- ============================================= -->
+        <!-- SECTIONS PAR TYPE D'OBJET                     -->
+        <!-- ============================================= -->
+
+        {{#each character.equipment.sections}}
+
+            <section class="metro-character-equipment-panel">
+
+                <div class="metro-item-section-header metro-character-equipment-section-header">
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        {{label}}
+                    </span>
+                </div>
+
+                {{#if items.length}}
+
+                    <table class="metro-character-equipment-table">
+
+                        <thead>
+                            <tr>
+                                <th class="metro-character-equipment-column-name">
+                                    Nom
+                                </th>
+                                <th class="metro-character-equipment-column-weight">
+                                    Poids
+                                </th>
+                                <th class="metro-character-equipment-column-info">
+                                    État / Quantité
+                                </th>
+                                <th class="metro-character-equipment-column-equipped">
+                                    Équipée
+                                </th>
+                                <th
+                                    class="metro-character-equipment-column-actions"
+                                    aria-label="Actions"
+                                ></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {{#each items}}
+
+                                <tr
+                                    class="metro-character-equipment-row metro-character-embedded-item"
+                                    data-item-id="{{id}}"
+                                    data-item-type="{{type}}"
+                                >
+
+                                    <td class="metro-character-equipment-cell-name">
+
+                                        <button
+                                            class="metro-character-equipment-link"
+                                            type="button"
+                                            data-item-id="{{id}}"
+                                            title="Ouvrir la fiche"
+                                        >
+
+                                            <img
+                                                class="metro-character-equipment-image"
+                                                src="{{img}}"
+                                                alt="{{name}}"
+                                            >
+
+                                            <span class="metro-character-equipment-name">
+                                                {{name}}
+                                            </span>
+
+                                        </button>
+
+                                    </td>
+
+                                    <td class="metro-character-equipment-cell-weight">
+                                        {{weight}}
+                                    </td>
+
+                                    <td class="metro-character-equipment-cell-info">
+
+                                        {{#if conditionLabel}}
+                                            <span class="metro-character-equipment-condition">
+                                                {{conditionLabel}}
+                                            </span>
+                                        {{/if}}
+
+                                        {{#if quantityLabel}}
+                                            <span class="metro-character-equipment-quantity">
+                                                {{quantityLabel}}
+                                            </span>
+                                        {{/if}}
+
+                                        {{#if stackable}}
+
+                                            <div class="metro-character-equipment-stepper">
+
+                                                <button
+                                                    type="button"
+                                                    class="metro-character-equipment-stepper-button"
+                                                    data-action="decrement"
+                                                    data-item-id="{{id}}"
+                                                    title="Diminuer d'une unité"
+                                                    aria-label="Diminuer la quantité de {{name}}"
+                                                >
+                                                    −
+                                                </button>
+
+                                                <button
+                                                    type="button"
+                                                    class="metro-character-equipment-stepper-button"
+                                                    data-action="increment"
+                                                    data-item-id="{{id}}"
+                                                    title="Augmenter d'une unité"
+                                                    aria-label="Augmenter la quantité de {{name}}"
+                                                >
+                                                    +
+                                                </button>
+
+                                            </div>
+
+                                        {{/if}}
+
+                                    </td>
+
+                                    <td class="metro-character-equipment-cell-equipped">
+
+                                        {{#if canToggleEquipped}}
+
+                                            <input
+                                                type="checkbox"
+                                                class="metro-character-equipment-equipped-checkbox"
+                                                data-item-id="{{id}}"
+                                                {{#if equipped}}checked{{/if}}
+                                                {{#unless @root.editable}}disabled{{/unless}}
+                                                title="Équipée pour le Combat"
+                                                aria-label="{{name}} équipée pour le Combat"
+                                            />
+
+                                        {{/if}}
+
+                                    </td>
+
+                                    <td class="metro-character-equipment-cell-actions">
+
+                                        <button
+                                            class="metro-character-item-actions"
+                                            type="button"
+                                            data-item-id="{{id}}"
+                                            data-item-type="{{type}}"
+                                            title="Actions"
+                                            aria-label="Actions pour {{name}}"
+                                            aria-haspopup="menu"
+                                        >
+                                            ⋮
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+                            {{/each}}
+
+                        </tbody>
+
+                    </table>
+
+                {{else}}
+
+                    <div class="metro-character-equipment-empty">
+                        Aucun objet de ce type.
+                    </div>
+
+                {{/if}}
+
+            </section>
+
+        {{/each}}
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- SURVIE                                                -->
+    <!-- ===================================================== -->
+
+    <section
+        class="metro-character-survival metro-character-tab-panel"
+        data-character-tab-panel="survival"
+        role="tabpanel"
+        hidden
+    >
+
+        <!-- ============================================= -->
+        <!-- EN-TÊTE : STRESS + SANG-FROID                 -->
+        <!-- ============================================= -->
+
+        <section class="metro-character-survival-summary">
+
+            <label class="metro-character-survival-stress">
+                <span>
+                    <span class="metro-red-star" aria-hidden="true">★</span>
+                    <span>Stress (dés)</span>
+                </span>
+
+                <input
+                    type="number"
+                    name="system.stress.dice"
+                    value="{{character.survival.stress.dice}}"
+                    min="0"
+                    max="5"
+                    step="1"
+                    {{#unless editable}}disabled{{/unless}}
+                />
+            </label>
+
+            <label class="metro-character-survival-composure">
+                <span>
+                    <span class="metro-red-star" aria-hidden="true">★</span>
+                    <span>Sang-froid</span>
+                </span>
+
+                <input
+                    type="number"
+                    name="system.stress.composure.current"
+                    value="{{character.survival.composure.current}}"
+                    min="0"
+                    max="{{character.survival.composure.max}}"
+                    step="1"
+                    {{#unless editable}}disabled{{/unless}}
+                />
+                <span class="metro-character-survival-composure-max">
+                    / {{character.survival.composure.max}}
+                </span>
+            </label>
+
+            {{#if character.survival.breakingPoint}}
+                <span class="metro-character-survival-breaking-point">
+                    Point de rupture atteint
+                </span>
+            {{/if}}
+
+            <div class="metro-character-survival-actions">
+
+                <button
+                    type="button"
+                    class="metro-character-survival-rest"
+                    title="Simuler un quart (5 à 10h) de repos"
+                >
+                    <i class="fa-solid fa-bed" aria-hidden="true"></i> Repos
+                </button>
+
+                {{#if character.survival.secondWindOwned}}
+                    <button
+                        type="button"
+                        class="metro-character-survival-second-wind"
+                        {{#unless character.survival.secondWindAvailable}}hidden{{/unless}}
+                        title="Talent Second souffle : jet d'ENDURANCE (dés de compétence uniquement, non forçable) ; 1 point de VIGUEUR récupéré par réussite"
+                    >
+                        Second souffle
+                    </button>
+                {{/if}}
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================================= -->
+        <!-- RÉSERVES : EAU / NOURRITURE / ÉNERGIE         -->
+        <!-- ============================================= -->
+
+        <section class="metro-character-survival-panel">
+
+            <div class="metro-item-section-header metro-character-survival-section-header">
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                <span>Réserves</span>
+            </div>
+
+            <div class="metro-character-survival-reserves">
+
+                {{#each character.survival.reserves}}
+
+                    <div class="metro-character-survival-reserve">
+
+                        <span class="metro-character-survival-reserve-label">
+                            {{label}}
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.survival.{{key}}"
+                            value="{{level}}"
+                            min="0"
+                            max="10"
+                            step="1"
+                            {{#unless @root.editable}}disabled{{/unless}}
+                        />
+
+                        <button
+                            type="button"
+                            class="metro-character-survival-reserve-roll"
+                            data-resource="{{key}}"
+                            title="Jet de Réserve — {{label}}"
+                        >
+                            Jet de Réserve
+                        </button>
+
+                    </div>
+
+                {{/each}}
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================================= -->
+        <!-- JET DE SURVIE (ressources de Station, p.219)  -->
+        <!-- ============================================= -->
+
+        <section class="metro-character-survival-panel">
+
+            <div class="metro-item-section-header metro-character-survival-section-header">
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                <span>Jet de Survie (Station)</span>
+            </div>
+
+            <p class="metro-character-station-survival-hint">
+                Pour chaque semaine complète passée à rechercher une
+                ressource de Station, ce jet (non forçable) permet de
+                l'augmenter en cas de réussite.
+            </p>
+
+            <button
+                type="button"
+                class="metro-character-station-survival-roll"
+                title="Jet de Survie — augmenter une ressource de Station"
+            >
+                Lancer un Jet de Survie
+            </button>
+
+        </section>
+
+
+        <!-- ============================================= -->
+        <!-- RADIATION                                     -->
+        <!-- ============================================= -->
+
+        <section class="metro-character-survival-panel">
+
+            <div class="metro-item-section-header metro-character-survival-section-header">
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                <span>Radiation</span>
+            </div>
+
+            <div class="metro-character-survival-radiation">
+
+                <label>
+                    <span>Doses</span>
+                    <input
+                        type="number"
+                        name="system.radiation.doses"
+                        value="{{character.survival.radiation.doses}}"
+                        min="0"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+                </label>
+
+                <label>
+                    <span>Doses permanentes</span>
+                    <input
+                        type="number"
+                        name="system.radiation.permanent"
+                        value="{{character.survival.radiation.permanent}}"
+                        min="0"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+                </label>
+
+                <button
+                    type="button"
+                    class="metro-character-survival-radiation-roll"
+                    title="Effets de radiation"
+                >
+                    <i class="fa-solid fa-biohazard" aria-hidden="true"></i>
+                    <span>Effets des radiations</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================================= -->
+        <!-- ÉTATS                                         -->
+        <!-- ============================================= -->
+
+        <section class="metro-character-survival-panel">
+
+            <div class="metro-item-section-header metro-character-survival-section-header">
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                <span>États</span>
+            </div>
+
+            <div class="metro-character-survival-conditions metro-character-survival-states-grid">
+
+                {{#each character.survival.conditions}}
+
+                    <label class="metro-character-survival-condition">
+                        <input
+                            type="checkbox"
+                            name="system.conditions.{{key}}"
+                            {{#if active}}checked{{/if}}
+                            {{#unless @root.editable}}disabled{{/unless}}
+                        />
+                        <span>{{label}}</span>
+                    </label>
+
+                {{/each}}
+
+            </div>
+
+            {{#if character.survival.statusEffects.length}}
+
+                <div class="metro-character-survival-status-effects-header">
+                    États Foundry (automatisés, réservés au MJ)
+                </div>
+
+                <div class="metro-character-survival-status-effects metro-character-survival-states-grid">
+
+                    {{#each character.survival.statusEffects}}
+
+                        <label
+                            class="metro-character-survival-condition metro-character-survival-status-effect"
+                        >
+                            <input
+                                type="checkbox"
+                                data-status-id="{{id}}"
+                                {{#if active}}checked{{/if}}
+                                {{#unless @root.isGM}}disabled{{/unless}}
+                            />
+                            {{#if img}}
+                                <img
+                                    class="metro-character-survival-status-effect-icon"
+                                    src="{{img}}"
+                                    alt=""
+                                />
+                            {{/if}}
+                            <span>{{name}}</span>
+                        </label>
+
+                    {{/each}}
+
+                </div>
+
+            {{/if}}
+
+        </section>
+
+
+        <!-- ============================================= -->
+        <!-- BLESSURES CRITIQUES / TRAUMAS PSYCHOLOGIQUES  -->
+        <!-- ============================================= -->
+
+        <section class="metro-character-survival-panel">
+
+            <div class="metro-item-section-header metro-character-survival-section-header">
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                <span>Blessures critiques / Traumas psychologiques</span>
+            </div>
+
+            {{#if character.survival.afflictions.length}}
+
+                <table class="metro-character-survival-affliction-table">
+
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Type</th>
+                            <th aria-label="Actions"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {{#each character.survival.afflictions}}
+
+                            <tr
+                                class="metro-character-survival-affliction-row metro-character-embedded-item"
+                                data-item-id="{{id}}"
+                                data-item-type="{{type}}"
+                            >
+
+                                <td class="metro-character-survival-affliction-cell-name">
+
+                                    <button
+                                        class="metro-character-survival-link"
+                                        type="button"
+                                        data-item-id="{{id}}"
+                                        title="Ouvrir la fiche"
+                                    >
+                                        <img
+                                            class="metro-character-survival-affliction-image"
+                                            src="{{img}}"
+                                            alt="{{name}}"
+                                        >
+                                        <span>{{name}}</span>
+                                    </button>
+
+                                </td>
+
+                                <td class="metro-character-survival-affliction-cell-type">
+                                    {{typeLabel}}
+                                    {{#if fatal}}
+                                        <span class="metro-character-survival-affliction-fatal">
+                                            Fatale
+                                        </span>
+                                    {{/if}}
+
+                                    {{#if canDeathRoll}}
+                                        <button
+                                            type="button"
+                                            class="metro-character-survival-death-roll"
+                                            data-item-id="{{id}}"
+                                            title="Jet de Trépas"
+                                        >
+                                            Jet de Trépas
+                                            {{#if deathRolls}}
+                                                ({{deathRolls}})
+                                            {{/if}}
+                                        </button>
+                                    {{/if}}
+                                </td>
+
+                                <td class="metro-character-survival-affliction-cell-actions">
+                                    <button
+                                        class="metro-character-item-actions"
+                                        type="button"
+                                        data-item-id="{{id}}"
+                                        data-item-type="{{type}}"
+                                        title="Actions"
+                                        aria-label="Actions pour {{name}}"
+                                        aria-haspopup="menu"
+                                    >
+                                        ⋮
+                                    </button>
+                                </td>
+
+                            </tr>
+
+                        {{/each}}
+
+                    </tbody>
+
+                </table>
+
+            {{else}}
+
+                <div class="metro-character-survival-empty">
+                    Aucune blessure critique ni trauma psychologique en cours.
+                </div>
+
+            {{/if}}
+
+        </section>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- BIOGRAPHIE                                            -->
+    <!-- ===================================================== -->
+
+    <section
+        class="metro-character-biography metro-character-tab-panel"
+        data-character-tab-panel="biography"
+        role="tabpanel"
+        hidden
+    >
+
+        <!-- ============================================= -->
+        <!-- IDENTITÉ                                      -->
+        <!-- ============================================= -->
+
+        <section class="metro-character-biography-panel">
+
+            <div class="metro-item-section-header metro-character-biography-section-header">
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                <span>Identité</span>
+            </div>
+
+            <!--
+                Âge et Genre sont déjà éditables dans l'en-tête
+                de la fiche (visible sur tous les onglets) :
+                system.identity.age / system.identity.gender.
+                Ils ne sont volontairement pas dupliqués ici,
+                un même "name" sur deux champs de formulaire
+                casserait la soumission.
+            -->
+
+            <label class="metro-character-biography-textarea-field">
+                <span>Apparence</span>
+                <textarea
+                    name="system.identity.appearance"
+                    rows="3"
+                    placeholder="Visage, corps, vêtements..."
+                    {{#unless editable}}disabled{{/unless}}
+                >{{character.biography.identity.appearance}}</textarea>
+            </label>
+
+        </section>
+
+
+        <!-- ============================================= -->
+        <!-- AFFILIATIONS                                  -->
+        <!-- ============================================= -->
+
+        <section class="metro-character-biography-panel">
+
+            <div class="metro-item-section-header metro-character-biography-section-header">
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                <span>Affiliations</span>
+            </div>
+
+            <div class="metro-character-biography-affiliations-grid">
+
+                <div class="metro-character-doc-ref-field">
+
+                    <span class="metro-character-doc-ref-label">
+                        Faction (sensibilité idéologique)
+                    </span>
+
+                    <div
+                        class="metro-character-doc-ref"
+                        data-uuid-field="system.affiliations.faction"
+                        data-allowed-types="faction"
+                    >
+
+                        {{#if character.biography.affiliations.faction.resolved}}
+
+                            <img
+                                class="metro-character-doc-ref-img"
+                                src="{{character.biography.affiliations.faction.img}}"
+                                alt=""
+                            />
+                            <span class="metro-character-doc-ref-name">
+                                {{character.biography.affiliations.faction.name}}
+                            </span>
+
+                            <button
+                                type="button"
+                                class="metro-character-doc-ref-open"
+                                data-uuid-field="system.affiliations.faction"
+                                title="Ouvrir la fiche"
+                            >
+                                Ouvrir
+                            </button>
+
+                            {{#if editable}}
+                                <button
+                                    type="button"
+                                    class="metro-character-doc-ref-clear"
+                                    data-uuid-field="system.affiliations.faction"
+                                    title="Retirer"
+                                >
+                                    ✕
+                                </button>
+                            {{/if}}
+
+                        {{else if character.biography.affiliations.faction.uuid}}
+
+                            <span class="metro-character-doc-ref-placeholder metro-character-doc-ref-error">
+                                Document introuvable ({{character.biography.affiliations.faction.uuid}})
+                            </span>
+
+                            {{#if editable}}
+                                <button
+                                    type="button"
+                                    class="metro-character-doc-ref-clear"
+                                    data-uuid-field="system.affiliations.faction"
+                                    title="Retirer"
+                                >
+                                    ✕
+                                </button>
+                            {{/if}}
+
+                        {{else}}
+
+                            <span class="metro-character-doc-ref-placeholder">
+                                Glisser-déposer une Faction ici
+                            </span>
+
+                        {{/if}}
+
+                    </div>
+
+                </div>
+
+
+                <div class="metro-character-doc-ref-field">
+
+                    <span class="metro-character-doc-ref-label">
+                        Station (lieu de vie)
+                    </span>
+
+                    <div
+                        class="metro-character-doc-ref"
+                        data-uuid-field="system.affiliations.community"
+                        data-allowed-types="station"
+                    >
+
+                        {{#if character.biography.affiliations.community.resolved}}
+
+                            <img
+                                class="metro-character-doc-ref-img"
+                                src="{{character.biography.affiliations.community.img}}"
+                                alt=""
+                            />
+                            <span class="metro-character-doc-ref-name">
+                                {{character.biography.affiliations.community.name}}
+                            </span>
+
+                            <button
+                                type="button"
+                                class="metro-character-doc-ref-open"
+                                data-uuid-field="system.affiliations.community"
+                                title="Ouvrir la fiche"
+                            >
+                                Ouvrir
+                            </button>
+
+                            {{#if editable}}
+                                <button
+                                    type="button"
+                                    class="metro-character-doc-ref-clear"
+                                    data-uuid-field="system.affiliations.community"
+                                    title="Retirer"
+                                >
+                                    ✕
+                                </button>
+                            {{/if}}
+
+                        {{else if character.biography.affiliations.community.uuid}}
+
+                            <span class="metro-character-doc-ref-placeholder metro-character-doc-ref-error">
+                                Document introuvable ({{character.biography.affiliations.community.uuid}})
+                            </span>
+
+                            {{#if editable}}
+                                <button
+                                    type="button"
+                                    class="metro-character-doc-ref-clear"
+                                    data-uuid-field="system.affiliations.community"
+                                    title="Retirer"
+                                >
+                                    ✕
+                                </button>
+                            {{/if}}
+
+                        {{else}}
+
+                            <span class="metro-character-doc-ref-placeholder">
+                                Glisser-déposer une Station ici
+                            </span>
+
+                        {{/if}}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================================= -->
+        <!-- HISTOIRE                                      -->
+        <!-- ============================================= -->
+
+        <section class="metro-character-biography-panel">
+
+            <div class="metro-item-section-header metro-character-biography-section-header">
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                <span>Histoire</span>
+            </div>
+
+            <textarea
+                name="system.identity.biography"
+                rows="8"
+                class="metro-character-biography-history"
+                placeholder="Histoire du personnage..."
+                {{#unless editable}}disabled{{/unless}}
+            >{{character.biography.identity.biography}}</textarea>
+
+        </section>
+
+
+        <!-- ============================================= -->
+        <!-- FIERTÉ / HONTE                                -->
+        <!-- ============================================= -->
+
+        <section class="metro-character-biography-panel">
+
+            <div class="metro-item-section-header metro-character-biography-section-header">
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                <span>Fierté / Honte</span>
+            </div>
+
+            <div class="metro-character-biography-pride-shame">
+
+                <label class="metro-character-biography-textarea-field">
+                    <span>Fierté</span>
+                    <textarea
+                        name="system.narrative.pride.description"
+                        rows="3"
+                        placeholder="Ce qui rend votre personnage unique..."
+                        {{#unless editable}}disabled{{/unless}}
+                    >{{character.biography.pride.description}}</textarea>
+                </label>
+
+                <label class="metro-character-biography-pride-used">
+                    <input
+                        type="checkbox"
+                        name="system.narrative.pride.used"
+                        {{checked character.biography.pride.used}}
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+                    <span>
+                        Fierté déjà utilisée cette session
+                        (1 réussite automatique/session, livre p.172)
+                    </span>
+                </label>
+
+                <label class="metro-character-biography-textarea-field">
+                    <span>Honte</span>
+                    <textarea
+                        name="system.narrative.shame"
+                        rows="3"
+                        placeholder="Un événement passé qui vous marque ou vous menace..."
+                        {{#unless editable}}disabled{{/unless}}
+                    >{{character.biography.shame}}</textarea>
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================================= -->
+        <!-- LIENS AVEC LES PJ / PNJ                       -->
+        <!-- ============================================= -->
+
+        <section class="metro-character-biography-panel">
+
+            <div class="metro-item-section-header metro-character-biography-section-header">
+                <span class="metro-red-star" aria-hidden="true">★</span>
+                <span>Liens</span>
+
+                {{#if editable}}
+                    <button
+                        type="button"
+                        class="metro-character-biography-list-add"
+                        data-action="addListRow"
+                        data-list="relationships"
+                    >
+                        + Ajouter
+                    </button>
+                {{/if}}
+
+            </div>
+
+            {{#unless character.biography.relationships.length}}
+
+                <p class="metro-character-biography-list-empty">
+                    Aucun lien renseigné.
+                </p>
+
+            {{/unless}}
+
+            {{#each character.biography.relationships}}
+
+                <div class="metro-character-biography-list-row">
+
+                    <div
+                        class="metro-character-doc-ref metro-character-doc-ref-compact"
+                        data-uuid-field="system.narrative.relationships.{{index}}.actor"
+                        data-allowed-types="character,npc,creature,vehicle"
+                    >
+
+                        {{#if actor.resolved}}
+
+                            <img
+                                class="metro-character-doc-ref-img"
+                                src="{{actor.img}}"
+                                alt=""
+                            />
+                            <span class="metro-character-doc-ref-name">
+                                {{actor.name}}
+                            </span>
+
+                        {{else if actor.uuid}}
+
+                            <span class="metro-character-doc-ref-placeholder metro-character-doc-ref-error">
+                                Introuvable
+                            </span>
+
+                        {{else}}
+
+                            <span class="metro-character-doc-ref-placeholder">
+                                Glisser-déposer un Acteur ici
+                            </span>
+
+                        {{/if}}
+
+                    </div>
+
+                    <input
+                        type="text"
+                        name="system.narrative.relationships.{{index}}.type"
+                        value="{{type}}"
+                        list="metro-character-relationship-type-suggestions"
+                        placeholder="À protéger, Rival..."
+                        {{#unless @root.editable}}disabled{{/unless}}
+                    />
+
+                    <input
+                        type="text"
+                        name="system.narrative.relationships.{{index}}.description"
+                        value="{{description}}"
+                        placeholder="Description"
+                        {{#unless @root.editable}}disabled{{/unless}}
+                    />
+
+                    {{#if @root.editable}}
+                        <button
+                            type="button"
+                            class="metro-character-biography-list-remove"
+                            data-action="removeListRow"
+                            data-list="relationships"
+                            data-index="{{index}}"
+                            title="Retirer ce lien"
+                        >
+                            ✕
+                        </button>
+                    {{/if}}
+
+                </div>
+
+            {{/each}}
+
+            <datalist id="metro-character-relationship-type-suggestions">
+                <option value="À protéger"></option>
+                <option value="Rival / Ennemi"></option>
+                <option value="Pote"></option>
+                <option value="Camarade"></option>
+            </datalist>
+
+        </section>
+
+
+        {{#if isGM}}
+
+            <section class="metro-character-biography-panel metro-gm-section">
+
+                <div class="metro-item-section-header metro-character-biography-section-header">
+                    <span class="metro-red-star" aria-hidden="true">★</span>
+                    <span>Notes du MJ</span>
+                </div>
+
+                <textarea
+                    name="system.narrative.gmNotes"
+                    rows="6"
+                    placeholder="Notes privées du MJ..."
+                    {{#unless editable}}disabled{{/unless}}
+                >{{character.biography.gmNotes}}</textarea>
+
+            </section>
+
+        {{/if}}
+
+    </section>
+
+</div>

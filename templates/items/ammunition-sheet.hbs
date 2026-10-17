@@ -1,0 +1,458 @@
+<div class="metro-item-sheet-content metro-ammunition-sheet-content">
+
+    {{!-- ======================================================
+         EN-TÊTE
+         ====================================================== --}}
+
+    <header class="metro-item-header">
+
+        <img
+            class="metro-item-image"
+            src="{{item.img}}"
+            alt="{{item.name}}"
+            data-action="editImage"
+            data-edit="img"
+        />
+
+        <div class="metro-item-header-main">
+
+            <input
+                class="metro-item-name"
+                type="text"
+                name="name"
+                value="{{item.name}}"
+                {{#unless editable}}disabled{{/unless}}
+            />
+
+            <div class="metro-item-type">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Munition
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    {{!-- ======================================================
+         IDENTIFICATION
+         ====================================================== --}}
+
+    <section class="metro-item-section">
+
+        <div class="metro-item-section-header">
+
+            <span
+                class="metro-red-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span>
+                Identification
+            </span>
+
+        </div>
+
+        <div class="metro-item-section-body">
+
+            <div class="metro-ammunition-grid">
+
+                <label class="metro-ammunition-field">
+
+                    <span>
+                        Type de munition
+                    </span>
+
+                    <input
+                        type="text"
+                        name="system.ammoType"
+                        value="{{system.ammoType}}"
+                        placeholder="Ex. 5.45x39"
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+
+                </label>
+
+
+                <label class="metro-ammunition-field">
+
+                    <span>
+                        Forme
+                    </span>
+
+                    <select
+                        name="system.containerType"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                        {{#each containerTypeChoices}}
+
+                            <option
+                                value="{{value}}"
+                                {{#if selected}}selected{{/if}}
+                            >
+                                {{label}}
+                            </option>
+
+                        {{/each}}
+
+                    </select>
+
+                </label>
+
+
+                <label class="metro-ammunition-field">
+
+                    <span>
+                        Mode de consommation
+                    </span>
+
+                    <select
+                        name="system.consumptionMode"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                        {{#each consumptionModeChoices}}
+
+                            <option
+                                value="{{value}}"
+                                {{#if selected}}selected{{/if}}
+                            >
+                                {{label}}
+                            </option>
+
+                        {{/each}}
+
+                    </select>
+
+                </label>
+
+
+                <label class="metro-ammunition-field">
+
+                    <span>
+                        Quantité
+                    </span>
+
+                    <input
+                        type="number"
+                        name="system.quantity"
+                        value="{{system.quantity}}"
+                        min="0"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+
+                </label>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    {{!-- ======================================================
+         CARACTÉRISTIQUES
+         ====================================================== --}}
+
+    <section class="metro-item-section">
+
+        <div class="metro-item-section-header">
+
+            <span
+                class="metro-red-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span>
+                Caractéristiques
+            </span>
+
+        </div>
+
+        <div class="metro-item-section-body">
+
+            <div class="metro-ammunition-grid">
+
+                <label class="metro-ammunition-field">
+
+                    <span>
+                        Qualité
+                    </span>
+
+                    <select
+                        name="system.quality"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                        {{#each qualityChoices}}
+
+                            <option
+                                value="{{value}}"
+                                {{#if selected}}selected{{/if}}
+                            >
+                                {{label}}
+                            </option>
+
+                        {{/each}}
+
+                    </select>
+
+                </label>
+
+
+                <label class="metro-ammunition-field">
+
+                    <span>
+                        Réduction de Protection
+                    </span>
+
+                    <input
+                        type="number"
+                        name="system.protectionReduction"
+                        value="{{system.protectionReduction}}"
+                        min="0"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+
+                </label>
+
+
+                <label class="metro-ammunition-field">
+
+                    <span>
+                        Poids
+                    </span>
+
+                    <select
+                        name="system.weight"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+
+                        {{#each weightChoices}}
+
+                            <option
+                                value="{{value}}"
+                                {{#if selected}}selected{{/if}}
+                            >
+                                {{label}}
+                            </option>
+
+                        {{/each}}
+
+                    </select>
+
+                </label>
+
+
+                <label class="metro-ammunition-field metro-ammunition-checkbox-field">
+
+                    <input
+                        type="checkbox"
+                        name="system.ignoresResilience"
+                        {{checked system.ignoresResilience}}
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+
+                    <span>
+                        Ignore la Résilience
+                    </span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    {{!-- ======================================================
+         VALEUR
+         ====================================================== --}}
+
+    <section class="metro-item-section">
+
+        <div class="metro-item-section-header">
+
+            <span
+                class="metro-red-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span>
+                Valeur
+            </span>
+
+        </div>
+
+        <div class="metro-item-section-body">
+
+            <div class="metro-ammunition-grid">
+
+                <label class="metro-ammunition-field">
+
+                    <span>
+                        Prix d'achat
+                    </span>
+
+                    <input
+                        type="number"
+                        name="system.price.buy"
+                        value="{{system.price.buy}}"
+                        min="0"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+
+                </label>
+
+
+                <label class="metro-ammunition-field">
+
+                    <span>
+                        Prix de vente
+                    </span>
+
+                    <input
+                        type="number"
+                        name="system.price.sell"
+                        value="{{system.price.sell}}"
+                        min="0"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+
+                </label>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    {{!-- ======================================================
+         DESCRIPTION
+         ====================================================== --}}
+
+    <section class="metro-item-section">
+
+        <div class="metro-item-section-header">
+
+            <span
+                class="metro-red-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span>
+                Description
+            </span>
+
+        </div>
+
+        <div class="metro-item-section-body">
+
+            <textarea
+                name="system.description"
+                rows="6"
+                {{#unless editable}}disabled{{/unless}}
+            >{{system.description}}</textarea>
+
+        </div>
+
+    </section>
+
+
+    {{!-- ======================================================
+         PROPRIÉTÉ SPÉCIALE
+         ====================================================== --}}
+
+    <section class="metro-item-section">
+
+        <div class="metro-item-section-header">
+
+            <span
+                class="metro-red-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span>
+                Propriété spéciale
+            </span>
+
+        </div>
+
+        <div class="metro-item-section-body">
+
+            <textarea
+                name="system.special"
+                rows="5"
+                {{#unless editable}}disabled{{/unless}}
+            >{{system.special}}</textarea>
+
+        </div>
+
+    </section>
+
+
+    {{!-- ======================================================
+         NOTES MJ
+         ====================================================== --}}
+
+    {{#if isGM}}
+
+        <section class="metro-item-section metro-gm-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Notes MJ
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.gmNotes"
+                    rows="5"
+                    {{#unless editable}}disabled{{/unless}}
+                >{{system.gmNotes}}</textarea>
+
+            </div>
+
+        </section>
+
+    {{/if}}
+
+</div>

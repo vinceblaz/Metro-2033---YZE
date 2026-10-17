@@ -1,0 +1,273 @@
+/* ============================================================
+ * FENÊTRES SANS CSS DÉDIÉ — LOT CHARTE GRAPHIQUE (04/10/2026)
+ *
+ * Couvre les 5 fenêtres DialogV2 brutes qui n'avaient jusqu'ici
+ * reçu aucune feuille de style dédiée (rendu 100% chrome Foundry
+ * par défaut à l'intérieur de leur contenu) :
+ *
+ * - ranged-stunt-dialog          (.ranged-stunt-dialog)
+ * - melee-stunt-dialog           (.melee-stunt-dialog)
+ * - melee-block-stunt-dialog     (.melee-block-stunt-dialog)
+ * - protection-damage-allocation-dialog
+ *                                (.protection-damage-allocation-dialog)
+ * - station-survival-launcher-dialog
+ *                                (.metro-station-survival-roll-dialog)
+ *
+ * Le bandeau d'en-tête rouge + étoile + politique de défilement
+ * est désormais partagé via le sélecteur commun de
+ * metro-base.css (classes de fenêtre .metro-ranged-stunt-dialog,
+ * .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog,
+ * .metro-protection-damage-allocation-dialog et
+ * .metro-station-survival-launcher-dialog, ajoutées côté .mjs
+ * à la construction du DialogV2).
+ *
+ * Cette feuille ne couvre que le CONTENU de chaque fenêtre
+ * (les classes `metro2033 xxx-dialog` posées sur le conteneur
+ * racine du HTML généré par chaque module).
+ * ============================================================ */
+
+
+/* ------------------------------------------------------------
+ * LARGEUR MINIMALE COMMUNE
+ *
+ * Les listes de lignes (éclats, protections) ont besoin d'un
+ * peu plus de place que la largeur par défaut d'un DialogV2
+ * Foundry pour ne pas faire chevaucher libellé et contrôle.
+ * ------------------------------------------------------------ */
+
+.ranged-stunt-dialog,
+.melee-stunt-dialog,
+.melee-block-stunt-dialog,
+.protection-damage-allocation-dialog,
+.metro-station-survival-roll-dialog {
+    min-width: 420px;
+}
+
+
+/* ------------------------------------------------------------
+ * TEXTE D'INTRODUCTION
+ * ------------------------------------------------------------ */
+
+.ranged-stunt-dialog > p,
+.melee-stunt-dialog > p,
+.melee-block-stunt-dialog > p,
+.protection-damage-allocation-dialog > p {
+    margin: 0 0 10px;
+
+    color: #d8d1c7;
+}
+
+.ranged-stunt-dialog > p strong,
+.melee-stunt-dialog > p strong,
+.melee-block-stunt-dialog > p strong,
+.protection-damage-allocation-dialog > p strong {
+    color: #eee9df;
+}
+
+
+/* ------------------------------------------------------------
+ * LISTES DE LIGNES (motif panneau)
+ * ------------------------------------------------------------ */
+
+.ranged-stunt-list,
+.melee-stunt-list,
+.melee-block-stunt-list,
+.protection-damage-allocation-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    margin-bottom: 10px;
+}
+
+
+.ranged-stunt-row,
+.melee-stunt-row,
+.melee-block-stunt-row,
+.protection-damage-allocation-row {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 8px 10px;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211f1e,
+            #171616
+        );
+}
+
+
+.ranged-stunt-description,
+.melee-stunt-description,
+.melee-block-stunt-description,
+.protection-damage-allocation-description {
+    flex: 1 1 auto;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    color: #d8d1c7;
+}
+
+
+.ranged-stunt-description strong,
+.melee-stunt-description strong,
+.melee-block-stunt-description strong,
+.protection-damage-allocation-description strong {
+    color: #eee9df;
+}
+
+
+.melee-stunt-description small,
+.protection-damage-allocation-description small {
+    color: #a9a19a;
+    font-size: 0.78rem;
+}
+
+
+.ranged-stunt-control,
+.melee-stunt-control,
+.melee-block-stunt-control,
+.protection-damage-allocation-value {
+    flex: 0 0 auto;
+
+    white-space: nowrap;
+}
+
+
+.ranged-stunt-control input,
+.melee-stunt-control input,
+.melee-block-stunt-control input,
+.protection-damage-allocation-value input {
+    width: 60px;
+
+    text-align: center;
+}
+
+
+.ranged-stunt-control input[type="checkbox"],
+.melee-stunt-control input[type="checkbox"],
+.melee-block-stunt-control input[type="checkbox"] {
+    width: auto;
+}
+
+
+/* ------------------------------------------------------------
+ * COMPTEURS (éclats de mêlée) ET TOTAL (protections)
+ * ------------------------------------------------------------ */
+
+.melee-stunt-summary,
+.protection-damage-allocation-total {
+    display: flex;
+
+    justify-content: space-between;
+    gap: 10px;
+
+    margin-top: 8px;
+    padding-top: 8px;
+
+    border-top: 1px solid #3e3734;
+
+    color: #d8d1c7;
+
+    font-size: 13px;
+}
+
+
+.melee-stunt-summary strong,
+.protection-damage-allocation-total strong {
+    color: #eee9df;
+}
+
+
+.melee-stunt-dialog hr {
+    margin: 10px 0;
+
+    border: none;
+    border-top: 1px solid #3e3734;
+}
+
+
+.metro-stunt-error,
+.melee-stunt-error {
+    margin: 8px 0 0;
+
+    color: #d94c4c;
+    font-size: 0.85rem;
+}
+
+
+/* ------------------------------------------------------------
+ * JET DE SURVIE — FENÊTRE DE LANCEMENT
+ *
+ * Cette fenêtre réutilise déjà les classes partagées
+ * .metro-macro-value-row / .metro-macro-value-examples
+ * (définies dans metro-chat.css, scopées jusqu'ici à
+ * .metro-multi-actor-roll-dialog) : on les étend ici à son
+ * propre conteneur racine plutôt que de dupliquer leurs règles.
+ * ------------------------------------------------------------ */
+
+.metro-station-survival-roll-dialog fieldset {
+    margin-bottom: 10px;
+    padding: 8px 10px;
+
+    border: 1px solid #49423e;
+    border-top: 2px solid #7e1d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #211f1e,
+            #171616
+        );
+}
+
+
+.metro-station-survival-roll-dialog fieldset legend {
+    color: #d8d1c7;
+
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.metro-station-survival-roll-dialog .metro-macro-value-row {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.metro-station-survival-roll-dialog .metro-macro-value-row label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    color: #d8d1c7;
+}
+
+
+.metro-station-survival-roll-dialog .metro-macro-value-row select {
+    width: 100%;
+}
+
+
+.metro-station-survival-roll-dialog .metro-macro-value-examples {
+    margin: 0;
+
+    color: #a9a19a;
+    font-size: 0.8rem;
+}

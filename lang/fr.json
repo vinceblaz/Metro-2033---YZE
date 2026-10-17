@@ -1,0 +1,34 @@
+{
+  "METRO2033": {
+    "ActorTypes": {
+      "character": "Personnage",
+      "npc": "PNJ",
+      "creature": "Créature",
+      "vehicle": "Véhicule"
+    }
+  },
+
+  "TYPES": {
+    "Actor": {
+      "character": "Personnage",
+      "npc": "PNJ",
+      "creature": "Créature",
+      "vehicle": "Véhicule"
+    },
+
+    "Item": {
+      "weapon": "Arme",
+      "armor": "Protection",
+      "ammunition": "Munition",
+      "equipment": "Outil",
+      "weaponMod": "Amélioration d'équipement",
+      "consumable": "Objet",
+      "talent": "Talent",
+      "archetype": "Archétype",
+      "criticalInjury": "Blessure critique",
+      "psychologicalTrauma": "Trauma psychologique",
+      "faction": "Faction",
+      "station": "Station"
+    }
+  }
+}

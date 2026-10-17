@@ -1,0 +1,359 @@
+<div class="metro-item-form metro-weapon-mod-sheet-form">
+
+    <header class="metro-item-header">
+
+        <img
+            class="metro-item-image"
+            src="{{item.img}}"
+            alt="{{item.name}}"
+            data-action="editImage"
+            data-edit="img"
+            title="Cliquer pour modifier l'image"
+        />
+
+        <div class="metro-item-header-main">
+
+            <input
+                class="metro-item-name"
+                type="text"
+                name="name"
+                value="{{item.name}}"
+                placeholder="Nom de l'amélioration d'équipement"
+            />
+
+            <div class="metro-item-type">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Amélioration d'équipement
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="metro-item-scroll metro-weapon-mod-scroll">
+
+        <!-- ================================================== -->
+        <!-- ÉQUIPEMENT ATTACHÉ                                 -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-weapon-mod-panel">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Équipement attaché
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                {{#if attachedItem}}
+
+                    <div class="metro-weapon-mod-attached-weapon">
+
+                        <img
+                            class="metro-weapon-mod-attached-weapon-image"
+                            src="{{attachedItem.img}}"
+                            alt="{{attachedItem.name}}"
+                        />
+
+                        <strong class="metro-weapon-mod-attached-weapon-name">
+                            {{attachedItem.name}}
+                        </strong>
+
+                        <button
+                            type="button"
+                            class="metro-weapon-mod-detach-button"
+                            data-action="detach-item"
+                            title="Détacher de cet équipement"
+                        >
+                            Détacher
+                        </button>
+
+                    </div>
+
+                {{else}}
+
+                    <p class="metro-weapon-mod-no-weapon">
+                        Non attachée. Glisser-déposer cet Item sur une fiche Arme ou Protection assignée à un Acteur pour l'y attacher.
+                    </p>
+
+                {{/if}}
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- COMPATIBILITÉ                                      -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-weapon-mod-panel">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Type d'équipement compatible
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-weapon-mod-applicable-types">
+
+                    <label class="metro-weapon-mod-inline-check">
+
+                        <input
+                            type="checkbox"
+                            name="system.applicableTypes"
+                            value="weapon"
+                            {{#if applicableToWeapon}}checked{{/if}}
+                        />
+
+                        Arme
+
+                    </label>
+
+
+                    <label class="metro-weapon-mod-inline-check">
+
+                        <input
+                            type="checkbox"
+                            name="system.applicableTypes"
+                            value="armor"
+                            {{#if applicableToArmor}}checked{{/if}}
+                        />
+
+                        Protection
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- RESSOURCE                                          -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-weapon-mod-panel">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Ressource nécessaire
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-weapon-mod-resource-grid">
+
+                    <label class="metro-weapon-mod-field">
+
+                        <span>
+                            Identifiant de ressource
+                        </span>
+
+                        <input
+                            type="text"
+                            name="system.resource.id"
+                            value="{{system.resource.id}}"
+                            placeholder="ex. energy (vide = aucune)"
+                        />
+
+                    </label>
+
+
+                    <label class="metro-weapon-mod-field">
+
+                        <span>
+                            Quantité nécessaire
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.resource.amount"
+                            value="{{system.resource.amount}}"
+                            min="0"
+                            step="1"
+                        />
+
+                    </label>
+
+                </div>
+
+                <p class="metro-weapon-mod-resource-hint">
+                    La réserve d'Énergie correspond au champ Énergie de l'onglet Survie de l'Actor.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- ENCOMBREMENT                                       -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-weapon-mod-panel">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Encombrement
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <label class="metro-weapon-mod-field">
+
+                    <span>
+                        Poids
+                    </span>
+
+                    <input
+                        type="number"
+                        name="system.weight"
+                        value="{{system.weight}}"
+                        min="0"
+                        step="0.25"
+                    />
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- DESCRIPTION                                        -->
+        <!-- ================================================== -->
+
+        <section
+            class="metro-item-section
+                   metro-weapon-mod-panel
+                   metro-weapon-mod-text-section"
+        >
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Description (effet / bonus narratif)
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.description"
+                    rows="7"
+                    placeholder="Effet tel que décrit par le livre de règles..."
+                >{{system.description}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- NOTES MJ                                           -->
+        <!-- ================================================== -->
+
+        {{#if isGM}}
+
+            <section
+                class="metro-item-section
+                       metro-weapon-mod-panel
+                       metro-gm-section"
+            >
+
+                <div class="metro-item-section-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Notes du MJ
+                    </span>
+
+                </div>
+
+                <div class="metro-item-section-body">
+
+                    <textarea
+                        name="system.gmNotes"
+                        rows="6"
+                        placeholder="Notes privées du MJ..."
+                    >{{system.gmNotes}}</textarea>
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+    </div>
+
+</div>

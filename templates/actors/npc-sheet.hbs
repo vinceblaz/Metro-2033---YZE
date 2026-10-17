@@ -1,0 +1,315 @@
+<div class="metro-npc-sheet-form">
+
+    <header class="metro-npc-header">
+
+        <div class="metro-npc-portrait">
+
+            <img
+                class="metro-npc-image"
+                src="{{actor.img}}"
+                alt="{{actor.name}}"
+                data-action="editImage"
+                data-edit="img"
+                title="Cliquer pour modifier le portrait"
+            >
+
+        </div>
+
+        <div class="metro-npc-identity">
+
+            <input
+                class="metro-npc-name"
+                type="text"
+                name="name"
+                value="{{actor.name}}"
+                placeholder="Nom du PNJ"
+                {{#unless editable}}disabled{{/unless}}
+            >
+
+            <input
+                class="metro-npc-role"
+                type="text"
+                name="system.identity.role"
+                value="{{system.identity.role}}"
+                placeholder="Rôle (ex : Bandit, Marchand, Garde...)"
+                {{#unless editable}}disabled{{/unless}}
+            >
+
+        </div>
+
+    </header>
+
+
+<nav class="metro-sheet-tabs" role="tablist">
+        <button type="button" role="tab" class="metro-sheet-tab is-active" data-sheet-tab="skills">Attributs &amp; Compétences</button>
+        <button type="button" role="tab" class="metro-sheet-tab" data-sheet-tab="combat">Combat</button>
+        <button type="button" role="tab" class="metro-sheet-tab" data-sheet-tab="equipment">Équipement</button>
+        <button type="button" role="tab" class="metro-sheet-tab" data-sheet-tab="survival">Survie</button>
+    </nav>
+
+<div class="metro-sheet-tab-panel is-active" data-sheet-tab-panel="skills">
+    <section class="metro-npc-section metro-npc-attributes">
+
+        <div class="metro-npc-section-title">
+            Attributs &amp; Compétences
+        </div>
+
+        <div class="metro-npc-skill-groups">
+
+            {{#each skillGroups}}
+
+                <div class="metro-npc-skill-group">
+
+                    <div class="metro-npc-attribute-row">
+
+                        <span class="metro-npc-attribute-label">
+                            {{attributeLabel}}
+                        </span>
+
+                        <input
+                            type="number"
+                            class="metro-npc-attribute-value"
+                            name="system.attributes.{{attribute}}.value"
+                            value="{{attributeValue}}"
+                            min="0"
+                            max="5"
+                            {{#unless ../editable}}disabled{{/unless}}
+                        >
+
+                        <span class="metro-npc-attribute-separator">
+                            /
+                        </span>
+
+                        <input
+                            type="number"
+                            class="metro-npc-attribute-max"
+                            name="system.attributes.{{attribute}}.max"
+                            value="{{attributeMax}}"
+                            min="1"
+                            max="5"
+                            {{#unless ../editable}}disabled{{/unless}}
+                        >
+
+                    </div>
+
+
+                    <div class="metro-npc-skill-list">
+
+                        {{#each skills}}
+
+                            <label class="metro-npc-skill-row">
+
+                                <span class="metro-npc-skill-label">
+                                    {{label}}
+                                </span>
+
+                                <input
+                                    type="number"
+                                    name="system.skills.{{id}}"
+                                    value="{{value}}"
+                                    min="0"
+                                    max="5"
+                                    {{#unless ../../editable}}disabled{{/unless}}
+                                >
+
+                            </label>
+
+                        {{/each}}
+
+                    </div>
+
+                </div>
+
+            {{/each}}
+
+        </div>
+
+    </section>
+
+    <section class="metro-npc-section metro-npc-notes">
+
+        <div class="metro-npc-section-title">
+            Notes / capacités spéciales
+        </div>
+
+        <textarea
+            name="system.special"
+            placeholder="Comportement, capacité particulière, ce que le MJ doit garder en tête..."
+            {{#unless editable}}disabled{{/unless}}
+        >{{system.special}}</textarea>
+
+    </section>
+
+    {{#if isGM}}
+
+        <section class="metro-npc-section metro-npc-gm-notes metro-gm-section">
+
+            <div class="metro-npc-section-title">
+                Notes MJ
+            </div>
+
+            <textarea
+                name="system.gmNotes"
+                {{#unless editable}}disabled{{/unless}}
+            >{{system.gmNotes}}</textarea>
+
+        </section>
+
+    {{/if}}
+    </div>
+
+<div class="metro-sheet-tab-panel" data-sheet-tab-panel="combat" hidden>
+<section class="metro-npc-section metro-npc-combat">
+        <div class="metro-npc-section-title">Attaques</div>
+        <p class="metro-npc-equipment-hint">Seules les armes équipées peuvent attaquer. Équipez-les dans l'onglet Équipement.</p>
+        {{#if equippedWeapons}}
+        <div class="metro-npc-item-list">
+            {{#each equippedWeapons}}
+                <div class="metro-npc-embedded-item" data-item-id="{{id}}">
+                    <img src="{{img}}" alt="{{name}}" class="metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="Ouvrir la fiche">
+                    <span class="metro-npc-embedded-item-name metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="{{#if tooltip}}{{tooltip}}{{else}}Ouvrir la fiche{{/if}}">{{name}}</span>
+                    <span class="metro-embedded-weapon-stats" title="Bonus d'arme / Dégâts">+{{bonus}} · Dég. {{damage}}</span>
+                    {{#if ammunition.required}}
+                    <select class="metro-embedded-ammo-select" data-action="assign-ammunition" data-item-id="{{id}}" title="Munition affectée" {{#unless @root.editable}}disabled{{/unless}}>
+                        <option value="">Aucune munition</option>
+                        {{#each ammunition.available}}<option value="{{id}}" {{#if selected}}selected{{/if}}>{{name}} ×{{quantity}}</option>{{/each}}
+                    </select>
+                    {{/if}}
+                    <div class="metro-npc-embedded-item-actions">
+                        {{#if attack}}
+                        <button type="button" data-action="weapon-attack" data-item-id="{{id}}" data-attack-type="{{attack.attackType}}" title="{{attack.reason}}" {{#unless attack.enabled}}disabled{{/unless}}>{{attack.label}}</button>
+                        {{#if attack.burst}}<button type="button" data-action="weapon-attack" data-item-id="{{id}}" data-attack-type="burst" title="{{attack.reason}}" {{#unless attack.burst.enabled}}disabled{{/unless}}>{{attack.burst.label}}</button>{{/if}}
+                        {{/if}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        {{else}}
+        <p class="metro-npc-empty">Aucune arme équipée.</p>
+        {{/if}}
+
+        {{#if equippedProtections}}
+        <div class="metro-npc-item-list">
+            {{#each equippedProtections}}
+                <div class="metro-npc-embedded-item" data-item-id="{{id}}">
+                    <img src="{{img}}" alt="{{name}}" class="metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="Ouvrir la fiche">
+                    <span class="metro-npc-embedded-item-name metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="{{#if tooltip}}{{tooltip}}{{else}}Ouvrir la fiche{{/if}}">{{name}}</span>
+                    <span class="metro-embedded-weapon-stats">{{summary}}</span>
+                </div>
+            {{/each}}
+        </div>
+        {{/if}}
+        <div class="metro-npc-item-list-label">Talents</div>
+        {{#if talents}}
+        <div class="metro-npc-item-list">
+            {{#each talents}}
+                <div class="metro-npc-embedded-item" data-item-id="{{id}}">
+                    <img src="{{img}}" alt="{{name}}" class="metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="Ouvrir la fiche">
+                    <span class="metro-npc-embedded-item-name metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="{{#if tooltip}}{{tooltip}}{{else}}Ouvrir la fiche{{/if}}">{{name}}</span>
+                    <div class="metro-npc-embedded-item-actions">
+                        <button type="button" data-action="open-embedded-item" data-item-id="{{id}}" title="Ouvrir"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                        {{#if @root.editable}}<button type="button" data-action="delete-embedded-item" data-item-id="{{id}}" title="Supprimer"><i class="fa-solid fa-trash"></i></button>{{/if}}
+                    </div>
+                {{#if effect}}<div class="metro-embedded-effect">{{effect}}</div>{{/if}}
+                </div>
+            {{/each}}
+        </div>
+        {{else}}
+        <p class="metro-npc-empty">Aucun Talent.</p>
+        {{/if}}
+    </section>
+    </div>
+
+<div class="metro-sheet-tab-panel" data-sheet-tab-panel="equipment" hidden>
+<section class="metro-npc-section metro-npc-equipment">
+        <div class="metro-npc-section-title">Équipement</div>
+        <p class="metro-npc-equipment-hint">Glissez-déposez des Items (Arme, Protection, Munition, Objet, Outil, Talent) depuis le monde ou un Compendium. Équipez les armes et protections utilisées.</p>
+
+        <div class="metro-npc-item-list-label">Armes</div>
+        {{#if weapons}}
+        <div class="metro-npc-item-list">
+            {{#each weapons}}
+                <div class="metro-npc-embedded-item" data-item-id="{{id}}">
+                    <img src="{{img}}" alt="{{name}}" class="metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="Ouvrir la fiche">
+                    <span class="metro-npc-embedded-item-name metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="{{#if tooltip}}{{tooltip}}{{else}}Ouvrir la fiche{{/if}}">{{name}}</span>
+                    <span class="metro-embedded-weapon-stats">+{{bonus}} · Dég. {{damage}}</span>
+                    <div class="metro-npc-embedded-item-actions">
+                        {{#if @root.editable}}<button type="button" class="metro-embedded-equip {{#if equipped}}is-equipped{{/if}}" data-action="toggle-item-equipped" data-item-id="{{id}}" title="{{#if equipped}}Déséquiper{{else}}Équiper{{/if}}"><i class="fa-solid {{#if equipped}}fa-hand-fist{{else}}fa-hand{{/if}}"></i> {{#if equipped}}Équipée{{else}}Équiper{{/if}}</button>{{/if}}
+                        <button type="button" data-action="open-embedded-item" data-item-id="{{id}}" title="Ouvrir"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                        {{#if @root.editable}}<button type="button" data-action="delete-embedded-item" data-item-id="{{id}}" title="Supprimer"><i class="fa-solid fa-trash"></i></button>{{/if}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        {{else}}<p class="metro-npc-empty">Aucune arme.</p>{{/if}}
+
+        <div class="metro-npc-item-list-label">Protections</div>
+        {{#if protections}}
+        <div class="metro-npc-item-list">
+            {{#each protections}}
+                <div class="metro-npc-embedded-item" data-item-id="{{id}}">
+                    <img src="{{img}}" alt="{{name}}" class="metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="Ouvrir la fiche">
+                    <span class="metro-npc-embedded-item-name metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="{{#if tooltip}}{{tooltip}}{{else}}Ouvrir la fiche{{/if}}">{{name}}</span>
+                    <span class="metro-embedded-weapon-stats">{{summary}}</span>
+                    <div class="metro-npc-embedded-item-actions">
+                        {{#if @root.editable}}<button type="button" class="metro-embedded-equip {{#if equipped}}is-equipped{{/if}}" data-action="toggle-item-equipped" data-item-id="{{id}}" title="{{#if equipped}}Déséquiper{{else}}Équiper{{/if}}"><i class="fa-solid {{#if equipped}}fa-hand-fist{{else}}fa-hand{{/if}}"></i> {{#if equipped}}Équipée{{else}}Équiper{{/if}}</button>{{/if}}
+                        <button type="button" data-action="open-embedded-item" data-item-id="{{id}}" title="Ouvrir"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                        {{#if @root.editable}}<button type="button" data-action="delete-embedded-item" data-item-id="{{id}}" title="Supprimer"><i class="fa-solid fa-trash"></i></button>{{/if}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        {{else}}<p class="metro-npc-empty">Aucune protection.</p>{{/if}}
+
+        <div class="metro-npc-item-list-label">Munitions</div>
+        {{#if ammunitionItems}}
+        <div class="metro-npc-item-list">
+            {{#each ammunitionItems}}
+                <div class="metro-npc-embedded-item" data-item-id="{{id}}">
+                    <img src="{{img}}" alt="{{name}}" class="metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="Ouvrir la fiche">
+                    <span class="metro-npc-embedded-item-name metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="{{#if tooltip}}{{tooltip}}{{else}}Ouvrir la fiche{{/if}}">{{name}}</span>
+                    <span class="metro-embedded-weapon-stats">×{{quantity}}</span>
+                    <div class="metro-npc-embedded-item-actions">
+                        <button type="button" data-action="open-embedded-item" data-item-id="{{id}}" title="Ouvrir"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                        {{#if @root.editable}}<button type="button" data-action="delete-embedded-item" data-item-id="{{id}}" title="Supprimer"><i class="fa-solid fa-trash"></i></button>{{/if}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        {{else}}<p class="metro-npc-empty">Aucune munition.</p>{{/if}}
+
+        <div class="metro-npc-item-list-label">Objets &amp; outils</div>
+        {{#if gearItems}}
+        <div class="metro-npc-item-list">
+            {{#each gearItems}}
+                <div class="metro-npc-embedded-item" data-item-id="{{id}}">
+                    <img src="{{img}}" alt="{{name}}" class="metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="Ouvrir la fiche">
+                    <span class="metro-npc-embedded-item-name metro-embedded-item-open" data-action="open-embedded-item" data-item-id="{{id}}" title="{{#if tooltip}}{{tooltip}}{{else}}Ouvrir la fiche{{/if}}">{{name}}</span>
+                    <span class="metro-embedded-weapon-stats">{{typeLabel}}{{#if quantityLabel}} · {{quantityLabel}}{{/if}}</span>
+                    <div class="metro-npc-embedded-item-actions">
+                        {{#if canEquip}}{{#if @root.editable}}<button type="button" class="metro-embedded-equip {{#if equipped}}is-equipped{{/if}}" data-action="toggle-item-equipped" data-item-id="{{id}}" title="{{#if equipped}}Déséquiper{{else}}Équiper{{/if}}"><i class="fa-solid {{#if equipped}}fa-hand-fist{{else}}fa-hand{{/if}}"></i> {{#if equipped}}Équipé{{else}}Équiper{{/if}}</button>{{/if}}{{/if}}
+                        <button type="button" data-action="open-embedded-item" data-item-id="{{id}}" title="Ouvrir"><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                        {{#if @root.editable}}<button type="button" data-action="delete-embedded-item" data-item-id="{{id}}" title="Supprimer"><i class="fa-solid fa-trash"></i></button>{{/if}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        {{else}}<p class="metro-npc-empty">Aucun objet ni outil.</p>{{/if}}
+    </section>
+    </div>
+
+<div class="metro-sheet-tab-panel" data-sheet-tab-panel="survival" hidden>
+<section class="metro-npc-section metro-npc-survival">
+        <div class="metro-npc-section-title">États</div>
+        <p class="metro-npc-equipment-hint">États Foundry (réservés au MJ). Ils s'appliquent aussi au Token.</p>
+        <div class="metro-sheet-status-grid">
+            {{#each statusEffects}}
+            <button type="button" class="metro-sheet-status {{#if active}}is-active{{/if}}" data-action="toggle-status-effect" data-status-id="{{id}}" aria-pressed="{{#if active}}true{{else}}false{{/if}}" {{#unless @root.isGM}}disabled{{/unless}}>
+                <img src="{{img}}" alt=""><span>{{name}}</span>
+            </button>
+            {{/each}}
+        </div>
+    </section>
+    </div>
+
+</div>

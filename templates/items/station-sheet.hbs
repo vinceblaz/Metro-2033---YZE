@@ -1,0 +1,631 @@
+<div class="metro-item-form metro-station-sheet-form">
+
+    <header class="metro-item-header">
+
+        <img
+            class="metro-item-image"
+            src="{{item.img}}"
+            alt="{{item.name}}"
+            data-action="editImage"
+            data-edit="img"
+            title="Cliquer pour modifier l'image"
+        />
+
+        <div class="metro-item-header-main">
+
+            <input
+                class="metro-item-name"
+                type="text"
+                name="name"
+                value="{{item.name}}"
+                placeholder="Nom de la Station"
+            />
+
+            <div class="metro-item-type">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Station
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="metro-item-scroll metro-station-scroll">
+
+        <!-- ================================================== -->
+        <!-- IDENTITÉ                                           -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Identité
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-station-general-grid">
+
+                    <!-- LIGNE -->
+
+                    <label class="metro-station-field">
+
+                        <span>
+                            Ligne
+                        </span>
+
+                        <input
+                            type="text"
+                            name="system.line"
+                            value="{{system.line}}"
+                            placeholder="Ex. Ligne Sokolnitcheskaya"
+                        />
+
+                    </label>
+
+
+                    <!-- POPULATION (NIVEAU) -->
+
+                    <label class="metro-station-field">
+
+                        <span>
+                            Population (niveau 0-6)
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.population.level"
+                            value="{{system.population.level}}"
+                            min="0"
+                            max="6"
+                            step="1"
+                        />
+
+                    </label>
+
+
+                    <!-- POPULATION (MEMBRES) -->
+
+                    <label class="metro-station-field">
+
+                        <span>
+                            Nombre de membres
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.population.members"
+                            value="{{system.population.members}}"
+                            min="0"
+                            step="1"
+                        />
+
+                    </label>
+
+
+                    <!-- ÉTAT -->
+
+                    <label class="metro-station-field">
+
+                        <span>
+                            État
+                        </span>
+
+                        <input
+                            type="text"
+                            name="system.status"
+                            value="{{system.status}}"
+                            list="metro-station-status-suggestions"
+                            placeholder="Prospère, En guerre..."
+                        />
+
+                        <datalist id="metro-station-status-suggestions">
+
+                            {{#each statusChoices}}
+
+                                <option value="{{this}}"></option>
+
+                            {{/each}}
+
+                        </datalist>
+
+                    </label>
+
+
+                    <!-- FACTION CONTRÔLANTE -->
+
+                    <label class="metro-station-field">
+
+                        <span>
+                            Faction contrôlante
+                        </span>
+
+                        <input
+                            type="text"
+                            name="system.controllingFaction"
+                            value="{{system.controllingFaction}}"
+                            placeholder="UUID de la Faction (vide = neutre)"
+                        />
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- RESSOURCES DE LA STATION                           -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-station-panel">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Ressources de la Station
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <p class="metro-station-resources-hint">
+                    Jauges 0 à 10 (règles p.218-219). Ces valeurs
+                    restent éditables manuellement, mais le Jet de
+                    Population hebdomadaire (Personnel de
+                    soutien, contrecoup, Moral) peut aussi être
+                    résolu automatiquement ci-dessous.
+                </p>
+
+                {{#if isGM}}
+
+                    <div class="metro-chat-actions metro-station-population-roll-action">
+
+                        <button
+                            type="button"
+                            class="metro-chat-button"
+                            data-action="open-station-population-launcher"
+                        >
+                            Jet de Population hebdomadaire
+                        </button>
+
+                    </div>
+
+                {{/if}}
+
+                <div class="metro-station-resources-table">
+
+                    <div class="metro-station-resources-row metro-station-resources-header">
+
+                        <span>Ressource</span>
+                        <span>Niveau (0-10)</span>
+                        <span>Personnel de soutien (0-3)</span>
+
+                    </div>
+
+                    {{#each resourceRows}}
+
+                        <div class="metro-station-resources-row">
+
+                            <span class="metro-station-resources-label">
+                                {{label}}
+                                <small>{{supportLabel}}</small>
+                            </span>
+
+                            <input
+                                type="number"
+                                name="system.resources.{{key}}"
+                                value="{{level}}"
+                                min="0"
+                                max="10"
+                                step="1"
+                            />
+
+                            <input
+                                type="number"
+                                name="system.supportPersonnel.{{key}}"
+                                value="{{supportPersonnel}}"
+                                min="0"
+                                max="3"
+                                step="1"
+                            />
+
+                        </div>
+
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- DESCRIPTION                                        -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-station-text-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Description
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.description"
+                    rows="6"
+                    placeholder="Histoire, ambiance..."
+                >{{system.description}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- MARCHÉ                                             -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-station-text-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Marché
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.market"
+                    rows="4"
+                    placeholder="Biens échangés, spécialités commerciales..."
+                >{{system.market}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- DÉFENSES                                           -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-station-text-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Défenses / Dangers
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.defenses"
+                    rows="4"
+                    placeholder="Fortifications, milices, menaces locales..."
+                >{{system.defenses}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- CONNEXIONS                                         -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-station-panel">
+
+            <div class="metro-item-section-header metro-item-section-header--with-action">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Connexions vers d'autres Stations
+                </span>
+
+                <button
+                    type="button"
+                    class="metro-station-list-add"
+                    data-action="addListRow"
+                    data-list="connections"
+                >
+                    + Ajouter
+                </button>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                {{#unless connections.length}}
+
+                    <p class="metro-station-list-empty">
+                        Aucune connexion renseignée.
+                    </p>
+
+                {{/unless}}
+
+                {{#each connections}}
+
+                    <div class="metro-station-list-row">
+
+                        <input
+                            type="text"
+                            name="system.connections.{{index}}.station"
+                            value="{{station}}"
+                            placeholder="UUID ou nom de la Station"
+                        />
+
+                        <input
+                            type="text"
+                            name="system.connections.{{index}}.dangerLevel"
+                            value="{{dangerLevel}}"
+                            list="metro-station-danger-suggestions"
+                            placeholder="Sûr, Risqué..."
+                        />
+
+                        <input
+                            type="text"
+                            name="system.connections.{{index}}.description"
+                            value="{{description}}"
+                            placeholder="Description"
+                        />
+
+                        <button
+                            type="button"
+                            class="metro-station-list-remove"
+                            data-action="removeListRow"
+                            data-list="connections"
+                            data-index="{{index}}"
+                            title="Retirer cette connexion"
+                        >
+                            ✕
+                        </button>
+
+                    </div>
+
+                {{/each}}
+
+                <datalist id="metro-station-danger-suggestions">
+
+                    {{#each dangerLevelChoices}}
+
+                        <option value="{{this}}"></option>
+
+                    {{/each}}
+
+                </datalist>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- PNJ NOTABLES                                       -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-station-panel">
+
+            <div class="metro-item-section-header metro-item-section-header--with-action">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    PNJ notables
+                </span>
+
+                <button
+                    type="button"
+                    class="metro-station-list-add"
+                    data-action="addListRow"
+                    data-list="notableNPCs"
+                >
+                    + Ajouter
+                </button>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                {{#unless notableNPCs.length}}
+
+                    <p class="metro-station-list-empty">
+                        Aucun PNJ notable renseigné.
+                    </p>
+
+                {{/unless}}
+
+                {{#each notableNPCs}}
+
+                    <div class="metro-station-list-row metro-station-list-row-npc">
+
+                        <div class="metro-station-list-actor-cell">
+
+                            <input
+                                type="hidden"
+                                name="system.notableNPCs.{{index}}.actor"
+                                value="{{actor}}"
+                            />
+
+                            {{#if resolvedActorName}}
+
+                                <div class="metro-station-list-actor-linked">
+
+                                    <span class="metro-station-list-actor-name">
+                                        {{resolvedActorName}}
+                                    </span>
+
+                                    <button
+                                        type="button"
+                                        class="metro-station-list-actor-unlink"
+                                        data-action="unlink-list-actor"
+                                        data-list="notableNPCs"
+                                        data-index="{{index}}"
+                                        title="Délier cet Acteur"
+                                    >
+                                        Changer
+                                    </button>
+
+                                </div>
+
+                            {{else}}
+
+                                <div
+                                    class="metro-list-actor-dropzone"
+                                    data-list="notableNPCs"
+                                    data-index="{{index}}"
+                                >
+                                    Glisser un Acteur ici
+                                </div>
+
+                            {{/if}}
+
+                        </div>
+
+                        <input
+                            type="text"
+                            name="system.notableNPCs.{{index}}.role"
+                            value="{{role}}"
+                            placeholder="Rôle (ex. Chef de station)"
+                        />
+
+                        <button
+                            type="button"
+                            class="metro-station-list-remove"
+                            data-action="removeListRow"
+                            data-list="notableNPCs"
+                            data-index="{{index}}"
+                            title="Retirer ce PNJ"
+                        >
+                            ✕
+                        </button>
+
+                    </div>
+
+                {{/each}}
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- NOTES MJ                                           -->
+        <!-- ================================================== -->
+
+        {{#if isGM}}
+
+            <section
+                class="metro-item-section
+                       metro-station-panel
+                       metro-gm-section"
+            >
+
+                <div class="metro-item-section-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Notes du MJ
+                    </span>
+
+                </div>
+
+                <div class="metro-item-section-body">
+
+                    <textarea
+                        name="system.gmNotes"
+                        rows="6"
+                        placeholder="Notes privées du MJ..."
+                    >{{system.gmNotes}}</textarea>
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+    </div>
+
+</div>

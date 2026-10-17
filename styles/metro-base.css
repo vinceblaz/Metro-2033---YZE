@@ -1,0 +1,250 @@
+/* =========================================================
+
+   MÉTRO 2033 — STYLES GÉNÉRAUX
+
+   ========================================================= */
+
+
+/* =========================================================
+   MÉTRO 2033 — POLITIQUE DE DÉFILEMENT
+   =========================================================
+   Toute feuille Métro doit offrir un défilement vertical
+   lorsque son contenu dépasse la hauteur de la fenêtre.
+
+   Par défaut : .window-content défile.
+   Les feuilles structurées avec header/footer fixes peuvent
+   déplacer le scroll vers un conteneur interne dédié.
+
+   Les Journaux Foundry standards conservent leur scroll natif.
+   Toute future JournalSheet personnalisée Métro doit recevoir
+   la classe .metro-journal-sheet.
+   ========================================================= */
+
+:is(.metro-actor-sheet, .metro-item-sheet, .metro-journal-sheet, .metro-initiative-preparation, .metro-action-preparation-dialog, .metro-character-creation-wizard, .metro-npc-creation-wizard, .metro-station-population-launcher-app, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog, .metro-protection-damage-allocation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-fire-launcher-dialog) .window-content {
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+}
+
+
+/* =========================================================
+   MÉTRO 2033 — CHROME DE FENÊTRE
+   =========================================================
+   Convention commune aux ActorSheets et ItemSheets Métro :
+   - en-tête rouge
+   - titre blanc
+   - contrôles Foundry blancs
+   ========================================================= */
+
+:is(.metro-actor-sheet, .metro-item-sheet, .metro-initiative-preparation, .metro-action-preparation-dialog, .metro-character-creation-wizard, .metro-npc-creation-wizard, .metro-station-population-launcher-app, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog, .metro-protection-damage-allocation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-fire-launcher-dialog) .window-header {
+    background: #7e1d1d;
+    color: #ffffff;
+
+    border-bottom: 1px solid #9a2a2a;
+}
+
+:is(.metro-actor-sheet, .metro-item-sheet, .metro-initiative-preparation, .metro-action-preparation-dialog, .metro-character-creation-wizard, .metro-npc-creation-wizard, .metro-station-population-launcher-app, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog, .metro-protection-damage-allocation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-fire-launcher-dialog)
+.window-header
+.window-title {
+    color: #ffffff;
+
+    font-weight: 700;
+}
+
+:is(.metro-actor-sheet, .metro-item-sheet, .metro-initiative-preparation, .metro-action-preparation-dialog, .metro-character-creation-wizard, .metro-npc-creation-wizard, .metro-station-population-launcher-app, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog, .metro-protection-damage-allocation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-fire-launcher-dialog)
+.window-header
+button,
+
+:is(.metro-actor-sheet, .metro-item-sheet, .metro-initiative-preparation, .metro-action-preparation-dialog, .metro-character-creation-wizard, .metro-npc-creation-wizard, .metro-station-population-launcher-app, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog, .metro-protection-damage-allocation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-fire-launcher-dialog)
+.window-header
+a {
+    color: #ffffff;
+}
+
+:is(.metro-actor-sheet, .metro-item-sheet, .metro-initiative-preparation, .metro-action-preparation-dialog, .metro-character-creation-wizard, .metro-npc-creation-wizard, .metro-station-population-launcher-app, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog, .metro-protection-damage-allocation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-fire-launcher-dialog)
+.window-header
+button:hover,
+
+:is(.metro-actor-sheet, .metro-item-sheet, .metro-initiative-preparation, .metro-action-preparation-dialog, .metro-character-creation-wizard, .metro-npc-creation-wizard, .metro-station-population-launcher-app, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog, .metro-protection-damage-allocation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-fire-launcher-dialog)
+.window-header
+a:hover {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* ---------------------------------------------------------
+
+   UI
+
+   --------------------------------------------------------- */
+
+/* #region UI en général */
+
+/* ---------------------------------------------------------
+   ÉTOILE ROUGE — ÉLÉMENT VISUEL COMMUN
+   --------------------------------------------------------- */
+
+:is(.metro-actor-sheet, .metro-item-sheet, .metro-initiative-preparation, .metro-action-preparation-dialog, .metro-character-creation-wizard, .metro-npc-creation-wizard, .metro-station-population-launcher-app, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog, .metro-protection-damage-allocation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-fire-launcher-dialog) .metro-red-star {
+    display: inline-block;
+
+    color: #9a2424;
+
+    font-size: 12px;
+
+    line-height: 1;
+
+    transform: translateY(-1px);
+
+    text-shadow:
+        0 1px 0 rgba(0, 0, 0, 0.95);
+}
+
+.metro-number-with-unit {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+.metro-number-with-unit input {
+
+    flex: 1 1 auto;
+
+    min-width: 0;
+
+}
+
+.metro-save-button {
+
+    width: 100%;
+
+}
+
+/* ---------------------------------------------------------
+
+   Textareas
+
+   --------------------------------------------------------- */
+
+.metro-talent-sheet textarea,
+
+.metro-item-sheet textarea {
+
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    resize: vertical;
+
+}
+
+/* #endregion */
+
+
+/* ---------------------------------------------------------
+
+    FORMULAIRES
+
+   --------------------------------------------------------- */
+
+/* #region FORMULAIRES en général */
+
+.metro-form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+
+        minmax(180px, 1fr)
+
+        minmax(120px, 220px);
+
+    gap:
+
+        8px
+
+        12px;
+
+    align-items: center;
+
+}
+
+.metro-form-grid input[type="text"],
+
+.metro-form-grid input[type="number"] {
+
+    width: 100%;
+
+}
+
+/* #endregion */
+
+
+/* =========================================================
+   MÉTRO 2033 — PIED DE FENÊTRE DialogV2 (Annuler / Confirmer)
+   =========================================================
+   Balisage Foundry v14 : <footer class="form-footer"> contenant
+   des <button type="submit" data-action="cancel|confirm">.
+   ========================================================= */
+
+:is(.metro-action-preparation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-fire-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-protection-damage-allocation-dialog, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog) .form-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+
+    margin-top: 10px;
+    padding-top: 10px;
+
+    border-top: 1px solid #49423e;
+}
+
+:is(.metro-action-preparation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-fire-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-protection-damage-allocation-dialog, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog) .form-footer button {
+    flex: 0 0 auto;
+
+    min-width: 96px;
+    padding: 5px 14px;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+    border-radius: 0;
+
+    background: #211f1e;
+
+    cursor: pointer;
+}
+
+:is(.metro-action-preparation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-fire-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-protection-damage-allocation-dialog, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog) .form-footer button:hover,
+:is(.metro-action-preparation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-fire-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-protection-damage-allocation-dialog, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog) .form-footer button:focus-visible {
+    border-color: #b52c2c;
+
+    box-shadow: none;
+}
+
+:is(.metro-action-preparation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-fire-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-protection-damage-allocation-dialog, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog) .form-footer button[data-action="confirm"] {
+    color: #f0e8de;
+
+    border-color: #7e1d1d;
+
+    background: #7e1d1d;
+}
+
+:is(.metro-action-preparation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-fire-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-protection-damage-allocation-dialog, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog) .form-footer button[data-action="confirm"]:hover,
+:is(.metro-action-preparation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-fire-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-protection-damage-allocation-dialog, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog) .form-footer button[data-action="confirm"]:focus-visible {
+    border-color: #b52c2c;
+
+    background: #962323;
+}
+
+:is(.metro-action-preparation-dialog, .metro-station-survival-launcher-dialog, .metro-terror-roll-launcher-dialog, .metro-coup-de-grace-launcher-dialog, .metro-asphyxiation-launcher-dialog, .metro-poison-launcher-dialog, .metro-illness-launcher-dialog, .metro-fire-launcher-dialog, .metro-afflictions-allocation-dialog, .metro-protection-damage-allocation-dialog, .metro-ranged-stunt-dialog, .metro-melee-stunt-dialog, .metro-melee-block-stunt-dialog) .form-footer button:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+}

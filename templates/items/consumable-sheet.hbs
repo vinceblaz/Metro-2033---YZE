@@ -1,0 +1,364 @@
+<div class="metro-item-form metro-consumable-sheet-form">
+
+    <header class="metro-item-header">
+
+        <img
+            class="metro-item-image"
+            src="{{item.img}}"
+            alt="{{item.name}}"
+            data-action="editImage"
+            data-edit="img"
+            title="Cliquer pour modifier l'image"
+        />
+
+        <div class="metro-item-header-main">
+
+            <input
+                class="metro-item-name"
+                type="text"
+                name="name"
+                value="{{item.name}}"
+                placeholder="Nom de l'objet"
+            />
+
+            <div class="metro-item-type">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Objet
+                </span>
+
+            </div>
+
+            <div class="metro-consumable-condition">
+
+                <span class="metro-consumable-condition-label">
+                    État
+                </span>
+
+                <strong
+                    class="metro-consumable-condition-value
+                        is-{{quantityState.id}}"
+                >
+                    {{quantityState.label}}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="metro-item-scroll metro-consumable-scroll">
+
+        <!-- ================================================== -->
+        <!-- CARACTÉRISTIQUES                                   -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Caractéristiques
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-consumable-general-grid">
+
+                    <!-- ENCOMBREMENT -->
+
+                    <label class="metro-consumable-field">
+
+                        <span>
+                            Encombrement
+                        </span>
+
+                        <select name="system.weight">
+
+                            {{#each encumbranceChoices}}
+
+                                <option
+                                    value="{{value}}"
+                                    {{#if selected}}selected{{/if}}
+                                >
+                                    {{label}}
+                                </option>
+
+                            {{/each}}
+
+                        </select>
+
+                    </label>
+
+
+                    <!-- UNITÉ -->
+
+                    <label class="metro-consumable-field">
+
+                        <span>
+                            Unité
+                        </span>
+
+                        <input
+                            type="text"
+                            name="system.unitLabel"
+                            value="{{system.unitLabel}}"
+                            placeholder="doses, charges, filtres..."
+                        />
+
+                    </label>
+
+                </div>
+
+
+                <div class="metro-consumable-price-grid">
+
+                    <!-- PRIX -->
+
+                    <label class="metro-consumable-field">
+
+                        <span>
+                            Prix (achat)
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.price.buy"
+                            value="{{system.price.buy}}"
+                            min="0"
+                            step="1"
+                        />
+
+                    </label>
+
+
+                    <label class="metro-consumable-field">
+
+                        <span>
+                            Prix (revente)
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.price.sell"
+                            value="{{system.price.sell}}"
+                            min="0"
+                            step="1"
+                        />
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- QUANTITÉ                                           -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-consumable-panel">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Quantité
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-consumable-quantity-grid">
+
+                    <!-- QUANTITÉ ACTUELLE -->
+
+                    <label class="metro-consumable-field">
+
+                        <span>
+                            Quantité actuelle
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.quantity.current"
+                            value="{{system.quantity.current}}"
+                            min="0"
+                            step="1"
+                        />
+
+                    </label>
+
+
+                    <!-- QUANTITÉ MAX -->
+
+                    <label class="metro-consumable-field">
+
+                        <span>
+                            Quantité d'origine
+                        </span>
+
+                        <input
+                            type="number"
+                            name="system.quantity.max"
+                            value="{{system.quantity.max}}"
+                            min="0"
+                            step="1"
+                        />
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- DESCRIPTION                                        -->
+        <!-- ================================================== -->
+
+        <section
+            class="metro-item-section
+                   metro-consumable-panel
+                   metro-consumable-text-section"
+        >
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Description
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.description"
+                    rows="6"
+                    placeholder="Description de l'objet..."
+                >{{system.description}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- EFFET / PARTICULARITÉS                             -->
+        <!-- ================================================== -->
+
+        <section
+            class="metro-item-section
+                   metro-consumable-panel
+                   metro-consumable-text-section"
+        >
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Effet / Particularités
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.special"
+                    rows="4"
+                    placeholder="Effet ou règle spéciale de cet objet..."
+                >{{system.special}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- NOTES MJ                                           -->
+        <!-- ================================================== -->
+
+        {{#if isGM}}
+
+            <section
+                class="metro-item-section
+                       metro-consumable-panel
+                       metro-gm-section"
+            >
+
+                <div class="metro-item-section-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Notes du MJ
+                    </span>
+
+                </div>
+
+                <div class="metro-item-section-body">
+
+                    <textarea
+                        name="system.gmNotes"
+                        rows="6"
+                        placeholder="Notes privées du MJ..."
+                    >{{system.gmNotes}}</textarea>
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+    </div>
+
+</div>

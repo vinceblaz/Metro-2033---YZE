@@ -1,0 +1,108 @@
+/* =========================================================
+   MÉTRO 2033 — HABILLAGE GRAPHIQUE (Journal, Paramètres, Pause)
+   Livré « best effort » : les sélecteurs ciblent les structures
+   Foundry v14 (non vérifiées sur une instance réelle).
+   ========================================================= */
+
+/* ---------- Journal : habillage limité à la partie droite (affichage des pages) ----------
+   La liste des pages (colonne de gauche) garde l'affichage standard de Foundry.
+   Le fond couvre toute la zone de droite, quelle que soit la longueur de la page. */
+.journal-sheet .journal-entry-content,
+.journal-sheet .journal-entry-pages {
+    
+   
+background: burlywood;
+border:#8a1c16;
+border-left-color: #8a1c16;
+border-right-color: #8a1c16;
+border-width: 25px;
+    
+}
+
+.journal-sheet .journal-entry-page {
+    background: none;
+    color: #2b2118;
+    font-family: 'Courier New', Courier, 'American Typewriter', Consolas, Monaco, monospace;
+}
+
+.journal-sheet .journal-entry-page .journal-page-content,
+.journal-sheet .journal-entry-page .journal-page-content p,
+.journal-sheet .journal-entry-page .journal-page-content li,
+.journal-sheet .journal-entry-page .journal-page-content td,
+.journal-sheet .journal-entry-page .journal-page-content blockquote {
+    font-family: 'Courier New', Courier, 'American Typewriter', Consolas, Monaco, monospace;
+}
+
+.journal-sheet .journal-entry-page :is(h1, h2, h3, h4, h5, h6),
+.journal-sheet .journal-entry-page > header :is(h1, h2, h3, h4, h5, h6, .page-title),
+.journal-sheet .journal-entry-page .page-title,
+.journal-sheet .journal-entry-page .journal-page-header * {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    color: #7e1d1d !important;
+    border-bottom-color: #9a2a2a;
+}
+
+/* ---------- Paramètres : logo sous le titre + menus compacts ---------- */
+.metro-settings-logo {
+    display: block;
+    width: 100%;
+    max-width: 220px;
+    height: 90px;
+    margin: 6px auto 10px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+}
+
+#settings :is(button, a.button, a[role="button"], a[href]:not(.metro-settings-logo)) {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.65rem !important;
+    line-height: 1.15;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 3px 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: linear-gradient(180deg, #4a2a22 0%, #2a1612 100%);
+    color: #e8dcc6;
+    border: 1px solid #7e1d1d;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+#settings :is(button, a.button, a[href]) *,
+#settings .button {
+    font-size: 0.65rem !important;
+}
+
+#settings :is(button, a[href]) :is(i, svg) {
+    font-size: 0.75rem !important;
+}
+
+#settings :is(button, a.button, a[href]):is(:hover, :focus-visible) {
+    background: linear-gradient(180deg, #8a1c16 0%, #5a100c 100%);
+    color: #fff;
+    box-shadow: 0 0 6px rgba(138, 28, 22, 0.8);
+}
+
+#settings :is(h2, h3, h4, .divider, .divider *) {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.02em !important;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+    line-height: 1.2;
+    color: #c9b48a;
+}
+
+/* ---------- Pause : icône engrenage + marteau ---------- */
+#pause img,
+#pause.paused img {
+    content: url("../ui/misc/pause-engrenage-marteau.webp");
+    width: 128px;
+    height: 128px;
+    object-fit: contain;
+    opacity: 0.9;
+}

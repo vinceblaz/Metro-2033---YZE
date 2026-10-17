@@ -1,0 +1,184 @@
+<div class="metro-poison-sheet-content">
+
+    <header class="metro-item-header">
+
+        <img
+            class="metro-item-image"
+            src="{{item.img}}"
+            alt="{{item.name}}"
+            data-action="editImage"
+            data-edit="img"
+        />
+
+        <div class="metro-item-header-main">
+
+            <input
+                class="metro-item-name"
+                type="text"
+                name="name"
+                value="{{item.name}}"
+                {{#unless editable}}disabled{{/unless}}
+            />
+
+        <div class="metro-item-type">
+
+            <span
+                class="metro-red-star"
+                aria-hidden="true"
+            >
+                ★
+            </span>
+
+            <span>
+                Poison
+            </span>
+
+        </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="metro-item-scroll">
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Données du poison
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-form-grid">
+
+                    <label>
+                        Type d'effet
+                    </label>
+
+                    <select
+                        name="system.effectType"
+                        {{#unless editable}}disabled{{/unless}}
+                    >
+                        {{#each effectTypeChoices}}
+                            <option
+                                value="{{this.key}}"
+                                {{#if this.selected}}selected{{/if}}
+                            >
+                                {{this.label}}
+                            </option>
+                        {{/each}}
+                    </select>
+
+
+                    <label>
+                        Toxicité
+                    </label>
+
+                    <input
+                        type="number"
+                        name="system.toxicity"
+                        value="{{system.toxicity}}"
+                        min="1"
+                        step="1"
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+
+
+                    <label>
+                        Source
+                    </label>
+
+                    <input
+                        type="text"
+                        name="system.sourceLabel"
+                        value="{{system.sourceLabel}}"
+                        placeholder="Ex. Morsure de Vodianoï"
+                        {{#unless editable}}disabled{{/unless}}
+                    />
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        {{#if selectedEffectType}}
+
+            <section class="metro-item-section">
+
+                <div class="metro-item-section-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Effets (livre, p.205)
+                    </span>
+
+                </div>
+
+                <div class="metro-item-section-body">
+
+                    <p>
+                        <strong>Effets complets</strong>
+                        (cet Item n'existe que si le poison l'a
+                        emporté — dégâts par round en cours) :
+                        {{selectedEffectType.fullEffect}}
+                    </p>
+
+                    <p>
+                        <strong>Effets réduits</strong>
+                        (pour mémoire — déjà résolus avant la
+                        création de cet Item si applicables) :
+                        {{selectedEffectType.reducedEffect}}
+                    </p>
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+
+        {{#if isEmbedded}}
+
+            <section class="metro-item-section">
+
+                <div class="metro-item-section-body">
+
+                    <p class="metro-item-helper-text">
+                        Tant que cet Item reste embarqué sur le
+                        personnage, 1 point de dégâts est infligé
+                        automatiquement à chaque round de combat
+                        (jusqu'à ce que l'attribut soit Brisé).
+                        Supprimez cet Item pour mettre fin
+                        manuellement au poison (fin du tour
+                        narratif, antidote...).
+                    </p>
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+    </div>
+
+</div>

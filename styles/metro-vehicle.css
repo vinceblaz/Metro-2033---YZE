@@ -1,0 +1,260 @@
+/* ============================================================
+ * METRO 2033 — FICHE VÉHICULE
+ *
+ * Fiche volontairement allégée (pas d'onglets), pensée pour
+ * un remplissage rapide côté MJ, sur le même esprit que les
+ * fiches PNJ/Créature (styles/metro-npc-creature.css).
+ * ============================================================ */
+
+
+/* #region EN-TÊTE */
+
+.metro-vehicle-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px 12px;
+
+    border-bottom: 1px solid #4a403c;
+}
+
+.metro-vehicle-portrait img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+
+    border: 1px solid #7e1d1d;
+    cursor: pointer;
+}
+
+.metro-vehicle-identity {
+    display: grid;
+    gap: 6px;
+
+    flex: 1;
+}
+
+.metro-vehicle-name {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.metro-vehicle-type {
+    color: #a9a19a;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.metro-vehicle-name,
+.metro-vehicle-type {
+    padding: 3px 6px;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    background: #1a1817;
+}
+
+/* #endregion */
+
+
+/* #region SECTIONS COMMUNES */
+
+.metro-vehicle-section {
+    padding: 8px 12px;
+
+    border-bottom: 1px solid #33302d;
+}
+
+.metro-vehicle-section-title {
+    margin-bottom: 6px;
+
+    color: #b52c2c;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.metro-vehicle-scale-hint,
+.metro-vehicle-equipment-hint,
+.metro-vehicle-protection-hint {
+    margin: 0 0 6px;
+
+    color: #a9a19a;
+    font-size: 10px;
+    font-style: italic;
+}
+
+/* #endregion */
+
+
+/* #region CARACTÉRISTIQUES */
+
+.metro-vehicle-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    align-items: end;
+}
+
+.metro-vehicle-stat-field {
+    display: grid;
+    gap: 3px;
+
+    font-size: 11px;
+}
+
+.metro-vehicle-stat-field input {
+    padding: 3px 6px;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    background: #1a1817;
+}
+
+.metro-vehicle-stat-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    grid-column: 1 / -1;
+
+    font-size: 11px;
+}
+
+.metro-vehicle-integrity-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.metro-vehicle-integrity-row input {
+    width: 48px;
+
+    text-align: center;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    background: #1a1817;
+}
+
+.metro-vehicle-integrity-separator {
+    color: #a9a19a;
+}
+
+/* #endregion */
+
+
+/* #region OCCUPANTS */
+
+.metro-vehicle-occupant-block {
+    margin-bottom: 8px;
+}
+
+.metro-vehicle-item-list-label {
+    margin-top: 6px;
+    margin-bottom: 3px;
+
+    color: #a9a19a;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.metro-vehicle-occupant-dropzone {
+    min-height: 36px;
+
+    padding: 6px;
+
+    border: 1px dashed #443b38;
+
+    background: #1a1817;
+}
+
+.metro-vehicle-item-list {
+    display: grid;
+    gap: 4px;
+}
+
+.metro-vehicle-occupant {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    padding: 4px 6px;
+
+    border: 1px solid #33302d;
+
+    background: #211f1e;
+}
+
+.metro-vehicle-occupant-name {
+    flex: 1;
+
+    font-size: 11px;
+}
+
+.metro-vehicle-occupant button {
+    padding: 2px 7px;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    background: #211f1e;
+
+    cursor: pointer;
+}
+
+.metro-vehicle-occupant button:hover {
+    border-color: #b52c2c;
+}
+
+.metro-vehicle-empty {
+    margin: 0;
+
+    color: #6f6a64;
+    font-size: 10px;
+    font-style: italic;
+}
+
+/* #endregion */
+
+
+/* #region NOTES */
+
+.metro-vehicle-section textarea {
+    display: block;
+    width: 100%;
+    min-height: 50px;
+    box-sizing: border-box;
+    resize: vertical;
+
+    margin-bottom: 6px;
+
+    padding: 5px 7px;
+
+    color: #d8d3ca;
+
+    border: 1px solid #443b38;
+
+    background: #1a1817;
+}
+
+.metro-vehicle-gm-notes.metro-gm-section {
+    border: 1px solid #5e2424;
+    border-top: 2px solid #7e1d1d;
+    border-left: 3px solid #7e1d1d;
+
+    background: rgba(126, 29, 29, 0.08);
+}
+
+/* #endregion */

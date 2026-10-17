@@ -1,0 +1,445 @@
+<div class="metro-item-form metro-faction-sheet-form">
+
+    <header class="metro-item-header">
+
+        <img
+            class="metro-item-image"
+            src="{{item.img}}"
+            alt="{{item.name}}"
+            data-action="editImage"
+            data-edit="img"
+            title="Cliquer pour modifier l'image"
+        />
+
+        <div class="metro-item-header-main">
+
+            <input
+                class="metro-item-name"
+                type="text"
+                name="name"
+                value="{{item.name}}"
+                placeholder="Nom de la Faction"
+            />
+
+            <div class="metro-item-type">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Faction
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="metro-item-scroll metro-faction-scroll">
+
+        <!-- ================================================== -->
+        <!-- IDENTITÉ                                           -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Identité
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <div class="metro-faction-general-grid">
+
+                    <!-- IDÉOLOGIE -->
+
+                    <label class="metro-faction-field">
+
+                        <span>
+                            Idéologie
+                        </span>
+
+                        <input
+                            type="text"
+                            name="system.ideology"
+                            value="{{system.ideology}}"
+                            list="metro-faction-ideology-suggestions"
+                            placeholder="Militariste, Communiste..."
+                        />
+
+                        <datalist id="metro-faction-ideology-suggestions">
+
+                            {{#each ideologyChoices}}
+
+                                <option value="{{this}}"></option>
+
+                            {{/each}}
+
+                        </datalist>
+
+                    </label>
+
+
+                    <!-- CHEF -->
+
+                    <label class="metro-faction-field">
+
+                        <span>
+                            Chef
+                        </span>
+
+                        <input
+                            type="text"
+                            name="system.leader"
+                            value="{{system.leader}}"
+                            placeholder="Nom, ou UUID d'un Acteur"
+                        />
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- DESCRIPTION                                        -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-faction-text-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Description
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.description"
+                    rows="6"
+                    placeholder="Histoire, doctrine, mode de vie..."
+                >{{system.description}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- RESSOURCES                                         -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-faction-text-section">
+
+            <div class="metro-item-section-header">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Ressources
+                </span>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                <textarea
+                    name="system.resources"
+                    rows="4"
+                    placeholder="Ce que la Faction produit, contrôle ou échange..."
+                >{{system.resources}}</textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- RELATIONS AVEC LES AUTRES FACTIONS                 -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-faction-panel">
+
+            <div class="metro-item-section-header metro-item-section-header--with-action">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Relations avec les autres Factions
+                </span>
+
+                <button
+                    type="button"
+                    class="metro-faction-list-add"
+                    data-action="addListRow"
+                    data-list="relations"
+                >
+                    + Ajouter
+                </button>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                {{#unless relations.length}}
+
+                    <p class="metro-faction-list-empty">
+                        Aucune relation renseignée.
+                    </p>
+
+                {{/unless}}
+
+                {{#each relations}}
+
+                    <div class="metro-faction-list-row">
+
+                        <input
+                            type="text"
+                            name="system.relations.{{index}}.faction"
+                            value="{{faction}}"
+                            placeholder="UUID de la Faction"
+                        />
+
+                        <input
+                            type="text"
+                            name="system.relations.{{index}}.attitude"
+                            value="{{attitude}}"
+                            list="metro-faction-attitude-suggestions"
+                            placeholder="Alliée, Hostile..."
+                        />
+
+                        <input
+                            type="text"
+                            name="system.relations.{{index}}.description"
+                            value="{{description}}"
+                            placeholder="Description"
+                        />
+
+                        <button
+                            type="button"
+                            class="metro-faction-list-remove"
+                            data-action="removeListRow"
+                            data-list="relations"
+                            data-index="{{index}}"
+                            title="Retirer cette relation"
+                        >
+                            ✕
+                        </button>
+
+                    </div>
+
+                {{/each}}
+
+                <datalist id="metro-faction-attitude-suggestions">
+
+                    {{#each attitudeChoices}}
+
+                        <option value="{{this}}"></option>
+
+                    {{/each}}
+
+                </datalist>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- MEMBRES NOTABLES                                   -->
+        <!-- ================================================== -->
+
+        <section class="metro-item-section metro-faction-panel">
+
+            <div class="metro-item-section-header metro-item-section-header--with-action">
+
+                <span
+                    class="metro-red-star"
+                    aria-hidden="true"
+                >
+                    ★
+                </span>
+
+                <span>
+                    Membres notables
+                </span>
+
+                <button
+                    type="button"
+                    class="metro-faction-list-add"
+                    data-action="addListRow"
+                    data-list="notableMembers"
+                >
+                    + Ajouter
+                </button>
+
+            </div>
+
+            <div class="metro-item-section-body">
+
+                {{#unless notableMembers.length}}
+
+                    <p class="metro-faction-list-empty">
+                        Aucun membre notable renseigné.
+                    </p>
+
+                {{/unless}}
+
+                {{#each notableMembers}}
+
+                    <div class="metro-faction-list-row metro-faction-list-row-member">
+
+                        <div class="metro-faction-list-actor-cell">
+
+                            <input
+                                type="hidden"
+                                name="system.notableMembers.{{index}}.actor"
+                                value="{{actor}}"
+                            />
+
+                            {{#if resolvedActorName}}
+
+                                <div class="metro-faction-list-actor-linked">
+
+                                    <span class="metro-faction-list-actor-name">
+                                        {{resolvedActorName}}
+                                    </span>
+
+                                    <button
+                                        type="button"
+                                        class="metro-faction-list-actor-unlink"
+                                        data-action="unlink-list-actor"
+                                        data-list="notableMembers"
+                                        data-index="{{index}}"
+                                        title="Délier cet Acteur"
+                                    >
+                                        Changer
+                                    </button>
+
+                                </div>
+
+                            {{else}}
+
+                                <div
+                                    class="metro-list-actor-dropzone"
+                                    data-list="notableMembers"
+                                    data-index="{{index}}"
+                                >
+                                    Glisser un Acteur ici
+                                </div>
+
+                            {{/if}}
+
+                        </div>
+
+                        <input
+                            type="text"
+                            name="system.notableMembers.{{index}}.role"
+                            value="{{role}}"
+                            placeholder="Rôle (ex. Commandant de la garnison)"
+                        />
+
+                        <button
+                            type="button"
+                            class="metro-faction-list-remove"
+                            data-action="removeListRow"
+                            data-list="notableMembers"
+                            data-index="{{index}}"
+                            title="Retirer ce membre"
+                        >
+                            ✕
+                        </button>
+
+                    </div>
+
+                {{/each}}
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================== -->
+        <!-- NOTES MJ                                           -->
+        <!-- ================================================== -->
+
+        {{#if isGM}}
+
+            <section
+                class="metro-item-section
+                       metro-faction-panel
+                       metro-gm-section"
+            >
+
+                <div class="metro-item-section-header">
+
+                    <span
+                        class="metro-red-star"
+                        aria-hidden="true"
+                    >
+                        ★
+                    </span>
+
+                    <span>
+                        Notes du MJ
+                    </span>
+
+                </div>
+
+                <div class="metro-item-section-body">
+
+                    <textarea
+                        name="system.gmNotes"
+                        rows="6"
+                        placeholder="Notes privées du MJ..."
+                    >{{system.gmNotes}}</textarea>
+
+                </div>
+
+            </section>
+
+        {{/if}}
+
+    </div>
+
+</div>

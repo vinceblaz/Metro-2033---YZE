@@ -1,0 +1,242 @@
+<div class="metro-chat-card metro-station-population-recap">
+
+    <header class="metro-chat-header">
+        <span class="metro-yze-roll-star" aria-hidden="true">★</span>
+        <span class="metro-yze-roll-title">
+            Jet de Population hebdomadaire — {{stationName}}
+        </span>
+    </header>
+
+
+    {{#if supportPersonnelRows}}
+
+        <section class="metro-chat-section">
+
+            <div class="metro-chat-section-title">
+                PERSONNEL DE SOUTIEN (avant le jet de Population)
+            </div>
+
+            {{#each supportPersonnelRows}}
+
+                <p>
+                    {{label}} :
+                </p>
+
+                <div class="metro-yze-roll-dice-list">
+                    {{#each diceSquares}}
+                        <span
+                            class="
+                                metro-yze-die
+                                {{#if success}}metro-yze-die--success{{/if}}
+                                {{#if one}}metro-yze-die--station-one{{/if}}
+                            "
+                        >
+                            {{value}}
+                        </span>
+                    {{/each}}
+                </div>
+
+                <p>
+                    ({{successes}} réussite(s), {{ones}} échec(s))
+                    {{#if personnelDied}}
+                        — <strong>le personnel de soutien meurt</strong>
+                        (2 échecs ou plus) : aucun gain cette semaine,
+                        même en cas de réussite.
+                    {{else}}
+                        {{#if resourceGain}}
+                            → <strong>+{{resourceGain}} {{label}}</strong>.
+                        {{else}}
+                            → aucun gain cette semaine.
+                        {{/if}}
+                    {{/if}}
+                </p>
+
+            {{/each}}
+
+        </section>
+
+    {{/if}}
+
+
+    <section class="metro-chat-section">
+
+        <div class="metro-chat-section-title">
+            JET DE POPULATION
+        </div>
+
+        <p>
+            Pool de base (niveau de Population) :
+        </p>
+
+        <div class="metro-yze-roll-dice-list">
+            {{#each populationDiceSummary.baseDiceSquares}}
+                <span
+                    class="
+                        metro-yze-die
+                        {{#if success}}metro-yze-die--success{{/if}}
+                        {{#if one}}metro-yze-die--station-one{{/if}}
+                    "
+                >
+                    {{value}}
+                </span>
+            {{/each}}
+        </div>
+
+        <p>
+            → {{populationDiceSummary.baseOnes}} échec(s) et
+            {{populationDiceSummary.baseSixes}} réussite(s).
+        </p>
+
+        {{#if populationDiceSummary.stressDiceCount}}
+
+            <p>
+                Dés de Stress supplémentaires :
+            </p>
+
+            <div class="metro-yze-roll-dice-list">
+                {{#each populationDiceSummary.stressDiceSquares}}
+                    <span
+                        class="
+                            metro-yze-die
+                            metro-yze-die--stress
+                            {{#if one}}metro-yze-die--station-one{{/if}}
+                        "
+                    >
+                        {{value}}
+                    </span>
+                {{/each}}
+            </div>
+
+            <p>
+                ({{populationDiceSummary.zeroResourceStressDiceCount}}
+                dû(s) à des ressources à 0 avant ce jet)
+                → {{populationDiceSummary.stressOnes}} échec(s) compté(s)
+                (leurs éventuelles réussites n'ont aucun effet).
+            </p>
+
+        {{else}}
+
+            <p>
+                Dés de Stress supplémentaires : aucun (aucune ressource
+                n'était à 0 avant ce jet).
+            </p>
+
+        {{/if}}
+
+        {{#if sixChoiceRows}}
+
+            <p>
+                Ressource(s) augmentée(s) grâce aux "6" du pool de base :
+                {{#each sixChoiceRows}}
+                    {{label}}{{#unless @last}}, {{/unless}}
+                {{/each}}.
+            </p>
+
+        {{/if}}
+
+    </section>
+
+
+    <section class="metro-chat-section">
+
+        <div class="metro-chat-section-title">
+            RESSOURCES DE LA STATION (avant → après, Personnel de soutien inclus)
+        </div>
+
+        {{#each resourceRows}}
+
+            <p class="metro-station-population-resource-line">
+                {{label}} : {{before}} → {{after}}
+                {{#if delta}}
+                    ({{#if (gt delta 0)}}+{{/if}}{{delta}})
+                {{/if}}
+            </p>
+
+        {{/each}}
+
+    </section>
+
+
+    {{#if hasContrecoup}}
+
+        <section class="metro-chat-section metro-station-population-contrecoup">
+
+            <div class="metro-chat-section-title">
+                CONTRECOUP
+            </div>
+
+            <p>
+                Une ou plusieurs ressources sont tombées sous 0 : pour
+                chaque point manquant, le MJ lance 1 dé, et le résultat
+                est retiré du nombre de membres de la communauté.
+            </p>
+
+            {{#each contrecoupRows}}
+
+                <p>
+                    {{label}} : débordement de {{overflow}} point(s) →
+                </p>
+
+                <div class="metro-yze-roll-dice-list">
+                    {{#each diceSquares}}
+                        <span class="metro-yze-die">
+                            {{value}}
+                        </span>
+                    {{/each}}
+                </div>
+
+                <p>
+                    → {{loss}} membre(s) perdu(s).
+                </p>
+
+            {{/each}}
+
+            <p>
+                <strong>
+                    Total : {{totalMembersLost}} membre(s) perdu(s)
+                </strong>
+                ({{membersBefore}} → {{membersAfter}} membres).
+            </p>
+
+            {{#if levelChanged}}
+                <p>
+                    <strong>
+                        Le niveau de Population change :
+                        {{levelBefore}} → {{levelAfter}}.
+                    </strong>
+                </p>
+            {{/if}}
+
+            {{#if nextWeekMoralStressDice}}
+                <p>
+                    {{nextWeekMoralStressDice}} dé(s) de Stress de Moral
+                    s'ajouteront au PROCHAIN jet de Population, à cause
+                    de ces pertes.
+                </p>
+            {{/if}}
+
+        </section>
+
+    {{/if}}
+
+
+    {{#if personnelLostRows}}
+
+        <section class="metro-chat-section">
+
+            <div class="metro-chat-section-title">
+                PERSONNEL DE SOUTIEN PERDU
+            </div>
+
+            <p>
+                {{#each personnelLostRows}}
+                    {{label}}{{#unless @last}}, {{/unless}}
+                {{/each}}
+                — il faudra lui/leur trouver un remplaçant.
+            </p>
+
+        </section>
+
+    {{/if}}
+
+</div>
