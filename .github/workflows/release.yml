@@ -38,6 +38,9 @@ jobs:
       - name: Archive
         run: bash scripts/build-archive.sh dist
 
+        
+        
+
       - name: Joindre à la Release
         uses: softprops/action-gh-release@v2
         with:
