@@ -8,22 +8,28 @@
    Fond parchemin + bordure de papier déchiré sur chaque page en lecture.
    Les pages en cours d'édition (éditeur ouvert) et la liste des pages à gauche
    gardent l'affichage standard de Foundry. */
-.journal-sheet .journal-entry-page:not(:has(prose-mirror, .editor, .editor-content[contenteditable="true"], textarea, form)) {
-
-
+/* Le cadre et le fond sont posés sur la zone de droite (fixe) et non sur le
+   texte : ils occupent toute la fenêtre, le texte défile par-dessus. */
+.journal-sheet:not(:has(prose-mirror, .editor, .editor-content[contenteditable="true"], textarea)) .journal-entry-pages {
+    background-image: url("../ui/backgrounds/hook-background.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
     border: 40px solid transparent;
-    border-image-source: url("../ui/backgrounds/hook-borderAndBackground.webp");
-    border-image-slice: fill  30;
-    border-image-width: 40px;
-    
-    padding: 10px;
-    margin-bottom: 12px;
+    border-image-source: url("../ui/borders/hook-border.webp");
+    border-image-slice: 40;
+    border-image-width: 50px;
+    border-image-repeat: stretch;
+    box-sizing: border-box;
+    padding : 20px;
+}
+
+.journal-sheet:not(:has(prose-mirror, .editor, .editor-content[contenteditable="true"], textarea)) .journal-entry-page {
+    background: none;
+    border: 0;
+    padding: 0 6px;
     color: #2b2118;
     font-family: "Courier New", Courier, monospace;
-
-
-
-
 }
 
 .journal-sheet .journal-entry-page .journal-page-content,
