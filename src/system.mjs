@@ -255,6 +255,7 @@ import {
     seedTalentArchetypeCompendium
 } from "./foundry/setup/seed-talent-archetype-compendium.mjs";
 
+import { registerMetroFonts } from "./foundry/ui/metro-fonts.mjs";
 import { registerSettingsLogoHook } from "./foundry/ui/metro-settings-logo.mjs";
 
 import {
@@ -964,6 +965,7 @@ Hooks.once("ready",
         registerComposureHooks();
         registerBrokenAttributeHooks();
         registerSettingsLogoHook();
+        registerMetroFonts();
 
         registerTalentNameHooks();
 

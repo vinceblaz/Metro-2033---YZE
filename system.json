@@ -42,6 +42,7 @@
     "styles/metro-npc-creation-wizard.css",
     "styles/metro-stunt-dialogs.css",
     "styles/metro-vehicle.css",
+    "styles/metro-journal.css",
     "styles/metro-journal-settings.css"
   ],
   "languages": [

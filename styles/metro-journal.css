@@ -1,0 +1,166 @@
+/* =========================================================
+   MÉTRO 2033 — STYLE DES PAGES DE JOURNAL
+   Livré « best effort » : sélecteurs Foundry v14 non vérifiés
+   sur une instance réelle. S'applique aux pages affichées, pas
+   à la saisie ; la liste des pages (gauche) reste standard.
+   ========================================================= */
+
+/* ---------- Polices (dossier fonts/ du système) ---------- */
+@font-face {
+    font-family: "Special Elite";
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: local("Special Elite"),
+         url("../fonts/SpecialElite-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Courier Prime";
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: local("Courier Prime"),
+         url("../fonts/CourierPrime-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Courier Prime";
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+    src: local("Courier Prime Italic"),
+         url("../fonts/CourierPrime-Italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Courier Prime";
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: local("Courier Prime Bold"),
+         url("../fonts/CourierPrime-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Courier Prime";
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+    src: local("Courier Prime Bold Italic"),
+         url("../fonts/CourierPrime-BoldItalic.ttf") format("truetype");
+}
+
+/* ---------- Variables de la charte ---------- */
+.journal-sheet {
+    --metro-journal-red: #7e1d1d;
+    --metro-journal-red-line: #9a2a2a;
+    --metro-journal-star: #9a2424;
+    --metro-journal-black: #1c1a17;
+    --metro-journal-ink: #2b2118;
+    --metro-journal-title-font: "Special Elite", "Courier New", monospace;
+    --metro-journal-heading-font: "Courier Prime", "Special Elite", "Courier New", monospace;
+    --metro-journal-body-font: "Courier New", Courier, monospace;
+}
+
+/* ---------- Cadre et fond (zone de droite, fixe) ---------- */
+.journal-sheet:not(:has(prose-mirror, .editor, .editor-content[contenteditable="true"], textarea)) .journal-entry-pages {
+    background-image: url("../ui/backgrounds/parchment-texture.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 40px solid transparent;
+    border-image-source: url("../ui/borders/hook-border.webp");
+    border-image-slice: 50;
+    border-image-width: 40px;
+    border-image-repeat: stretch;
+    box-sizing: border-box;
+}
+
+.journal-sheet:not(:has(prose-mirror, .editor, .editor-content[contenteditable="true"], textarea)) .journal-entry-page {
+    background: none;
+    border: 0;
+    padding: 0 6px 12px;
+    color: var(--metro-journal-ink);
+    font-family: var(--metro-journal-body-font);
+}
+
+/* ---------- Texte courant ---------- */
+.journal-sheet .journal-entry-page .journal-page-content,
+.journal-sheet .journal-entry-page .journal-page-content :is(p, li, td, th, blockquote) {
+    font-family: var(--metro-journal-body-font);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--metro-journal-ink);
+}
+
+/* ---------- Nom de la page : Special Elite, rouge ---------- */
+.journal-sheet .journal-entry-page > header :is(h1, h2, h3, .page-title),
+.journal-sheet .journal-entry-page .page-title {
+    font-family: var(--metro-journal-title-font);
+    font-size: 2.1rem;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--metro-journal-red) !important;
+    border: 0;
+    margin: 0 0 0.6rem;
+}
+
+/* ---------- Titre 1 : Special Elite, rouge, ligne rouge ---------- */
+.journal-sheet .journal-entry-page .journal-page-content h1 {
+    font-family: var(--metro-journal-title-font);
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--metro-journal-red);
+    border-bottom: 2px solid var(--metro-journal-red-line);
+    padding-bottom: 0.15em;
+    margin: 1.2em 0 0.5em;
+}
+
+/* ---------- Titre 2 : étoile rouge, Courier Prime noir, ligne rouge ---------- */
+.journal-sheet .journal-entry-page .journal-page-content h2 {
+    font-family: var(--metro-journal-heading-font);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--metro-journal-black);
+    border-bottom: 1.5px solid var(--metro-journal-red-line);
+    padding-bottom: 0.15em;
+    margin: 1.1em 0 0.45em;
+}
+
+.journal-sheet .journal-entry-page .journal-page-content h2::before {
+    content: "★";
+    color: var(--metro-journal-star);
+    margin-right: 0.45em;
+    font-size: 0.85em;
+    vertical-align: 0.05em;
+}
+
+/* ---------- Titre 3 : Courier Prime, ligne rouge fine ---------- */
+.journal-sheet .journal-entry-page .journal-page-content h3 {
+    font-family: var(--metro-journal-heading-font);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--metro-journal-black);
+    border-bottom: 1px solid var(--metro-journal-red-line);
+    padding-bottom: 0.1em;
+    margin: 1em 0 0.4em;
+}
+
+/* ---------- Titre 4 : Courier Prime, sans ligne ---------- */
+.journal-sheet .journal-entry-page .journal-page-content h4 {
+    font-family: var(--metro-journal-heading-font);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--metro-journal-black);
+    border: 0;
+    margin: 0.9em 0 0.35em;
+}
+
+/* Titres 5 et 6 : discrets, même famille */
+.journal-sheet .journal-entry-page .journal-page-content :is(h5, h6) {
+    font-family: var(--metro-journal-heading-font);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--metro-journal-black);
+    border: 0;
+}

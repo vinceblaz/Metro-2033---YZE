@@ -1,54 +1,8 @@
 /* =========================================================
-   MÉTRO 2033 — HABILLAGE GRAPHIQUE (Journal, Paramètres, Pause)
+   MÉTRO 2033 — HABILLAGE GRAPHIQUE (Paramètres, Pause)
    Livré « best effort » : les sélecteurs ciblent les structures
    Foundry v14 (non vérifiées sur une instance réelle).
    ========================================================= */
-
-/* ---------- Journal : pages affichées (pas la saisie) ----------
-   Fond parchemin + bordure de papier déchiré sur chaque page en lecture.
-   Les pages en cours d'édition (éditeur ouvert) et la liste des pages à gauche
-   gardent l'affichage standard de Foundry. */
-/* Le cadre et le fond sont posés sur la zone de droite (fixe) et non sur le
-   texte : ils occupent toute la fenêtre, le texte défile par-dessus. */
-.journal-sheet:not(:has(prose-mirror, .editor, .editor-content[contenteditable="true"], textarea)) .journal-entry-pages {
-    background-image: url("../ui/backgrounds/hook-background.webp");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    border: 40px solid transparent;
-    border-image-source: url("../ui/borders/hook-border.webp");
-    border-image-slice: 40;
-    border-image-width: 50px;
-    border-image-repeat: stretch;
-    box-sizing: border-box;
-    padding : 20px;
-}
-
-.journal-sheet:not(:has(prose-mirror, .editor, .editor-content[contenteditable="true"], textarea)) .journal-entry-page {
-    background: none;
-    border: 0;
-    padding: 0 6px;
-    color: #2b2118;
-    font-family: "Courier New", Courier, monospace;
-}
-
-.journal-sheet .journal-entry-page .journal-page-content,
-.journal-sheet .journal-entry-page .journal-page-content p,
-.journal-sheet .journal-entry-page .journal-page-content li,
-.journal-sheet .journal-entry-page .journal-page-content td,
-.journal-sheet .journal-entry-page .journal-page-content blockquote {
-    font-family: "Courier New", Courier, monospace;
-}
-
-.journal-sheet .journal-entry-page :is(h1, h2, h3, h4, h5, h6),
-.journal-sheet .journal-entry-page > header :is(h1, h2, h3, h4, h5, h6, .page-title),
-.journal-sheet .journal-entry-page .page-title,
-.journal-sheet .journal-entry-page .journal-page-header * {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 700;
-    color: #7e1d1d !important;
-    border-bottom-color: #9a2a2a;
-}
 
 /* ---------- Paramètres : logo sous le titre + menus compacts ---------- */
 .metro-settings-logo {
