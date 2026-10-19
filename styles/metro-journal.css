@@ -59,19 +59,19 @@
     --metro-journal-black: #1c1a17;
     --metro-journal-ink: #2b2118;
     --metro-journal-title-font: "Special Elite", "Courier New", monospace;
-    --metro-journal-heading-font: "Courier Prime", "Special Elite", "Courier New", monospace;
-    --metro-journal-body-font: "Courier New", Courier, monospace;
+    --metro-journal-heading-font: "Special Elite", "Courier New", monospace;
+    --metro-journal-body-font: "Courier Prime", "Courier New", Courier, monospace;
 }
 
 /* ---------- Cadre et fond (zone de droite, fixe) ---------- */
 .journal-sheet:not(:has(prose-mirror, .editor, .editor-content[contenteditable="true"], textarea)) .journal-entry-pages {
-    background-image: url("../ui/backgrounds/parchment-texture.webp");
+    background-image: url("../ui/backgrounds/hook-background.webp");
     background-size: cover;
     background-repeat: no-repeat;
-    border: 40px solid transparent;
+    border: 50px solid transparent;
     border-image-source: url("../ui/borders/hook-border.webp");
-    border-image-slice: 50;
-    border-image-width: 40px;
+    border-image-slice: 35;
+    border-image-width: 50px;
     border-image-repeat: stretch;
     box-sizing: border-box;
 }
@@ -93,14 +93,14 @@
     color: var(--metro-journal-ink);
 }
 
-/* ---------- Nom de la page : Special Elite, rouge ---------- */
-.journal-sheet .journal-entry-page > header :is(h1, h2, h3, .page-title),
-.journal-sheet .journal-entry-page .page-title {
-    font-family: var(--metro-journal-title-font);
+/* ---------- Nom de la page : Special Elite, noir ---------- */
+.journal-sheet .journal-entry-page :is(header, .journal-page-header) :is(h1, h2, h3, h4, .page-title, .title),
+.journal-sheet .journal-entry-page > :is(h1, .page-title) {
+    font-family: var(--metro-journal-title-font) !important;
     font-size: 2.1rem;
-    font-weight: 400;
+    font-weight: 400 !important;
     line-height: 1.15;
-    color: var(--metro-journal-red) !important;
+    color: var(--metro-journal-black) !important;
     border: 0;
     margin: 0 0 0.6rem;
 }
@@ -120,7 +120,7 @@
 .journal-sheet .journal-entry-page .journal-page-content h2 {
     font-family: var(--metro-journal-heading-font);
     font-size: 1.45rem;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--metro-journal-black);
     border-bottom: 1.5px solid var(--metro-journal-red-line);
     padding-bottom: 0.15em;
@@ -135,32 +135,63 @@
     vertical-align: 0.05em;
 }
 
-/* ---------- Titre 3 : Courier Prime, ligne rouge fine ---------- */
+/* ---------- Titre 3 : Courier Prime, sans ligne, léger décalage à gauche ---------- */
 .journal-sheet .journal-entry-page .journal-page-content h3 {
     font-family: var(--metro-journal-heading-font);
     font-size: 1.2rem;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--metro-journal-black);
-    border-bottom: 1px solid var(--metro-journal-red-line);
-    padding-bottom: 0.1em;
-    margin: 1em 0 0.4em;
+    border: 0;
+    margin: 1em 0 0.4em 0.8em;
 }
 
-/* ---------- Titre 4 : Courier Prime, sans ligne ---------- */
+/* ---------- Titre 4 : Courier Prime, décalage supérieur à celui du titre 3 ---------- */
 .journal-sheet .journal-entry-page .journal-page-content h4 {
     font-family: var(--metro-journal-heading-font);
     font-size: 1.05rem;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--metro-journal-black);
     border: 0;
-    margin: 0.9em 0 0.35em;
+    margin: 0.9em 0 0.35em 1.8em;
 }
 
-/* Titres 5 et 6 : discrets, même famille */
-.journal-sheet .journal-entry-page .journal-page-content :is(h5, h6) {
+/* ---------- Titre 5 : décalage supérieur à celui du titre 4 ---------- */
+.journal-sheet .journal-entry-page .journal-page-content h5 {
     font-family: var(--metro-journal-heading-font);
     font-size: 0.95rem;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--metro-journal-black);
     border: 0;
+    margin: 0.8em 0 0.3em 2.8em;
+}
+
+.journal-sheet .journal-entry-page .journal-page-content h6 {
+    font-family: var(--metro-journal-heading-font);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--metro-journal-black);
+    border: 0;
+    margin: 0.8em 0 0.3em 3.6em;
+}
+
+/* ---------- Puces : étoile rouge Métro (lecture et édition) ---------- */
+.journal-sheet :is(.journal-page-content, .editor-content, prose-mirror) ul {
+    list-style: none;
+    padding-left: 1.6em;
+}
+
+.journal-sheet :is(.journal-page-content, .editor-content, prose-mirror) ul > li {
+    position: relative;
+    list-style: none;
+}
+
+.journal-sheet :is(.journal-page-content, .editor-content, prose-mirror) ul > li::before {
+    content: "★";
+    position: absolute;
+    left: -1.45em;
+    top: -0.05em;
+    color: var(--metro-journal-star);
+    font-size: 1.25em;
+    line-height: 1.2;
+    text-shadow: 0 0 3px rgba(154, 36, 36, 0.55);
 }
