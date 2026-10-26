@@ -1,8 +1,8 @@
 {
-  "id": "Metro-2033-YZEngine",
+  "id": "metro-2033-yze",
   "title": "Métro 2033 — Year Zero Engine",
   "description": "Système Foundry VTT pour Métro 2033 (éditions Arkhane Asylum) utilisant le Year Zero Engine. Œuvre de fan non officielle, non approuvée par l'éditeur ni par les titulaires des droits de Métro 2033.",
-  "version": "0.9.8.32",
+  "version": "0.9.7",
   "license": "LICENSE",
   "url": "https://github.com/vinceblaz/Metro-2033---YZE",
   "manifest": "https://github.com/vinceblaz/Metro-2033---YZE/releases/latest/download/system.json",
