@@ -292,6 +292,7 @@ Au changement de round : application des échanges d'initiative, feu (rejoué av
 ### Station
 - La fiche **Station** (Item) décrit population (niveau, membres, dés de Stress moral en attente), ressources (Eau, Nourriture, Équipement, Énergie, Médecine), personnel de soutien, faction contrôlante, marché, défenses, connexions, PNJ notables.
 - **Jet de Population hebdomadaire** : depuis la fiche, bouton « Jet de Population » ; non forçable ; chaque « 1 » baisse Eau, Nourriture et Énergie de 1 (l'Équipement n'est pas affecté) ; un récapitulatif est posté dans le Chat.
+- **Faction et Station d'un personnage** : une seule de chaque (onglet Biographie, références `Faction` et `Communauté / Station`). Déposer une Faction ou une Station sur la fiche renseigne l'affiliation : un dépôt identique est ignoré, un dépôt différent remplace la précédente.
 - **Jet de SURVIE de station** (fiche Personnage) : une semaine complète de recherche donne un jet de SURVIE non forçable avec un malus selon la ressource ; chaque réussite augmente la ressource de 1 (plafond 10), appliqué par un bouton de la carte.
 
 ### Véhicules

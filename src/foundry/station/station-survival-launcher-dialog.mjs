@@ -89,10 +89,10 @@ export class StationSurvivalLauncherDialog {
                             ? `
                                 <div class="metro-macro-value-row">
                                     <label>
-                                        Station recherchée depuis une
+                                        Station affiliée, recherchée depuis une
                                         semaine complète :
                                         <select name="stationUuid">
-                                            <option value="">— Choisir —</option>
+                                            ${stationOptions.length === 1 ? "" : '<option value="">— Choisir —</option>'}
                                             ${stationChoices}
                                         </select>
                                     </label>
@@ -100,8 +100,11 @@ export class StationSurvivalLauncherDialog {
                             `
                             : `
                                 <p class="metro-macro-value-examples">
-                                    Aucune Station n'est disponible dans
-                                    ce monde.
+                                    Aucune Station disponible. Importez-en une
+                                    depuis le compendium « Métro 2033 —
+                                    Stations » dans l'onglet Objets du
+                                    monde, ou déposez-la sur la fiche du
+                                    personnage.
                                 </p>
                             `
                     }

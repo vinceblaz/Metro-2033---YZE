@@ -1,4 +1,8 @@
 import {
+    decideAffiliationDrop
+} from "../../domain/rules/affiliation-drop.mjs";
+
+import {
     MetroActorSheet
 } from "./metro-actor-sheet.mjs";
 
@@ -3952,6 +3956,62 @@ export class CharacterSheet
 
 
         try {
+
+            // ====================================================
+            // FACTION / STATION : une seule de chaque par Personnage
+            // ====================================================
+
+            const affiliation =
+                decideAffiliationDrop({
+                    itemType:
+                        item.type,
+                    itemUuid:
+                        item.uuid,
+                    currentUuid:
+                        item.type === "faction"
+                            ? this.actor.system.affiliations?.faction
+                            : this.actor.system.affiliations?.community
+                });
+
+            if (
+                affiliation.action
+                !== "not-affiliation"
+            ) {
+
+                const label =
+                    item.type === "faction"
+                        ? "Faction"
+                        : "Station";
+
+                if (affiliation.action === "same") {
+
+                    ui.notifications.info(
+                        `${item.name} est déjà la ${label} de ${this.actor.name}.`
+                    );
+
+                    return null;
+
+                }
+
+                if (affiliation.action === "ignore") {
+                    return null;
+                }
+
+                await this.actor.update({
+                    [affiliation.path]:
+                        item.uuid
+                });
+
+                ui.notifications.info(
+                    affiliation.action === "replace"
+                        ? `${item.name} remplace l'ancienne ${label} de ${this.actor.name}.`
+                        : `${item.name} devient la ${label} de ${this.actor.name}.`
+                );
+
+                return null;
+
+            }
+
 
             // ====================================================
             // TALENT

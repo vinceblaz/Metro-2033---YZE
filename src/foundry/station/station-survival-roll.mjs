@@ -51,21 +51,64 @@ import {
 } from "../chat/yze-roll-chat.mjs";
 
 
-function listStationOptions() {
+/**
+ * Station affiliée au Personnage : celle référencée dans sa fiche
+ * (onglet Biographie, « Communauté / Station », system.affiliations.community).
+ * Un Personnage n'a qu'une seule Station : aucune autre n'est proposée.
+ *
+ * Renvoie { options, reason } : `options` contient au plus une entrée ;
+ * `reason` explique pourquoi la liste est vide.
+ */
+async function resolveAffiliatedStation(
+    actor
+) {
 
-    return Array.from(
-        game.items
-        ?? []
-    )
-        .filter(
-            item => item.type === "station"
-        )
-        .map(
-            item => ({
-                value: item.uuid,
-                label: item.name
-            })
-        );
+    const uuid =
+        String(
+            actor?.system?.affiliations?.community
+            ?? ""
+        ).trim();
+
+    if (!uuid) {
+
+        return {
+            options: [],
+            reason: `${actor?.name ?? "Ce personnage"} n'a aucune Station affiliée : renseignez « Communauté / Station » dans l'onglet Biographie.`
+        };
+
+    }
+
+    let station = null;
+
+    try {
+        station = await fromUuid(uuid);
+    }
+    catch (error) {
+        station = null;
+    }
+
+    if (!station || station.type !== "station") {
+
+        return {
+            options: [],
+            reason: `La Station affiliée à ${actor.name} est introuvable ou n'est pas une Station (« Communauté / Station », onglet Biographie).`
+        };
+
+    }
+
+    if (station.pack) {
+
+        return {
+            options: [],
+            reason: `La Station « ${station.name} » est dans un compendium : importez-la dans le monde, puis affiliez le personnage à cette copie.`
+        };
+
+    }
+
+    return {
+        options: [{ value: station.uuid, label: station.name }],
+        reason: ""
+    };
 
 }
 
@@ -112,8 +155,16 @@ export async function rollStationSurvivalForActor(
     }
 
 
-    const stationOptions =
-        listStationOptions();
+    const { options: stationOptions, reason } =
+        await resolveAffiliatedStation(actor);
+
+    if (stationOptions.length === 0) {
+
+        ui.notifications.warn(reason);
+
+        return null;
+
+    }
 
     const selection =
         await StationSurvivalLauncherDialog.prompt({
