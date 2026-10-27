@@ -1,4 +1,5 @@
 # Journal des modifications
+## 0.9.9 - Ajout de mentions légales
 
 ## 0.9.7 — retours de tests : initiative rapide, traits de créature, habillage (octobre 2026)
 
