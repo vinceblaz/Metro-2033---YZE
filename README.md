@@ -2,6 +2,29 @@
 
 Système Foundry VTT (v14) pour le jeu de rôle **Métro 2033** (Year Zero Engine) : fiches de Personnage, PNJ, Créature, Véhicule, Armes / Protections / Améliorations d'équipement, Talents, jets YZE (Push, Stress, afflictions), combat de mêlée et de tir, Terreur, Poison, Maladie, Asphyxie, Feu, Stations et Factions.
 
+Unofficial Foundry VTT game system for **Metro 2033**, the tabletop RPG based on the novels of Dmitry Glukhovsky. Forked from Mutant Year Zero.
+
+FoundryVTT system approved by the editor Arkhane Asylum.
+
+Fonctions : 
+
+    Fiches PJ/PNJ/Creatuers
+    Jets et messages associés
+    Compendiums minimums
+    Assistance diverses (relances, etc)
+
+ 
+Mentions légales
+
+© 2025 Arkhane Asylum Publishing. Tous droits réservés.
+
+Year Zero Engine © 2025 Fria Ligan AB. Développé, rédigé et édité par Tomas Härenstam.
+
+METRO 2033 © Dmitry Glukhovsky.
+
+Ce système non officiel pour Foundry VTT n'est ni affilié ni approuvé par Arkhane Asylum Publishing, Fria Ligan AB ou Dmitry Glukhovsky. Tous les noms, personnages et éléments liés à Metro 2033 restent la propriété de leurs déten
+teurs respectifs.
+
 > **Version bêta publique 0.9.9.** Des défauts sont attendus ; plusieurs fonctions n'ont pas encore été validées en conditions réelles avec un compte joueur. Merci de les signaler dans les [Issues](https://github.com/vinceblaz/Metro-2033---YZE/issues).
 
 > **Œuvre de fan non officielle**, non approuvée par l'éditeur (Arkhane Asylum, https://www.arkhane-asylum.fr) ni par les titulaires des droits de Métro 2033. Aucune illustration du livre n'est incluse. Voir [LICENSE](LICENSE).
